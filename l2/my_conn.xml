@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpg_club>
+ <forward>
+  <test>
+    <network>
+	 <ip_local></ip_local>
+	 <ip_remote>192.168.100.11</ip_remote>
+	 <port_local>9000</port_local>
+	 <port_remote>7777</port_remote>
+	 <socks_in>False</socks_in>
+	 <socks_out>Fasle</socks_out>
+	</network>
+	<rules>
+	 <xor>rpg-club_empire</xor>
+	 <forward>rpg-club_empire</forward>
+	 <chronicles>rpg-club_empire</chronicles>
+    </rules>	
+  </test>
+ </forward>
+</rpg_club>

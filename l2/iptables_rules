@@ -1,0 +1,87 @@
+#! /usr/local/bin/python3
+# -*- coding: utf-8 -*-
+
+iptables [-t table] command [match] [target/jump]
+
+$la2_s_IP  8.8.8.8
+$INET_IP   83.56.15.89/1      gw: provider_IP    #huawey
+$LAN_IP    192.168.100.1/24    gw: 83.56.15.89   #huawey
+$FW_IP     192.168.100.6/24    gw: 192.168.100.1 #myHost
+$la2_c_IP  192.168.100.4/24    gw: 192.168.100.6 #myPC
+
+#huawey
+iptables -t nat -A PREROUTING --dst $INET_IP -p tcp --dport 7777 -j DNAT \
+--to-destination $FW_IP
+iptables -t nat -A POSTROUTING -p tcp --dst $FW_IP --dport 7777 -j SNAT \
+--to-source $LAN_IP
+iptables -t nat -A OUTPUT --dst $INET_IP -p tcp --dport 7777 -j DNAT \
+--to-destination $FW_IP
+
+#myHost - transparent  proxying
+iptables -t nat -A PREROUTING --dst $LAN_IP -p tcp --dport 7777 -j DNAT \
+--to-destination $la2_c_IP
+iptables -t nat -A POSTROUTING -p tcp --dst $la2_c_IP --dport 7777 -j SNAT \
+--to-source $FW_IP
+iptables -t nat -A OUTPUT --dst $LAN_IP -p tcp --dport 7777 -j DNAT \
+--to-destination $la2_c_IP
+iptables -t nat -A PREROUTING -p tcp --dport 7777 -j REDIRECT --to-ports 9000-9100
+
+
+iptables -t nat -A PREROUTING --dst 192.168.100.10 -p tcp --dport 7777 -j DNAT \
+--to-destination 192.168.100.1
+iptables -t nat -A POSTROUTING -p tcp --dst $la2_c_IP --dport 7777 -j SNAT \
+--to-source $FW_IP
+iptables -t nat -A OUTPUT --dst $LAN_IP -p tcp --dport 7777 -j DNAT \
+--to-destination $la2_c_IP
+iptables -t nat -A PREROUTING -p tcp --dport 7777 -j REDIRECT --to-ports 9000-9100
+
+
+
+# sudo nano /etc/network/interfaces
+auto lo
+iface lo inet loopback
+auto eth0
+iface eth0 inet static
+address 192.168.100.10
+netmask 255.255.255.0
+gateway 192.168.100.1
+
+
+
+
+#done
+#client
+#append
+os.system('route add 91.238.84.215 mask 255.255.255.255 192.168.100.10')
+os.system('route add 213.59.44.50 mask 255.255.255.255 192.168.100.10')
+os.system('route add 95.211.47.188 mask 255.255.255.255 192.168.100.10')
+os.system('route add 95.211.196.17 mask 255.255.255.255 192.168.100.10')
+os.system('route add 95.211.196.15 mask 255.255.255.255 192.168.100.10')
+os.system('route PRINT') # метрика должна быть ниже
+#delete
+os.system('route delete 91.238.84.215 mask 255.255.255.255 192.168.100.10')
+os.system('route delete 213.59.44.50 mask 255.255.255.255 192.168.100.10')
+os.system('route delete 95.211.47.188 mask 255.255.255.255 192.168.100.10')
+os.system('route delete 95.211.196.17 mask 255.255.255.255 192.168.100.10')
+os.system('route delete 95.211.196.15 mask 255.255.255.255 192.168.100.10')
+os.system('route PRINT') # метрика должна быть ниже
+
+
+#server
+#append
+sudo iptables -t nat -A PREROUTING -p tcp --dst 213.59.44.50 --dport 7777 -j REDIRECT
+sudo iptables -t nat -A PREROUTING -p tcp --dst 91.238.84.215 --dport 7777 -j REDIRECT --to-ports 7778
+sudo iptables -t nat -A PREROUTING -p tcp --dst 95.211.47.188 --dport 8081 -j REDIRECT
+sudo iptables -t nat -A PREROUTING -p tcp --dst 95.211.196.17 --dport 8081 -j REDIRECT --to-ports 8082
+sudo iptables -t nat -A PREROUTING -p tcp --dst 95.211.196.15 --dport 8081 -j REDIRECT --to-ports 8083
+#delete
+sudo iptables -t nat -D PREROUTING -p tcp --dst 213.59.44.50 --dport 7777 -j REDIRECT
+sudo iptables -t nat -D PREROUTING -p tcp --dst 91.238.84.215 --dport 7777 -j REDIRECT --to-ports 7778
+sudo iptables -t nat -D PREROUTING -p tcp --dst 95.211.47.188 --dport 8081 -j REDIRECT
+sudo iptables -t nat -D PREROUTING -p tcp --dst 95.211.196.17 --dport 8081 -j REDIRECT --to-ports 8082
+sudo iptables -t nat -D PREROUTING -p tcp --dst 95.211.196.15 --dport 8081 -j REDIRECT --to-ports 8083
+#list
+sudo iptables -t nat --list
+
+#test
+sudo iptables -t nat -A PREROUTING -p tcp --dst 192.168.100.11 --dport 7777 -j REDIRECT --to-ports 9000

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpg_club>
+<management>
+  <S1>
+   <ip_local></ip_local>
+   <port_local>3006</port_local>
+  </S1>
+ </management>
+</rpg_club>

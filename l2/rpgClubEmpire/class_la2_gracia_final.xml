@@ -1,0 +1,4277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+<pck_struct pck_name="c_Logout" pck_type="00"/>
+
+<pck_struct pck_name="c_AttackRequest" pck_type="01">
+  <i4.ObjectID/>
+  <i4.OrigX/>
+  <i4.OrigY/>
+  <i4.OrigZ/>
+  <i1.AttackID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestStartPledgeWar" pck_type="03">
+  <S.PledgeName/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestReplyStartPledgeWar" pck_type="04">
+  <S.RequestorName/>
+  <i4.Answer/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestStopPledgeWar" pck_type="05">
+  <S.PledgeName/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestReplyStopPledgeWar" pck_type="06">
+  <S.RequestorName/>
+  <i4.Answer/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSurrenderPledgeWar" pck_type="07">
+  <S.PledgeName/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestReplySurrenderPledgeWar" pck_type="08">
+  <S.RequestorName/>
+  <i4.Answer/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSetPledgeCrest" pck_type="09">
+  <i4.CrestSize/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestGiveNickName" pck_type="0B">
+  <S.Target/>
+  <S.Title/>
+</pck_struct>
+
+<pck_struct pck_name="c_CharacterCreate" pck_type="0C">
+  <S.Name/>
+  <i4.Race/>
+  <i4.Sex/>
+  <i4.ClassIDGetClassID/>
+  <i4.INT/>
+  <i4.STR/>
+  <i4.CON/>
+  <i4.MEN/>
+  <i4.DEX/>
+  <i4.WIT/>
+  <i4.HairStyle/>
+  <i4.HairColor/>
+  <i4.Face/>
+</pck_struct>
+
+<pck_struct pck_name="c_CharacterDelete" pck_type="0D">
+  <i4.CharSlot/>
+</pck_struct>
+
+<pck_struct pck_name="c_ProtocolVersion" pck_type="0E">
+  <i4.Version/>
+  <S-.256/>
+</pck_struct>
+
+<pck_struct pck_name="c_MoveBackwardToLocation" pck_type="0F">
+  <i4.ToX/>
+  <i4.ToY/>
+  <i4.ToZ/>
+  <i4.OrigX/>
+  <i4.OrigY/>
+  <i4.OrigZ/>
+  <i4.MoveMovement/>
+</pck_struct>
+
+<pck_struct pck_name="c_EnterWorld" pck_type="11">
+  <i4.a24/>
+  <i4.U/>
+  <i4.U/>
+  <i4.U/>
+  <i4.U/>
+  <S-.60/>
+  <i4.random/>
+  <u1.ip01/>
+  <u1.ip02/>
+  <u1.ip03/>
+  <u1.ip04/>
+  <u1.ip11/>
+  <u1.ip12/>
+  <u1.ip13/>
+  <u1.ip14/>
+  <u1.ip21/>
+  <u1.ip22/>
+  <u1.ip23/>
+  <u1.ip24/>
+  <u1.ip31/>
+  <u1.ip32/>
+  <u1.ip33/>
+  <u1.ip34/>
+  <u1.ip41/>
+  <u1.ip42/>
+  <u1.ip43/>
+  <u1.ip44/>
+</pck_struct>
+
+<pck_struct pck_name="c_CharacterSelect" pck_type="12">
+  <i4.CharSlot/>
+  <i2.Unknown/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_NewCharacter" pck_type="13"/>
+
+<pck_struct pck_name="c_RequestItemList" pck_type="14"/>
+
+<pck_struct pck_name="c_RequestUnEquipItem" pck_type="16">
+  <i4.Slot/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestDropItem" pck_type="17">
+  <i4.ObjectID/>
+  <i4.Count/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="c_UseItem" pck_type="19">
+  <i4.ObjectID/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_TradeRequest" pck_type="1A">
+  <i4.ObjectID/>
+</pck_struct>
+
+<pck_struct pck_name="c_AddTradeItem" pck_type="1B">
+  <i4.TradeID/>
+  <i4.ObjectID/>
+  <i4.Count/>
+</pck_struct>
+
+<pck_struct pck_name="c_TradeDone" pck_type="1C">
+  <i4.Response/>
+</pck_struct>
+
+<pck_struct pck_name="c_Action" pck_type="1F">
+  <i4.ObjectID/>
+  <i4.OrigX/>
+  <i4.OrigY/>
+  <i4.OrigZ/>
+  <i1.ActionID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestBypassToServer" pck_type="23">
+  <S.Command/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestBBSwrite" pck_type="24">
+  <S.URL/>
+  <S.Argument1/>
+  <S.Argument2/>
+  <S.Argument3/>
+  <S.Argument4/>
+  <S.Argument5/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestJoinPledge" pck_type="26">
+  <i4.Target/>
+  <i4.PledgeType/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAnswerJoinPledge" pck_type="27">
+  <i4.Answer/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestWithdrawalPledge" pck_type="28"/>
+
+<pck_struct pck_name="c_RequestOustPledgeMember" pck_type="29">
+  <S.Target/>
+</pck_struct>
+
+<pck_struct pck_name="c_AuthLogin" pck_type="2B">
+  <S.LoginName/>
+  <i4.PlayKey2/>
+  <i4.PlayKey1/>
+  <i4.LoginKey1/>
+  <i4.LoginKey2/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestGetItemFromPet" pck_type="2C">
+  <i4.ObjectID/>
+  <i4.Amount/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAllyInfo" pck_type="2E"/>
+
+<pck_struct pck_name="c_RequestCrystallizeItem" pck_type="2F">
+  <i4.ObjectID/>
+  <i4.Count/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPrivateStoreManageSell" pck_type="30"/>
+
+<pck_struct pck_name="c_SetPrivateStoreListSell" pck_type="31">
+  <i4.ListSizeValue skip="0" loop="3">
+    <i4.ObjectID/>
+    <i4.Count/>
+    <i4.Price/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSocialAction" pck_type="34">
+  <i4.ActionGetFunc09/>
+</pck_struct>
+
+<pck_struct pck_name="c_ChangeMoveType2" pck_type="35">
+  <i4.TypeRun/>
+</pck_struct>
+
+<pck_struct pck_name="c_ChangeWaitType2" pck_type="36">
+  <i4.TypeStand/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSellItem" pck_type="37">
+  <i4.ListID/>
+  <i4.ListSizeValue skip="0" loop="3">
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_Unknown38" pck_type="38">
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i2.Unknown/>
+  <i1.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestMagicSkillUse" pck_type="39">
+  <i4.skillIDGetSkill/>
+  <i4.CtrlPressed/>
+  <i1.ShiftPressed/>
+</pck_struct>
+
+<pck_struct pck_name="c_Appearing" pck_type="3A"/>
+
+<pck_struct pck_name="c_SendWareHouseDepositList" pck_type="3B">
+  <i4.ListSizeValue skip="0" loop="2">
+    <i4.ObjectID/>
+    <i4.Count/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_SendWareHouseWithDrawList" pck_type="3C">
+  <i4.ListSizeValue skip="0" loop="2">
+    <i4.ObjectID/>
+    <i4.Count/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestShortCutReg" pck_type="3D">
+  <i4.Type/>
+  <i4.Slot/>
+  <i4.ID/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestShortCutDel" pck_type="3F">
+  <i4.ID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestBuyItem" pck_type="40">
+  <i4.ListID/>
+  <i4.ListSizeValue skip="0" loop="2">
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestJoinParty" pck_type="42">
+  <S.Name/>
+  <i4.ItemDistribution/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAnswerJoinParty" pck_type="43">
+  <i4.Response/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestWithDrawalParty" pck_type="44"/>
+
+<pck_struct pck_name="c_RequestOustPartyMember" pck_type="45">
+  <S.Name/>
+</pck_struct>
+
+<pck_struct pck_name="c_CannotMoveAnymore" pck_type="47">
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestTargetCanceld" pck_type="48">
+  <i2.Unselect/>
+</pck_struct>
+
+<pck_struct pck_name="c_Say2" pck_type="49">
+  <S.Text/>
+  <i4.Type/>
+  <S.Target/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgeMemberList" pck_type="4D"/>
+
+<pck_struct pck_name="c_DummyPacket" pck_type="4F"/>
+
+<pck_struct pck_name="c_RequestSkillList" pck_type="50"/>
+
+<pck_struct pck_name="c_MoveWithDelta" pck_type="52">
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestGetOnVehicle" pck_type="53">
+  <i4.BoatObjID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestGetOffVehicle" pck_type="54">
+  <i4.BoatObjID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="c_AnswerTradeRequest" pck_type="55">
+  <i4.Answer/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestActionUse" pck_type="56">
+  <i4.ActionID/>
+  <i4.CtrlPressed/>
+  <i1.ShiftPressed/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRestart" pck_type="57"/>
+
+<pck_struct pck_name="c_RequestSiegeInfo" pck_type="58"/>
+
+<pck_struct pck_name="c_ValidatePosition" pck_type="59">
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+  <i4.Data/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestShowBoard" pck_type="5E">
+  <i4.FlagShow/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestEnchantItem" pck_type="5F">
+  <i4.ObjectID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestDestroyItem" pck_type="60">
+  <i4.ObjectID/>
+  <i4.Count/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestQuestList" pck_type="62"/>
+
+<pck_struct pck_name="c_RequestQuestAbort" pck_type="63">
+  <i4.QuestID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgeInfo" pck_type="65">
+  <i4.ClanID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgeExtendedInfo" pck_type="66">
+  <S.PledgeName/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgeCrest" pck_type="67">
+  <i4.CrestID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSendFriendMsg" pck_type="6B">
+  <S.Message/>
+  <S.Reciever/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestShowMiniMap" pck_type="6C"/>
+
+<pck_struct pck_name="c_RequestRecordInfo" pck_type="6E"/>
+
+<pck_struct pck_name="c_RequestHennaEquip" pck_type="6F">
+  <i4.SymbolID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAcquireSkillInfo" pck_type="73">
+  <i4.skillIDGetSkill/>
+  <i4.Level/>
+  <i4.Type/>
+</pck_struct>
+
+<pck_struct pck_name="c_SendBypassBuildCmd" pck_type="74">
+  <S.Command/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestMoveToLocationInVehicle" pck_type="75">
+  <i4.BoatObjID/>
+  <i4.ToX/>
+  <i4.ToY/>
+  <i4.ToZ/>
+  <i4.OrigX/>
+  <i4.OrigY/>
+  <i4.OrigZ/>
+</pck_struct>
+
+<pck_struct pck_name="c_CannotMoveAnymoreInVehicle" pck_type="76">
+  <i4.BoatObjID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestFriendInvite" pck_type="77">
+  <S.Name/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAnswerFriendInvite" pck_type="78">
+  <i4.Response/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestFriendList" pck_type="79"/>
+
+<pck_struct pck_name="c_RequestFriendDel" pck_type="7A">
+  <S.Name/>
+</pck_struct>
+
+<pck_struct pck_name="c_CharacterRestore" pck_type="7B">
+  <i4.CharSlot/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAcquireSkill" pck_type="7C">
+  <i4.skillIDGetSkill/>
+  <i4.Level/>
+  <i4.Type/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRestartPoint" pck_type="7D">
+  <i4.PointType/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestGMCommand" pck_type="7E">
+  <S.TargetName/>
+  <i4.Command/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPartyMatchConfig" pck_type="7F">
+  <i4.AutomaticRegistration/>
+  <i4.ShowLevel/>
+  <i4.ShowClass/>
+  <S.Memo/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPartyMatchList" pck_type="80">
+  <i4.Status/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <S.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPartyMatchDetail" pck_type="81">
+  <i4.ObjectID/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPrivateStoreBuy" pck_type="83">
+  <i4.StorePlayerID/>
+  <i4.ListSizeValue skip="0" loop="3">
+    <i4.ObjectID/>
+    <i4.Count/>
+    <i4.Price/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestTutorialLinkHtml" pck_type="85">
+  <S.Bypass/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestTutorialPassCmdToServer" pck_type="86">
+  <S.Bypass/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestTutorialQuestionMark" pck_type="87">
+  <i4.Number/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestTutorialClientEvent" pck_type="88">
+  <i4.EventID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPetition" pck_type="89">
+  <S.Content/>
+  <i4.Type/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPetitionCancel" pck_type="8A"/>
+
+<pck_struct pck_name="c_RequestGmList" pck_type="8B"/>
+
+<pck_struct pck_name="c_RequestJoinAlly" pck_type="8C">
+  <i4.ID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAnswerJoinAlly" pck_type="8D">
+  <i4.Response/>
+</pck_struct>
+
+<pck_struct pck_name="c_AllyLeave" pck_type="8E"/>
+
+<pck_struct pck_name="c_AllyDismiss" pck_type="8F">
+  <S.ClanName/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestDismissAlly" pck_type="90"/>
+
+<pck_struct pck_name="c_RequestSetAllyCrest" pck_type="91">
+  <i4.CrestSize/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAllyCrest" pck_type="92">
+  <i4.CrestID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestChangePetName" pck_type="93">
+  <S.Name/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPetUseItem" pck_type="94">
+  <i4.ObjectID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestGiveItemToPet" pck_type="95">
+  <i4.ObjectID/>
+  <i4.Amount/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPrivateStoreQuitSell" pck_type="96"/>
+
+<pck_struct pck_name="c_SetPrivateStoreMsgSell" pck_type="97">
+  <S.StoreMsg/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPetGetItem" pck_type="98">
+  <i4.ObjectID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPrivateStoreManageBuy" pck_type="99"/>
+
+<pck_struct pck_name="c_SetPrivateStoreListBuy" pck_type="9A">
+  <i4.ListSizeValue skip="0" loop="5">
+    <i4.ItemIDGetFunc01/>
+    <i2.h/>
+    <i2.h/>
+    <i4.Count/>
+    <i4.Price/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPrivateStoreQuitBuy" pck_type="9C"/>
+
+<pck_struct pck_name="c_SetPrivateStoreMsgBuy" pck_type="9D">
+  <S.StoreMsg/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPrivateStoreSell" pck_type="9F">
+  <i4.StorePlayerID/>
+  <i4.ListSizeValue skip="0" loop="6">
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i2.h/>
+    <i2.h/>
+    <i4.Count/>
+    <i4.Price/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSkillCoolTime" pck_type="A6"/>
+
+<pck_struct pck_name="c_RequestPackageSendableItemList" pck_type="A7">
+  <i4.ObjectID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPackageSend" pck_type="A8">
+  <i4.ObjectID/>
+  <i4.ListSizeValue skip="0" loop="2">
+    <i4.ID/>
+    <i4.Count/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestBlock" pck_type="A9">
+  <i4.Type/>
+  <S.name/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSiegeAttackerList" pck_type="AB">
+  <i4.CastleID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSiegeDefenderList" pck_type="AC">
+  <i4.CastleID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestJoinSiege" pck_type="AD">
+  <i4.CastleID/>
+  <i4.IsAttacker/>
+  <i4.IsJoining/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestConfirmSiegeWaitingList" pck_type="AE">
+  <i4.CastleID/>
+  <i4.ClanID/>
+  <i4.Approved/>
+</pck_struct>
+
+<pck_struct pck_name="c_MultiSellChoose" pck_type="B0">
+  <i4.ListID/>
+  <i4.EntryID/>
+  <i4.Amount/>
+  <i2.Enchantment/>
+</pck_struct>
+
+<pck_struct pck_name="c_NetPing" pck_type="B1">
+  <i4.kID/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestUserCommand" pck_type="B3">
+  <i4.Command/>
+</pck_struct>
+
+<pck_struct pck_name="c_SnoopQuit" pck_type="B4">
+  <i4.SnoopID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRecipeBookOpen" pck_type="B5">
+  <i4.isDwarvenCraft/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRecipeBookDestroy" pck_type="B6">
+  <i4.RecipeID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRecipeItemMakeInfo" pck_type="B7">
+  <i4.RecipeID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRecipeItemMakeSelf" pck_type="B8">
+  <i4.RecipeID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRecipeShopMessageSet" pck_type="BA">
+  <S.Name/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRecipeShopListSet" pck_type="BB">
+  <i4.ListSizeValue skip="0" loop="2">
+    <i4.RecipeID/>
+    <i4.Cost/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRecipeShopManageQuit" pck_type="BC"/>
+
+<pck_struct pck_name="c_RequestRecipeShopMakeInfo" pck_type="BE">
+  <i4.CharID/>
+  <i4.RecipeID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRecipeShopMakeItem" pck_type="BF">
+  <i4.ID/>
+  <i4.RecipeID/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRecipeShopManagePrev" pck_type="C0"/>
+
+<pck_struct pck_name="c_ObserverReturn" pck_type="C1"/>
+
+<pck_struct pck_name="c_RequestEvaluate" pck_type="C2">
+  <i4.TargetID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestHennaList" pck_type="C3">
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestHennaItemInfo" pck_type="C4">
+  <i4.SymbolID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestBuySeed" pck_type="C5">
+  <i4.ManorID/>
+  <i4.CountValue skip="0" loop="2">
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+  </i4.CountValue>
+</pck_struct>
+
+<pck_struct pck_name="c_DlgAnswer" pck_type="C6">
+  <i4.MessageID/>
+  <i4.Answer/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestWearItem" pck_type="C7">
+  <i4.Unknown/>
+  <i4.ListID/>
+  <i4.ListSizeValue skip="0" loop="1">
+    <i4.ItemIDGetFunc01/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSSQStatus" pck_type="C8">
+  <i1.Page/>
+</pck_struct>
+
+<pck_struct pck_name="c_GameGuardReply" pck_type="CB">
+  <i4.i/>
+  <i4.i/>
+  <i4.i/>
+  <i4.i/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgePower" pck_type="CC">
+  <i4.Rank/>
+  <i4.Action/>
+  <i4.Privs/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestMakeMacro" pck_type="CD">
+  <i4.MacroID/>
+  <S.Name/>
+  <S.Desc/>
+  <S.Acronym/>
+  <i1.Icon/>
+  <i1.MacroCountValue skip="0" loop="5">
+    <i1.Entry/>
+    <i1.Type/>
+    <i4.D1/>
+    <i1.D2/>
+    <S.Command/>
+  </i1.MacroCountValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestDeleteMacro" pck_type="CE">
+  <i4.MacroID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestBuyProcure" pck_type="CF">
+  <i4.ListID/>
+  <i4.CountValue skip="0" loop="3">
+    <i4.Servise/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+  </i4.CountValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestGotoLobby" pck_type="D039">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestManorList" pck_type="D001">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestProcureCropList" pck_type="D002">
+  <i2.subID/>
+  <i4.ListSizeValue skip="0" loop="4">
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.ManorID/>
+    <i4.Count/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSetSeed" pck_type="D003">
+  <i2.subID/>
+  <i4.ManorID/>
+  <i4.ListSizeValue skip="0" loop="3">
+    <i4.ItemIDGetFunc01/>
+    <i4.Sales/>
+    <i4.Price/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSetCrop" pck_type="D004">
+  <i2.subID/>
+  <i4.ManorID/>
+  <i4.ListSizeValue skip="0" loop="4">
+    <i4.ItemIDGetFunc01/>
+    <i4.Sales/>
+    <i4.Price/>
+    <i1.Type/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestWriteHeroWords" pck_type="D005">
+  <i2.subID/>
+  <S.HeroWords/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExAskJoinMPCC" pck_type="D006">
+  <i2.subID/>
+  <S.Name/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExAcceptJoinMPCC" pck_type="D007">
+  <i2.subID/>
+  <i4.Response/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExOustFromMPCC" pck_type="D008">
+  <i2.subID/>
+  <S.Name/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestOustFromPartyRoom" pck_type="D009">
+  <i2.subID/>
+  <i4.ID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestDismissPartyRoom" pck_type="D00A">
+  <i2.subID/>
+  <i4.Data1/>
+  <i4.Data2/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestWithdrawPartyRoom" pck_type="D00B">
+  <i2.subID/>
+  <i4.Data1/>
+  <i4.Data2/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestChangePartyLeader" pck_type="D00C">
+  <i2.subID/>
+  <S.Name/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAutoSoulShot" pck_type="D00D">
+  <i2.subID/>
+  <i4.ItemIDGetFunc01/>
+  <i4.Type/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExEnchantSkillInfo" pck_type="D00E">
+  <i2.subID/>
+  <i4.Type/>
+  <i4.skillIDGetSkill/>
+  <i4.SkillLevel/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExEnchantSkill" pck_type="D00F">
+  <i2.subID/>
+  <i4.skillIDGetSkill/>
+  <i4.SkillLevel/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExPledgeCrestLarge" pck_type="D010">
+  <i2.subID/>
+  <i4.CrestID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExSetPledgeCrestLarge" pck_type="D011">
+  <i2.subID/>
+  <i4.CrestSize/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgeSetAcademyMaster" pck_type="D012">
+  <i2.subID/>
+  <i4.Set/>
+  <S.CurrentPlayerName/>
+  <S.TargetPlayer/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgePowerGradeList" pck_type="D013">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgeMemberPowerInfo" pck_type="D014">
+  <i2.subID/>
+  <i4.Unknown/>
+  <S.PlayerName/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgeSetMemberPowerGrade" pck_type="D015">
+  <i2.subID/>
+  <S.MemberName/>
+  <i4.PowerGrade/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgeMemberInfo" pck_type="D016">
+  <i2.subID/>
+  <i4.Unknown/>
+  <S.PlayerName/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgeWarList" pck_type="D017">
+  <i2.subID/>
+  <i4.Unknown/>
+  <i4.Tab/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExFishRanking" pck_type="D018">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPCCafeCouponUse" pck_type="D019">
+  <i2.subID/>
+  <S.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestDuelStart" pck_type="D01B">
+  <i2.subID/>
+  <S.PlayerName/>
+  <i4.PartyDuel/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestDuelAnswerStart" pck_type="D01C">
+  <i2.subID/>
+  <i4.PartyDuel/>
+  <i4.Unknown/>
+  <i4.Response/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExRqItemLink" pck_type="D01E">
+  <i2.subID/>
+  <i4.ObjectID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestKeyMapping" pck_type="D021">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestSaveInventoryOrder" pck_type="D024">
+  <i2.subID/>
+  <i4.ListSizeValue skip="0" loop="2">
+    <i4.ObjectID/>
+    <i4.Order/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExitPartyMatchingWaitingRoom" pck_type="D025">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestConfirmTargetItem" pck_type="D026">
+  <i2.subID/>
+  <i4.ObjectID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestConfirmRefinerItem" pck_type="D027">
+  <i2.subID/>
+  <i4.TargetItemObjID/>
+  <i4.RefinerItemObjID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestConfirmGemStone" pck_type="D028">
+  <i2.subID/>
+  <i4.TargetItemObjID/>
+  <i4.RefinerItemObjID/>
+  <i4.GemStoneItemObjID/>
+  <i4.GemStoneCount/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestOlympiadObserverEnd" pck_type="D029">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestCursedWeaponList" pck_type="D02A">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestCursedWeaponLocation" pck_type="D02B">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestPledgeReorganizeMember" pck_type="D02C">
+  <i2.subID/>
+  <i4.Unknown/>
+  <S.MemberName/>
+  <i4.PledgeType/>
+  <S.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExMPCCShowPartyMembersInfo" pck_type="D02E">
+  <i2.subID/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestOlympiadMatchList" pck_type="D02F">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAskJoinPartyRoom" pck_type="D030">
+  <i2.subID/>
+  <S.PlayerName/>
+</pck_struct>
+
+<pck_struct pck_name="c_AnswerJoinPartyRoom" pck_type="D031">
+  <i2.subID/>
+  <i4.RequesterID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestListPartyMatchingWaitingRoom" pck_type="D032">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExEnchantSkillSafe" pck_type="D033">
+  <i2.subID/>
+  <i4.skillIDGetSkill/>
+  <i4.SkillLevel/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExEnchantSkillUntrain" pck_type="D034">
+  <i2.subID/>
+  <i4.skillIDGetSkill/>
+  <i4.SkillLevel/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExEnchantSkillRouteChange" pck_type="D035">
+  <i2.subID/>
+  <i4.skillIDGetSkill/>
+  <i4.SkillLevel/>
+</pck_struct>
+
+<pck_struct pck_name="c_ExGetOnAirShip" pck_type="D036">
+  <i2.subID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.ShipID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAllCastleInfo" pck_type="D03F">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAllFortressInfo" pck_type="D040">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestAllAgitInfo" pck_type="D041">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestFortressSiegeInfo" pck_type="D042">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestGetBossRecord" pck_type="D043">
+  <i2.subID/>
+  <i4.BossID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRefine" pck_type="D044">
+  <i2.subID/>
+  <i4.TargetItemObjID/>
+  <i4.RefinerItemObjID/>
+  <i4.GemStoneItemObjID/>
+  <i4.GemStoneCount/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestConfirmCancelItem" pck_type="D045">
+  <i2.subID/>
+  <i4.ItemIDGetFunc01/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestRefineCancel" pck_type="D046">
+  <i2.subID/>
+  <i4.TargetItemObjID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExMagicSkillUseGround" pck_type="D047">
+  <i2.subID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.skillIDGetSkill/>
+  <i4.CtrlPressed/>
+  <i1.ShiftPressed/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestDuelSurrender" pck_type="D048">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExEnchantSkillInfoDetail" pck_type="D049">
+  <i2.subID/>
+  <i4.Type/>
+  <i4.skillIDGetSkill/>
+  <i4.SkillLevel/>
+</pck_struct>
+
+<pck_struct pck_name="c_RequestExCancelAbnormalState" pck_type="D04E">
+  <i2.subID/>
+  <i4.skillIDGetSkill/>
+  <i4.SkillLevel/>
+</pck_struct>
+
+<pck_struct pck_name="s_Die" pck_type="00">
+  <i4.CharID/>
+  <i4.1/>
+  <i4.ToHideout/>
+  <i4.ToCastle/>
+  <i4.ToSiegeHQ/>
+  <i4.Sweepable/>
+  <i4.RespawnFixed/>
+  <i4.ToFortess/>
+</pck_struct>
+
+<pck_struct pck_name="s_Revive" pck_type="01">
+  <i4.ObjectID/>
+</pck_struct>
+
+<pck_struct pck_name="s_SpawnItem" pck_type="05">
+  <i4.ObjectID/>
+  <i4.ItemIDGetFunc01/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Stackable/>
+  <i4.Count/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_SellList" pck_type="06">
+  <i4.Money/>
+  <i4.Lease/>
+  <i2.ListSizeValue skip="0" loop="18">
+    <i2.ItemType1/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.ItemType2/>
+    <i2.0/>
+    <i4.ItemBodyPart/>
+    <i2.EnchantLevel/>
+    <i2.0/>
+    <i2.0/>
+    <i4.ReferencePrice2/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+  </i2.ListSizeValue>
+  <i4.DefAttrUnholy/>
+</pck_struct>
+
+<pck_struct pck_name="s_BuyList" pck_type="07">
+  <i4.Money/>
+  <i4.ListID/>
+  <i2.ListSizeValue skip="0" loop="19">
+    <i2.ItemType1/>
+    <i4.0/>
+    <i4.ItemIDGetFunc01/>
+    <i4.CurrentCount/>
+    <i2.ItemType2/>
+    <i2.0/>
+    <i4.BodyPart/>
+    <i2.0/>
+    <i2.0/>
+    <i2.0/>
+    <i4.PriceTaxRate/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+  </i2.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_DeleteObject" pck_type="08">
+  <i4.ObjectID/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_CharSelectionInfo" pck_type="09">
+  <i4.ListSizeValue skip="2" loop="65">
+    <S.Name/>
+    <i4.CharID/>
+    <S.LoginName/>
+    <i4.SessionID/>
+    <i4.ClanID/>
+    <i4.0/>
+    <i4.Sex/>
+    <i4.Race/>
+    <i4.ClassIDGetClassID/>
+    <i4.1/>
+    <i4.X/>
+    <i4.Y/>
+    <i4.Z/>
+    <f8.CurrentHP/>
+    <f8.CurrentMP/>
+    <i4.SP/>
+    <i8.Exp/>
+    <i4.Level/>
+    <i4.Karma/>
+    <i4.PkKills/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.Unknown/>
+    <i4.RightEarring/>
+    <i4.LeftEarring/>
+    <i4.Necklace/>
+    <i4.RightRing/>
+    <i4.LeftRing/>
+    <i4.Head/>
+    <i4.RightHand/>
+    <i4.LeftHand/>
+    <i4.Gloves/>
+    <i4.Chest/>
+    <i4.Legs/>
+    <i4.Boots/>
+    <i4.Unknown/>
+    <i4.Unknown/>
+    <i4.Hair/>
+    <i4.Face/>
+    <i4.Unknown/>
+    <i4.Unknown/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.HairStyle/>
+    <i4.HairColor/>
+    <i4.Face/>
+    <f8.MaxHP/>
+    <f8.MaxMP/>
+    <i4.DeleteDays/>
+    <i4.ClassIDGetClassID/>
+    <i4.ActiveID/>
+    <i1.EnchantEffect/>
+    <i4.AugmentIDGetAugmentID/>
+    <i4.TransformID/>
+    <i4.0/>
+  </i4.ListSizeValue>
+  <i4.7/>
+  <i1.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_LoginFail" pck_type="0A">
+  <i4.ErrorCode/>
+</pck_struct>
+
+<pck_struct pck_name="s_CharSelected" pck_type="0B">
+  <S.Name/>
+  <i4.CharID/>
+  <S.Title/>
+  <i4.SessionID/>
+  <i4.ClanID/>
+  <i4.0/>
+  <i4.Sex/>
+  <i4.Race/>
+  <i4.ClassIDGetClassID/>
+  <i4.1/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <f8.CurrentHP/>
+  <f8.CurrentMP/>
+  <i4.SP/>
+  <i8.Exp/>
+  <i4.Level/>
+  <i4.Karma/>
+  <i4.PkKills/>
+  <i4.INT/>
+  <i4.STR/>
+  <i4.CON/>
+  <i4.MEN/>
+  <i4.DEX/>
+  <i4.WIT/>
+  <i4.GameTime/>
+  <i4.0/>
+  <i4.ClassIDGetClassID/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <S-.64/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_NpcInfo" pck_type="0C">
+  <i4.ObjectID/>
+  <i4.NpcTypeIdGetNpcId/>
+  <i4.IsAttackable/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+  <i4.0/>
+  <i4.MatkSpd/>
+  <i4.PatkSpd/>
+  <i4.RunSpd/>
+  <i4.WalkSpd/>
+  <i4.SwimRunSpd/>
+  <i4.SwimWalkSpd/>
+  <i4.FlRunSpd/>
+  <i4.FlWalkSpd/>
+  <i4.FlyRunSpd/>
+  <i4.FlyWalkSpd/>
+  <f8.MoveMultiplier/>
+  <f8.AtkSpdMultiplier/>
+  <f8.CollisionRadius/>
+  <f8.CollisionHeight/>
+  <i4.IDRhand/>
+  <i4.0/>
+  <i4.IDLhand/>
+  <i1.1/>
+  <i1.isRunning/>
+  <i1.isInCombat/>
+  <i1.isALikeDead/>
+  <i1.Invisible/>
+  <S.VisibleName/>
+  <S.VisibleTitle/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.AbnormalEffect/>
+  <i4.ClanID/>
+  <i4.CrestID/>
+  <i4.0/>
+  <i4.0/>
+  <i1.0/>
+  <i1.Team/>
+  <f8.CollisionRadius/>
+  <f8.CollisionHeight/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i1.01/>
+  <i1.01/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_NewCharacterSuccess" pck_type="0D">
+  <i4.ListSizeValue skip="0" loop="20">
+    <i4.Race/>
+    <i4.ClassIDGetClassID/>
+    <i4.70/>
+    <i4.BaseSTR/>
+    <i4.10/>
+    <i4.70/>
+    <i4.BaseDEX/>
+    <i4.10/>
+    <i4.70/>
+    <i4.BaseCON/>
+    <i4.10/>
+    <i4.70/>
+    <i4.BaseINT/>
+    <i4.10/>
+    <i4.70/>
+    <i4.BaseWIT/>
+    <i4.10/>
+    <i4.70/>
+    <i4.BaseMEN/>
+    <i4.10/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_CharCreateOk" pck_type="0F">
+  <i4.1/>
+</pck_struct>
+
+<pck_struct pck_name="s_CharCreateFail" pck_type="10">
+  <i4.ErrorCode/>
+</pck_struct>
+
+<pck_struct pck_name="s_ItemList" pck_type="11">
+  <i2.ShowWindow/>
+  <i2.ItemCountValue skip="0" loop="22">
+    <i2.ItemTypeID/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.LocationSlot/>
+    <i8.Amount/>
+    <i2.ItemType2/>
+    <i2.CustomType1/>
+    <i2.isEquipped/>
+    <i4.BodyPart/>
+    <i2.EnchantLevel/>
+    <i2.CustType2/>
+    <i4.AugmentIDGetAugmentID/>
+    <i4.Mana/>
+    <i2.AttackElement/>
+    <i2.AttackElementPower/>
+    <i2.FireDefElementPower/>
+    <i2.WaterDefElementPower/>
+    <i2.WindDefElementPower/>
+    <i2.EarthDefElementPower/>
+    <i2.HolyDefElementPower/>
+    <i2.UnholyDefElementPower/>
+    <i4.RemainingTime/>
+  </i2.ItemCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_SunRise" pck_type="12"/>
+
+<pck_struct pck_name="s_SunSet" pck_type="13"/>
+
+<pck_struct pck_name="s_TradeStart" pck_type="14">
+  <i4.ObjectID/>
+  <i2.ListSizeValue skip="0" loop="18">
+    <i2.ItemType1/>
+    <i4.ObjectId/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.ItemType2/>
+    <i2.0/>
+    <i4.BodyPart/>
+    <i2.EnchantLevel/>
+    <i2.0/>
+    <i2.0/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+    <i4.DefAttrUnholy/>
+  </i2.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_DropItem" pck_type="16">
+  <i4.PlayerID/>
+  <i4.ObjectID/>
+  <i4.ItemIDGetFunc01/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Stackable/>
+  <i8.Count/>
+  <i4.1/>
+</pck_struct>
+
+<pck_struct pck_name="s_GetItem" pck_type="17">
+  <i4.PlayerID/>
+  <i4.ObjectID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="s_StatusUpdate" pck_type="18">
+  <i4.ObjectID/>
+  <i4.AttribCountValue skip="0" loop="2">
+    <i4.AttrIDGetFSup/>
+    <i4.AttrValue/>
+  </i4.AttribCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_NpcHtmlMessage" pck_type="19">
+  <i4.ID/>
+  <S.HTML/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_TradeOwnAdd" pck_type="1A">
+  <i2.1/>
+  <i2.ItemType1/>
+  <i4.ObjectID/>
+  <i4.ItemIDGetFunc01/>
+  <i4.Count/>
+  <i2.ItemType2/>
+  <i2.0/>
+  <i4.BodyPart/>
+  <i2.EnchantLevel/>
+  <i2.0/>
+  <i2.h/>
+  <i4.AttackAttrElement/>
+  <i4.AttackAttrElementVal/>
+  <i4.DefAttrFire/>
+  <i4.DefAttrWater/>
+  <i4.DefAttrWind/>
+  <i4.DefAttrEarth/>
+  <i4.DefAttrHoly/>
+  <i4.DefAttrUnholy/>
+</pck_struct>
+
+<pck_struct pck_name="s_TradeOtherAdd" pck_type="1B">
+  <i2.1/>
+  <i2.ItemType1/>
+  <i4.ObjectID/>
+  <i4.ItemIDGetFunc01/>
+  <i4.Count/>
+  <i2.ItemType2/>
+  <i2.0/>
+  <i4.BodyPart/>
+  <i2.EnchantLevel/>
+  <i2.0/>
+  <i2.h/>
+  <i4.AttackAttrElement/>
+  <i4.AttackAttrElementVal/>
+  <i4.DefAttrFire/>
+  <i4.DefAttrWater/>
+  <i4.DefAttrWind/>
+  <i4.DefAttrEarth/>
+  <i4.DefAttrHoly/>
+  <i4.DefAttrUnholy/>
+</pck_struct>
+
+<pck_struct pck_name="s_TradeDone" pck_type="1C">
+  <i4.Num/>
+</pck_struct>
+
+<pck_struct pck_name="s_CharDeleteSuccess" pck_type="1D"/>
+
+<pck_struct pck_name="s_CharDeleteFail" pck_type="1E">
+  <i4.ErrorCode/>
+</pck_struct>
+
+<pck_struct pck_name="s_ActionFailed" pck_type="1F"/>
+
+<pck_struct pck_name="s_ServerClose" pck_type="20"/>
+
+<pck_struct pck_name="s_InventoryUpdate" pck_type="21">
+  <i2.CountValue skip="0" loop="24">
+    <i2.UpdateType/>
+    <i2.ItemType1/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.LocationSlot/>
+    <i4.Quantity/>
+    <i2.ItemType2/>
+    <i2.CustomType1/>
+    <i2.Equipped/>
+    <i4.BodyPart/>
+    <i2.EnchantLevel/>
+    <i2.CustType2/>
+    <i2.AugmentIDGetAugmentID/>
+    <i2.0/>
+    <i4.Mana/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+    <i4.DefAttrUnholy/>
+    <i4.0/>
+  </i2.CountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_TeleportToLocation" pck_type="22">
+  <i4.TargetID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="s_TargetSelected" pck_type="23">
+  <i4.ObjectID/>
+  <i4.TargetID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_TargetUnselected" pck_type="24">
+  <i4.TargetID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_AutoAttackStart" pck_type="25">
+  <i4.TargetID/>
+</pck_struct>
+
+<pck_struct pck_name="s_AutoAttackStop" pck_type="26">
+  <i4.TargetID/>
+</pck_struct>
+
+<pck_struct pck_name="s_SocialAction" pck_type="27">
+  <i4.CharID/>
+  <i4.ActionGetFunc09/>
+</pck_struct>
+
+<pck_struct pck_name="s_ChangeMoveType" pck_type="28">
+  <i4.CharID/>
+  <i4.Running/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_ChangeWaitType" pck_type="29">
+  <i4.CharID/>
+  <i4.MoveType/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="s_ManagePledgePower" pck_type="2A">
+  <i4.0/>
+  <i4.0/>
+  <i4.Privs/>
+</pck_struct>
+
+<pck_struct pck_name="s_AskJoinPledge" pck_type="2C">
+  <i4.RequestorID/>
+  <S.PledgeName/>
+</pck_struct>
+
+<pck_struct pck_name="s_JoinPledge" pck_type="2D">
+  <i4.PledgeID/>
+</pck_struct>
+
+<pck_struct pck_name="s_KeyPacket" pck_type="2E">
+  <i1.1/>
+  <S-.16/>
+  <i4.1/>
+  <i4.1/>
+</pck_struct>
+
+<pck_struct pck_name="s_MoveToLocation" pck_type="2F">
+  <i4.CharID/>
+  <i4.ToX/>
+  <i4.ToY/>
+  <i4.ToZ/>
+  <i4.OriginX/>
+  <i4.OriginY/>
+  <i4.OriginZ/>
+</pck_struct>
+
+<pck_struct pck_name="s_SummonSay" pck_type="30">
+  <i4.ObjectID/>
+  <i4.ChatID/>
+  <i4.SummonNpcIDGetNpcId/>
+  <S.Msg/>
+</pck_struct>
+
+<pck_struct pck_name="s_CharInfo" pck_type="31">
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+  <i4.ObjectID/>
+  <S.Name/>
+  <i4.Race/>
+  <i4.Sex/>
+  <i4.ClassIDGetClassID/>
+  <i4.Unknown/>
+  <i4.Head/>
+  <i4.RightHand/>
+  <i4.LeftHand/>
+  <i4.Gloves/>
+  <i4.Chest/>
+  <i4.Legs/>
+  <i4.Boots/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Hair/>
+  <i4.Face/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.AugmentIDGetAugmentID/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i4.Unknown/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i4.PvpFlag/>
+  <i4.Karma/>
+  <i4.CastSpd/>
+  <i4.AtkSpd/>
+  <i4.PvpFlag/>
+  <i4.Karma/>
+  <i4.RunSpd/>
+  <i4.WalkSpd/>
+  <i4.SwimRunSpd/>
+  <i4.SwimWalkSpd/>
+  <i4.FlRunSpd/>
+  <i4.FlWalkSpd/>
+  <i4.FlyRunSpd/>
+  <i4.FlyWalkSpd/>
+  <f8.MoveMultiplier/>
+  <f8.AtkSpdMultiplier/>
+  <f8.CollisionRadius/>
+  <f8.CollisionHeight/>
+  <i4.HairStyle/>
+  <i4.HairColor/>
+  <i4.Face/>
+  <S.Title/>
+  <i4.ClanID/>
+  <i4.ClanCrestID/>
+  <i4.AllyID/>
+  <i4.AllyCrestID/>
+  <i4.0/>
+  <i1.isSitting/>
+  <i1.isRunning/>
+  <i1.isInCombat/>
+  <i1.isAlikeDead/>
+  <i1.Invisible/>
+  <i1.MountType/>
+  <i1.PrivateStoreType/>
+  <i2.CubicsSizeValue skip="0" loop="1">
+    <i2.CubicID/>
+  </i2.CubicsSizeValue>
+  <i1.0/>
+  <i4.AbnormalEffect/>
+  <i1.RecomLeft/>
+  <i2.RecomHave/>
+  <i4.MountNpcID/>
+  <i4.MaxCP/>
+  <i4.CurrentCP/>
+  <i1.isMount/>
+  <i1.Team/>
+  <i4.ClanCrestLargeID/>
+  <i1.isNoble/>
+  <i1.isHero/>
+  <i1.isFishing/>
+  <i4.FishX/>
+  <i4.FishY/>
+  <i4.FishZ/>
+  <i4.NameColor/>
+  <i4.0/>
+  <i4.PledgeClass/>
+  <i4.0/>
+  <i4.TitleColor/>
+  <i4.CursedWeapon/>
+  <i4.0/>
+  <i4.TranformationID/>
+</pck_struct>
+
+<pck_struct pck_name="s_UserInfo" pck_type="32">
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.isInAirShip/>
+  <i4.ObjectID/>
+  <S.Name/>
+  <i4.Race/>
+  <i4.Sex/>
+  <i4.ClassIDGetClassID/>
+  <i4.Level/>
+  <i8.Exp/>
+  <i4.STR/>
+  <i4.DEX/>
+  <i4.CON/>
+  <i4.INT/>
+  <i4.WIT/>
+  <i4.MEN/>
+  <i4.MaxHP/>
+  <i4.CurrentHP/>
+  <i4.MaxMP/>
+  <i4.CurrentMP/>
+  <i4.Sp/>
+  <i4.CurrentLoad/>
+  <i4.MaxLoad/>
+  <i4.WeaponEquipment/>
+  <i4.OIDUnder/>
+  <i4.OIDRear/>
+  <i4.OIDLear/>
+  <i4.OIDNeck/>
+  <i4.OIDFinger/>
+  <i4.OIDLfinger/>
+  <i4.OIDHead/>
+  <i4.OIDRhand/>
+  <i4.OIDLhand/>
+  <i4.OIDGloves/>
+  <i4.OIDChest/>
+  <i4.OIDLegs/>
+  <i4.OIDFeet/>
+  <i4.OIDBack/>
+  <i4.OIDLrhand/>
+  <i4.OIDHair/>
+  <i4.OIDHair2/>
+  <i4.OIDRbracelet/>
+  <i4.OIDLbracelet/>
+  <i4.OIDDeco/>
+  <i4.OIDDeco2/>
+  <i4.OIDDeco3/>
+  <i4.OIDDeco4/>
+  <i4.OIDDeco5/>
+  <i4.OIDDeco6/>
+  <i4.OIDBelt/>
+  <i4.IDUnder/>
+  <i4.IDRear/>
+  <i4.IDLear/>
+  <i4.IDNeck/>
+  <i4.IDFinger/>
+  <i4.IDLfinger/>
+  <i4.IDHead/>
+  <i4.IDRhand/>
+  <i4.IDLhand/>
+  <i4.IDGloves/>
+  <i4.IDChest/>
+  <i4.IDLegs/>
+  <i4.IDFeet/>
+  <i4.IDBack/>
+  <i4.IDLrhand/>
+  <i4.IDHair/>
+  <i4.IDHair2/>
+  <i4.IDRbracelet/>
+  <i4.IDLbracelet/>
+  <i4.IDDeco/>
+  <i4.IDDeco2/>
+  <i4.IDDeco3/>
+  <i4.IDDeco4/>
+  <i4.IDDeco5/>
+  <i4.IDDeco6/>
+  <i4.IDBelt/>
+  <i4.AugIDUnder/>
+  <i4.AugIDRear/>
+  <i4.AugIDLear/>
+  <i4.AugIDNeck/>
+  <i4.AugIDFinger/>
+  <i4.AugIDLfinger/>
+  <i4.AugIDHead/>
+  <i4.AugIDRhand/>
+  <i4.AugIDLhand/>
+  <i4.AugIDGloves/>
+  <i4.AugIDChest/>
+  <i4.AugIDLegs/>
+  <i4.AugIDFeet/>
+  <i4.AugIDBack/>
+  <i4.AugIDLrhand/>
+  <i4.AugIDHair/>
+  <i4.AugIDHair2/>
+  <i4.AugIDRbracelet/>
+  <i4.AugIDLbracelet/>
+  <i4.AugIDDeco/>
+  <i4.AugIDDeco2/>
+  <i4.AugIDDeco3/>
+  <i4.AugIDDeco4/>
+  <i4.AugIDDeco5/>
+  <i4.AugIDDeco6/>
+  <i4.AugIDBelt/>
+  <i4.TalismanSlots/>
+  <i4.01/>
+  <i4.Patk/>
+  <i4.PatkSpd/>
+  <i4.Pdef/>
+  <i4.EvasionRate/>
+  <i4.Accuracy/>
+  <i4.CriticalHit/>
+  <i4.Matk/>
+  <i4.MatkSpd/>
+  <i4.PatkSpd/>
+  <i4.Mdef/>
+  <i4.PvPFlag/>
+  <i4.Karma/>
+  <i4.RunSpd/>
+  <i4.WalkSpd/>
+  <i4.SwimRunSpd/>
+  <i4.SwimWalkSpd/>
+  <i4.0/>
+  <i4.0/>
+  <i4.FlyRunSpd/>
+  <i4.FlyWalkSpd/>
+  <f8.MoveMul/>
+  <f8.AtkSpeedMul/>
+  <f8.ColRadius/>
+  <f8.ColHeight/>
+  <i4.HairStyle/>
+  <i4.HairColor/>
+  <i4.Face/>
+  <i4.isGM/>
+  <S.Title/>
+  <i4.ClanID/>
+  <i4.ClanCrestID/>
+  <i4.AllyID/>
+  <i4.AllyCrestID/>
+  <i4.Relation/>
+  <i1.MounType/>
+  <i1.PrivateStoreType/>
+  <i1.DwarvenCraft/>
+  <i4.PkKills/>
+  <i4.PvpKills/>
+  <i2.CubicsSizeValue skip="0" loop="1">
+    <i2.CubicID/>
+  </i2.CubicsSizeValue>
+  <i1.0/>
+  <i4.AbnormalEffect/>
+  <i1.FlayingMounted/>
+  <i4.ClanPrivileges/>
+  <i2.RecomLeft/>
+  <i2.RecomHave/>
+  <i4.MountNpcID/>
+  <i2.InventoryLimit/>
+  <i4.ClassIDGetClassID/>
+  <i4.0/>
+  <i4.MaxCP/>
+  <i4.CurrentCP/>
+  <i1.isMount/>
+  <i1.Team/>
+  <i4.ClanCrestLargeID/>
+  <i1.isNoble/>
+  <i1.isHero/>
+  <i1.isFishing/>
+  <i4.FishingX/>
+  <i4.FishingY/>
+  <i4.FishingZ/>
+  <i4.NameColor/>
+  <i1.isRunning/>
+  <i4.PledgeClass/>
+  <i4.PledgeType/>
+  <i4.TitleColor/>
+  <i4.CursedWeaponEquipID/>
+  <i4.TranformationID/>
+  <i2.AtkElementAttr/>
+  <i2.AttackElementVal/>
+  <i2.DefAttrFire/>
+  <i2.DefAttrWater/>
+  <i2.DefAttrWind/>
+  <i2.DefAttrEarth/>
+  <i2.DefAttrHoly/>
+  <i2.DefAttrDark/>
+  <i4.AgathionId/>
+  <i4.Fame/>
+  <i4.Unknown/>
+  <i4.VitalityPoints/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_Attack" pck_type="33">
+  <i4.AttackerID/>
+  <i4.TargetID/>
+  <i4.Damage/>
+  <i1.Flags/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i2.HitsSizeValue skip="0" loop="3">
+    <i4.TargetID/>
+    <i4.Damage/>
+    <i1.Flags/>
+  </i2.HitsSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_AskJoinParty" pck_type="39">
+  <S.RequestorName/>
+  <i4.ItemDistribution/>
+</pck_struct>
+
+<pck_struct pck_name="s_JoinParty" pck_type="3A">
+  <i4.Response/>
+</pck_struct>
+
+<pck_struct pck_name="s_Unknown40" pck_type="40">
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_WareHouseDepositList" pck_type="41">
+  <i2.WhType/>
+  <i4.PlayerAdena/>
+  <i2.ListSizeValue skip="0" loop="23">
+    <i2.ItemType1/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.ItemType2/>
+    <i2.CustomType1/>
+    <i4.BodyPart/>
+    <i2.EnchantLevel/>
+    <i2.CustomType2/>
+    <i2.0/>
+    <i4.ObjectID/>
+    <i2.AugmentIDGetAugmentID/>
+    <i2.0/>
+    <i2.AugmentIDGetAugmentID/>
+    <i2.0/>
+    <i4.Mana/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+  </i2.ListSizeValue>
+  <i4.DefAttrUnholy/>
+</pck_struct>
+
+<pck_struct pck_name="s_WareHouseWithdrawList" pck_type="42">
+  <i2.WhType/>
+  <i4.PlayerAdena/>
+  <i2.ListSizeValue skip="0" loop="23">
+    <i2.ItemType1/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.ItemType2/>
+    <i2.CustomType1/>
+    <i4.BodyPart/>
+    <i2.EnchantLevel/>
+    <i2.CustomType2/>
+    <i2.0/>
+    <i4.ObjectID/>
+    <i2.AugmentIDGetAugmentID/>
+    <i2.0/>
+    <i2.AugmentIDGetAugmentID/>
+    <i2.0/>
+    <i4.Mana/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+  </i2.ListSizeValue>
+  <i4.DefAttrUnholy/>
+</pck_struct>
+
+<pck_struct pck_name="s_ShortCutRegister" pck_type="44"/>
+
+<!--
+<pck_struct pck_name="s_ShortCutInit" pck_type="45">
+  <i4.countValue skip="0" loop="4">
+    <i4.type/>
+    <i4.slot/>
+    <i4._id/>
+    <i4.lvl/>
+  </i4.countValue>
+  <i1.c/>
+</pck_struct>
+-->
+
+<pck_struct pck_name="s_StopMove" pck_type="47">
+  <i4.ObjectID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+</pck_struct>
+
+<pck_struct pck_name="s_MagicSkillUse" pck_type="48">
+  <i4.CharID/>
+  <i4.TargetID/>
+  <i4.skillIDGetSkill/>
+  <i4.SkillLevel/>
+  <i4.HitTime/>
+  <i4.ReuseDelay/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Unknown/>
+  <i4.TargetX/>
+  <i4.TargetY/>
+  <i4.TargetZ/>
+</pck_struct>
+
+<pck_struct pck_name="s_MagicSkillCanceled" pck_type="49">
+  <i4.ObjectID/>
+</pck_struct>
+
+<pck_struct pck_name="s_CreatureSay" pck_type="4A">
+  <i4.ObjectID/>
+  <i4.TextType/>
+  <S.CharName/>
+  <S.Text/>
+</pck_struct>
+
+<pck_struct pck_name="s_EquipUpdate" pck_type="4B">
+  <i4.Change/>
+  <i4.ObjectID/>
+  <i4.BodyPart/>
+</pck_struct>
+
+<pck_struct pck_name="s_DoorInfo" pck_type="4C">
+  <i4.ObjectID/>
+  <i4.DoorID/>
+</pck_struct>
+
+<pck_struct pck_name="s_DoorStatusUpdate" pck_type="4D">
+  <i4.ObjectID/>
+  <i4.Open/>
+  <i4.Damage/>
+  <i4.Enemy/>
+  <i4.DoorID/>
+  <i4.MaxHP/>
+  <i4.CurrentHP/>
+</pck_struct>
+
+<pck_struct pck_name="s_PartySmallWindowAll" pck_type="4E">
+  <i4.LeaderObjectID/>
+  <i4.LootDistribution/>
+  <i4.ListSizeValue skip="0" loop="13">
+    <i4.MemberObjId/>
+    <S.MemberName/>
+    <i4.CurrentCP/>
+    <i4.MaxCP/>
+    <i4.CurrentHP/>
+    <i4.MaxHP/>
+    <i4.CurrentMP/>
+    <i4.MaxMP/>
+    <i4.Level/>
+    <i4.ClassIDGetClassID/>
+    <i4.0/>
+    <i4.Race/>
+    <i4.0/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_PartySmallWindowAdd" pck_type="4F">
+  <i4.LeaderObjectID/>
+  <i4.d/>
+  <i4.MemberObjID/>
+  <S.MemberName/>
+  <i4.CurrentCP/>
+  <i4.MaxCP/>
+  <i4.CurrentHP/>
+  <i4.MaxHP/>
+  <i4.CurrentMP/>
+  <i4.MaxMP/>
+  <i4.Level/>
+  <i4.ClassIDGetClassID/>
+  <i4.0/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_PartySmallWindowDeleteAll" pck_type="50"/>
+
+<pck_struct pck_name="s_PartySmallWindowDelete" pck_type="51">
+  <i4.MemberObjID/>
+  <S.MemberName/>
+</pck_struct>
+
+<pck_struct pck_name="s_PartySmallWindowUpdate" pck_type="52">
+  <i4.MemberObjId/>
+  <S.MemberName/>
+  <i4.CurrentCP/>
+  <i4.MaxCP/>
+  <i4.CurrentHP/>
+  <i4.MaxHP/>
+  <i4.CurrentMP/>
+  <i4.MaxMP/>
+  <i4.Level/>
+  <i4.ClassIDGetClassID/>
+</pck_struct>
+
+<pck_struct pck_name="s_MagicSkillLaunched" pck_type="54">
+  <i4.CasterObjectID/>
+  <i4.SkillIDGetSkill/>
+  <i4.SkillLevel/>
+  <i4.numberOfTargets/>
+  <i4.TargetID/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeShowMemberListAll" pck_type="5A">
+  <i4.MainOrSubPledge/>
+  <i4.ClanID/>
+  <i4.PledgeType/>
+  <S.ClanName/>
+  <S.LeaderName/>
+  <i4.ClanCrestID/>
+  <i4.ClanLevel/>
+  <i4.HasCastle/>
+  <i4.HasHideOut/>
+  <i4.0/>
+  <i4.Rank/>
+  <i4.ReputationScore/>
+  <i4.0/>
+  <i4.0/>
+  <i4.AllyID/>
+  <S.AllyName/>
+  <i4.AllyCrestID/>
+  <i4.isAtWar/>
+  <i4.SubPledgeMembersCountValue skip="0" loop="7">
+    <S.MemberName/>
+    <i4.MemberLevel/>
+    <i4.MemberClassIDGetClassID/>
+    <i4.Sex/>
+    <i4.Race/>
+    <i4.MemberObjID/>
+    <i4.Sponsor/>
+  </i4.SubPledgeMembersCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeShowMemberListUpdate" pck_type="5B">
+  <S.Name/>
+  <i4.Level/>
+  <i4.ClassIDGetClassID/>
+  <i4.Sex/>
+  <i4.Race/>
+  <i4.ObjectID/>
+  <i4.PledgeType/>
+  <i4.Sponsor/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeShowMemberListAdd" pck_type="5C">
+  <S.Name/>
+  <i4.Level/>
+  <i4.ClassIDGetClassID/>
+  <i4.0/>
+  <i4.1/>
+  <i4.isOnLine/>
+  <i4.PledgeType/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeShowMemberListDelete" pck_type="5D">
+  <S.Name/>
+</pck_struct>
+
+<pck_struct pck_name="s_SkillList" pck_type="5F">
+  <i4.ListSizeValue skip="0" loop="4">
+    <i4.isPassive/>
+    <i4.Level/>
+    <i4.skillIDGetSkill/>
+    <i1.c/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_VehicleInfo" pck_type="60">
+  <i4.BoatObjID/>
+  <i4.BoatX/>
+  <i4.BoatY/>
+  <i4.BoatZ/>
+  <i4.BoatHeading/>
+</pck_struct>
+
+<pck_struct pck_name="s_StopRotation" pck_type="61">
+  <i4.CharID/>
+  <i4.Degree/>
+</pck_struct>
+
+<!--
+<pck_struct pck_name="s_SystemMessage" pck_type="62">
+  <i4.MsgIDGetMsgID/>
+  <i4.typesCountValue skip="0" loop="2">
+    <i4.type/>
+    <S.data/>
+  </i4.typesCountValue>
+</pck_struct>
+-->
+
+<pck_struct pck_name="s_StartPledgeWar" pck_type="63">
+  <S.PlayerName/>
+  <S.PledgeName/>
+</pck_struct>
+
+<pck_struct pck_name="s_StopPledgeWar" pck_type="65">
+  <S.PledgeName/>
+  <S.PlayerName/>
+</pck_struct>
+
+<pck_struct pck_name="s_SurrenderPledgeWar" pck_type="67">
+  <S.PledgeName/>
+  <S.PlayerName/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeCrest" pck_type="6A">
+  <i4.CrestID/>
+  <i4.CrestSize/>
+</pck_struct>
+
+<pck_struct pck_name="s_SetupGauge" pck_type="6B">
+  <i4.Date/>
+  <i4.Time/>
+  <i4.Time/>
+</pck_struct>
+
+<pck_struct pck_name="s_VehicleDeparture" pck_type="6C">
+  <i4.BoatObjID/>
+  <i4.Speed1/>
+  <i4.Speed2/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="s_VehicleCheckLocation" pck_type="6D">
+  <i4.BoatObjID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+</pck_struct>
+
+<pck_struct pck_name="s_GetOnVehicle" pck_type="6E">
+  <i4.CharID/>
+  <i4.BoatObjID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="s_GetOffVehicle" pck_type="6F">
+  <i4.CharID/>
+  <i4.BoatObjID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="s_SendTradeRequest" pck_type="70">
+  <i4.SenderID/>
+</pck_struct>
+
+<pck_struct pck_name="s_RestartResponse" pck_type="71">
+  <i4.1/>
+  <S.Message/>
+</pck_struct>
+
+<pck_struct pck_name="s_MoveToPawn" pck_type="72">
+  <i4.CreatureObjId/>
+  <i4.TargetObjID/>
+  <i4.Distance/>
+  <i4.CreatureX/>
+  <i4.CreatureY/>
+  <i4.CreatureZ/>
+  <i4.TargetX/>
+  <i4.TargetY/>
+  <i4.TargetZ/>
+</pck_struct>
+
+<pck_struct pck_name="s_SSQInfo" pck_type="73">
+  <i2.State/>
+</pck_struct>
+
+<pck_struct pck_name="s_GameGuardQuery" pck_type="74">
+  <i4.0x27533dd9/>
+  <i4.0x2e72a51d/>
+  <i4.0x2017038b/>
+  <i4.0xc35b1ea3/>
+</pck_struct>
+
+<pck_struct pck_name="s_FriendList" pck_type="75">
+  <i4.ListSizeValue skip="0" loop="4">
+    <i2.0/>
+    <i4.FriendID/>
+    <S.FriendName/>
+    <i4.isOnLine/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_L2FriendSay" pck_type="78">
+  <i4.0/>
+  <S.Receiver/>
+  <S.Sender/>
+  <S.Message/>
+</pck_struct>
+
+<pck_struct pck_name="s_ValidateLocation" pck_type="79">
+  <i4.CharID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+</pck_struct>
+
+<pck_struct pck_name="s_StartRotation" pck_type="7A">
+  <i4.CharId/>
+  <i4.Degree/>
+  <i4.Side/>
+</pck_struct>
+
+<pck_struct pck_name="s_ShowBoard" pck_type="7B">
+  <i1.1/>
+  <S.bbshome/>
+  <S.bbsgetfav/>
+  <S.bbsloc/>
+  <S.bbsclan/>
+  <S.bbsmemo/>
+  <S.bbsmail/>
+  <S.bbsfriends/>
+  <S.bbs_add_fav/>
+</pck_struct>
+
+<pck_struct pck_name="s_ChooseInventoryItem" pck_type="7C">
+  <i4.ItemIDGetFunc01/>
+</pck_struct>
+
+<pck_struct pck_name="s_MoveToLocationInVehicle" pck_type="7E">
+  <i4.CharID/>
+  <i4.BoatObjID/>
+  <i4.ToX/>
+  <i4.ToY/>
+  <i4.ToZ/>
+  <i4.OrigX/>
+  <i4.OrigY/>
+  <i4.OrigZ/>
+</pck_struct>
+
+<pck_struct pck_name="s_StopMoveInVehicle" pck_type="7F">
+  <i4.CharID/>
+  <i4.BoatObjID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+</pck_struct>
+
+<pck_struct pck_name="s_ValidateLocationInVehicle" pck_type="80">
+  <i4.CharID/>
+  <i4.0x50100002/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+</pck_struct>
+
+<pck_struct pck_name="s_FriendAddRequest" pck_type="83">
+  <S.RequestorName/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_LeaveWorld" pck_type="84"/>
+
+<pck_struct pck_name="s_AbnormalStatusUpdate" pck_type="85">
+  <i2.EffectSizeValue skip="0" loop="3">
+    <i4.skillIDGetSkill/>
+    <i2.SkillLevel/>
+    <i4.Duration/>
+  </i2.EffectSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_QuestList" pck_type="86">
+  <i2.ListSizeValue skip="0" loop="2">
+    <i4.QuestId/>
+    <i4.Cond/>
+  </i2.ListSizeValue>
+  <S-.128/>
+</pck_struct>
+
+<pck_struct pck_name="s_EnchantResult" pck_type="87">
+  <i4.Result/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeShowMemberListDeleteAll" pck_type="88"/>
+
+<pck_struct pck_name="s_PledgeInfo" pck_type="89">
+  <i4.ClanID/>
+  <S.ClanName/>
+  <S.AllyName/>
+</pck_struct>
+
+<pck_struct pck_name="s_Ride" pck_type="8C">
+  <i4.ObjectID/>
+  <i4.Mount/>
+  <i4.RideType/>
+  <i4.RideClassId/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeShowInfoUpdate" pck_type="8E">
+  <i4.ClanID/>
+  <i4.0/>
+  <i4.ClanLevel/>
+  <i4.HasCastle/>
+  <i4.HasHideOut/>
+  <i4.0/>
+  <i4.ReputationScore/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <S.Bil/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_AcquireSkillList" pck_type="90">
+  <i4.FishingSkills/>
+  <i4.ListSizeValue skip="0" loop="5">
+    <i4.skillIDGetSkill/>
+    <i4.NextLevel/>
+    <i4.MaxLevel/>
+    <i4.SpCost/>
+    <i4.Requirements/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_AcquireSkillInfo" pck_type="91">
+  <i4.skillIDGetSkill/>
+  <i4.Level/>
+  <i4.SpCost/>
+  <i4.Mode/>
+  <i4.ListSizeValue skip="0" loop="4">
+    <i4.Type/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i4.Requirements/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_GMViewCharacterInfo" pck_type="95">
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+  <i4.ObjectID/>
+  <S.Name/>
+  <i4.Race/>
+  <i4.Sex/>
+  <i4.ClassIDGetClassID/>
+  <i4.Level/>
+  <i8.Exp/>
+  <i4.STR/>
+  <i4.DEX/>
+  <i4.CON/>
+  <i4.INT/>
+  <i4.WIT/>
+  <i4.MEN/>
+  <i4.MaxHP/>
+  <i4.CurrentHP/>
+  <i4.MaxMP/>
+  <i4.CurrentMP/>
+  <i4.SP/>
+  <i4.CurrentLoad/>
+  <i4.MaxLoad/>
+  <i4.PkKills/>
+  <i4.Unknown/>
+  <i4.RightEarring/>
+  <i4.LeftEarring/>
+  <i4.Necklace/>
+  <i4.RightRing/>
+  <i4.LeftRing/>
+  <i4.Head/>
+  <i4.RightHand/>
+  <i4.LeftHand/>
+  <i4.Gloves/>
+  <i4.Chest/>
+  <i4.Legs/>
+  <i4.Boots/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Hair/>
+  <i4.Face/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.Unknown/>
+  <i4.RightEarring/>
+  <i4.LeftEarring/>
+  <i4.Necklace/>
+  <i4.RightRing/>
+  <i4.LeftRing/>
+  <i4.Head/>
+  <i4.RightHand/>
+  <i4.LeftHand/>
+  <i4.Gloves/>
+  <i4.Chest/>
+  <i4.Legs/>
+  <i4.Boots/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Hair/>
+  <i4.Face/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.AugmentIDGetAugmentID/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i4.Unknown/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i2.0/>
+  <i4.PAtk/>
+  <i4.AtkSpd/>
+  <i4.PDef/>
+  <i4.Evasion/>
+  <i4.Accuracy/>
+  <i4.CritRate/>
+  <i4.MAtk/>
+  <i4.CastSpd/>
+  <i4.AtkSpd/>
+  <i4.MDef/>
+  <i4.PvpFlag/>
+  <i4.Karma/>
+  <i4.RunSpd/>
+  <i4.WalkSpd/>
+  <i4.SwimRunSpd/>
+  <i4.SwimWalkSpd/>
+  <i4.FlRunSpd/>
+  <i4.FlWalkSpd/>
+  <i4.FlyRunSpd/>
+  <i4.FlyWalkSpd/>
+  <f8.MoveMultiplier/>
+  <f8.AtkSpdMultiplier/>
+  <f8.CollisionRadius/>
+  <f8.CollisionHeight/>
+  <i4.HairStyle/>
+  <i4.HairColor/>
+  <i4.Face/>
+  <i4.AccessLevel/>
+  <S.Title/>
+  <i4.ClanID/>
+  <i4.ClanCrestID/>
+  <i4.AllyID/>
+  <i1.MounType/>
+  <i1.PrivateStoreType/>
+  <i1.DwarvenCraft/>
+  <i4.PkKills/>
+  <i4.PvpKills/>
+  <i2.RecomLeft/>
+  <i2.RecomHave/>
+  <i4.ClassIDGetClassID/>
+  <i4.0/>
+  <i4.MaxCP/>
+  <i4.CurrentCP/>
+  <i1.isRunning/>
+  <i1.321/>
+  <i4.PledgeClass/>
+  <i1.isNoble/>
+  <i1.isHero/>
+  <i4.NameColor/>
+  <i4.TitleColor/>
+  <i4.AttackAttrElement/>
+  <i4.AttackAttrElementVal/>
+  <i4.DefAttrFire/>
+  <i4.DefAttrWater/>
+  <i4.DefAttrWind/>
+  <i4.DefAttrEarth/>
+  <i4.DefAttrHoly/>
+  <i4.DefAttrUnholy/>
+</pck_struct>
+
+<pck_struct pck_name="s_GMViewPledgeInfo" pck_type="96">
+  <S.CharName/>
+  <i4.ClanID/>
+  <i4.0/>
+  <S.ClanName/>
+  <S.ClanLeaderName/>
+  <i4.CrestID/>
+  <i4.Level/>
+  <i4.HasCastle/>
+  <i4.HasHideOut/>
+  <i4.0/>
+  <i4.Rank/>
+  <i4.ReputationScore/>
+  <i4.0/>
+  <i4.0/>
+  <i4.AllyID/>
+  <S.AllyName/>
+  <i4.AllyCrestID/>
+  <i4.isAtWar/>
+  <i4.MembersCountValue skip="0" loop="7">
+    <S.MemberName/>
+    <i4.MemberLevel/>
+    <i4.ClassIDGetClassID/>
+    <i4.Sex/>
+    <i4.Race/>
+    <i4.MemberObjID/>
+    <i4.Sponsor/>
+  </i4.MembersCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_GMViewSkillInfo" pck_type="97">
+  <S.CharName/>
+  <i4.ListSizeValue skip="0" loop="4">
+    <i4.isPassive/>
+    <i4.SkillLevel/>
+    <i4.skillIDGetSkill/>
+    <i1.0/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_GMViewQuestInfo" pck_type="99">
+  <S.CharName/>
+  <i2.ListSizeValue skip="0" loop="2">
+    <i4.QuestID/>
+    <i4.Cond/>
+  </i2.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_GMViewItemList" pck_type="9A">
+  <S.PlayerName/>
+  <i4.InventoryLimit/>
+  <i2.1/>
+  <i2.ListSizeValue skip="0" loop="22">
+    <i2.Type1/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.LocationSlot/>
+    <i4.Count/>
+    <i2.Type2/>
+    <i2.CustomType1/>
+    <i2.isEquipped/>
+    <i4.BodyPart/>
+    <i2.EnchantLevel/>
+    <i2.CustomType2/>
+    <i2.AugmentIDGetAugmentID/>
+    <i2.0/>
+    <i4.Mana/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+    <i4.DefAttrUnholy/>
+  </i2.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_GMViewWarehouseWithdrawList" pck_type="9B">
+  <S.PlayerName/>
+  <i4.Money/>
+  <i2.ListSizeValue skip="0" loop="24">
+    <i2.Type1/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.Type2/>
+    <i2.CustomType1/>
+    <i4.BodyPart/>
+    <i2.EnchantLevel/>
+    <i2.SoulShotCount/>
+    <i2.SpiritShotCount/>
+    <i2.AugmentIDGetAugmentID/>
+    <i2.0/>
+    <i2.AugmentIDGetAugmentID/>
+    <i2.0/>
+    <i4.ObjectID/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+    <i4.DefAttrUnholy/>
+    <i4.Mana/>
+  </i2.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ListPartyWaiting" pck_type="9C">
+  <i4.ListSizeValue skip="0" loop="10">
+    <i4.ObjectID/>
+    <S.Name/>
+    <i4.Level/>
+    <i4.ClassIDGetClassID/>
+    <i4.0/>
+    <i4.ClanID/>
+    <i4.0/>
+    <i4.X/>
+    <i4.Y/>
+    <i4.Z/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_PartyMatchDetail" pck_type="9D">
+  <i4.ObjectID/>
+  <i4.isShowLevel/>
+  <i4.isShowClass/>
+  <i4.0/>
+  <S.PartyMemo/>
+</pck_struct>
+
+<pck_struct pck_name="s_PlaySound" pck_type="9E">
+  <i4.Unknown/>
+  <S.SoundFile/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_StaticObject" pck_type="9F">
+  <i4.StaticObjectID/>
+  <i4.ObjectID/>
+  <i4.Type/>
+  <i4.isTargetable/>
+  <i4.MeshIndex/>
+  <i4.isClosed/>
+  <i4.isEnemy/>
+  <i4.MaxHP/>
+  <i4.CurrentHP/>
+  <i4.isSHowHP/>
+  <i4.DamageGrade/>
+</pck_struct>
+
+<pck_struct pck_name="s_PrivateStoreManageListSell" pck_type="A0">
+  <i4.PlayerObjID/>
+  <i4.isPackageSale/>
+  <i4.Money/>
+  <i4.ItemsCountValue skip="0" loop="17">
+    <i4.Type2/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.0/>
+    <i2.Enchant/>
+    <i2.0/>
+    <i4.BodyPart/>
+    <i4.Price/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+    <i4.DefAttrUnholy/>
+  </i4.ItemsCountValue>
+  <i4.SellCountValue skip="0" loop="18">
+    <i4.Type2/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.0/>
+    <i2.Enchant/>
+    <i2.0/>
+    <i4.BodyPart/>
+    <i4.Price/>
+    <i4.ReferencePrice/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+    <i4.DefAttrUnholy/>
+  </i4.SellCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_PrivateStoreListSell" pck_type="A1">
+  <i4.PlayerObjID/>
+  <i4.isPackageSale/>
+  <i4.Money/>
+  <i4.ItemsCountValue skip="0" loop="18">
+    <i4.Type2/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.0/>
+    <i2.Enchant/>
+    <i2.0/>
+    <i4.BodyPart/>
+    <i4.Price/>
+    <i4.ReferencePrice/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+    <i4.DefAttrUnholy/>
+  </i4.ItemsCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_PrivateStoreMsgSell" pck_type="A2">
+  <i4.ObjectID/>
+  <S.StoreMsg/>
+</pck_struct>
+
+<pck_struct pck_name="s_ShowMiniMap" pck_type="A3">
+  <i4.MapID/>
+  <i4.SevenSignsPeriod/>
+</pck_struct>
+
+<pck_struct pck_name="s_TutorialShowHtml" pck_type="A6">
+  <S.Html/>
+</pck_struct>
+
+<pck_struct pck_name="s_TutorialClose" pck_type="A9"/>
+
+<pck_struct pck_name="s_TutorialShowQuestionMark" pck_type="A7">
+  <i4.Blink/>
+</pck_struct>
+
+<pck_struct pck_name="s_AllyCrest" pck_type="AF">
+  <i4.CrestID/>
+  <i4.CrestSize/>
+</pck_struct>
+
+<pck_struct pck_name="s_PetStatusShow" pck_type="B1">
+  <i4.SummonType/>
+</pck_struct>
+
+<pck_struct pck_name="s_PetInfo" pck_type="B2">
+  <i4.SummonType/>
+  <i4.ObjectID/>
+  <i4.SummonNpcID/>
+  <i4.0/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.Heading/>
+  <i4.0/>
+  <i4.CastSpd/>
+  <i4.AtkSpd/>
+  <i4.RunSpd/>
+  <i4.WalkSpd/>
+  <i4.SwimRunSpd/>
+  <i4.SwimWalkSpd/>
+  <i4.FlRunSpd/>
+  <i4.FlWalkSpd/>
+  <i4.FlyRunSpd/>
+  <i4.FlyWalkSpd/>
+  <f8.MoveMultiplier/>
+  <f8.AtkSpdMultiplier/>
+  <f8.CollisionRadius/>
+  <f8.CollisionHeight/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i1.1/>
+  <i1.isRunning/>
+  <i1.isInCombat/>
+  <i1.isAlikeDead/>
+  <i1.isSummoned/>
+  <S.Name/>
+  <S.Title/>
+  <i4.1/>
+  <i4.PvpFlag/>
+  <i4.Karma/>
+  <i4.CurrentFed/>
+  <i4.MaxFed/>
+  <i4.CurrentHP/>
+  <i4.MaxHP/>
+  <i4.CurrentMP/>
+  <i4.MaxMP/>
+  <i4.SP/>
+  <i4.Level/>
+  <i8.Exp/>
+  <i8.ExpForThisLevel/>
+  <i8.ExpForNextLevel/>
+  <i4.CurrentLoad/>
+  <i4.MaxLoad/>
+  <i4.PAtk/>
+  <i4.PDef/>
+  <i4.MAtk/>
+  <i4.MDef/>
+  <i4.Accuracy/>
+  <i4.Evasion/>
+  <i4.CritRate/>
+  <i4.RunSpd/>
+  <i4.AtkSpd/>
+  <i4.CastSpd/>
+  <i4.0/>
+  <i2.isStrider/>
+  <i1.0/>
+  <i2.0/>
+  <i1.0/>
+  <i4.SoulShotsPerHit/>
+  <i4.SpiritShotsPerHit/>
+</pck_struct>
+
+<pck_struct pck_name="s_PetItemList" pck_type="B3">
+  <i2.ListSizeValue skip="0" loop="18">
+    <i2.Type1/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.Type2/>
+    <i2.255/>
+    <i2.isEquipped/>
+    <i4.BodyPart/>
+    <i2.EnchantLevel/>
+    <i2.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+  </i2.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_PetInventoryUpdate" pck_type="B4">
+  <i2.ListSizeValue skip="0" loop="18">
+    <i2.Change/>
+    <i2.Type1/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.Type2/>
+    <i2.0/>
+    <i2.isEquipped/>
+    <i4.BodyPart/>
+    <i2.Enchant/>
+    <i2.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+  </i2.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_PetStatusUpdate" pck_type="B6">
+  <i4.SummonType/>
+  <i4.ObjectID/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <S.Title/>
+  <i4.CurrentFed/>
+  <i4.MaxFed/>
+  <i4.CurrenHP/>
+  <i4.MaxHP/>
+  <i4.CurrenMP/>
+  <i4.MaxMP/>
+  <i4.Level/>
+  <i8.Exp/>
+  <i8.ExpForThisLevel/>
+  <i8.ExpForNextLevel/>
+</pck_struct>
+
+<pck_struct pck_name="s_PetDelete" pck_type="B7">
+  <i4.PetID/>
+  <i4.PetObjectID/>
+</pck_struct>
+
+<pck_struct pck_name="s_MyTargetSelected" pck_type="B9">
+  <i4.ObjectID/>
+  <i2.Color/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_PartyMemberPosition" pck_type="BA">
+  <i4.MemberCountValue skip="0" loop="4">
+    <i4.ObjectID/>
+    <i4.X/>
+    <i4.Y/>
+    <i4.Z/>
+  </i4.MemberCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_AskJoinAlly" pck_type="BB">
+  <i4.RequestorObjID/>
+  <S.RequestorName/>
+</pck_struct>
+
+<pck_struct pck_name="s_PrivateStoreListBuy" pck_type="BE">
+  <i4.PlayerID/>
+  <i4.Money/>
+  <i4.ItemsCountValue skip="0" loop="18">
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i2.Enchant/>
+    <i4.Count/>
+    <i4.ReferencePrice/>
+    <i2.0/>
+    <i4.BodyPart/>
+    <i2.Type2/>
+    <i4.Price/>
+    <i4.Count/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+    <i4.DefAttrUnholy/>
+  </i4.ItemsCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_PrivateStoreMsgBuy" pck_type="BF">
+  <i4.ObjectID/>
+  <S.StoreMsg/>
+</pck_struct>
+
+<pck_struct pck_name="s_SkillCoolTime" pck_type="C7">
+  <i4.ListSizeValue skip="0" loop="4">
+    <i4.skillIDGetSkill/>
+    <i4.0/>
+    <i4.ReuseDelay.sec/>
+    <i4.ReuseLeft.sec/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_PackageToList" pck_type="C8"/>
+
+<pck_struct pck_name="s_SiegeInfo" pck_type="C9">
+  <i4.CastleID/>
+  <i4.isClanLeader/>
+  <i4.OwnerID/>
+  <S.name/>
+  <S.ClanLeaderName/>
+  <i4.AllyID/>
+  <S.AllyName/>
+  <i4.Time_ms/>
+  <i4.Siege_Time/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_SiegeAttackerList" pck_type="CA"/>
+
+<pck_struct pck_name="s_SiegeDefenderList" pck_type="CB"/>
+
+<pck_struct pck_name="s_NicknameChanged" pck_type="CC">
+  <i4.ObjectID/>
+  <S.Title/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeStatusChanged" pck_type="CD">
+  <i4.ClanLeaderID/>
+  <i4.ClanID/>
+  <i4.0/>
+  <i4.ClanLevel/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_RelationChanged" pck_type="CE">
+  <i4.ObjectID/>
+  <i4.Relation/>
+  <i4.AutoAttackable/>
+  <i4.Karma/>
+  <i4.PvpFlag/>
+</pck_struct>
+
+<pck_struct pck_name="s_SetSummonRemainTime" pck_type="D1">
+  <i4.MaxTime/>
+  <i4.RemainingTime/>
+</pck_struct>
+
+<pck_struct pck_name="s_PackageSendableList" pck_type="D2">
+  <i4.ObjectID/>
+  <i4.Money/>
+  <i4.ItemsCountValue skip="0" loop="19">
+    <i2.Type1/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.Type2/>
+    <i2.CustomType1/>
+    <i4.BodyPart/>
+    <i2.Enchant/>
+    <i2.CustomType2/>
+    <i2.0/>
+    <i4.ObjectID/>
+    <i4.AttackAttrElement/>
+    <i4.AttackAttrElementVal/>
+    <i4.DefAttrFire/>
+    <i4.DefAttrWater/>
+    <i4.DefAttrWind/>
+    <i4.DefAttrEarth/>
+    <i4.DefAttrHoly/>
+    <i4.DefAttrUnholy/>
+  </i4.ItemsCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_Earthquake" pck_type="D3">
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i4.intensity/>
+  <i4.Duration/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_FlyToLoaction" pck_type="D4">
+  <i4.ObjectID/>
+  <i4.ToX/>
+  <i4.ToY/>
+  <i4.ToZ/>
+  <i4.OrigX/>
+  <i4.OrigY/>
+  <i4.OrigZ/>
+  <i4.FlyType/>
+</pck_struct>
+
+<pck_struct pck_name="s_SpecialCamera" pck_type="D6">
+  <i4.ID/>
+  <i4.Distantion/>
+  <i4.Yaw/>
+  <i4.Pitch/>
+  <i4.Time/>
+  <i4.Duration/>
+</pck_struct>
+
+<pck_struct pck_name="s_NormalCamera" pck_type="D7"/>
+
+<pck_struct pck_name="s_NetPing" pck_type="D9">
+  <i4.kID/>
+</pck_struct>
+
+<pck_struct pck_name="s_Dice" pck_type="DA">
+  <i4.CharID/>
+  <i4.ItemIDGetFunc01/>
+  <i4.Number/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="s_Snoop" pck_type="DB">
+  <i4.ConvoID/>
+  <S.Name/>
+  <i4.0/>
+  <i4.Type/>
+  <S.Speaker/>
+  <S.Msg/>
+</pck_struct>
+
+<pck_struct pck_name="s_RecipeBookItemList" pck_type="DC">
+  <i4.isDwarvenCraft/>
+  <i4.MaxMP/>
+  <i4.RecipesCountValue skip="0" loop="2">
+    <i4.RecipeID/>
+    <i4.Inc/>
+  </i4.RecipesCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_RecipeItemMakeInfo" pck_type="DD">
+  <i4.ID/>
+  <i4.isDwarvenRecipe/>
+  <i4.CurrentMP/>
+  <i4.MaxMP/>
+  <i4.isSuccess/>
+</pck_struct>
+
+<pck_struct pck_name="s_RecipeShopSellList" pck_type="DF">
+  <i4.ObjectID/>
+  <i4.CurrentMP/>
+  <i4.max_MP/>
+  <i4.Money/>
+  <i4.ListSizeValue skip="0" loop="3">
+    <i4.RecipeID/>
+    <i4.0/>
+    <i4.Cost/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_RecipeShopItemInfo" pck_type="E0">
+  <i4.ShopID/>
+  <i4.RecipeID/>
+  <i4.CurrentMP/>
+  <i4.MaxMP/>
+  <i4.-1/>
+</pck_struct>
+
+<pck_struct pck_name="s_RecipeShopMsg" pck_type="E1">
+  <i4.ObjectID/>
+  <S.StoreName/>
+</pck_struct>
+
+<pck_struct pck_name="s_ShowCalculator" pck_type="E2">
+  <i4.CalculatorID/>
+</pck_struct>
+
+<pck_struct pck_name="s_MonRaceInfo" pck_type="E3">
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.CountValue skip="0" loop="32">
+    <i4.MonsterObjID/>
+    <i4.NpcID/>
+    <i4.OrigX/>
+    <i4.OrigY/>
+    <i4.OrigZ/>
+    <i4.EndX/>
+    <i4.EndY/>
+    <i4.EndZ/>
+    <f8.CollisionHeight/>
+    <f8.CollisionRadius/>
+    <i4.120/>
+    <i1.1/>
+    <i1.2/>
+    <i1.3/>
+    <i1.4/>
+    <i1.5/>
+    <i1.6/>
+    <i1.7/>
+    <i1.8/>
+    <i1.9/>
+    <i1.10/>
+    <i1.11/>
+    <i1.12/>
+    <i1.13/>
+    <i1.14/>
+    <i1.15/>
+    <i1.16/>
+    <i1.17/>
+    <i1.18/>
+    <i1.19/>
+    <i1.20/>
+    <i4.0/>
+  </i4.CountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_HennaItemInfo" pck_type="E4">
+  <i4.SymbolID/>
+  <i4.ItemDyeID/>
+  <i4.DyeRequire/>
+  <i4.Price/>
+  <i4.Draw/>
+  <i4.Adena/>
+  <i4.INT/>
+  <i1.INTHenna/>
+  <i4.STR/>
+  <i1.STRHenna/>
+  <i4.CON/>
+  <i1.CONHenna/>
+  <i4.MEN/>
+  <i1.MENHenna/>
+  <i4.DEX/>
+  <i1.DEXHenna/>
+  <i4.WIT/>
+  <i1.WITHenna/>
+</pck_struct>
+
+<pck_struct pck_name="s_HennaInfo" pck_type="E5">
+  <i1.INT/>
+  <i1.STR/>
+  <i1.CON/>
+  <i1.MEN/>
+  <i1.DEX/>
+  <i1.WIT/>
+  <i4.3/>
+  <i4.SlotCountValue skip="0" loop="2">
+    <i4.SymbolID/>
+    <i4.SymbolID/>
+  </i4.SlotCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_SendMacroList" pck_type="E8">
+  <i4.Revision/>
+  <i1.0/>
+  <i1.CountValue skip="1" loop="6">
+    <i4.MacroID/>
+    <S.Name/>
+    <S.Descr/>
+    <S.Acronym/>
+    <i1.Icon/>
+    <i1.LenghtValue skip="0" loop="5">
+      <i1.Inc/>
+      <i1.Type/>
+      <i4.SkillID/>
+      <i1.ShortCutID/>
+      <S.CmdName/>
+    </i1.LenghtValue>
+  </i1.CountValue>
+  <i1.isCheck/>
+</pck_struct>
+
+<pck_struct pck_name="s_BuyListSeed" pck_type="E9">
+  <i4.Money/>
+  <i4.ManorID/>
+  <i2.ListSizeValue skip="0" loop="7">
+    <i2.ItemType1/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.itemType2/>
+    <i2.h/>
+    <i4.price/>
+  </i2.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ShowTownMap" pck_type="EA">
+  <S.Texture/>
+  <i4.X/>
+  <i4.Y/>
+</pck_struct>
+
+<pck_struct pck_name="s_ObservationMode" pck_type="EB">
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i1.0/>
+  <i1.192/>
+  <i1.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_ObservationReturn" pck_type="EC">
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="s_ChairSit" pck_type="ED">
+  <i4.CharID/>
+  <i4.StaticObjectID/>
+</pck_struct>
+
+<pck_struct pck_name="s_HennaEquipList" pck_type="EE">
+  <i4.Money/>
+  <i4.Slots/>
+  <i4.ListSizeValue skip="0" loop="5">
+    <i4.SymbolID/>
+    <i4.ItemDyeID/>
+    <i4.DyeRequire/>
+    <i4.Price/>
+    <i4.1/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_SellListProcure" pck_type="EF">
+  <i4.Money/>
+  <i4.0/>
+  <i2.ListSizeValue skip="0" loop="7">
+    <i2.ItemType1/>
+    <i4.ObjectID/>
+    <i4.ItemIDGetFunc01/>
+    <i4.Count/>
+    <i2.ItemType2/>
+    <i2.0/>
+    <i4.Price/>
+  </i2.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_GMHennaInfo" pck_type="F0">
+  <i1.INT/>
+  <i1.STR/>
+  <i1.CON/>
+  <i1.MEN/>
+  <i1.DEX/>
+  <i1.WIT/>
+  <i4.3/>
+  <i4.SlotCountValue skip="0" loop="2">
+    <i4.SymbolID/>
+    <i4.SymbolID/>
+  </i4.SlotCountValue>
+</pck_struct>
+
+<pck_struct pck_name="s_RadarControl" pck_type="F1">
+  <i4.ShowRadar/>
+  <i4.Type/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+</pck_struct>
+
+<pck_struct pck_name="s_ConfirmDlg" pck_type="F3">
+  <i4.RequestID/>
+  <i4.2/>
+  <i4.0/>
+  <S.Name/>
+  <i4.1/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_PartySpelled" pck_type="F4">
+  <i4.isSummon/>
+  <i4.ObjecID/>
+  <i4.EffectSizeValue skip="0" loop="3">
+    <i4.skillIDGetSkill/>
+    <i2.SkillLevel/>
+    <i4.Duration/>
+  </i4.EffectSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ShopPreviewList" pck_type="F5">
+  <i1.192/>
+  <i1.19/>
+  <i1.0/>
+  <i1.0/>
+  <i4.Money/>
+  <i4.ListID/>
+  <i2.ListSizeValue skip="0" loop="4">
+    <i4.ItemIDGetFunc01/>
+    <i2.Type2/>
+    <i2.BodyPart/>
+    <i4.WearPrice/>
+  </i2.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_CameraMode" pck_type="F7">
+  <i4.Mode/>
+</pck_struct>
+
+<pck_struct pck_name="s_ShowXMasSeal" pck_type="F8">
+  <i4.Item/>
+</pck_struct>
+
+<pck_struct pck_name="s_EtcStatusUpdate" pck_type="F9">
+  <i4.EffectLevel/>
+  <i4.WeightPenalty/>
+  <i4.isChatBanned/>
+  <i4.isDangerArea/>
+  <i4.ExpertisePenalty/>
+  <i4.CharmOfCourage/>
+  <i4.DeathPenaltyBuffLevel/>
+  <i4.Souls/>
+</pck_struct>
+
+<pck_struct pck_name="s_ShortBuffStatusUpdate" pck_type="FA">
+  <i4.SkillID/>
+  <i4.SkillLevel/>
+  <i4.Duration/>
+</pck_struct>
+
+<pck_struct pck_name="s_SSQStatus" pck_type="FB"/>
+
+<pck_struct pck_name="s_AgitDecoInfo" pck_type="FD"/>
+
+<pck_struct pck_name="s_ExRegMax" pck_type="FE01">
+  <i2.subID/>
+  <i4.1/>
+  <i4.Count/>
+  <i4.Time/>
+  <f8.Max/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExAutoSoulShot" pck_type="FE0C">
+  <i2.subID/>
+  <i4.ItemIDGetFunc01/>
+  <i4.Type/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExOpenMPCC" pck_type="FE12">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExCloseMPCC" pck_type="FE13">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowCastleInfo" pck_type="FE14">
+  <i2.subID/>
+  <i4.CastlesSizeValue skip="0" loop="4">
+    <i4.CastleID/>
+    <S.CastleName/>
+    <i4.TaxPercent/>
+    <i4.Time/>
+  </i4.CastlesSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowFortressInfo" pck_type="FE15">
+  <i2.subID/>
+  <i4.ListSizeValue skip="0" loop="4">
+    <i4.FortIdID/>
+    <S.OwnerClan/>
+    <i4.IsInProgress/>
+    <i4.Time/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowAgitInfo" pck_type="FE16">
+  <i2.subID/>
+  <i4.ClanHallsSizeValue skip="0" loop="4">
+    <i4.ClanHallID/>
+    <S.HallName/>
+    <S.LeaderName/>
+    <i4.Grade/>
+  </i4.ClanHallsSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowFortressSiegeInfo" pck_type="FE17">
+  <i2.subID/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExPartyPetWindowAdd" pck_type="FE18">
+  <i2.subID/>
+  <i4.SummonObjID/>
+  <i4.NpcID/>
+  <i4.SummonType/>
+  <i4.OwnerID/>
+  <S.SummonName/>
+  <i4.CurrentHP/>
+  <i4.MaxHP/>
+  <i4.CurrentMP/>
+  <i4.MaxMP/>
+  <i4.Level/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExPartyPetWindowUpdate" pck_type="FE19">
+  <i2.subID/>
+  <i4.SummonObjID/>
+  <i4.NpcID/>
+  <i4.SummonType/>
+  <i4.OwnerID/>
+  <S.SummonName/>
+  <i4.CurrentHP/>
+  <i4.MaxHP/>
+  <i4.CurrentMP/>
+  <i4.MaxMP/>
+  <i4.Level/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExAskJoinMPCC" pck_type="FE1A">
+  <i2.subID/>
+  <S.RequestorName/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExPledgeCrestLarge" pck_type="FE1B">
+  <i2.subID/>
+  <i4.0/>
+  <i4.CrestID/>
+  <i4.CrestSize/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExFishingStart" pck_type="FE1E">
+  <i2.subID/>
+  <i4.ObjectID/>
+  <i4.FishType/>
+  <i4.X/>
+  <i4.Y/>
+  <i4.Z/>
+  <i1.0/>
+  <i1.0/>
+  <i1.isNightLure/>
+  <i1.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExFishingEnd" pck_type="FE1F">
+  <i2.subID/>
+  <i4.CharID/>
+  <i1.isWin/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowQuestInfo" pck_type="FE20">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowQuestMark" pck_type="FE21">
+  <i2.subID/>
+  <i4.QuestID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExSendManorList" pck_type="FE22">
+  <i2.subID/>
+  <i4.ListSizeValue skip="0" loop="2">
+    <i4.Inc/>
+    <S.Manor/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowSeedInfo" pck_type="FE23">
+  <i2.subID/>
+  <i1.0/>
+  <i4.ManorID/>
+  <i4.0/>
+  <i4.SeedsSizeValue skip="0" loop="9">
+    <i4.SeedID/>
+    <i4.CanProduce/>
+    <i4.StartProduce/>
+    <i4.SeedPrice/>
+    <i4.SeedLevel/>
+    <i1.1/>
+    <i4.RewardItemBySeed/>
+    <i1.1/>
+    <i4.RewardItemBySeed/>
+  </i4.SeedsSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowCropInfo" pck_type="FE24">
+  <i2.subID/>
+  <i1.0/>
+  <i4.ManorID/>
+  <i4.0/>
+  <i4.CropsSizeValue skip="0" loop="10">
+    <i4.CropID/>
+    <i4.CropAmount/>
+    <i4.StartAmount/>
+    <i4.Price/>
+    <i1.Reward/>
+    <i4.SeedLevelByCrop2/>
+    <i1.1/>
+    <i4.RewardItemCrop/>
+    <i1.1/>
+    <i4.RewardItemCrop2/>
+  </i4.CropsSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowManorDefaultInfo" pck_type="FE25">
+  <i2.subID/>
+  <i1.0/>
+  <i4.CropsSizeValue skip="0" loop="8">
+    <i4.CropID/>
+    <i4.SeedLevelByCrop2/>
+    <i4.SeedBasicPriceByCrop2/>
+    <i4.CropBasicPrice2/>
+    <i1.1/>
+    <i4.RewardItem3/>
+    <i1.1/>
+    <i4.RewardItem3/>
+  </i4.CropsSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowSeedSetting" pck_type="FE26">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExFishingStartCombat" pck_type="FE27">
+  <i2.subID/>
+  <i4.ObjectID/>
+  <i4.Time/>
+  <i4.HP/>
+  <i1.Mode/>
+  <i1.LureType/>
+  <i1.DeceptiveMode/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExFishingHPRegen" pck_type="FE28">
+  <i2.subID/>
+  <i4.ObjectID/>
+  <i4.Time/>
+  <i4.FishHP/>
+  <i1.HPstopRise/>
+  <i1.GoodUse/>
+  <i1.Anim/>
+  <i4.Penalty/>
+  <i1.BarColor/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExEnchantSkillList" pck_type="FE29">
+  <i2.subID/>
+  <i4.Type/>
+  <i4.ListSizeValue skip="0" loop="2">
+    <i4.skillIDGetSkill/>
+    <i4.NextLevel/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExEnchantSkillInfo" pck_type="FE2A">
+  <i2.subID/>
+  <i4.Type/>
+  <i4.ListSizeValue skip="0" loop="9">
+    <i4.skillIDGetSkill/>
+    <i4.Level/>
+    <i4.Rate/>
+    <i4.SpCost/>
+    <i8.ExpCost/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+    <i4.0/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowCropSetting" pck_type="FE2B">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowSellCropList" pck_type="FE2C">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExMailArrived" pck_type="FE2E">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExStorageMaxCount" pck_type="FE2F">
+  <i2.subID/>
+  <i4.InventoryLimit/>
+  <i4.WareHouseLimit/>
+  <i4.FreightLimit/>
+  <i4.PrivateSellStoreLimit/>
+  <i4.PrivateBuyStoreLimit/>
+  <i4.DwarfRecipeLimit/>
+  <i4.CommonRecipeLimit/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExPCCafePointInfo" pck_type="FE32">
+  <i2.subID/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i1.Unknown/>
+  <i4.Unknown/>
+  <i1.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExSetCompassZoneCode" pck_type="FE33">
+  <i2.subID/>
+  <i4.ZoneType/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExGetBossRecord" pck_type="FE34">
+  <i2.subID/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExAskJoinPartyRoom" pck_type="FE35">
+  <i2.subID/>
+  <S.CharName/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowAdventurerGuideBook" pck_type="FE38">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeSkillList" pck_type="FE3A">
+  <i2.subID/>
+  <i4.ListSizeValue skip="1" loop="2">
+    <i4.skillIDGetSkill/>
+    <i4.Level/>
+  </i4.ListSizeValue>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeSkillListAdd" pck_type="FE3B">
+  <i2.subID/>
+  <i4.skillIDGetSkill/>
+  <i4.Level/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgePowerGradeList" pck_type="FE3C">
+  <i2.subID/>
+  <i4.ListSizeValue skip="0" loop="2">
+    <i4.Rank/>
+    <i4.Party/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeReceivePowerInfo" pck_type="FE3D">
+  <i2.subID/>
+  <i4.MemberPowerGrade/>
+  <S.MemberName/>
+  <i4.MemberClanRankPrivs/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeReceiveMemberInfo" pck_type="FE3E">
+  <i2.subID/>
+  <i4.MemberPledgeType/>
+  <S.MemberName/>
+  <S.MemberTitle/>
+  <i4.MemberPowerGrade/>
+  <S.ClanName/>
+  <S.SponsorName/>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeReceiveWarList" pck_type="FE3F">
+  <i2.subID/>
+  <i4.EnemyAttaker/>
+  <i4.0/>
+  <i4.ListSizeValue skip="0" loop="3">
+    <S.clanName/>
+    <i4.tab/>
+    <i4.tab/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_PledgeReceiveSubPledgeCreated" pck_type="FE40">
+  <i2.subID/>
+  <i4.1/>
+  <i4.SubPledgeID/>
+  <S.SubPledgeName/>
+  <S.SubPledgeLeaderName/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExRedSky" pck_type="FE41">
+  <i2.subID/>
+  <i4.Duration/>
+</pck_struct>
+
+<pck_struct pck_name="s_ShowPCCafeCouponShowUI" pck_type="FE44">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExSearchOrc" pck_type="FE45">
+  <i2.subID/>
+  <S-.64/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExCursedWeaponList" pck_type="FE46">
+  <i2.subID/>
+  <i4.ListSizeValue skip="0" loop="1">
+    <i4.CursedWeaponID/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExCursedWeaponLocation" pck_type="FE47">
+  <i2.subID/>
+  <i4.ListSizeValue skip="0" loop="5">
+    <i4.CursedWeaponID/>
+    <i4.Activated/>
+    <i4.X/>
+    <i4.Y/>
+    <i4.Z/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExRestartClient" pck_type="FE48">
+  <i2.subID/>
+  <i4.ItemObjID/>
+  <i4.ItemIDGetFunc01/>
+  <i4.Count/>
+  <i2.Type2/>
+  <i4.BodyPart/>
+  <i2.Enchant/>
+  <i2.CustomType2/>
+  <i2.AugmentIDGetAugmentID/>
+  <i2.0/>
+  <i2.0/>
+  <i4.Mana/>
+  <i4.AttackAttrElement/>
+  <i4.AttackAttrElementVal/>
+  <i4.DefAttrFire/>
+  <i4.DefAttrWater/>
+  <i4.DefAttrWind/>
+  <i4.DefAttrEarth/>
+  <i4.DefAttrHoly/>
+  <i4.DefAttrUnholy/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExRequestHackShield" pck_type="FE49">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExUseSharedGroupItem" pck_type="FE4A">
+  <i2.subID/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExMPCCShowPartyMemberInfo" pck_type="FE4B">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExDuelAskStart" pck_type="FE4C">
+  <i2.subID/>
+  <S.RequestorName/>
+  <i4.PartyDuel/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExDuelReady" pck_type="FE4D">
+  <i2.subID/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExDuelStart" pck_type="FE4E">
+  <i2.subID/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExDuelEnd" pck_type="FE4F">
+  <i2.subID/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExDuelUpdateUserInfo" pck_type="FE50">
+  <i2.subID/>
+  <S.CharName/>
+  <i4.ObjectID/>
+  <i4.ClassIDGetClassID/>
+  <i4.Level/>
+  <i4.CurrentHP/>
+  <i4.MaxHP/>
+  <i4.CurrentMP/>
+  <i4.MaxMP/>
+  <i4.CurrentCP/>
+  <i4.MaxCP/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowVariationMakeWindow" pck_type="FE51">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExShowVariationCancelWindow" pck_type="FE52">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExPutItemResultForVariationMake" pck_type="FE53">
+  <i2.subID/>
+  <i4.ItemObjID/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExPutIntensiveResultForVariationMake" pck_type="FE54">
+  <i2.subID/>
+  <i4.RefinerItemObjID/>
+  <i4.LifeStoneItemID/>
+  <i4.GemStoneItemID/>
+  <i4.GemStoneCount/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExPutCommissionResultForVariationMake" pck_type="FE55">
+  <i2.subID/>
+  <i4.GemStoneObjID/>
+  <i4.Unknown/>
+  <i4.GemStoneCount/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExVariationResult" pck_type="FE56">
+  <i2.subID/>
+  <i2.AugmentIDGetAugmentID/>
+  <i2.0/>
+  <i4.Unknown/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExPutItemResultForVariationCancel" pck_type="FE57">
+  <i2.subID/>
+  <i4.0x40a97712/>
+  <i4.ItemObjID/>
+  <i4.39/>
+  <i4.8198/>
+  <i8.Price/>
+  <i4.1/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExVariationCancelResult" pck_type="FE58">
+  <i2.subID/>
+  <i4.CloseWindow/>
+  <i4.Unknown/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExPlayScene" pck_type="FE5C">
+  <i2.subID/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExSpawnEmitter" pck_type="FE5D">
+  <i2.subID/>
+  <i4.NpcObjID/>
+  <i4.CharID/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExEnchantSkillInfoDetail" pck_type="FE5E">
+  <i2.subID/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i4.0/>
+  <i8.0L/>
+  <i4.0/>
+  <i4.ItemCount/>
+  <i4.0/>
+  <i4.ItemIDGetFunc01/>
+  <i4.0/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExBasicActionList" pck_type="FE5F">
+  <i2.subID/>
+  <i4.ListSizeValue skip="0" loop="1">
+    <i4.ActionID/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExChooseInventoryAttributeItem" pck_type="FE62">
+  <i2.subID/>
+  <i4.ItemIDGetFunc01/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExPartyPetWindowDelete" pck_type="FE6A">
+  <i2.subID/>
+  <i4.SummonObjID/>
+  <i4.OwnerID/>
+  <S.Name/>
+</pck_struct>
+
+<!--
+<pck_struct pck_name="s_UnknownFE6B" pck_type="FE6B"/>
+-->
+
+<pck_struct pck_name="s_ExShowProcureCropDetail" pck_type="FE78">
+  <i2.subID/>
+  <i4.CropID/>
+  <i4.CastleCropssizeValue skip="0" loop="4">
+    <i4.ManorID/>
+    <i4.CropAmount/>
+    <i4.CropPrice/>
+    <i1.CropReward/>
+  </i4.CastleCropssizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExHeroList" pck_type="FE79">
+  <i2.subID/>
+  <i4.ListSizeValue skip="0" loop="7">
+    <S.HeroName/>
+    <i4.ClassIDGetClassID/>
+    <S.ClanName/>
+    <i4.ClanCrest/>
+    <S.AllyName/>
+    <i4.AllyCrest/>
+    <i4.Count/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_OlympiadUserInfoSpectator" pck_type="FE7A">
+  <i2.subID/>
+  <i1.Side/>
+  <i4.ObjectID/>
+  <S.Name/>
+  <i4.ClassIDGetClassID/>
+  <i4.CurrentHP/>
+  <i4.MaxHP/>
+  <i4.CurrentCP/>
+  <i4.MaxCP/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExOlympiadSpelledInfo" pck_type="FE7B">
+  <i2.subID/>
+  <i4.ObjectID/>
+  <i4.ListSizeValue skip="0" loop="3">
+    <i4.skillID/>
+    <i2.Data/>
+    <i4.Duration/>
+  </i4.ListSizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_ExOlympiadMode" pck_type="FE7C">
+  <i2.subID/>
+  <i1.Mode/>
+</pck_struct>
+
+<pck_struct pck_name="s_ExGetBookMarkInfoPacket" pck_type="FE84">
+  <i2.subID/>
+  <i4.0/>
+  <i4.bookmarkslot/>
+  <i4.SizeValue skip="0" loop="6">
+    <i4.X/>
+    <i4.Y/>
+    <i4.Z/>
+    <S.Name/>
+    <i4.Icon/>
+    <S.Tag/>
+  </i4.SizeValue>
+</pck_struct>
+
+<pck_struct pck_name="s_UnknownFEAA" pck_type="FEAA"/>
+
+<pck_struct pck_name="s_ExBrExtraUserInfo" pck_type="FEAC">
+  <i2.subID/>
+  <i4.CharOID/>
+  <i4.Val/>
+</pck_struct>
+
+</xml>
