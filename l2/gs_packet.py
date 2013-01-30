@@ -29,32 +29,11 @@ class packet():
    self.pck_f = gs_f_pck_factory.f_pck_factory(Rules,0)(self.parent)
    #print(dir(self.pck))
   def load(self):
-   self.pck_f = gs_f_pck_factory.f_pck_factory(Rules,1)(self.parent)
-   #print('reload rules')
-  def t_pck(self,x):   #binascii.b2a_hex(data)
-   x= struct.unpack('B'* len(x), x)
-   y=[]
-   for i in range(len(x)):
-    y.append(hex(x[i]))
-   z = (" ".join(y).replace('0x', ' ')+' ')
-   z = z.replace(' 0 ',' 00 ')
-   z = z.replace(' 1 ',' 01 ')
-   z = z.replace(' 2 ',' 02 ')
-   z = z.replace(' 3 ',' 03 ')
-   z = z.replace(' 4 ',' 04 ')
-   z = z.replace(' 5 ',' 05 ')
-   z = z.replace(' 6 ',' 06 ')
-   z = z.replace(' 7 ',' 07 ')
-   z = z.replace(' 8 ',' 08 ')
-   z = z.replace(' 9 ',' 09 ')
-   z = z.replace(' a ',' 0a ')
-   z = z.replace(' b ',' 0b ')
-   z = z.replace(' c ',' 0c ')
-   z = z.replace(' d ',' 0d ')
-   z = z.replace(' e ',' 0e ')
-   z = z.replace(' f ',' 0f ')
-   z = z.replace('  ',' ')
-   return z
+    self.pck_f = gs_f_pck_factory.f_pck_factory(Rules,1)(self.parent)
+    #print('reload rules')
+  # xD
+  def t_pck(self, b_srt):
+    return ' '.join(["%02X" %  x for x in b_str])
   def rec_pck_direct_send(self):
     #===========================================================================
     #  propuskaem trafik bez videleniya
