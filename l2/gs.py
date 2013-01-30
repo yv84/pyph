@@ -126,6 +126,7 @@ class Forwarder():
      close_connect()
      break
   
+ # не готово, черновик
  def socks5(self, source):
   SOCKS5_Authentication_to_the_PS = False       # False соединение не установлено
   SOCKS5_Authentication_through_PS = False
@@ -149,37 +150,3 @@ class Forwarder():
   
  # SOCKS5 нужен в сторону сервера also
   
-  
- # разобратся что происходит при закрытии соединения C->S, что происходит с S-C
- # коннект от нескольких клиентов к одному серверу
- # mutex = thread.allocate_lock()               # создать объект блокировки
- # mutex.acquire() # блокируем остальные потоки
- # mutex.release() # освобождаем блокировку
- # пример
- # exitmutexes = [thread.allocate_lock() for i in range(10)]
- # for mutex in exitmutexes:
- #  while not mutex.locked(): mutex.acquire() # программа ждет включения всех блокировок
- # with mutex: ToDo -> mutex.acquire / ToDo / mutex.release()
- 
- '''
- def forward(self, source, destination, d):
-  flag = True                                       # для входа в цикл while
-  while flag:
-   # Получение
-   string = source.recv(1024)                 # приходит пакет
-   if string:
-    self.F[d].data_rec += string
-    string = b''
-    # Обработчик
-    if self.F[d].data_rec:
-     self.F[d].rec_pck()
-     string = self.F[d].data_send
-     self.F[d].data_send = b''
-    # Посылка
-    if string:
-     print('%s: %s'% (d,string))
-     destination.sendall(string)
-   else:
-    source.shutdown(socket.SHUT_RD)
-    destination.shutdown(socket.SHUT_WR)
-    flag = False'''
