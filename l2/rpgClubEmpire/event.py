@@ -14,6 +14,7 @@ from .import l2_class
 
 class event():
 
+ #структура if/.../elif не эффективна, нужно исправить на обращение к элементу Dict
  def act_s(self, pck, Pck_invoke):
    if pck[:1] == b'\xFE':
      if pck[:3] == b'\xFE01':
