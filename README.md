@@ -3,6 +3,8 @@ pyph
 
 receiver/transmitter for lineage 2 packets
 
+Requirement: python3, numpy, lxml.
+
 client l2 -> route -> pyph -> server l2
 
 example, server: rpg-club.
