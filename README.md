@@ -6,9 +6,13 @@ receiver/transmitter for lineage 2 packets
 client l2 -> route -> pyph -> server l2
 
 routing:
+
 example:
+
 server rpg-club:
+
 client side:
+
 os.system('route add 91.238.84.215 mask 255.255.255.255 192.168.100.10')
 os.system('route add 213.59.44.50 mask 255.255.255.255 192.168.100.10')
 os.system('route add 95.211.47.188 mask 255.255.255.255 192.168.100.10')
