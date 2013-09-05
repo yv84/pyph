@@ -1,0 +1,12 @@
+wdtemp.txt
+tmp_*
+*.wd
+*.ipc
+*.pdf
+*.epub
+*.pyc
+*.pyo
+*.o
+*~
+upload.sh
+changes.txt
