@@ -503,13 +503,13 @@ class construct_pck_class():
                 #print(loop)
                 if loop[self.nested] >= 0 and skip == 0:
                     loop[self.nested] -= 1
-                        if loop[self.nested] == 0: 
-                            if self.It != 0: self.text.append("%si += %i" % (self.space(self.nested),self.It))
-                            self.It = 0
-                            #print(self.flag_print, self.nested)
-                            if self.flag_print[self.nested] == True: queue_print()
-                            self.flag_print[self.nested] = False
-                            self.nested -= 1
+                    if loop[self.nested] == 0: 
+                        if self.It != 0: self.text.append("%si += %i" % (self.space(self.nested),self.It))
+                        self.It = 0
+                        #print(self.flag_print, self.nested)
+                        if self.flag_print[self.nested] == True: queue_print()
+                        self.flag_print[self.nested] = False
+                        self.nested -= 1
     
 
 class run():
