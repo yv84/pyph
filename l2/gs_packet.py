@@ -34,7 +34,7 @@ class packet():
         #print('reload rules')
         
     # xD
-    def t_pck(self, b_srt):
+    def t_pck(self, b_str):
         return ' '.join(["%02X" %  x for x in b_str])
     
     def rec_pck_direct_send(self):
