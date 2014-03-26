@@ -1,0 +1,4226 @@
+#! /usr/local/bin/python3
+# -*- coding: utf-8 -*-
+
+direct_send =  b'\x05\x01\x00'
+direct_send =  b'\x05\x01\x00\x01[\xeeT\xd7\x1ea'
+direct_send =  b'\x0b\x01\x0eS\x00\x00\x00\t\x07TV\x03\t\x0b\x01\x07\x02TTV\x07\x00\x02UV\x00Q\x00SW\x04\x07U\x08T\x01\x07\x01S\x00VUV\x01\x06\x05\x04Q\x03\x08Q\x08QV\x04T\x06U\x08\x02\tQV\x01S\x06U\x04S\x00VVS\x01\t\x02\t\x01QTQ\tUV\t\x03\x04\x07\x05U\x04\x06U\x04\x06\t\x04Q\x01\x08\x08\x06\x05R\x06\x04\x01\x07T\x03\x06RU\x06UUQ\x01\x02\x04T\x03UT\x01WQU\x05R\x05T\x07QQU\x07\x02SS\x00R\x05R\x07\x01T\x00\x03\x05\x05\x08\x06\x05\x05\x06\x03\x00\r\x08\x01\x07\t\x03Q\x03\x07S\tQ\x06\x07T\nPV\x02R\x04\x05UQ\x02S\x00\x08T\x04RV\x06\x02\t\x00\x08\x03SV\x01\x05\x00U\x06\x08V\x04\r\x06\x07R\x06\x07\x04\n\x06\x01\x04T\x04\x00\x05\x02\x04T\x00\tRS\x05\x04\x01\x04\x05\x05\x01RQR\r\x06Q\x08\tTS\x00\r\x01\x02\x03TS\x01\x05\x03\x08VT\x07\x02T\x0b\x06\x11]\x1f`'
+
+client =  b'+s\x001\x001\x00a\x00\x00\x006r\x1d\x00\xec\xdd\x02\x006r\x1d\x00TK\xb6\x01\x08\x00\x00\x00\x01\x00\x00\x00\x02\xd7\xc85'
+0002 s  LoginName: s11a
+0012 d  PlayKey2: 1929782 (0x001D7236)
+0016 d  PlayKey1: 187884 (0x0002DDEC)
+0020 d  LoginKey1: 1929782 (0x001D7236)
+0024 d  LoginKey2: 28724052 (0x01B64B54)
+0028 d  Unknown: 8 (0x00000008)
+
+server =  b'\t\x01\x00\x00\x00\x07\x00\x00\x00\x00t\x00e\x00s\x00t\x00d\x00s\x00a\x00f\x00a\x00s\x00d\x00f\x00\x00\x00\xb4y\x00\x00s\x001\x001\x00a\x00\x00\x006r\x1d\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\n\x00\x00\x00\x01\x00\x00\x00\x15\x9e\xfe\xff\x13\xca\x03\x00\x10\xf2\xff\xff\xee|?5^\x0ef@\xd5x\xe9&1\xe8a@\n\x02\x00\x00\xe8\x1d\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xa9\x01\x00\x00\xcd\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00f@\x00\x00\x00\x00\x00\xe0a@\x00\x00\x00\x00\n\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+0002 d  ListSize: 1 (0x00000001)
+0006 d  7: 7 (0x00000007)
+0010 c  0: 0 (0x00)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/1]
+0011 s  Name: testdsafasdf
+0037 d  CharID: 31156 (0x000079B4)
+0041 s  LoginName: s11a
+0051 d  SessionID: 1929782 (0x001D7236)
+0055 d  ClanID: 0 (0x00000000)
+0059 d  0: 0 (0x00000000)
+0063 d  Sex: 1 (0x00000001)
+0067 d  Race: 0 (0x00000000)
+0071 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0075 d  1: 1 (0x00000001)
+0079 d  X: -90603 (0xFFFE9E15)
+0083 d  Y: 248339 (0x0003CA13)
+0087 d  Z: -3568 (0xFFFFF210)
+0091 f  CurrentHP: 176,449
+0099 f  CurrentMP: 143,256
+0107 d  SP: 522 (0x0000020A)
+0111 q  Exp: 7656
+0119 d  Level: 6 (0x00000006)
+0123 d  Karma: 0 (0x00000000)
+0127 d  PkKills: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  0: 0 (0x00000000)
+0143 d  0: 0 (0x00000000)
+0147 d  0: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 d  0: 0 (0x00000000)
+0163 d  Unknown: 0 (0x00000000)
+0167 d  RightEarring: 0 (0x00000000)
+0171 d  LeftEarring: 0 (0x00000000)
+0175 d  Necklace: 0 (0x00000000)
+0179 d  RightRing: 0 (0x00000000)
+0183 d  LeftRing: 0 (0x00000000)
+0187 d  Head: 0 (0x00000000)
+0191 d  RightHand: 6 (0x00000006)
+0195 d  LeftHand: 0 (0x00000000)
+0199 d  Gloves: 0 (0x00000000)
+0203 d  Chest: 425 (0x000001A9)
+0207 d  Legs: 461 (0x000001CD)
+0211 d  Boots: 0 (0x00000000)
+0215 d  Unknown: 0 (0x00000000)
+0219 d  Unknown: 0 (0x00000000)
+0223 d  Hair: 0 (0x00000000)
+0227 d  Face: 0 (0x00000000)
+0231 d  Unknown: 0 (0x00000000)
+0235 d  Unknown: 0 (0x00000000)
+0239 d  0: 0 (0x00000000)
+0243 d  0: 0 (0x00000000)
+0247 d  0: 0 (0x00000000)
+0251 d  0: 0 (0x00000000)
+0255 d  0: 0 (0x00000000)
+0259 d  0: 0 (0x00000000)
+0263 d  HairStyle: 0 (0x00000000)
+0267 d  HairColor: 0 (0x00000000)
+0271 d  Face: 0 (0x00000000)
+0275 f  MaxHP: 0
+0283 f  MaxMP: 5,33801614530235E-315
+0291 d  DeleteDays: 1080156160 (0x4061E000)
+0295 d  ClassID: Human Fighter (Aiei) ID:0 (0x0000)
+0299 d  ActiveID: 10 (0x0000000A)
+0303 c  EnchantEffect: 1 (0x01)
+0304 d  AugmentID: 0
+0308 d  TransformID: 0 (0x00000000)
+0312 d  ?: 0 (0x00000000)
+0316 
+
+client =  b'\x12\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+0002 d  CharSlot: 0 (0x00000000)
+0006 h  Unknown: 0 (0x0000)
+0008 d  Unknown: 0 (0x00000000)
+0012 d  Unknown: 0 (0x00000000)
+0016 d  Unknown: 0 (0x00000000)
+
+server =  b's\x01\x01'
+0002 h  State 258-DawnSky,257-DuskSky,256-normal: 257 (0x0101)
+
+server =  b"\x0bt\x00e\x00s\x00t\x00d\x00s\x00a\x00f\x00a\x00s\x00d\x00f\x00\x00\x00\xb4y\x00\x00\x00\x006r\x1d\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\n\x00\x00\x00\x01\x00\x00\x00\x15\x9e\xfe\xff\x13\xca\x03\x00\x10\xf2\xff\xff\xee|?5^\x0ef@\xd5x\xe9&1\xe8a@\n\x02\x00\x00\xe8\x1d\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x16\x00\x00\x00\x15\x00\x00\x00\x1b\x00\x00\x00)\x00\x00\x00\x14\x00\x00\x00'\x00\x00\x00\x90\x07\x00\x00\x00\x00\x00\x00\n\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+0002 s  Name: testdsafasdf
+0028 d  CharID: 31156 (0x000079B4)
+0032 s  Title: 
+0034 d  SessionID: 1929782 (0x001D7236)
+0038 d  ClanID: 0 (0x00000000)
+0042 d  0: 0 (0x00000000)
+0046 d  Sex: 1 (0x00000001)
+0050 d  Race: 0 (0x00000000)
+0054 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0058 d  1: 1 (0x00000001)
+0062 d  X: -90603 (0xFFFE9E15)
+0066 d  Y: 248339 (0x0003CA13)
+0070 d  Z: -3568 (0xFFFFF210)
+0074 f  CurrentHP: 176,449
+0082 f  CurrentMP: 143,256
+0090 d  SP: 522 (0x0000020A)
+0094 q  Exp: 7656
+0102 d  Level: 6 (0x00000006)
+0106 d  Karma: 0 (0x00000000)
+0110 d  PkKills: 0 (0x00000000)
+0114 d  INT: 22 (0x00000016)
+0118 d  STR: 21 (0x00000015)
+0122 d  CON: 27 (0x0000001B)
+0126 d  MEN: 41 (0x00000029)
+0130 d  DEX: 20 (0x00000014)
+0134 d  WIT: 39 (0x00000027)
+0138 d  GameTime: 1936 (0x00000790)
+0142 d  0: 0 (0x00000000)
+0146 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0150 d  0: 0 (0x00000000)
+0154 d  0: 0 (0x00000000)
+0158 d  0: 0 (0x00000000)
+0162 d  0: 0 (0x00000000)
+0166 -  64: ౮റ롥젶4 aaeo(a)
+0230 d  0: 0 (0x00000000)
+
+client =  b'\xd0=\x00'
+0002 h  subID: 61 (0x003D)
+
+server =  b'\xfe\x15\x00\x15\x00\x00\x00e\x00\x00\x00B\x00u\x00r\x00n\x00i\x00n\x00g\x00A\x00n\x00g\x00e\x00l\x00s\x00\x00\x00\x00\x00\x00\x00\x7f\x9a\x06\x00f\x00\x00\x00O\x00w\x00n\x00e\x00d\x00A\x00g\x00a\x00i\x00n\x00\x00\x00\x00\x00\x00\x00\x87\xd2\x04\x00g\x00\x00\x00H\x00e\x00r\x00o\x00\x00\x00\x00\x00\x00\x00\xee\xf7\x00\x00h\x00\x00\x00T\x00r\x001\x00a\x00d\x00a\x00\x00\x00\x01\x00\x00\x00\x8b\xdf\x04\x00i\x00\x00\x00A\x00b\x00s\x00o\x00l\x00u\x00t\x00M\x00a\x00d\x00H\x00o\x00u\x00s\x00e\x00\x00\x00\x00\x00\x00\x00\xb6\x14\x06\x00j\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00k\x00\x00\x00T\x00e\x00m\x00p\x00e\x00s\x00t\x00\x00\x00\x00\x00\x00\x00V\x82\x06\x00l\x00\x00\x00T\x00x\x00S\x00o\x00W\x00\x00\x00\x00\x00\x00\x00I\xac\x02\x00m\x00\x00\x00E\x00i\x00n\x00h\x00e\x00i\x00t\x00\x00\x00\x00\x00\x00\x00I3\x02\x00n\x00\x00\x00T\x00x\x00T\x00T\x00\x00\x00\x00\x00\x00\x00\xfd\x10\x02\x00o\x00\x00\x00T\x00e\x00r\x00r\x00a\x00n\x00R\x00e\x00p\x00u\x00b\x00l\x00i\x00c\x00\x00\x00\x00\x00\x00\x00rP\x02\x00p\x00\x00\x00o\x00F\x00A\x00L\x00L\x00E\x00N\x00o\x00\x00\x00\x00\x00\x00\x009\n\x02\x00q\x00\x00\x00G\x00u\x00a\x00r\x00d\x00s\x00O\x00f\x00D\x00e\x00s\x00t\x00i\x00n\x00y\x00\x00\x00\x00\x00\x00\x00\x19\x84\x07\x00r\x00\x00\x00S\x00e\x00d\x00u\x00c\x00t\x00i\x00o\x00n\x00\x00\x00\x00\x00\x00\x00\xda\x9a\x08\x00s\x00\x00\x00T\x00o\x00u\x00c\x00h\x00T\x00h\x00e\x00S\x00k\x00y\x00\x00\x00\x00\x00\x00\x00\xd5\x17\x00\x00t\x00\x00\x00L\x00e\x00t\x00s\x00P\x00l\x00a\x00y\x00\x00\x00\x00\x00\x00\x00H3\x02\x00u\x00\x00\x00R\x00i\x00s\x00e\x00T\x00h\x00e\x00A\x00b\x00y\x00s\x00s\x00\x00\x00\x00\x00\x00\x00\xff\\\x06\x00v\x00\x00\x00M\x00a\x00d\x00M\x00a\x00g\x00i\x00c\x00\x00\x00\x00\x00\x00\x00\xda\x89\x03\x00w\x00\x00\x00R\x00e\x00v\x00o\x00l\x00u\x00t\x00i\x00o\x00n\x00\x00\x00\x00\x00\x00\x00\xfa\x06\x01\x00x\x00\x00\x00W\x00i\x00n\x00d\x00O\x00f\x00D\x00e\x00a\x00t\x00h\x00\x00\x00\x00\x00\x00\x00Y]\x02\x00y\x00\x00\x00T\x00r\x00i\x00b\x00u\x00n\x00a\x00L\x00\x00\x00\x00\x00\x00\x00.R\x02\x00'
+0002 h  subID: 21 (0x0015)
+0004 d  ListSize: 21 (0x00000015)
+              [Π?? ௢򮰿??ﲿ ⬮렠1/21]
+0008 d  FortIdID: 101 (0x00000065)
+0012 s  OwnerClan: BurningAngels
+0040 d  IsInProgress: 0 (0x00000000)
+0044 d  PossessionTime: 432767 (0x00069A7F)
+              [Eiiao iiaoi?y?uaainy aeiea  1/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/21]
+0048 d  FortIdID: 102 (0x00000066)
+0052 s  OwnerClan: OwnedAgain
+0074 d  IsInProgress: 0 (0x00000000)
+0078 d  PossessionTime: 316039 (0x0004D287)
+              [Eiiao iiaoi?y?uaainy aeiea  2/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/21]
+0082 d  FortIdID: 103 (0x00000067)
+0086 s  OwnerClan: Hero
+0096 d  IsInProgress: 0 (0x00000000)
+0100 d  PossessionTime: 63470 (0x0000F7EE)
+              [Eiiao iiaoi?y?uaainy aeiea  3/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 4/21]
+0104 d  FortIdID: 104 (0x00000068)
+0108 s  OwnerClan: Tr1ada
+0122 d  IsInProgress: 1 (0x00000001)
+0126 d  PossessionTime: 319371 (0x0004DF8B)
+              [Eiiao iiaoi?y?uaainy aeiea  4/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 5/21]
+0130 d  FortIdID: 105 (0x00000069)
+0134 s  OwnerClan: AbsolutMadHouse
+0166 d  IsInProgress: 0 (0x00000000)
+0170 d  PossessionTime: 398518 (0x000614B6)
+              [Eiiao iiaoi?y?uaainy aeiea  5/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 6/21]
+0174 d  FortIdID: 106 (0x0000006A)
+0178 s  OwnerClan: 
+0180 d  IsInProgress: 1 (0x00000001)
+0184 d  PossessionTime: 0 (0x00000000)
+              [Eiiao iiaoi?y?uaainy aeiea  6/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 7/21]
+0188 d  FortIdID: 107 (0x0000006B)
+0192 s  OwnerClan: Tempest
+0208 d  IsInProgress: 0 (0x00000000)
+0212 d  PossessionTime: 426582 (0x00068256)
+              [Eiiao iiaoi?y?uaainy aeiea  7/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 8/21]
+0216 d  FortIdID: 108 (0x0000006C)
+0220 s  OwnerClan: TxSoW
+0232 d  IsInProgress: 0 (0x00000000)
+0236 d  PossessionTime: 175177 (0x0002AC49)
+              [Eiiao iiaoi?y?uaainy aeiea  8/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 9/21]
+0240 d  FortIdID: 109 (0x0000006D)
+0244 s  OwnerClan: Einheit
+0260 d  IsInProgress: 0 (0x00000000)
+0264 d  PossessionTime: 144201 (0x00023349)
+              [Eiiao iiaoi?y?uaainy aeiea  9/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 10/21]
+0268 d  FortIdID: 110 (0x0000006E)
+0272 s  OwnerClan: TxTT
+0282 d  IsInProgress: 0 (0x00000000)
+0286 d  PossessionTime: 135421 (0x000210FD)
+              [Eiiao iiaoi?y?uaainy aeiea  10/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 11/21]
+0290 d  FortIdID: 111 (0x0000006F)
+0294 s  OwnerClan: TerranRepublic
+0324 d  IsInProgress: 0 (0x00000000)
+0328 d  PossessionTime: 151666 (0x00025072)
+              [Eiiao iiaoi?y?uaainy aeiea  11/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 12/21]
+0332 d  FortIdID: 112 (0x00000070)
+0336 s  OwnerClan: oFALLENo
+0354 d  IsInProgress: 0 (0x00000000)
+0358 d  PossessionTime: 133689 (0x00020A39)
+              [Eiiao iiaoi?y?uaainy aeiea  12/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 13/21]
+0362 d  FortIdID: 113 (0x00000071)
+0366 s  OwnerClan: GuardsOfDestiny
+0398 d  IsInProgress: 0 (0x00000000)
+0402 d  PossessionTime: 492569 (0x00078419)
+              [Eiiao iiaoi?y?uaainy aeiea  13/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 14/21]
+0406 d  FortIdID: 114 (0x00000072)
+0410 s  OwnerClan: Seduction
+0430 d  IsInProgress: 0 (0x00000000)
+0434 d  PossessionTime: 563930 (0x00089ADA)
+              [Eiiao iiaoi?y?uaainy aeiea  14/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 15/21]
+0438 d  FortIdID: 115 (0x00000073)
+0442 s  OwnerClan: TouchTheSky
+0466 d  IsInProgress: 0 (0x00000000)
+0470 d  PossessionTime: 6101 (0x000017D5)
+              [Eiiao iiaoi?y?uaainy aeiea  15/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 16/21]
+0474 d  FortIdID: 116 (0x00000074)
+0478 s  OwnerClan: LetsPlay
+0496 d  IsInProgress: 0 (0x00000000)
+0500 d  PossessionTime: 144200 (0x00023348)
+              [Eiiao iiaoi?y?uaainy aeiea  16/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 17/21]
+0504 d  FortIdID: 117 (0x00000075)
+0508 s  OwnerClan: RiseTheAbyss
+0534 d  IsInProgress: 0 (0x00000000)
+0538 d  PossessionTime: 417023 (0x00065CFF)
+              [Eiiao iiaoi?y?uaainy aeiea  17/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 18/21]
+0542 d  FortIdID: 118 (0x00000076)
+0546 s  OwnerClan: MadMagic
+0564 d  IsInProgress: 0 (0x00000000)
+0568 d  PossessionTime: 231898 (0x000389DA)
+              [Eiiao iiaoi?y?uaainy aeiea  18/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 19/21]
+0572 d  FortIdID: 119 (0x00000077)
+0576 s  OwnerClan: Revolution
+0598 d  IsInProgress: 0 (0x00000000)
+0602 d  PossessionTime: 67322 (0x000106FA)
+              [Eiiao iiaoi?y?uaainy aeiea  19/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 20/21]
+0606 d  FortIdID: 120 (0x00000078)
+0610 s  OwnerClan: WindOfDeath
+0634 d  IsInProgress: 0 (0x00000000)
+0638 d  PossessionTime: 154969 (0x00025D59)
+              [Eiiao iiaoi?y?uaainy aeiea  20/21]
+              [Ia?aei iiaoi?y?uaainy aeiea 21/21]
+0642 d  FortIdID: 121 (0x00000079)
+0646 s  OwnerClan: TribunaL
+0664 d  IsInProgress: 0 (0x00000000)
+0668 d  PossessionTime: 152110 (0x0002522E)
+              [Eiiao iiaoi?y?uaainy aeiea  21/21]
+			  
+client =  b'\xd0\x01\x00'
+Tei: 0xD0 (RequestManorList)
+Pacia?: 3+2
+A?aiy i?eoiaa: 16:31:41:262
+0002 h  subID: 1 (0x0001)
+
+client =  b'\xd0!\x00'
+Tei: 0xD0 (RequestKeyMapping)
+Pacia?: 3+2
+A?aiy i?eoiaa: 16:32:26:253
+0002 h  subID: 33 (0x0021)
+
+server =  b'\xfe"\x00\t\x00\x00\x00\x01\x00\x00\x00g\x00l\x00u\x00d\x00i\x00o\x00\x00\x00\x02\x00\x00\x00d\x00i\x00o\x00n\x00\x00\x00\x03\x00\x00\x00g\x00i\x00r\x00a\x00n\x00\x00\x00\x04\x00\x00\x00o\x00r\x00e\x00n\x00\x00\x00\x05\x00\x00\x00a\x00d\x00e\x00n\x00\x00\x00\x06\x00\x00\x00i\x00n\x00n\x00a\x00d\x00r\x00i\x00l\x00e\x00\x00\x00\x07\x00\x00\x00g\x00o\x00d\x00a\x00r\x00d\x00\x00\x00\x08\x00\x00\x00r\x00u\x00n\x00e\x00\x00\x00\t\x00\x00\x00s\x00h\x00u\x00t\x00t\x00g\x00a\x00r\x00t\x00\x00\x00'
+Tei: 0xFE (ExSendManorList)
+Pacia?: 163+2
+A?aiy i?eoiaa: 16:33:07:343
+0002 h  subID: 34 (0x0022)
+0004 d  ListSize: 9 (0x00000009)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/9]
+0008 d  Inc: 1 (0x00000001)
+0012 s  Manor: gludio
+              [Eiiao iiaoi?y?uaainy aeiea  1/9]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/9]
+0026 d  Inc: 2 (0x00000002)
+0030 s  Manor: dion
+              [Eiiao iiaoi?y?uaainy aeiea  2/9]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/9]
+0040 d  Inc: 3 (0x00000003)
+0044 s  Manor: giran
+              [Eiiao iiaoi?y?uaainy aeiea  3/9]
+              [Ia?aei iiaoi?y?uaainy aeiea 4/9]
+0056 d  Inc: 4 (0x00000004)
+0060 s  Manor: oren
+              [Eiiao iiaoi?y?uaainy aeiea  4/9]
+              [Ia?aei iiaoi?y?uaainy aeiea 5/9]
+0070 d  Inc: 5 (0x00000005)
+0074 s  Manor: aden
+              [Eiiao iiaoi?y?uaainy aeiea  5/9]
+              [Ia?aei iiaoi?y?uaainy aeiea 6/9]
+0084 d  Inc: 6 (0x00000006)
+0088 s  Manor: innadrile
+              [Eiiao iiaoi?y?uaainy aeiea  6/9]
+              [Ia?aei iiaoi?y?uaainy aeiea 7/9]
+0108 d  Inc: 7 (0x00000007)
+0112 s  Manor: godard
+              [Eiiao iiaoi?y?uaainy aeiea  7/9]
+              [Ia?aei iiaoi?y?uaainy aeiea 8/9]
+0126 d  Inc: 8 (0x00000008)
+0130 s  Manor: rune
+              [Eiiao iiaoi?y?uaainy aeiea  8/9]
+              [Ia?aei iiaoi?y?uaainy aeiea 9/9]
+0140 d  Inc: 9 (0x00000009)
+0144 s  Manor: shuttgart
+              [Eiiao iiaoi?y?uaainy aeiea  9/9]
+
+client =  b'\x11\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc9\xbc\xf2\xa7fZ\x0b\x986\xa5\xbd\x89\xed\x7f\xe4\xd7kI\xe2\x9f\xefv\xeb\xce\xa3\xfa\xf4\xbf\x0cd\xa3\xb4\xa4\xce\xdc\xc6\x08>n\xeaE\xca\xd3\xfe\x88\x13\x87\xb8\x06,\x96\xf0\x9b\x1e\x8e\xbc\xc6\x9b\x98\xc8c\x16\xcf\xd0)\x00\x00\x00\xc0\xa8d\x05\xc0\xa8d\x01W\xe2\xe2IS\xdb\x08\x01W\xe2\x85\xb6'
+Tei: 0x11 (EnterWorld)
+Pacia?: 105+2
+A?aiy i?eoiaa: 16:36:05:854
+0002 d  a2*4: 0 (0x00000000)
+0006 d  ?: 0 (0x00000000)
+0010 d  ?: 0 (0x00000000)
+0014 d  ?: 0 (0x00000000)
+0018 d  ?: -1477264183 (0xA7F2BCC9)
+0022 -  60: I?iioneaai 60 aaeo(a)
+0082 d  random: 41 (0x00000029)
+0086 c  ip0.1: 192 (0xC0)
+0087 c  ip0.2: 168 (0xA8)
+0088 c  ip0.3: 100 (0x64)
+0089 c  ip0.4: 5 (0x05)
+0090 c  ip1.1: 192 (0xC0)
+0091 c  ip1.2: 168 (0xA8)
+0092 c  ip1.3: 100 (0x64)
+0093 c  ip1.4: 1 (0x01)
+0094 c  ip2.1: 87 (0x57)
+0095 c  ip2.2: 226 (0xE2)
+0096 c  ip2.3: 226 (0xE2)
+0097 c  ip2.4: 73 (0x49)
+0098 c  ip3.1: 83 (0x53)
+0099 c  ip3.2: 219 (0xDB)
+0100 c  ip3.3: 8 (0x08)
+0101 c  ip3.4: 1 (0x01)
+0102 c  ip4.1: 87 (0x57)
+0103 c  ip4.2: 226 (0xE2)
+0104 c  ip4.3: 133 (0x85)
+0105 c  ip4.4: 182 (0xB6)
+
+server =  b'\xfe\x84\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0xFE (ExGetBookMarkInfoPacket)
+Pacia?: 15+2
+A?aiy i?eoiaa: 16:34:51:037
+0002 h  subID: 132 (0x0084)
+0004 d  0: 0 (0x00000000)
+0008 d  bookmarkslot: 0 (0x00000000)
+0012 d  Size: 0 (0x00000000)
+
+server =  b'\xe8\x01\x00\x00\x00\x00\x00\x00'
+0002 d  Revision: 1 (0x00000001)
+0006 c  0: 0 (0x00)
+0007 c  Count: 0 (0x00)
+0008 c  isCheck: 0 (0x00)
+
+
+
+server =  b'\xe5\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0xE5 (HennaInfo)
+Pacia?: 15+2
+A?aiy i?eoiaa: 16:38:22:401
+0002 c  INT: 0 (0x00)
+0003 c  STR: 0 (0x00)
+0004 c  CON: 0 (0x00)
+0005 c  MEN: 0 (0x00)
+0006 c  DEX: 0 (0x00)
+0007 c  WIT: 0 (0x00)
+0008 d  3: 0 (0x00000000)
+0012 d  SlotCount: 0 (0x00000000)
+
+server =  b'_\x08\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x99\x04\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\xc0\x04\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00*\x05\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00v\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\xa3\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\xc2\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\xd6\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00(\x05\x00\x00\x00'
+Tei: 0x5F (SkillList)
+Pacia?: 109+2
+A?aiy i?eoiaa: 16:39:02:759
+0002 d  ListSize: 8 (0x00000008)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/8]
+0006 d  isPassive: 0 (0x00000000)
+0010 d  Level: 1 (0x00000001)
+0014 d  skillID: Oaa? Aao?a ID:1177 (0x0499)
+0018 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  1/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/8]
+0019 d  isPassive: 0 (0x00000000)
+0023 d  Level: 1 (0x00000001)
+0027 d  skillID: Naiiea?aiea ID:1216 (0x04C0)
+0031 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  2/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/8]
+0032 d  isPassive: 0 (0x00000000)
+0036 d  Level: 1 (0x00000001)
+0040 d  skillID: Iau?iia ?aianei ID:1322 (0x052A)
+0044 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  3/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 4/8]
+0045 d  isPassive: 1 (0x00000001)
+0049 d  Level: 1 (0x00000001)
+0053 d  skillID: Aae?aiea Iaaa ID:118 (0x0076)
+0057 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  4/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 5/8]
+0058 d  isPassive: 1 (0x00000001)
+0062 d  Level: 1 (0x00000001)
+0066 d  skillID: Eneoniia Eieaianoai ID:163 (0x00A3)
+0070 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  5/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 6/8]
+0071 d  isPassive: 1 (0x00000001)
+0075 d  Level: 1 (0x00000001)
+0079 d  skillID: Aacaiea ID:194 (0x00C2)
+0083 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  6/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 7/8]
+0084 d  isPassive: 1 (0x00000001)
+0088 d  Level: 1 (0x00000001)
+0092 d  skillID: Ainnoaiiaeaiea Iaiu ID:214 (0x00D6)
+0096 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  7/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 8/8]
+0097 d  isPassive: 1 (0x00000001)
+0101 d  Level: 1 (0x00000001)
+0105 d  skillID: Nicaaou Iau?iue I?aaiao ID:1320 (0x0528)
+0109 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  8/8]
+			  
+server =  b'\xf9\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0xF9 (EtcStatusUpdate)
+Pacia?: 33+2
+A?aiy i?eoiaa: 16:39:52:663
+0002 d  EffectLevel: 0 (0x00000000)
+0006 d  WeightPenalty: 0 (0x00000000)
+0010 d  isChatBanned: 0 (0x00000000)
+0014 d  isDangerArea: 0 (0x00000000)
+0018 d  ExpertisePenalty: 0 (0x00000000)
+0022 d  CharmOfCourage: 0 (0x00000000)
+0026 d  DeathPenaltyBuffLevel: 0 (0x00000000)
+0030 d  Souls: 0 (0x00000000)
+
+server =  b"2\x15\x9e\xfe\xff\x13\xca\x03\x00\x10\xf2\xff\xff\x00\x00\x00\x00``\x11Jt\x00e\x00s\x00t\x00d\x00s\x00a\x00f\x00a\x00s\x00d\x00f\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\n\x00\x00\x00\x06\x00\x00\x00\xe8\x1d\x00\x00\x00\x00\x00\x00\x16\x00\x00\x00\x15\x00\x00\x00\x1b\x00\x00\x00)\x00\x00\x00\x14\x00\x00\x00'\x00\x00\x00\xb0\x00\x00\x00\xb0\x00\x00\x00\x8f\x00\x00\x00\x8f\x00\x00\x00\n\x02\x00\x00Z\x14\x00\x00$\x08\x01\x00(\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00p\xc3A\x00\x00\x00\x00\x00\x00\x00\x00\xf5\xc2\xd4B;\x92\x92B\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xa9\x01\x00\x00\xcd\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00~\x01\x00\x007\x00\x00\x00!\x00\x00\x00&\x00\x00\x00(\x00\x00\x00\t\x00\x00\x00M\x01\x00\x00~\x01\x00\x009\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00x\x00\x00\x00N\x00\x00\x002\x00\x00\x002\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00)\\\x8f\xc2\xf5(\xf0?4/\x87\xddw\x0c\xf6?\x00\x00\x00\x00\x00\x00\x1a@\x00\x00\x00\x00\x00\x806@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00P\x00\n\x00\x00\x00\x00\x00\x00\x00X\x00\x00\x00X\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\xa2\xf9\xec\x00\x00\x00\x00\x00\x00\x00\x00\x00\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00 N\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+Tei: 0x32 (UserInfo)
+Pacia?: 740+2
+A?aiy i?eoiaa: 16:40:30:556
+0002 d  X: -90603 (0xFFFE9E15)
+0006 d  Y: 248339 (0x0003CA13)
+0010 d  Z: -3568 (0xFFFFF210)
+0014 d  isInAirShip: 0 (0x00000000)
+0018 d  ObjectID: 1242652768 (0x4A116060)
+0022 s  Name: testdsafasdf
+0048 d  Race: 0 (0x00000000)
+0052 d  Sex: 1 (0x00000001)
+0056 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0060 d  Level: 6 (0x00000006)
+0064 q  Exp: 7656
+0072 d  Str: 22 (0x00000016)
+0076 d  Dex: 21 (0x00000015)
+0080 d  Con: 27 (0x0000001B)
+0084 d  Int: 41 (0x00000029)
+0088 d  Wit: 20 (0x00000014)
+0092 d  Men: 39 (0x00000027)
+0096 d  MaxHP: 176 (0x000000B0)
+0100 d  CurrentHP: 176 (0x000000B0)
+0104 d  MaxMP: 143 (0x0000008F)
+0108 d  CurrentMP: 143 (0x0000008F)
+0112 d  Sp: 522 (0x0000020A)
+0116 d  CurrentLoad: 5210 (0x0000145A)
+0120 d  MaxLoad: 67620 (0x00010824)
+0124 d  WeaponEquipment 20=no,40=yes: 40 (0x00000028)
+0128 d  OIDUnder: 0 (0x00000000)
+0132 d  OIDRear: 0 (0x00000000)
+0136 d  OIDLear: 0 (0x00000000)
+0140 d  OIDNeck: 0 (0x00000000)
+0144 d  OIDFinger: 0 (0x00000000)
+0148 d  OIDLfinger: 0 (0x00000000)
+0152 d  OIDHead: 0 (0x00000000)
+0156 d  OIDRhand: 1103327232 (0x41C37000)
+0160 d  OIDLhand: 0 (0x00000000)
+0164 d  OIDGloves: 0 (0x00000000)
+0168 d  OIDChest: 1121239797 (0x42D4C2F5)
+0172 d  OIDLegs: 1116901947 (0x4292923B)
+0176 d  OIDFeet: 0 (0x00000000)
+0180 d  OIDBack: 0 (0x00000000)
+0184 d  OIDLrhand: 0 (0x00000000)
+0188 d  OIDHair: 0 (0x00000000)
+0192 d  OIDHair2: 0 (0x00000000)
+0196 d  OIDRbracelet: 0 (0x00000000)
+0200 d  OIDLbracelet: 0 (0x00000000)
+0204 d  OIDDeco: 0 (0x00000000)
+0208 d  OIDDeco2: 0 (0x00000000)
+0212 d  OIDDeco3: 0 (0x00000000)
+0216 d  OIDDeco4: 0 (0x00000000)
+0220 d  OIDDeco5: 0 (0x00000000)
+0224 d  OIDDeco6: 0 (0x00000000)
+0228 d  OIDBelt: 0 (0x00000000)
+0232 d  IDUnder: 0
+0236 d  IDRear: 0
+0240 d  IDLear: 0
+0244 d  IDNeck: 0
+0248 d  IDFinger: 0
+0252 d  IDLfinger: 0
+0256 d  IDHead: 0
+0260 d  IDRhand: Neeiao? Iiae?e ID:6 (0x0006)
+0264 d  IDLhand: 0
+0268 d  IDGloves: 0
+0272 d  IDChest: Ooieea O?aieea  ID:425 (0x01A9)
+0276 d  IDLegs: Ooaiu O?aieea  ID:461 (0x01CD)
+0280 d  IDFeet: 0
+0284 d  IDBack: 0
+0288 d  IDLrhand: 0
+0292 d  IDHair: 0
+0296 d  IDHair2: 0
+0300 d  IDRbracelet: 0
+0304 d  IDLbracelet: 0
+0308 d  IDDeco: 0
+0312 d  IDDeco2: 0
+0316 d  IDDeco3: 0
+0320 d  IDDeco4: 0
+0324 d  IDDeco5: 0
+0328 d  IDDeco6: 0
+0332 d  IDBelt: 0
+0336 d  AugIDUnder: 0 (0x00000000)
+0340 d  AugIDRear: 0 (0x00000000)
+0344 d  AugIDLear: 0 (0x00000000)
+0348 d  AugIDNeck: 0 (0x00000000)
+0352 d  AugIDFinger: 0 (0x00000000)
+0356 d  AugIDLfinger: 0 (0x00000000)
+0360 d  AugIDHead: 0 (0x00000000)
+0364 d  AugIDRhand: 0 (0x00000000)
+0368 d  AugIDLhand: 0 (0x00000000)
+0372 d  AugIDGloves: 0 (0x00000000)
+0376 d  AugIDChest: 0 (0x00000000)
+0380 d  AugIDLegs: 0 (0x00000000)
+0384 d  AugIDFeet: 0 (0x00000000)
+0388 d  AugIDBack: 0 (0x00000000)
+0392 d  AugIDLrhand: 0 (0x00000000)
+0396 d  AugIDHair: 0 (0x00000000)
+0400 d  AugIDHair2: 0 (0x00000000)
+0404 d  AugIDRbracelet: 0 (0x00000000)
+0408 d  AugIDLbracelet: 0 (0x00000000)
+0412 d  AugIDDeco: 0 (0x00000000)
+0416 d  AugIDDeco2: 0 (0x00000000)
+0420 d  AugIDDeco3: 0 (0x00000000)
+0424 d  AugIDDeco4: 0 (0x00000000)
+0428 d  AugIDDeco5: 0 (0x00000000)
+0432 d  AugIDDeco6: 0 (0x00000000)
+0436 d  AugIDBelt: 0 (0x00000000)
+0440 d  TalismanSlots: 0 (0x00000000)
+0444 d  01: 0 (0x00000000)
+0448 d  Patk: 2 (0x00000002)
+0452 d  PatkSpd: 382 (0x0000017E)
+0456 d  Pdef: 55 (0x00000037)
+0460 d  EvasionRate: 33 (0x00000021)
+0464 d  Accuracy: 38 (0x00000026)
+0468 d  CriticalHit: 40 (0x00000028)
+0472 d  Matk: 9 (0x00000009)
+0476 d  MatkSpd: 333 (0x0000014D)
+0480 d  PatkSpd: 382 (0x0000017E)
+0484 d  Mdef: 57 (0x00000039)
+0488 d  PvPFlag: 0 (0x00000000)
+0492 d  Karma: 0 (0x00000000)
+0496 d  RunSpd: 120 (0x00000078)
+0500 d  WalkSpd: 78 (0x0000004E)
+0504 d  SwimRunSpd: 50 (0x00000032)
+0508 d  SwimWalkSpd: 50 (0x00000032)
+0512 d  0: 0 (0x00000000)
+0516 d  0: 0 (0x00000000)
+0520 d  FlyRunSpd: 0 (0x00000000)
+0524 d  FlyWalkSpd: 0 (0x00000000)
+0528 f  MoveMul: 1,01
+0536 f  AtkSpeedMul: 1,378044
+0544 f  ColRadius: 6,5
+0552 f  ColHeight: 22,5
+0560 d  HairStyle: 0 (0x00000000)
+0564 d  HairColor: 0 (0x00000000)
+0568 d  Face: 0 (0x00000000)
+0572 d  isGM: 0 (0x00000000)
+0576 s  Title: 
+0578 d  ClanID: 0 (0x00000000)
+0582 d  ClanCrestID: 0 (0x00000000)
+0586 d  AllyID: 0 (0x00000000)
+0590 d  AllyCrestID: 0 (0x00000000)
+0594 d  Relation: 0 (0x00000000)
+0598 c  MountType: 0 (0x00)
+0599 c  PrivateStoreType: 0 (0x00)
+0600 c  DwarvenCraft: 0 (0x00)
+0601 d  PkKills: 0 (0x00000000)
+0605 d  PvPKills: 0 (0x00000000)
+0609 h  CubicsSize: 0 (0x0000)
+0611 c  0: 0 (0x00)
+0612 d  AbnormalEffect: 0 (0x00000000)
+0616 c  FlayingMounted: 0 (0x00)
+0617 d  ClanPrivileges: 0 (0x00000000)
+0621 h  RecomLeft: 0 (0x0000)
+0623 h  RecomHave: 0 (0x0000)
+0625 d  MountNpcID: 0 (0x00000000)
+0629 h  InventoryLimit: 80 (0x0050)
+0631 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0635 d  0: 0 (0x00000000)
+0639 d  MaxCP: 88 (0x00000058)
+0643 d  CurrentCP: 88 (0x00000058)
+0647 c  isMounted: 0 (0x00)
+0648 c  Team: 0 (0x00)
+0649 d  ClanCrestLargeID: 0 (0x00000000)
+0653 c  isNoble: 0 (0x00)
+0654 c  isHero: 0 (0x00)
+0655 c  isFishing: 0 (0x00)
+0656 d  FishingX: 0 (0x00000000)
+0660 d  FishingY: 0 (0x00000000)
+0664 d  FishingZ: 0 (0x00000000)
+0668 d  NameColor: 16777215 (0x00FFFFFF)
+0672 c  isRunning: 1 (0x01)
+0673 d  PledgeClass: 0 (0x00000000)
+0677 d  PledgeType: 0 (0x00000000)
+0681 d  TitleColor: 15530402 (0x00ECF9A2)
+0685 d  CursedWeaponEquipID: 0 (0x00000000)
+0689 d  TranformationID: 0 (0x00000000)
+0693 h  AtkElementAttr: 65534 (0xFFFE)
+0695 h  AttackElementVal: 0 (0x0000)
+0697 h  DefAttrFire: 0 (0x0000)
+0699 h  DefAttrWater: 0 (0x0000)
+0701 h  DefAttrWind: 0 (0x0000)
+0703 h  DefAttrEarth: 0 (0x0000)
+0705 h  DefAttrHoly: 0 (0x0000)
+0707 h  DefAttrDark: 0 (0x0000)
+0709 d  AgathionId: 0 (0x00000000)
+0713 d  Fame: 0 (0x00000000)
+0717 d  Unknown: 1 (0x00000001)
+0721 d  VitalityPoints: 20000 (0x00004E20)
+0725 d  0: 0 (0x00000000)
+0729 d  0: 0 (0x00000000)
+0733 d  0: 0 (0x00000000)
+0737 d  0: 0 (0x00000000)
+
+server =  b'\xfe\xac\x00``\x11J\x00\x00\x00\x00'
+Tei: 0xFE (ExBrExtraUserInfo)
+Pacia?: 11+2
+A?aiy i?eoiaa: 16:41:22:691
+0002 h  subID: 172 (0x00AC)
+0004 d  CharOID: 1242652768 (0x4A116060)
+0008 d  Val: 0 (0x00000000)
+
+server =  b'\x86\x01\x00\xff\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0x86 (QuestList)
+Pacia?: 139+2
+A?aiy i?eoiaa: 16:42:22:439
+0002 h  ListSize: 1 (0x0001)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/1]
+0004 d  QuestId: 255 (0x000000FF)
+0008 d  Cond: 1 (0x00000001)
+              [Eiiao iiaoi?y?uaainy aeiea  1/1]
+0012 -  128: I?iioneaai 128 aaeo(a)
+server =  b'\xfe\xaa\x00``\x11J\x00'
+Tei: 0xFE (UnknownFEAA)
+Pacia?: 8+2
+A?aiy i?eoiaa: 16:42:56:400
+0002 h  subID: 170 (0x00AA)
+
+server =  b'\x0c1!BH\xd9\x90\x0f\x00\x01\x00\x00\x00L\x93\xfe\xff\x93\xc2\x03\x00\xa0\xf1\xff\xff\x85\xfe\xff\xff\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x00d\x00\x00\x002\x00\x00\x00d\x00\x00\x002\x00\x00\x00d\x00\x00\x002\x00\x00\x00d\x00\x00\x002\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x004@\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x004@\x00\x00\x00\x00\x00\x00$@\n\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:43:32:077
+0002 d  ObjectID: 1212293425 (0x48422131)
+0006 d  NpcTypeId: Aeaaioneay ?aaa ID:1020121 (0xF90D9)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -93364 (0xFFFE934C)
+0018 d  Y: 246419 (0x0003C293)
+0022 d  Z: -3680 (0xFFFFF1A0)
+0026 d  Heading: -379 (0xFFFFFE85)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 100 (0x00000064)
+0046 d  WalkSpd: 50 (0x00000032)
+0050 d  SwimRunSpd: 100 (0x00000064)
+0054 d  SwimWalkSpd: 50 (0x00000032)
+0058 d  FlRunSpd: 100 (0x00000064)
+0062 d  FlWalkSpd: 50 (0x00000032)
+0066 d  FlyRunSpd: 100 (0x00000064)
+0070 d  FlyWalkSpd: 50 (0x00000032)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 20
+0098 f  CollisionHeight: 10
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 20
+0169 f  CollisionHeight: 10
+0177 d  0: 10 (0x0000000A)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0c\xc5\xcecH\xd9\x90\x0f\x00\x01\x00\x00\x00\xf0\x94\xfe\xff\xda\xbf\x03\x00\xb0\xf1\xff\xffe\xb5\xff\xff\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x00d\x00\x00\x002\x00\x00\x00d\x00\x00\x002\x00\x00\x00d\x00\x00\x002\x00\x00\x00d\x00\x00\x002\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x004@\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x004@\x00\x00\x00\x00\x00\x00$@\n\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:44:16:631
+0002 d  ObjectID: 1214500549 (0x4863CEC5)
+0006 d  NpcTypeId: Aeaaioneay ?aaa ID:1020121 (0xF90D9)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -92944 (0xFFFE94F0)
+0018 d  Y: 245722 (0x0003BFDA)
+0022 d  Z: -3664 (0xFFFFF1B0)
+0026 d  Heading: -19099 (0xFFFFB565)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 100 (0x00000064)
+0046 d  WalkSpd: 50 (0x00000032)
+0050 d  SwimRunSpd: 100 (0x00000064)
+0054 d  SwimWalkSpd: 50 (0x00000032)
+0058 d  FlRunSpd: 100 (0x00000064)
+0062 d  FlWalkSpd: 50 (0x00000032)
+0066 d  FlyRunSpd: 100 (0x00000064)
+0070 d  FlyWalkSpd: 50 (0x00000032)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 20
+0098 f  CollisionHeight: 10
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 20
+0169 f  CollisionHeight: 10
+0177 d  0: 10 (0x0000000A)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0cQ\xc7\xd3I\xa6\x91\x0f\x00\x01\x00\x00\x00\xca\x91\xfe\xff\xe7\xd0\x03\x00\x00\xf2\xff\xff\xba\x97\xff\xff\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x00n\x00\x00\x00(\x00\x00\x00n\x00\x00\x00(\x00\x00\x00n\x00\x00\x00(\x00\x00\x00n\x00\x00\x00(\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x800@\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x800@\x07\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:45:05:849
+0002 d  ObjectID: 1238615889 (0x49D3C751)
+0006 d  NpcTypeId: Eacoo?ee Aiaeeiia ID:1020326 (0xF91A6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -93750 (0xFFFE91CA)
+0018 d  Y: 250087 (0x0003D0E7)
+0022 d  Z: -3584 (0xFFFFF200)
+0026 d  Heading: -26694 (0xFFFF97BA)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 110 (0x0000006E)
+0046 d  WalkSpd: 40 (0x00000028)
+0050 d  SwimRunSpd: 110 (0x0000006E)
+0054 d  SwimWalkSpd: 40 (0x00000028)
+0058 d  FlRunSpd: 110 (0x0000006E)
+0062 d  FlWalkSpd: 40 (0x00000028)
+0066 d  FlyRunSpd: 110 (0x0000006E)
+0070 d  FlyWalkSpd: 40 (0x00000028)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 16,5
+0106 d  IDRhand: 4
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 16,5
+0177 d  0: 7 (0x00000007)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'/1u\xd1I\x00\x91\xfe\xffb\xd0\x03\x00\x00\xf2\xff\xff\x9b\x91\xfe\xff\xc7\xd0\x03\x00\x00\xf2\xff\xff'
+Tei: 0x2F (MoveToLocation)
+Pacia?: 29+2
+A?aiy i?eoiaa: 16:45:46:908
+0002 d  CharID: 1238463793 (0x49D17531)
+0006 d  ToX: -93952 (0xFFFE9100)
+0010 d  ToY: 249954 (0x0003D062)
+0014 d  ToZ: -3584 (0xFFFFF200)
+0018 d  OriginX: -93797 (0xFFFE919B)
+0022 d  OriginY: 250055 (0x0003D0C7)
+0026 d  OriginZ: -3584 (0xFFFFF200)
+
+server =  b'\x0c\xcco\xf2N\xa6\x91\x0f\x00\x01\x00\x00\x00w\x90\xfe\xffZ\xd2\x03\x00 \xf2\xff\xff\xd4?\x00\x00\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x00n\x00\x00\x00(\x00\x00\x00n\x00\x00\x00(\x00\x00\x00n\x00\x00\x00(\x00\x00\x00n\x00\x00\x00(\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x800@\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x800@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:46:12:602
+0002 d  ObjectID: 1324511180 (0x4EF26FCC)
+0006 d  NpcTypeId: Eacoo?ee Aiaeeiia ID:1020326 (0xF91A6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -94089 (0xFFFE9077)
+0018 d  Y: 250458 (0x0003D25A)
+0022 d  Z: -3552 (0xFFFFF220)
+0026 d  Heading: 16340 (0x00003FD4)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 110 (0x0000006E)
+0046 d  WalkSpd: 40 (0x00000028)
+0050 d  SwimRunSpd: 110 (0x0000006E)
+0054 d  SwimWalkSpd: 40 (0x00000028)
+0058 d  FlRunSpd: 110 (0x0000006E)
+0062 d  FlWalkSpd: 40 (0x00000028)
+0066 d  FlyRunSpd: 110 (0x0000006E)
+0070 d  FlyWalkSpd: 40 (0x00000028)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 16,5
+0106 d  IDRhand: 4
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 16,5
+0177 d  0: 0 (0x00000000)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0c\xb8~"O\xd9\x90\x0f\x00\x01\x00\x00\x00?\x98\xfe\xff\xb7\xbf\x03\x00\x90\xf1\xff\xff\xe6\xa4\xff\xff\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x00d\x00\x00\x002\x00\x00\x00d\x00\x00\x002\x00\x00\x00d\x00\x00\x002\x00\x00\x00d\x00\x00\x002\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x004@\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x004@\x00\x00\x00\x00\x00\x00$@\n\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:49:52:983
+0002 d  ObjectID: 1327660728 (0x4F227EB8)
+0006 d  NpcTypeId: Aeaaioneay ?aaa ID:1020121 (0xF90D9)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -92097 (0xFFFE983F)
+0018 d  Y: 245687 (0x0003BFB7)
+0022 d  Z: -3696 (0xFFFFF190)
+0026 d  Heading: -23322 (0xFFFFA4E6)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 100 (0x00000064)
+0046 d  WalkSpd: 50 (0x00000032)
+0050 d  SwimRunSpd: 100 (0x00000064)
+0054 d  SwimWalkSpd: 50 (0x00000032)
+0058 d  FlRunSpd: 100 (0x00000064)
+0062 d  FlWalkSpd: 50 (0x00000032)
+0066 d  FlyRunSpd: 100 (0x00000064)
+0070 d  FlyWalkSpd: 50 (0x00000032)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 20
+0098 f  CollisionHeight: 10
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 20
+0169 f  CollisionHeight: 10
+0177 d  0: 10 (0x0000000A)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0c\xeb\xc2#J\xe6\x89\x0f\x00\x01\x00\x00\x00\xf7\x9e\xfe\xff\xe1\xca\x03\x00\x10\xf2\xff\xff\xf8\x97\xff\xff\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x0f\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:50:25:821
+0002 d  ObjectID: 1243857643 (0x4A23C2EB)
+0006 d  NpcTypeId: A?aieei ID:1018342 (0xF89E6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -90377 (0xFFFE9EF7)
+0018 d  Y: 248545 (0x0003CAE1)
+0022 d  Z: -3568 (0xFFFFF210)
+0026 d  Heading: -26632 (0xFFFF97F8)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 50 (0x00000032)
+0046 d  WalkSpd: 20 (0x00000014)
+0050 d  SwimRunSpd: 50 (0x00000032)
+0054 d  SwimWalkSpd: 20 (0x00000014)
+0058 d  FlRunSpd: 50 (0x00000032)
+0062 d  FlWalkSpd: 20 (0x00000014)
+0066 d  FlyRunSpd: 50 (0x00000032)
+0070 d  FlyWalkSpd: 20 (0x00000014)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 15
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 15
+0177 d  0: 15 (0x0000000F)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0cr\x84\xc3M\xe6\x89\x0f\x00\x01\x00\x00\x00\xa3\x9e\xfe\xff\xef\xca\x03\x00\x10\xf2\xff\xff\xc2=\x00\x00\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\n\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:50:45:415
+0002 d  ObjectID: 1304659058 (0x4DC38472)
+0006 d  NpcTypeId: A?aieei ID:1018342 (0xF89E6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -90461 (0xFFFE9EA3)
+0018 d  Y: 248559 (0x0003CAEF)
+0022 d  Z: -3568 (0xFFFFF210)
+0026 d  Heading: 15810 (0x00003DC2)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 50 (0x00000032)
+0046 d  WalkSpd: 20 (0x00000014)
+0050 d  SwimRunSpd: 50 (0x00000032)
+0054 d  SwimWalkSpd: 20 (0x00000014)
+0058 d  FlRunSpd: 50 (0x00000032)
+0062 d  FlWalkSpd: 20 (0x00000014)
+0066 d  FlyRunSpd: 50 (0x00000032)
+0070 d  FlyWalkSpd: 20 (0x00000014)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 15
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 15
+0177 d  0: 10 (0x0000000A)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0c\x01\xb83I\xe6\x89\x0f\x00\x01\x00\x00\x00\x96\x9e\xfe\xff\x9f\xca\x03\x00\x10\xf2\xff\xff\x9c\xad\xff\xff\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x0e\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:51:09:033
+0002 d  ObjectID: 1228126209 (0x4933B801)
+0006 d  NpcTypeId: A?aieei ID:1018342 (0xF89E6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -90474 (0xFFFE9E96)
+0018 d  Y: 248479 (0x0003CA9F)
+0022 d  Z: -3568 (0xFFFFF210)
+0026 d  Heading: -21092 (0xFFFFAD9C)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 50 (0x00000032)
+0046 d  WalkSpd: 20 (0x00000014)
+0050 d  SwimRunSpd: 50 (0x00000032)
+0054 d  SwimWalkSpd: 20 (0x00000014)
+0058 d  FlRunSpd: 50 (0x00000032)
+0062 d  FlWalkSpd: 20 (0x00000014)
+0066 d  FlyRunSpd: 50 (0x00000032)
+0070 d  FlyWalkSpd: 20 (0x00000014)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 15
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 15
+0177 d  0: 14 (0x0000000E)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0c\xc7\xd8\xb2I\xe6\x89\x0f\x00\x01\x00\x00\x00\xd6\x9e\xfe\xff\xbb\xca\x03\x00\x10\xf2\xff\xff\xbc7\x00\x00\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x0c\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:51:26:178
+0002 d  ObjectID: 1236457671 (0x49B2D8C7)
+0006 d  NpcTypeId: A?aieei ID:1018342 (0xF89E6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -90410 (0xFFFE9ED6)
+0018 d  Y: 248507 (0x0003CABB)
+0022 d  Z: -3568 (0xFFFFF210)
+0026 d  Heading: 14268 (0x000037BC)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 50 (0x00000032)
+0046 d  WalkSpd: 20 (0x00000014)
+0050 d  SwimRunSpd: 50 (0x00000032)
+0054 d  SwimWalkSpd: 20 (0x00000014)
+0058 d  FlRunSpd: 50 (0x00000032)
+0062 d  FlWalkSpd: 20 (0x00000014)
+0066 d  FlyRunSpd: 50 (0x00000032)
+0070 d  FlyWalkSpd: 20 (0x00000014)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 15
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 15
+0177 d  0: 12 (0x0000000C)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0c\xf6[\x02N\xe6\x89\x0f\x00\x01\x00\x00\x00\xc4\x9c\xfe\xffV\xc9\x03\x00\x10\xf2\xff\xff\xacY\x00\x00\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x0f\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:51:45:865
+0002 d  ObjectID: 1308777462 (0x4E025BF6)
+0006 d  NpcTypeId: A?aieei ID:1018342 (0xF89E6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -90940 (0xFFFE9CC4)
+0018 d  Y: 248150 (0x0003C956)
+0022 d  Z: -3568 (0xFFFFF210)
+0026 d  Heading: 22956 (0x000059AC)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 50 (0x00000032)
+0046 d  WalkSpd: 20 (0x00000014)
+0050 d  SwimRunSpd: 50 (0x00000032)
+0054 d  SwimWalkSpd: 20 (0x00000014)
+0058 d  FlRunSpd: 50 (0x00000032)
+0062 d  FlWalkSpd: 20 (0x00000014)
+0066 d  FlyRunSpd: 50 (0x00000032)
+0070 d  FlyWalkSpd: 20 (0x00000014)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 15
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 15
+0177 d  0: 15 (0x0000000F)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0c\xcb)\xd2I\xe6\x89\x0f\x00\x01\x00\x00\x00:\x9f\xfe\xff\x8e\xc9\x03\x00\x10\xf2\xff\xff\xd4\x8d\xff\xff\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:52:02:401
+0002 d  ObjectID: 1238510027 (0x49D229CB)
+0006 d  NpcTypeId: A?aieei ID:1018342 (0xF89E6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -90310 (0xFFFE9F3A)
+0018 d  Y: 248206 (0x0003C98E)
+0022 d  Z: -3568 (0xFFFFF210)
+0026 d  Heading: -29228 (0xFFFF8DD4)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 50 (0x00000032)
+0046 d  WalkSpd: 20 (0x00000014)
+0050 d  SwimRunSpd: 50 (0x00000032)
+0054 d  SwimWalkSpd: 20 (0x00000014)
+0058 d  FlRunSpd: 50 (0x00000032)
+0062 d  FlWalkSpd: 20 (0x00000014)
+0066 d  FlyRunSpd: 50 (0x00000032)
+0070 d  FlyWalkSpd: 20 (0x00000014)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 15
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 15
+0177 d  0: 4 (0x00000004)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0c\xe5\x9b\x03M\xe6\x89\x0f\x00\x01\x00\x00\x00\xf3\x9e\xfe\xffr\xca\x03\x00\x10\xf2\xff\xffO\xbc\xff\xff\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 15
+0177 d  0: 13 (0x0000000D)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b"\x0c\xbc\xd3\x03N\xe6\x89\x0f\x00\x01\x00\x00\x00'\x9d\xfe\xff\xa9\xc9\x03\x00\x10\xf2\xff\xff\x96\x0e\x00\x00\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00"
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:52:37:127
+0002 d  ObjectID: 1308873660 (0x4E03D3BC)
+0006 d  NpcTypeId: A?aieei ID:1018342 (0xF89E6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -90841 (0xFFFE9D27)
+0018 d  Y: 248233 (0x0003C9A9)
+0022 d  Z: -3568 (0xFFFFF210)
+0026 d  Heading: 3734 (0x00000E96)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 50 (0x00000032)
+0046 d  WalkSpd: 20 (0x00000014)
+0050 d  SwimRunSpd: 50 (0x00000032)
+0054 d  SwimWalkSpd: 20 (0x00000014)
+0058 d  FlRunSpd: 50 (0x00000032)
+0062 d  FlWalkSpd: 20 (0x00000014)
+0066 d  FlyRunSpd: 50 (0x00000032)
+0070 d  FlyWalkSpd: 20 (0x00000014)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 15
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 15
+0177 d  0: 5 (0x00000005)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0c\x19\xb5SI\xe6\x89\x0f\x00\x01\x00\x00\x00\xd8\x9e\xfe\xff\xf5\xc9\x03\x00\x10\xf2\xff\xff\xc4i\x00\x00\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:52:52:602
+0002 d  ObjectID: 1230222617 (0x4953B519)
+0006 d  NpcTypeId: A?aieei ID:1018342 (0xF89E6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -90408 (0xFFFE9ED8)
+0018 d  Y: 248309 (0x0003C9F5)
+0022 d  Z: -3568 (0xFFFFF210)
+0026 d  Heading: 27076 (0x000069C4)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 50 (0x00000032)
+0046 d  WalkSpd: 20 (0x00000014)
+0050 d  SwimRunSpd: 50 (0x00000032)
+0054 d  SwimWalkSpd: 20 (0x00000014)
+0058 d  FlRunSpd: 50 (0x00000032)
+0062 d  FlWalkSpd: 20 (0x00000014)
+0066 d  FlyRunSpd: 50 (0x00000032)
+0070 d  FlyWalkSpd: 20 (0x00000014)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 15
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 15
+0177 d  0: 0 (0x00000000)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0c\x93\xfe#M\xe6\x89\x0f\x00\x01\x00\x00\x00d\x9e\xfe\xff\x15\xc9\x03\x00\x10\xf2\xff\xffE\xc9\xff\xff\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:53:34:098
+0002 d  ObjectID: 1294204563 (0x4D23FE93)
+0006 d  NpcTypeId: A?aieei ID:1018342 (0xF89E6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -90524 (0xFFFE9E64)
+0018 d  Y: 248085 (0x0003C915)
+0022 d  Z: -3568 (0xFFFFF210)
+0026 d  Heading: -14011 (0xFFFFC945)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 50 (0x00000032)
+0046 d  WalkSpd: 20 (0x00000014)
+0050 d  SwimRunSpd: 50 (0x00000032)
+0054 d  SwimWalkSpd: 20 (0x00000014)
+0058 d  FlRunSpd: 50 (0x00000032)
+0062 d  FlWalkSpd: 20 (0x00000014)
+0066 d  FlyRunSpd: 50 (0x00000032)
+0070 d  FlyWalkSpd: 20 (0x00000014)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 15
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 15
+0177 d  0: 4 (0x00000004)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0cb\x90\x12H\x83\xb7\x0f\x00\x00\x00\x00\x00d\x9c\xfe\xff\xec\xc8\x03\x00\x18\xf2\xff\xffp\x17\x00\x00\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x00x\x00\x00\x002\x00\x00\x00x\x00\x00\x002\x00\x00\x00x\x00\x00\x002\x00\x00\x00x\x00\x00\x002\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00 @\x00\x00\x00\x00\x00\x007@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00 @\x00\x00\x00\x00\x00\x007@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:53:50:057
+0002 d  ObjectID: 1209176162 (0x48129062)
+0006 d  NpcTypeId: Iiiiuiee Iiae?eia ID:1030019 (0xFB783)
+0010 d  IsAttackable: 0 (0x00000000)
+0014 d  X: -91036 (0xFFFE9C64)
+0018 d  Y: 248044 (0x0003C8EC)
+0022 d  Z: -3560 (0xFFFFF218)
+0026 d  Heading: 6000 (0x00001770)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 120 (0x00000078)
+0046 d  WalkSpd: 50 (0x00000032)
+0050 d  SwimRunSpd: 120 (0x00000078)
+0054 d  SwimWalkSpd: 50 (0x00000032)
+0058 d  FlRunSpd: 120 (0x00000078)
+0062 d  FlWalkSpd: 50 (0x00000032)
+0066 d  FlyRunSpd: 120 (0x00000078)
+0070 d  FlyWalkSpd: 50 (0x00000032)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 8
+0098 f  CollisionHeight: 23
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 8
+0169 f  CollisionHeight: 23
+0177 d  0: 0 (0x00000000)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\x0c\xbb\x90\x12H\x81\xb7\x0f\x00\x00\x00\x00\x00\x80\x9c\xfe\xff\xd0\xc8\x03\x00\x18\xf2\xff\xffp\x17\x00\x00\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x00x\x00\x00\x002\x00\x00\x00x\x00\x00\x002\x00\x00\x00x\x00\x00\x002\x00\x00\x00x\x00\x00\x002\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00 @\x00\x00\x00\x00\x00\x008@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00 @\x00\x00\x00\x00\x00\x008@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 16:54:06:250
+0002 d  ObjectID: 1209176251 (0x481290BB)
+0006 d  NpcTypeId: Aaeeeio ID:1030017 (0xFB781)
+0010 d  IsAttackable: 0 (0x00000000)
+0014 d  X: -91008 (0xFFFE9C80)
+0018 d  Y: 248016 (0x0003C8D0)
+0022 d  Z: -3560 (0xFFFFF218)
+0026 d  Heading: 6000 (0x00001770)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 120 (0x00000078)
+0046 d  WalkSpd: 50 (0x00000032)
+0050 d  SwimRunSpd: 120 (0x00000078)
+0054 d  SwimWalkSpd: 50 (0x00000032)
+0058 d  FlRunSpd: 120 (0x00000078)
+0062 d  FlWalkSpd: 50 (0x00000032)
+0066 d  FlyRunSpd: 120 (0x00000078)
+0070 d  FlyWalkSpd: 50 (0x00000032)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 8
+0098 f  CollisionHeight: 24
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 0 (0x00)
+0121 c  isALikeDead: 0 (0x00)
+0122 c  Invisible: 0 (0x00)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 8
+0169 f  CollisionHeight: 24
+0177 d  0: 0 (0x00000000)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'b"\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0x62 (SystemMessage)
+Pacia?: 9+2
+A?aiy i?eoiaa: 16:56:46:836
+0002 d  MsgID: Aia?i ii?aeiaaou a ie? Lineage II. ID:34 (0x0022)
+0006 d  typesCount: 0 (0x00000000)
+
+server =  b'J\x00\x00\x00\x00\n\x00\x00\x00\x00\x00-\x00-\x00-\x00-\x00-\x00-\x00-\x00=\x00=\x00=\x00=\x00=\x00=\x00=\x00 \x00G\x00r\x00a\x00c\x00i\x00a\x00 \x00F\x00i\x00n\x00a\x00l\x00 \x00=\x00=\x00=\x00=\x00=\x00=\x00=\x00-\x00-\x00-\x00-\x00-\x00-\x00\x00\x00'
+Tei: 0x4A (CreatureSay)
+Pacia?: 95+2
+A?aiy i?eoiaa: 16:57:19:784
+0002 d  ObjectID: 0 (0x00000000)
+0006 d  TextType: 10 (0x0000000A)
+0010 s  CharName: 
+0012 s  Text: -------======= Gracia Final =======------
+
+server =  b'\xf9\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0xF9 (EtcStatusUpdate)
+Pacia?: 33+2
+A?aiy i?eoiaa: 16:57:42:482
+0002 d  EffectLevel: 0 (0x00000000)
+0006 d  WeightPenalty: 0 (0x00000000)
+0010 d  isChatBanned: 0 (0x00000000)
+0014 d  isDangerArea: 0 (0x00000000)
+0018 d  ExpertisePenalty: 0 (0x00000000)
+0022 d  CharmOfCourage: 0 (0x00000000)
+0026 d  DeathPenaltyBuffLevel: 0 (0x00000000)
+0030 d  Souls: 0 (0x00000000)
+
+server =  b'J\x00\x00\x00\x00\n\x00\x00\x00\x00\x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00G\x00r\x00e\x00a\x00t\x00 \x00R\x00u\x00s\x00s\x00i\x00a\x00n\x00 \x00E\x00M\x00P\x00I\x00R\x00E\x00 \x00 \x00\x00\x00'
+Tei: 0x4A (CreatureSay)
+Pacia?: 97+2
+A?aiy i?eoiaa: 17:06:20:387
+0002 d  ObjectID: 0 (0x00000000)
+0006 d  TextType: 10 (0x0000000A)
+0010 s  CharName: 
+0012 s  Text:                     Great Russian EMPIRE  
+
+server =  b'J\x00\x00\x00\x00\n\x00\x00\x00\x00\x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00 \x00I\x00n\x00t\x00e\x00r\x00n\x00a\x00t\x00i\x00o\x00n\x00a\x00l\x00 \x00R\x00P\x00G\x00-\x00s\x00e\x00r\x00v\x00e\x00r\x00 \x00 \x00 \x00 \x00\x00\x00'
+Tei: 0x4A (CreatureSay)
+Pacia?: 105+2
+A?aiy i?eoiaa: 17:07:06:329
+0002 d  ObjectID: 0 (0x00000000)
+0006 d  TextType: 10 (0x0000000A)
+0010 s  CharName: 
+0012 s  Text:                   International RPG-server    
+
+server =  b'J\x00\x00\x00\x00\n\x00\x00\x00\x00\x00-\x00-\x00-\x00-\x00-\x00-\x00-\x00=\x00=\x00=\x00=\x00=\x00=\x00=\x00=\x00=\x00=\x00 \x00E\x043\x00 \x00=\x00=\x00=\x00=\x00=\x00=\x00=\x00=\x00=\x00=\x00-\x00-\x00-\x00-\x00-\x00-\x00\x00\x00'
+Tei: 0x4A (CreatureSay)
+Pacia?: 87+2
+A?aiy i?eoiaa: 17:07:37:014
+0002 d  ObjectID: 0 (0x00000000)
+0006 d  TextType: 10 (0x0000000A)
+0010 s  CharName: 
+0012 s  Text: -------========== o3 ==========------
+
+server =  b'b\xef\x04\x00\x00\x00\x00\x00\x00'
+Tei: 0x62 (SystemMessage)
+Pacia?: 9+2
+A?aiy i?eoiaa: 17:08:04:860
+0002 d  MsgID: ҥ?ষ᳥麠Ia?eia aaenoaey Ia?aoe. Neaao?uee eaaio aoaao i?iaaaai a neaao?uee iiiaaaeuiee. ID:1263 (0x04EF)
+0006 d  typesCount: 0 (0x00000000)
+
+server =  b'J\x00\x00\x00\x00\n\x00\x00\x00\x00\x00w\x00w\x00w\x00.\x00R\x00P\x00G\x00-\x00C\x00L\x00U\x00B\x00.\x00c\x00o\x00m\x00/\x00i\x00m\x00p\x00e\x00r\x00i\x00a\x00\x00\x00'
+Tei: 0x4A (CreatureSay)
+Pacia?: 61+2
+A?aiy i?eoiaa: 17:08:52:487
+0002 d  ObjectID: 0 (0x00000000)
+0006 d  TextType: 10 (0x0000000A)
+0010 s  CharName: 
+0012 s  Text: www.RPG-CLUB.com/imperia
+
+server =  b'@``\x11J\xb4y\x00\x00\x86%\x0b\x00'
+Tei: 0x40 (Unknown40)
+Pacia?: 13+2
+A?aiy i?eoiaa: 17:09:17:229
+
+server =  b'\xfe/\x00P\x00\x00\x00d\x00\x00\x00\xc8\x00\x00\x00\x03\x00\x00\x00\x04\x00\x00\x002\x00\x00\x002\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0xFE (ExStorageMaxCount)
+Pacia?: 35+2
+A?aiy i?eoiaa: 17:09:56:572
+0002 h  subID: 47 (0x002F)
+0004 d  InventoryLimit: 80 (0x00000050)
+0008 d  WareHouseLimit: 100 (0x00000064)
+0012 d  FreightLimit: 200 (0x000000C8)
+0016 d  PrivateSellStoreLimit: 3 (0x00000003)
+0020 d  PrivateBuyStoreLimit: 4 (0x00000004)
+0024 d  DwarfRecipeLimit: 50 (0x00000032)
+0028 d  CommonRecipeLimit: 50 (0x00000032)
+
+server =  b'\xfe3\x00\x0c\x00\x00\x00'
+Tei: 0xFE (ExSetCompassZoneCode)
+Pacia?: 7+2
+A?aiy i?eoiaa: 17:10:15:807
+0002 h  subID: 51 (0x0033)
+0004 d  ZoneType: 12 (0x0000000C)
+
+server =  b'\x1f'
+Tei: 0x1F (ActionFailed)
+Pacia?: 1+2
+A?aiy i?eoiaa: 17:10:34:418
+
+server =  b'\xc7\x00\x00\x00\x00'
+Tei: 0xC7 (SkillCoolTime)
+Pacia?: 5+2
+A?aiy i?eoiaa: 17:10:56:866
+0002 d  ListSize: 0 (0x00000000)
+
+server =  b'\x85\x00\x00'
+Tei: 0x85 (AbnormalStatusUpdate)
+Pacia?: 3+2
+A?aiy i?eoiaa: 17:11:17:630
+0002 h  EffectSize: 0 (0x0000)
+
+server =  b'u\x00\x00\x00\x00'
+Tei: 0x75 (FriendList)
+Pacia?: 5+2
+A?aiy i?eoiaa: 17:11:35:632
+0002 d  ListSize: 0 (0x00000000)
+
+server =  b'\x11\x00\x00\x08\x00\x04\x00\x9bH\xc6A\xd1\x18\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\xff\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf1\xd8\xff\xff\x04\x00@%\x87B9\x00\x00\x00\x01\x00\x00\x00%\x01\x00\x00\x00\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\xff\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf1\xd8\xff\xff\x04\x00\xb2\xc48B\xd11\x00\x00\x02\x00\x00\x00\n\x00\x00\x00\x00\x00\x00\x00\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\xff\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf1\xd8\xff\xff\x04\x00\xb8z\x10B\x9a)\x00\x00\x03\x00\x00\x00\x05\x00\x00\x00\x00\x00\x00\x00\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\xff\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf1\xd8\xff\xff\x04\x00\xa4\x08\x07B\xd4\x15\x00\x00\x04\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\xff\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf1\xd8\xff\xff\x01\x00;\x92\x92B\xcd\x01\x00\x00\xff\xff\xff\xff\x01\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x08\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\xff\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf1\xd8\xff\xff\x01\x00\xf5\xc2\xd4B\xa9\x01\x00\x00\xff\xff\xff\xff\x01\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\xff\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf1\xd8\xff\xff\x00\x00\x00p\xc3A\x06\x00\x00\x00\xff\xff\xff\xff\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\xff\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xf1\xd8\xff\xff'
+Tei: 0x11 (ItemList)
+Pacia?: 517+2
+A?aiy i?eoiaa: 17:11:58:627
+0002 h  ShowWindow: 0 (0x0000)
+0004 h  ItemCount: 8 (0x0008)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/8]
+0006 h  ItemTypeID: 4 (0x0004)
+0008 d  ObjectID: 1103513755 (0x41C6489B)
+0012 d  ItemID: Neiee Naiioaao ID:6353 (0x18D1)
+0016 d  LocationSlot: 0 (0x00000000)
+0020 q  Amount: 1
+0028 h  ItemType2: 5 (0x0005)
+0030 h  CustomType1: 0 (0x0000)
+0032 h  isEquipped: 0 (0x0000)
+0034 d  BodyPart: 0 (0x00000000)
+0038 h  EnchantLevel: 0 (0x0000)
+0040 h  CustType2: 0 (0x0000)
+0042 d  AugmentID: 0
+0046 d  Mana: -1 (0xFFFFFFFF)
+0050 h  AttackElement: 65534 (0xFFFE)
+0052 h  AttackElementPower: 0 (0x0000)
+0054 h  FireDefElementPower: 0 (0x0000)
+0056 h  WaterDefElementPower: 0 (0x0000)
+0058 h  WindDefElementPower: 0 (0x0000)
+0060 h  EarthDefElementPower: 0 (0x0000)
+0062 h  HolyDefElementPower: 0 (0x0000)
+0064 h  UnholyDefElementPower: 0 (0x0000)
+0066 d  RemainingTime: -9999 (0xFFFFD8F1)
+              [Eiiao iiaoi?y?uaainy aeiea  1/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/8]
+0070 h  ItemTypeID: 4 (0x0004)
+0072 d  ObjectID: 1116153152 (0x42872540)
+0076 d  ItemID: Aaaia ID:57 (0x0039)
+0080 d  LocationSlot: 1 (0x00000001)
+0084 q  Amount: 293
+0092 h  ItemType2: 4 (0x0004)
+0094 h  CustomType1: 0 (0x0000)
+0096 h  isEquipped: 0 (0x0000)
+0098 d  BodyPart: 0 (0x00000000)
+0102 h  EnchantLevel: 0 (0x0000)
+0104 h  CustType2: 0 (0x0000)
+0106 d  AugmentID: 0
+0110 d  Mana: -1 (0xFFFFFFFF)
+0114 h  AttackElement: 65534 (0xFFFE)
+0116 h  AttackElementPower: 0 (0x0000)
+0118 h  FireDefElementPower: 0 (0x0000)
+0120 h  WaterDefElementPower: 0 (0x0000)
+0122 h  WindDefElementPower: 0 (0x0000)
+0124 h  EarthDefElementPower: 0 (0x0000)
+0126 h  HolyDefElementPower: 0 (0x0000)
+0128 h  UnholyDefElementPower: 0 (0x0000)
+0130 d  RemainingTime: -9999 (0xFFFFD8F1)
+              [Eiiao iiaoi?y?uaainy aeiea  2/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/8]
+0134 h  ItemTypeID: 4 (0x0004)
+0136 d  ObjectID: 1111016626 (0x4238C4B2)
+0140 d  ItemID: Naeoie Oaeaii?oa: Aa?aaiy Eaiayeu  ID:12753 (0x31D1)
+0144 d  LocationSlot: 2 (0x00000002)
+0148 q  Amount: 10
+0156 h  ItemType2: 5 (0x0005)
+0158 h  CustomType1: 0 (0x0000)
+0160 h  isEquipped: 0 (0x0000)
+0162 d  BodyPart: 0 (0x00000000)
+0166 h  EnchantLevel: 0 (0x0000)
+0168 h  CustType2: 0 (0x0000)
+0170 d  AugmentID: 0
+0174 d  Mana: -1 (0xFFFFFFFF)
+0178 h  AttackElement: 65534 (0xFFFE)
+0180 h  AttackElementPower: 0 (0x0000)
+0182 h  FireDefElementPower: 0 (0x0000)
+0184 h  WaterDefElementPower: 0 (0x0000)
+0186 h  WindDefElementPower: 0 (0x0000)
+0188 h  EarthDefElementPower: 0 (0x0000)
+0190 h  HolyDefElementPower: 0 (0x0000)
+0192 h  UnholyDefElementPower: 0 (0x0000)
+0194 d  RemainingTime: -9999 (0xFFFFD8F1)
+              [Eiiao iiaoi?y?uaainy aeiea  3/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 4/8]
+0198 h  ItemTypeID: 4 (0x0004)
+0200 d  ObjectID: 1108376248 (0x42107AB8)
+0204 d  ItemID: Naeoie Oaeaii?oa Iooaoanoaaiieea  ID:10650 (0x299A)
+0208 d  LocationSlot: 3 (0x00000003)
+0212 q  Amount: 5
+0220 h  ItemType2: 5 (0x0005)
+0222 h  CustomType1: 0 (0x0000)
+0224 h  isEquipped: 0 (0x0000)
+0226 d  BodyPart: 0 (0x00000000)
+0230 h  EnchantLevel: 0 (0x0000)
+0232 h  CustType2: 0 (0x0000)
+0234 d  AugmentID: 0
+0238 d  Mana: -1 (0xFFFFFFFF)
+0242 h  AttackElement: 65534 (0xFFFE)
+0244 h  AttackElementPower: 0 (0x0000)
+0246 h  FireDefElementPower: 0 (0x0000)
+0248 h  WaterDefElementPower: 0 (0x0000)
+0250 h  WindDefElementPower: 0 (0x0000)
+0252 h  EarthDefElementPower: 0 (0x0000)
+0254 h  HolyDefElementPower: 0 (0x0000)
+0256 h  UnholyDefElementPower: 0 (0x0000)
+0258 d  RemainingTime: -9999 (0xFFFFD8F1)
+              [Eiiao iiaoi?y?uaainy aeiea  4/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 5/8]
+0262 h  ItemTypeID: 4 (0x0004)
+0264 d  ObjectID: 1107757220 (0x420708A4)
+0268 d  ItemID: O?aaiee ID:5588 (0x15D4)
+0272 d  LocationSlot: 4 (0x00000004)
+0276 q  Amount: 1
+0284 h  ItemType2: 5 (0x0005)
+0286 h  CustomType1: 0 (0x0000)
+0288 h  isEquipped: 0 (0x0000)
+0290 d  BodyPart: 0 (0x00000000)
+0294 h  EnchantLevel: 0 (0x0000)
+0296 h  CustType2: 0 (0x0000)
+0298 d  AugmentID: 0
+0302 d  Mana: -1 (0xFFFFFFFF)
+0306 h  AttackElement: 65534 (0xFFFE)
+0308 h  AttackElementPower: 0 (0x0000)
+0310 h  FireDefElementPower: 0 (0x0000)
+0312 h  WaterDefElementPower: 0 (0x0000)
+0314 h  WindDefElementPower: 0 (0x0000)
+0316 h  EarthDefElementPower: 0 (0x0000)
+0318 h  HolyDefElementPower: 0 (0x0000)
+0320 h  UnholyDefElementPower: 0 (0x0000)
+0322 d  RemainingTime: -9999 (0xFFFFD8F1)
+              [Eiiao iiaoi?y?uaainy aeiea  5/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 6/8]
+0326 h  ItemTypeID: 1 (0x0001)
+0328 d  ObjectID: 1116901947 (0x4292923B)
+0332 d  ItemID: Ooaiu O?aieea  ID:461 (0x01CD)
+0336 d  LocationSlot: -1 (0xFFFFFFFF)
+0340 q  Amount: 1
+0348 h  ItemType2: 1 (0x0001)
+0350 h  CustomType1: 0 (0x0000)
+0352 h  isEquipped: 1 (0x0001)
+0354 d  BodyPart: 2048 (0x00000800)
+0358 h  EnchantLevel: 0 (0x0000)
+0360 h  CustType2: 0 (0x0000)
+0362 d  AugmentID: 0
+0366 d  Mana: -1 (0xFFFFFFFF)
+0370 h  AttackElement: 65534 (0xFFFE)
+0372 h  AttackElementPower: 0 (0x0000)
+0374 h  FireDefElementPower: 0 (0x0000)
+0376 h  WaterDefElementPower: 0 (0x0000)
+0378 h  WindDefElementPower: 0 (0x0000)
+0380 h  EarthDefElementPower: 0 (0x0000)
+0382 h  HolyDefElementPower: 0 (0x0000)
+0384 h  UnholyDefElementPower: 0 (0x0000)
+0386 d  RemainingTime: -9999 (0xFFFFD8F1)
+              [Eiiao iiaoi?y?uaainy aeiea  6/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 7/8]
+0390 h  ItemTypeID: 1 (0x0001)
+0392 d  ObjectID: 1121239797 (0x42D4C2F5)
+0396 d  ItemID: Ooieea O?aieea  ID:425 (0x01A9)
+0400 d  LocationSlot: -1 (0xFFFFFFFF)
+0404 q  Amount: 1
+0412 h  ItemType2: 1 (0x0001)
+0414 h  CustomType1: 0 (0x0000)
+0416 h  isEquipped: 1 (0x0001)
+0418 d  BodyPart: 1024 (0x00000400)
+0422 h  EnchantLevel: 0 (0x0000)
+0424 h  CustType2: 0 (0x0000)
+0426 d  AugmentID: 0
+0430 d  Mana: -1 (0xFFFFFFFF)
+0434 h  AttackElement: 65534 (0xFFFE)
+0436 h  AttackElementPower: 0 (0x0000)
+0438 h  FireDefElementPower: 0 (0x0000)
+0440 h  WaterDefElementPower: 0 (0x0000)
+0442 h  WindDefElementPower: 0 (0x0000)
+0444 h  EarthDefElementPower: 0 (0x0000)
+0446 h  HolyDefElementPower: 0 (0x0000)
+0448 h  UnholyDefElementPower: 0 (0x0000)
+0450 d  RemainingTime: -9999 (0xFFFFD8F1)
+              [Eiiao iiaoi?y?uaainy aeiea  7/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 8/8]
+0454 h  ItemTypeID: 0 (0x0000)
+0456 d  ObjectID: 1103327232 (0x41C37000)
+0460 d  ItemID: Neeiao? Iiae?e ID:6 (0x0006)
+0464 d  LocationSlot: -1 (0xFFFFFFFF)
+0468 q  Amount: 1
+0476 h  ItemType2: 0 (0x0000)
+0478 h  CustomType1: 0 (0x0000)
+0480 h  isEquipped: 1 (0x0001)
+0482 d  BodyPart: 128 (0x00000080)
+0486 h  EnchantLevel: 0 (0x0000)
+0488 h  CustType2: 0 (0x0000)
+0490 d  AugmentID: 0
+0494 d  Mana: -1 (0xFFFFFFFF)
+0498 h  AttackElement: 65534 (0xFFFE)
+0500 h  AttackElementPower: 0 (0x0000)
+0502 h  FireDefElementPower: 0 (0x0000)
+0504 h  WaterDefElementPower: 0 (0x0000)
+0506 h  WindDefElementPower: 0 (0x0000)
+0508 h  EarthDefElementPower: 0 (0x0000)
+0510 h  HolyDefElementPower: 0 (0x0000)
+0512 h  UnholyDefElementPower: 0 (0x0000)
+0514 d  RemainingTime: -9999 (0xFFFFD8F1)
+              [Eiiao iiaoi?y?uaainy aeiea  8/8]
+
+server =  b"2\x15\x9e\xfe\xff\x13\xca\x03\x00\x10\xf2\xff\xff\x00\x00\x00\x00``\x11Jt\x00e\x00s\x00t\x00d\x00s\x00a\x00f\x00a\x00s\x00d\x00f\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\n\x00\x00\x00\x06\x00\x00\x00\xe8\x1d\x00\x00\x00\x00\x00\x00\x16\x00\x00\x00\x15\x00\x00\x00\x1b\x00\x00\x00)\x00\x00\x00\x14\x00\x00\x00'\x00\x00\x00\xb0\x00\x00\x00\xb0\x00\x00\x00\x8f\x00\x00\x00\x8f\x00\x00\x00\n\x02\x00\x00Z\x14\x00\x00$\x08\x01\x00(\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00p\xc3A\x00\x00\x00\x00\x00\x00\x00\x00\xf5\xc2\xd4B;\x92\x92B\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xa9\x01\x00\x00\xcd\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00~\x01\x00\x007\x00\x00\x00!\x00\x00\x00&\x00\x00\x00(\x00\x00\x00\t\x00\x00\x00M\x01\x00\x00~\x01\x00\x009\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00x\x00\x00\x00N\x00\x00\x002\x00\x00\x002\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00)\\\x8f\xc2\xf5(\xf0?4/\x87\xddw\x0c\xf6?\x00\x00\x00\x00\x00\x00\x1a@\x00\x00\x00\x00\x00\x806@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00P\x00\n\x00\x00\x00\x00\x00\x00\x00X\x00\x00\x00X\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\xa2\xf9\xec\x00\x00\x00\x00\x00\x00\x00\x00\x00\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00 N\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+Tei: 0x32 (UserInfo)
+Pacia?: 740+2
+A?aiy i?eoiaa: 17:12:40:981
+0002 d  X: -90603 (0xFFFE9E15)
+0006 d  Y: 248339 (0x0003CA13)
+0010 d  Z: -3568 (0xFFFFF210)
+0014 d  isInAirShip: 0 (0x00000000)
+0018 d  ObjectID: 1242652768 (0x4A116060)
+0022 s  Name: testdsafasdf
+0048 d  Race: 0 (0x00000000)
+0052 d  Sex: 1 (0x00000001)
+0056 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0060 d  Level: 6 (0x00000006)
+0064 q  Exp: 7656
+0072 d  Str: 22 (0x00000016)
+0076 d  Dex: 21 (0x00000015)
+0080 d  Con: 27 (0x0000001B)
+0084 d  Int: 41 (0x00000029)
+0088 d  Wit: 20 (0x00000014)
+0092 d  Men: 39 (0x00000027)
+0096 d  MaxHP: 176 (0x000000B0)
+0100 d  CurrentHP: 176 (0x000000B0)
+0104 d  MaxMP: 143 (0x0000008F)
+0108 d  CurrentMP: 143 (0x0000008F)
+0112 d  Sp: 522 (0x0000020A)
+0116 d  CurrentLoad: 5210 (0x0000145A)
+0120 d  MaxLoad: 67620 (0x00010824)
+0124 d  WeaponEquipment 20=no,40=yes: 40 (0x00000028)
+0128 d  OIDUnder: 0 (0x00000000)
+0132 d  OIDRear: 0 (0x00000000)
+0136 d  OIDLear: 0 (0x00000000)
+0140 d  OIDNeck: 0 (0x00000000)
+0144 d  OIDFinger: 0 (0x00000000)
+0148 d  OIDLfinger: 0 (0x00000000)
+0152 d  OIDHead: 0 (0x00000000)
+0156 d  OIDRhand: 1103327232 (0x41C37000)
+0160 d  OIDLhand: 0 (0x00000000)
+0164 d  OIDGloves: 0 (0x00000000)
+0168 d  OIDChest: 1121239797 (0x42D4C2F5)
+0172 d  OIDLegs: 1116901947 (0x4292923B)
+0176 d  OIDFeet: 0 (0x00000000)
+0180 d  OIDBack: 0 (0x00000000)
+0184 d  OIDLrhand: 0 (0x00000000)
+0188 d  OIDHair: 0 (0x00000000)
+0192 d  OIDHair2: 0 (0x00000000)
+0196 d  OIDRbracelet: 0 (0x00000000)
+0200 d  OIDLbracelet: 0 (0x00000000)
+0204 d  OIDDeco: 0 (0x00000000)
+0208 d  OIDDeco2: 0 (0x00000000)
+0212 d  OIDDeco3: 0 (0x00000000)
+0216 d  OIDDeco4: 0 (0x00000000)
+0220 d  OIDDeco5: 0 (0x00000000)
+0224 d  OIDDeco6: 0 (0x00000000)
+0228 d  OIDBelt: 0 (0x00000000)
+0232 d  IDUnder: 0
+0236 d  IDRear: 0
+0240 d  IDLear: 0
+0244 d  IDNeck: 0
+0248 d  IDFinger: 0
+0252 d  IDLfinger: 0
+0256 d  IDHead: 0
+0260 d  IDRhand: Neeiao? Iiae?e ID:6 (0x0006)
+0264 d  IDLhand: 0
+0268 d  IDGloves: 0
+0272 d  IDChest: Ooieea O?aieea  ID:425 (0x01A9)
+0276 d  IDLegs: Ooaiu O?aieea  ID:461 (0x01CD)
+0280 d  IDFeet: 0
+0284 d  IDBack: 0
+0288 d  IDLrhand: 0
+0292 d  IDHair: 0
+0296 d  IDHair2: 0
+0300 d  IDRbracelet: 0
+0304 d  IDLbracelet: 0
+0308 d  IDDeco: 0
+0312 d  IDDeco2: 0
+0316 d  IDDeco3: 0
+0320 d  IDDeco4: 0
+0324 d  IDDeco5: 0
+0328 d  IDDeco6: 0
+0332 d  IDBelt: 0
+0336 d  AugIDUnder: 0 (0x00000000)
+0340 d  AugIDRear: 0 (0x00000000)
+0344 d  AugIDLear: 0 (0x00000000)
+0348 d  AugIDNeck: 0 (0x00000000)
+0352 d  AugIDFinger: 0 (0x00000000)
+0356 d  AugIDLfinger: 0 (0x00000000)
+0360 d  AugIDHead: 0 (0x00000000)
+0364 d  AugIDRhand: 0 (0x00000000)
+0368 d  AugIDLhand: 0 (0x00000000)
+0372 d  AugIDGloves: 0 (0x00000000)
+0376 d  AugIDChest: 0 (0x00000000)
+0380 d  AugIDLegs: 0 (0x00000000)
+0384 d  AugIDFeet: 0 (0x00000000)
+0388 d  AugIDBack: 0 (0x00000000)
+0392 d  AugIDLrhand: 0 (0x00000000)
+0396 d  AugIDHair: 0 (0x00000000)
+0400 d  AugIDHair2: 0 (0x00000000)
+0404 d  AugIDRbracelet: 0 (0x00000000)
+0408 d  AugIDLbracelet: 0 (0x00000000)
+0412 d  AugIDDeco: 0 (0x00000000)
+0416 d  AugIDDeco2: 0 (0x00000000)
+0420 d  AugIDDeco3: 0 (0x00000000)
+0424 d  AugIDDeco4: 0 (0x00000000)
+0428 d  AugIDDeco5: 0 (0x00000000)
+0432 d  AugIDDeco6: 0 (0x00000000)
+0436 d  AugIDBelt: 0 (0x00000000)
+0440 d  TalismanSlots: 0 (0x00000000)
+0444 d  01: 0 (0x00000000)
+0448 d  Patk: 2 (0x00000002)
+0452 d  PatkSpd: 382 (0x0000017E)
+0456 d  Pdef: 55 (0x00000037)
+0460 d  EvasionRate: 33 (0x00000021)
+0464 d  Accuracy: 38 (0x00000026)
+0468 d  CriticalHit: 40 (0x00000028)
+0472 d  Matk: 9 (0x00000009)
+0476 d  MatkSpd: 333 (0x0000014D)
+0480 d  PatkSpd: 382 (0x0000017E)
+0484 d  Mdef: 57 (0x00000039)
+0488 d  PvPFlag: 0 (0x00000000)
+0492 d  Karma: 0 (0x00000000)
+0496 d  RunSpd: 120 (0x00000078)
+0500 d  WalkSpd: 78 (0x0000004E)
+0504 d  SwimRunSpd: 50 (0x00000032)
+0508 d  SwimWalkSpd: 50 (0x00000032)
+0512 d  0: 0 (0x00000000)
+0516 d  0: 0 (0x00000000)
+0520 d  FlyRunSpd: 0 (0x00000000)
+0524 d  FlyWalkSpd: 0 (0x00000000)
+0528 f  MoveMul: 1,01
+0536 f  AtkSpeedMul: 1,378044
+0544 f  ColRadius: 6,5
+0552 f  ColHeight: 22,5
+0560 d  HairStyle: 0 (0x00000000)
+0564 d  HairColor: 0 (0x00000000)
+0568 d  Face: 0 (0x00000000)
+0572 d  isGM: 0 (0x00000000)
+0576 s  Title: 
+0578 d  ClanID: 0 (0x00000000)
+0582 d  ClanCrestID: 0 (0x00000000)
+0586 d  AllyID: 0 (0x00000000)
+0590 d  AllyCrestID: 0 (0x00000000)
+0594 d  Relation: 0 (0x00000000)
+0598 c  MountType: 0 (0x00)
+0599 c  PrivateStoreType: 0 (0x00)
+0600 c  DwarvenCraft: 0 (0x00)
+0601 d  PkKills: 0 (0x00000000)
+0605 d  PvPKills: 0 (0x00000000)
+0609 h  CubicsSize: 0 (0x0000)
+0611 c  0: 0 (0x00)
+0612 d  AbnormalEffect: 0 (0x00000000)
+0616 c  FlayingMounted: 0 (0x00)
+0617 d  ClanPrivileges: 0 (0x00000000)
+0621 h  RecomLeft: 0 (0x0000)
+0623 h  RecomHave: 0 (0x0000)
+0625 d  MountNpcID: 0 (0x00000000)
+0629 h  InventoryLimit: 80 (0x0050)
+0631 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0635 d  0: 0 (0x00000000)
+0639 d  MaxCP: 88 (0x00000058)
+0643 d  CurrentCP: 88 (0x00000058)
+0647 c  isMounted: 0 (0x00)
+0648 c  Team: 0 (0x00)
+0649 d  ClanCrestLargeID: 0 (0x00000000)
+0653 c  isNoble: 0 (0x00)
+0654 c  isHero: 0 (0x00)
+0655 c  isFishing: 0 (0x00)
+0656 d  FishingX: 0 (0x00000000)
+0660 d  FishingY: 0 (0x00000000)
+0664 d  FishingZ: 0 (0x00000000)
+0668 d  NameColor: 16777215 (0x00FFFFFF)
+0672 c  isRunning: 1 (0x01)
+0673 d  PledgeClass: 0 (0x00000000)
+0677 d  PledgeType: 0 (0x00000000)
+0681 d  TitleColor: 15530402 (0x00ECF9A2)
+0685 d  CursedWeaponEquipID: 0 (0x00000000)
+0689 d  TranformationID: 0 (0x00000000)
+0693 h  AtkElementAttr: 65534 (0xFFFE)
+0695 h  AttackElementVal: 0 (0x0000)
+0697 h  DefAttrFire: 0 (0x0000)
+0699 h  DefAttrWater: 0 (0x0000)
+0701 h  DefAttrWind: 0 (0x0000)
+0703 h  DefAttrEarth: 0 (0x0000)
+0705 h  DefAttrHoly: 0 (0x0000)
+0707 h  DefAttrDark: 0 (0x0000)
+0709 d  AgathionId: 0 (0x00000000)
+0713 d  Fame: 0 (0x00000000)
+0717 d  Unknown: 1 (0x00000001)
+0721 d  VitalityPoints: 20000 (0x00004E20)
+0725 d  0: 0 (0x00000000)
+0729 d  0: 0 (0x00000000)
+0733 d  0: 0 (0x00000000)
+0737 d  0: 0 (0x00000000)
+
+server =  b'\xfe\xac\x00``\x11J\x00\x00\x00\x00'
+Tei: 0xFE (ExBrExtraUserInfo)
+Pacia?: 11+2
+A?aiy i?eoiaa: 17:13:09:685
+0002 h  subID: 172 (0x00AC)
+0004 d  CharOID: 1242652768 (0x4A116060)
+0008 d  Val: 0 (0x00000000)
+
+server =  b'E\n\x00\x00\x00\x03\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00\x99\x04\x00\x00\x01\x00\x00\x00\x00\x01\x00\x00\x00\x03\x00\x00\x00\x03\x00\x00\x00\x05\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\t\x00\x00\x00\xc0\x04\x00\x00\x01\x00\x00\x00\x00\x01\x00\x00\x00\x03\x00\x00\x00\n\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\xa4\x08\x07B\x01\x00\x00\x00\xff\xff\xff\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00x\x00\x00\x00\x8f\x03\x00\x00\x01\x00\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00{\x00\x00\x00t\x03\x00\x00\x01\x00\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00|\x00\x00\x00u\x03\x00\x00\x01\x00\x00\x00\x00\x01\x00\x00\x00\x03\x00\x00\x00\x84\x00\x00\x00F\x00\x00\x00\x01\x00\x00\x00'
+Tei: 0x45 (ShortCutInit)
+Pacia?: 206+2
+A?aiy i?eoiaa: 17:13:36:985
+0002 d  count: 10 (0x0000000A)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/10]
+0006 d  type: 3 (0x00000003)
+0010 d  slot: 0 (0x00000000)
+0014 d  _id: 2 (0x00000002)
+0018 d  lvl: 1 (0x00000001)
+              [Eiiao iiaoi?y?uaainy aeiea  1/10]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/10]
+0022 d  type: 2 (0x00000002)
+0026 d  slot: 1 (0x00000001)
+0030 d  _id: 1177 (0x00000499)
+0034 d  lvl: 1 (0x00000001)
+              [Eiiao iiaoi?y?uaainy aeiea  2/10]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/10]
+0038 d  type: 256 (0x00000100)
+0042 d  slot: 768 (0x00000300)
+0046 d  _id: 768 (0x00000300)
+0050 d  lvl: 1280 (0x00000500)
+              [Eiiao iiaoi?y?uaainy aeiea  3/10]
+              [Ia?aei iiaoi?y?uaainy aeiea 4/10]
+0054 d  type: 256 (0x00000100)
+0058 d  slot: 512 (0x00000200)
+0062 d  _id: 2304 (0x00000900)
+0066 d  lvl: 311296 (0x0004C000)
+              [Eiiao iiaoi?y?uaainy aeiea  4/10]
+              [Ia?aei iiaoi?y?uaainy aeiea 5/10]
+0070 d  type: 256 (0x00000100)
+0074 d  slot: 65536 (0x00010000)
+0078 d  _id: 196608 (0x00030000)
+0082 d  lvl: 655360 (0x000A0000)
+              [Eiiao iiaoi?y?uaainy aeiea  5/10]
+              [Ia?aei iiaoi?y?uaainy aeiea 6/10]
+0086 d  type: 0 (0x00000000)
+0090 d  slot: 65536 (0x00010000)
+0094 d  _id: 65536 (0x00010000)
+0098 d  lvl: 720896 (0x000B0000)
+              [Eiiao iiaoi?y?uaainy aeiea  6/10]
+              [Ia?aei iiaoi?y?uaainy aeiea 7/10]
+0102 d  type: 144965632 (0x08A40000)
+0106 d  slot: 82439 (0x00014207)
+0110 d  _id: -65536 (0xFFFF0000)
+0114 d  lvl: 65535 (0x0000FFFF)
+              [Eiiao iiaoi?y?uaainy aeiea  7/10]
+              [Ia?aei iiaoi?y?uaainy aeiea 8/10]
+0118 d  type: 0 (0x00000000)
+0122 d  slot: 0 (0x00000000)
+0126 d  _id: 131072 (0x00020000)
+0130 d  lvl: 7864320 (0x00780000)
+              [Eiiao iiaoi?y?uaainy aeiea  8/10]
+              [Ia?aei iiaoi?y?uaainy aeiea 9/10]
+0134 d  type: 59703296 (0x038F0000)
+0138 d  slot: 65536 (0x00010000)
+0142 d  _id: 16777216 (0x01000000)
+0146 d  lvl: 33554432 (0x02000000)
+              [Eiiao iiaoi?y?uaainy aeiea  9/10]
+              [Ia?aei iiaoi?y?uaainy aeiea 10/10]
+0150 d  type: 2063597568 (0x7B000000)
+0154 d  slot: 1946157056 (0x74000000)
+0158 d  _id: 16777219 (0x01000003)
+0162 d  lvl: 0 (0x00000000)
+              [Eiiao iiaoi?y?uaainy aeiea  10/10]
+0166 c  c: 1 (0x01)
+
+server =  b'\xfe_\x00\x9f\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00\x04\x00\x00\x00\x05\x00\x00\x00\x06\x00\x00\x00\x07\x00\x00\x00\x08\x00\x00\x00\t\x00\x00\x00\n\x00\x00\x00\x0b\x00\x00\x00\x0c\x00\x00\x00\r\x00\x00\x00\x0e\x00\x00\x00\x0f\x00\x00\x00\x10\x00\x00\x00\x11\x00\x00\x00\x12\x00\x00\x00\x13\x00\x00\x00\x14\x00\x00\x00\x15\x00\x00\x00\x16\x00\x00\x00\x17\x00\x00\x00\x18\x00\x00\x00\x19\x00\x00\x00\x1a\x00\x00\x00\x1b\x00\x00\x00\x1c\x00\x00\x00\x1d\x00\x00\x00\x1e\x00\x00\x00\x1f\x00\x00\x00 \x00\x00\x00!\x00\x00\x00"\x00\x00\x00#\x00\x00\x00$\x00\x00\x00%\x00\x00\x00&\x00\x00\x00\'\x00\x00\x00(\x00\x00\x00)\x00\x00\x00*\x00\x00\x00+\x00\x00\x00,\x00\x00\x00-\x00\x00\x00.\x00\x00\x00/\x00\x00\x000\x00\x00\x001\x00\x00\x002\x00\x00\x003\x00\x00\x004\x00\x00\x005\x00\x00\x006\x00\x00\x007\x00\x00\x008\x00\x00\x009\x00\x00\x00:\x00\x00\x00;\x00\x00\x00<\x00\x00\x00=\x00\x00\x00>\x00\x00\x00?\x00\x00\x00@\x00\x00\x00A\x00\x00\x00B\x00\x00\x00C\x00\x00\x00D\x00\x00\x00E\x00\x00\x00F\x00\x00\x00\xe8\x03\x00\x00\xe9\x03\x00\x00\xea\x03\x00\x00\xeb\x03\x00\x00\xec\x03\x00\x00\xed\x03\x00\x00\xee\x03\x00\x00\xef\x03\x00\x00\xf0\x03\x00\x00\xf1\x03\x00\x00\xf2\x03\x00\x00\xf3\x03\x00\x00\xf4\x03\x00\x00\xf5\x03\x00\x00\xf6\x03\x00\x00\xf7\x03\x00\x00\xf8\x03\x00\x00\xf9\x03\x00\x00\xfa\x03\x00\x00\xfb\x03\x00\x00\xfc\x03\x00\x00\xfd\x03\x00\x00\xfe\x03\x00\x00\xff\x03\x00\x00\x00\x04\x00\x00\x01\x04\x00\x00\x02\x04\x00\x00\x03\x04\x00\x00\x04\x04\x00\x00\x05\x04\x00\x00\x06\x04\x00\x00\x07\x04\x00\x00\x08\x04\x00\x00\t\x04\x00\x00\n\x04\x00\x00\x0b\x04\x00\x00\x0c\x04\x00\x00\r\x04\x00\x00\x0e\x04\x00\x00\x0f\x04\x00\x00\x10\x04\x00\x00\x11\x04\x00\x00\x12\x04\x00\x00\x13\x04\x00\x00\x14\x04\x00\x00\x15\x04\x00\x00\x16\x04\x00\x00\x17\x04\x00\x00\x18\x04\x00\x00\x19\x04\x00\x00\x1a\x04\x00\x00\x1b\x04\x00\x00\x1c\x04\x00\x00\x1d\x04\x00\x00\x1e\x04\x00\x00\x1f\x04\x00\x00 \x04\x00\x00!\x04\x00\x00"\x04\x00\x00#\x04\x00\x00$\x04\x00\x00%\x04\x00\x00&\x04\x00\x00\'\x04\x00\x00(\x04\x00\x00)\x04\x00\x00*\x04\x00\x00+\x04\x00\x00,\x04\x00\x00-\x04\x00\x00.\x04\x00\x00/\x04\x00\x000\x04\x00\x001\x04\x00\x002\x04\x00\x003\x04\x00\x004\x04\x00\x005\x04\x00\x006\x04\x00\x007\x04\x00\x008\x04\x00\x009\x04\x00\x00:\x04\x00\x00;\x04\x00\x00<\x04\x00\x00>\x04\x00\x00?\x04\x00\x00@\x04\x00\x00'
+Tei: 0xFE (ExBasicActionList)
+Pacia?: 643+2
+A?aiy i?eoiaa: 17:14:46:748
+0002 h  subID: 95 (0x005F)
+0004 d  ListSize: 159 (0x0000009F)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/159]
+0008 d  ActionID: 0 (0x00000000)
+              [Eiiao iiaoi?y?uaainy aeiea  1/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/159]
+0012 d  ActionID: 1 (0x00000001)
+              [Eiiao iiaoi?y?uaainy aeiea  2/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/159]
+0016 d  ActionID: 2 (0x00000002)
+              [Eiiao iiaoi?y?uaainy aeiea  3/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 4/159]
+0020 d  ActionID: 3 (0x00000003)
+              [Eiiao iiaoi?y?uaainy aeiea  4/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 5/159]
+0024 d  ActionID: 4 (0x00000004)
+              [Eiiao iiaoi?y?uaainy aeiea  5/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 6/159]
+0028 d  ActionID: 5 (0x00000005)
+              [Eiiao iiaoi?y?uaainy aeiea  6/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 7/159]
+0032 d  ActionID: 6 (0x00000006)
+              [Eiiao iiaoi?y?uaainy aeiea  7/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 8/159]
+0036 d  ActionID: 7 (0x00000007)
+              [Eiiao iiaoi?y?uaainy aeiea  8/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 9/159]
+0040 d  ActionID: 8 (0x00000008)
+              [Eiiao iiaoi?y?uaainy aeiea  9/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 10/159]
+0044 d  ActionID: 9 (0x00000009)
+              [Eiiao iiaoi?y?uaainy aeiea  10/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 11/159]
+0048 d  ActionID: 10 (0x0000000A)
+              [Eiiao iiaoi?y?uaainy aeiea  11/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 12/159]
+0052 d  ActionID: 11 (0x0000000B)
+              [Eiiao iiaoi?y?uaainy aeiea  12/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 13/159]
+0056 d  ActionID: 12 (0x0000000C)
+              [Eiiao iiaoi?y?uaainy aeiea  13/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 14/159]
+0060 d  ActionID: 13 (0x0000000D)
+              [Eiiao iiaoi?y?uaainy aeiea  14/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 15/159]
+0064 d  ActionID: 14 (0x0000000E)
+              [Eiiao iiaoi?y?uaainy aeiea  15/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 16/159]
+0068 d  ActionID: 15 (0x0000000F)
+              [Eiiao iiaoi?y?uaainy aeiea  16/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 17/159]
+0072 d  ActionID: 16 (0x00000010)
+              [Eiiao iiaoi?y?uaainy aeiea  17/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 18/159]
+0076 d  ActionID: 17 (0x00000011)
+              [Eiiao iiaoi?y?uaainy aeiea  18/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 19/159]
+0080 d  ActionID: 18 (0x00000012)
+              [Eiiao iiaoi?y?uaainy aeiea  19/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 20/159]
+0084 d  ActionID: 19 (0x00000013)
+              [Eiiao iiaoi?y?uaainy aeiea  20/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 21/159]
+0088 d  ActionID: 20 (0x00000014)
+              [Eiiao iiaoi?y?uaainy aeiea  21/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 22/159]
+0092 d  ActionID: 21 (0x00000015)
+              [Eiiao iiaoi?y?uaainy aeiea  22/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 23/159]
+0096 d  ActionID: 22 (0x00000016)
+              [Eiiao iiaoi?y?uaainy aeiea  23/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 24/159]
+0100 d  ActionID: 23 (0x00000017)
+              [Eiiao iiaoi?y?uaainy aeiea  24/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 25/159]
+0104 d  ActionID: 24 (0x00000018)
+              [Eiiao iiaoi?y?uaainy aeiea  25/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 26/159]
+0108 d  ActionID: 25 (0x00000019)
+              [Eiiao iiaoi?y?uaainy aeiea  26/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 27/159]
+0112 d  ActionID: 26 (0x0000001A)
+              [Eiiao iiaoi?y?uaainy aeiea  27/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 28/159]
+0116 d  ActionID: 27 (0x0000001B)
+              [Eiiao iiaoi?y?uaainy aeiea  28/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 29/159]
+0120 d  ActionID: 28 (0x0000001C)
+              [Eiiao iiaoi?y?uaainy aeiea  29/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 30/159]
+0124 d  ActionID: 29 (0x0000001D)
+              [Eiiao iiaoi?y?uaainy aeiea  30/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 31/159]
+0128 d  ActionID: 30 (0x0000001E)
+              [Eiiao iiaoi?y?uaainy aeiea  31/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 32/159]
+0132 d  ActionID: 31 (0x0000001F)
+              [Eiiao iiaoi?y?uaainy aeiea  32/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 33/159]
+0136 d  ActionID: 32 (0x00000020)
+              [Eiiao iiaoi?y?uaainy aeiea  33/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 34/159]
+0140 d  ActionID: 33 (0x00000021)
+              [Eiiao iiaoi?y?uaainy aeiea  34/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 35/159]
+0144 d  ActionID: 34 (0x00000022)
+              [Eiiao iiaoi?y?uaainy aeiea  35/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 36/159]
+0148 d  ActionID: 35 (0x00000023)
+              [Eiiao iiaoi?y?uaainy aeiea  36/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 37/159]
+0152 d  ActionID: 36 (0x00000024)
+              [Eiiao iiaoi?y?uaainy aeiea  37/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 38/159]
+0156 d  ActionID: 37 (0x00000025)
+              [Eiiao iiaoi?y?uaainy aeiea  38/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 39/159]
+0160 d  ActionID: 38 (0x00000026)
+              [Eiiao iiaoi?y?uaainy aeiea  39/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 40/159]
+0164 d  ActionID: 39 (0x00000027)
+              [Eiiao iiaoi?y?uaainy aeiea  40/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 41/159]
+0168 d  ActionID: 40 (0x00000028)
+              [Eiiao iiaoi?y?uaainy aeiea  41/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 42/159]
+0172 d  ActionID: 41 (0x00000029)
+              [Eiiao iiaoi?y?uaainy aeiea  42/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 43/159]
+0176 d  ActionID: 42 (0x0000002A)
+              [Eiiao iiaoi?y?uaainy aeiea  43/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 44/159]
+0180 d  ActionID: 43 (0x0000002B)
+              [Eiiao iiaoi?y?uaainy aeiea  44/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 45/159]
+0184 d  ActionID: 44 (0x0000002C)
+              [Eiiao iiaoi?y?uaainy aeiea  45/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 46/159]
+0188 d  ActionID: 45 (0x0000002D)
+              [Eiiao iiaoi?y?uaainy aeiea  46/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 47/159]
+0192 d  ActionID: 46 (0x0000002E)
+              [Eiiao iiaoi?y?uaainy aeiea  47/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 48/159]
+0196 d  ActionID: 47 (0x0000002F)
+              [Eiiao iiaoi?y?uaainy aeiea  48/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 49/159]
+0200 d  ActionID: 48 (0x00000030)
+              [Eiiao iiaoi?y?uaainy aeiea  49/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 50/159]
+0204 d  ActionID: 49 (0x00000031)
+              [Eiiao iiaoi?y?uaainy aeiea  50/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 51/159]
+0208 d  ActionID: 50 (0x00000032)
+              [Eiiao iiaoi?y?uaainy aeiea  51/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 52/159]
+0212 d  ActionID: 51 (0x00000033)
+              [Eiiao iiaoi?y?uaainy aeiea  52/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 53/159]
+0216 d  ActionID: 52 (0x00000034)
+              [Eiiao iiaoi?y?uaainy aeiea  53/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 54/159]
+0220 d  ActionID: 53 (0x00000035)
+              [Eiiao iiaoi?y?uaainy aeiea  54/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 55/159]
+0224 d  ActionID: 54 (0x00000036)
+              [Eiiao iiaoi?y?uaainy aeiea  55/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 56/159]
+0228 d  ActionID: 55 (0x00000037)
+              [Eiiao iiaoi?y?uaainy aeiea  56/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 57/159]
+0232 d  ActionID: 56 (0x00000038)
+              [Eiiao iiaoi?y?uaainy aeiea  57/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 58/159]
+0236 d  ActionID: 57 (0x00000039)
+              [Eiiao iiaoi?y?uaainy aeiea  58/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 59/159]
+0240 d  ActionID: 58 (0x0000003A)
+              [Eiiao iiaoi?y?uaainy aeiea  59/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 60/159]
+0244 d  ActionID: 59 (0x0000003B)
+              [Eiiao iiaoi?y?uaainy aeiea  60/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 61/159]
+0248 d  ActionID: 60 (0x0000003C)
+              [Eiiao iiaoi?y?uaainy aeiea  61/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 62/159]
+0252 d  ActionID: 61 (0x0000003D)
+              [Eiiao iiaoi?y?uaainy aeiea  62/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 63/159]
+0256 d  ActionID: 62 (0x0000003E)
+              [Eiiao iiaoi?y?uaainy aeiea  63/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 64/159]
+0260 d  ActionID: 63 (0x0000003F)
+              [Eiiao iiaoi?y?uaainy aeiea  64/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 65/159]
+0264 d  ActionID: 64 (0x00000040)
+              [Eiiao iiaoi?y?uaainy aeiea  65/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 66/159]
+0268 d  ActionID: 65 (0x00000041)
+              [Eiiao iiaoi?y?uaainy aeiea  66/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 67/159]
+0272 d  ActionID: 66 (0x00000042)
+              [Eiiao iiaoi?y?uaainy aeiea  67/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 68/159]
+0276 d  ActionID: 67 (0x00000043)
+              [Eiiao iiaoi?y?uaainy aeiea  68/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 69/159]
+0280 d  ActionID: 68 (0x00000044)
+              [Eiiao iiaoi?y?uaainy aeiea  69/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 70/159]
+0284 d  ActionID: 69 (0x00000045)
+              [Eiiao iiaoi?y?uaainy aeiea  70/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 71/159]
+0288 d  ActionID: 70 (0x00000046)
+              [Eiiao iiaoi?y?uaainy aeiea  71/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 72/159]
+0292 d  ActionID: 1000 (0x000003E8)
+              [Eiiao iiaoi?y?uaainy aeiea  72/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 73/159]
+0296 d  ActionID: 1001 (0x000003E9)
+              [Eiiao iiaoi?y?uaainy aeiea  73/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 74/159]
+0300 d  ActionID: 1002 (0x000003EA)
+              [Eiiao iiaoi?y?uaainy aeiea  74/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 75/159]
+0304 d  ActionID: 1003 (0x000003EB)
+              [Eiiao iiaoi?y?uaainy aeiea  75/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 76/159]
+0308 d  ActionID: 1004 (0x000003EC)
+              [Eiiao iiaoi?y?uaainy aeiea  76/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 77/159]
+0312 d  ActionID: 1005 (0x000003ED)
+              [Eiiao iiaoi?y?uaainy aeiea  77/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 78/159]
+0316 d  ActionID: 1006 (0x000003EE)
+              [Eiiao iiaoi?y?uaainy aeiea  78/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 79/159]
+0320 d  ActionID: 1007 (0x000003EF)
+              [Eiiao iiaoi?y?uaainy aeiea  79/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 80/159]
+0324 d  ActionID: 1008 (0x000003F0)
+              [Eiiao iiaoi?y?uaainy aeiea  80/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 81/159]
+0328 d  ActionID: 1009 (0x000003F1)
+              [Eiiao iiaoi?y?uaainy aeiea  81/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 82/159]
+0332 d  ActionID: 1010 (0x000003F2)
+              [Eiiao iiaoi?y?uaainy aeiea  82/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 83/159]
+0336 d  ActionID: 1011 (0x000003F3)
+              [Eiiao iiaoi?y?uaainy aeiea  83/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 84/159]
+0340 d  ActionID: 1012 (0x000003F4)
+              [Eiiao iiaoi?y?uaainy aeiea  84/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 85/159]
+0344 d  ActionID: 1013 (0x000003F5)
+              [Eiiao iiaoi?y?uaainy aeiea  85/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 86/159]
+0348 d  ActionID: 1014 (0x000003F6)
+              [Eiiao iiaoi?y?uaainy aeiea  86/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 87/159]
+0352 d  ActionID: 1015 (0x000003F7)
+              [Eiiao iiaoi?y?uaainy aeiea  87/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 88/159]
+0356 d  ActionID: 1016 (0x000003F8)
+              [Eiiao iiaoi?y?uaainy aeiea  88/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 89/159]
+0360 d  ActionID: 1017 (0x000003F9)
+              [Eiiao iiaoi?y?uaainy aeiea  89/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 90/159]
+0364 d  ActionID: 1018 (0x000003FA)
+              [Eiiao iiaoi?y?uaainy aeiea  90/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 91/159]
+0368 d  ActionID: 1019 (0x000003FB)
+              [Eiiao iiaoi?y?uaainy aeiea  91/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 92/159]
+0372 d  ActionID: 1020 (0x000003FC)
+              [Eiiao iiaoi?y?uaainy aeiea  92/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 93/159]
+0376 d  ActionID: 1021 (0x000003FD)
+              [Eiiao iiaoi?y?uaainy aeiea  93/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 94/159]
+0380 d  ActionID: 1022 (0x000003FE)
+              [Eiiao iiaoi?y?uaainy aeiea  94/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 95/159]
+0384 d  ActionID: 1023 (0x000003FF)
+              [Eiiao iiaoi?y?uaainy aeiea  95/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 96/159]
+0388 d  ActionID: 1024 (0x00000400)
+              [Eiiao iiaoi?y?uaainy aeiea  96/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 97/159]
+0392 d  ActionID: 1025 (0x00000401)
+              [Eiiao iiaoi?y?uaainy aeiea  97/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 98/159]
+0396 d  ActionID: 1026 (0x00000402)
+              [Eiiao iiaoi?y?uaainy aeiea  98/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 99/159]
+0400 d  ActionID: 1027 (0x00000403)
+              [Eiiao iiaoi?y?uaainy aeiea  99/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 100/159]
+0404 d  ActionID: 1028 (0x00000404)
+              [Eiiao iiaoi?y?uaainy aeiea  100/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 101/159]
+0408 d  ActionID: 1029 (0x00000405)
+              [Eiiao iiaoi?y?uaainy aeiea  101/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 102/159]
+0412 d  ActionID: 1030 (0x00000406)
+              [Eiiao iiaoi?y?uaainy aeiea  102/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 103/159]
+0416 d  ActionID: 1031 (0x00000407)
+              [Eiiao iiaoi?y?uaainy aeiea  103/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 104/159]
+0420 d  ActionID: 1032 (0x00000408)
+              [Eiiao iiaoi?y?uaainy aeiea  104/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 105/159]
+0424 d  ActionID: 1033 (0x00000409)
+              [Eiiao iiaoi?y?uaainy aeiea  105/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 106/159]
+0428 d  ActionID: 1034 (0x0000040A)
+              [Eiiao iiaoi?y?uaainy aeiea  106/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 107/159]
+0432 d  ActionID: 1035 (0x0000040B)
+              [Eiiao iiaoi?y?uaainy aeiea  107/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 108/159]
+0436 d  ActionID: 1036 (0x0000040C)
+              [Eiiao iiaoi?y?uaainy aeiea  108/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 109/159]
+0440 d  ActionID: 1037 (0x0000040D)
+              [Eiiao iiaoi?y?uaainy aeiea  109/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 110/159]
+0444 d  ActionID: 1038 (0x0000040E)
+              [Eiiao iiaoi?y?uaainy aeiea  110/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 111/159]
+0448 d  ActionID: 1039 (0x0000040F)
+              [Eiiao iiaoi?y?uaainy aeiea  111/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 112/159]
+0452 d  ActionID: 1040 (0x00000410)
+              [Eiiao iiaoi?y?uaainy aeiea  112/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 113/159]
+0456 d  ActionID: 1041 (0x00000411)
+              [Eiiao iiaoi?y?uaainy aeiea  113/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 114/159]
+0460 d  ActionID: 1042 (0x00000412)
+              [Eiiao iiaoi?y?uaainy aeiea  114/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 115/159]
+0464 d  ActionID: 1043 (0x00000413)
+              [Eiiao iiaoi?y?uaainy aeiea  115/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 116/159]
+0468 d  ActionID: 1044 (0x00000414)
+              [Eiiao iiaoi?y?uaainy aeiea  116/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 117/159]
+0472 d  ActionID: 1045 (0x00000415)
+              [Eiiao iiaoi?y?uaainy aeiea  117/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 118/159]
+0476 d  ActionID: 1046 (0x00000416)
+              [Eiiao iiaoi?y?uaainy aeiea  118/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 119/159]
+0480 d  ActionID: 1047 (0x00000417)
+              [Eiiao iiaoi?y?uaainy aeiea  119/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 120/159]
+0484 d  ActionID: 1048 (0x00000418)
+              [Eiiao iiaoi?y?uaainy aeiea  120/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 121/159]
+0488 d  ActionID: 1049 (0x00000419)
+              [Eiiao iiaoi?y?uaainy aeiea  121/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 122/159]
+0492 d  ActionID: 1050 (0x0000041A)
+              [Eiiao iiaoi?y?uaainy aeiea  122/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 123/159]
+0496 d  ActionID: 1051 (0x0000041B)
+              [Eiiao iiaoi?y?uaainy aeiea  123/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 124/159]
+0500 d  ActionID: 1052 (0x0000041C)
+              [Eiiao iiaoi?y?uaainy aeiea  124/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 125/159]
+0504 d  ActionID: 1053 (0x0000041D)
+              [Eiiao iiaoi?y?uaainy aeiea  125/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 126/159]
+0508 d  ActionID: 1054 (0x0000041E)
+              [Eiiao iiaoi?y?uaainy aeiea  126/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 127/159]
+0512 d  ActionID: 1055 (0x0000041F)
+              [Eiiao iiaoi?y?uaainy aeiea  127/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 128/159]
+0516 d  ActionID: 1056 (0x00000420)
+              [Eiiao iiaoi?y?uaainy aeiea  128/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 129/159]
+0520 d  ActionID: 1057 (0x00000421)
+              [Eiiao iiaoi?y?uaainy aeiea  129/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 130/159]
+0524 d  ActionID: 1058 (0x00000422)
+              [Eiiao iiaoi?y?uaainy aeiea  130/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 131/159]
+0528 d  ActionID: 1059 (0x00000423)
+              [Eiiao iiaoi?y?uaainy aeiea  131/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 132/159]
+0532 d  ActionID: 1060 (0x00000424)
+              [Eiiao iiaoi?y?uaainy aeiea  132/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 133/159]
+0536 d  ActionID: 1061 (0x00000425)
+              [Eiiao iiaoi?y?uaainy aeiea  133/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 134/159]
+0540 d  ActionID: 1062 (0x00000426)
+              [Eiiao iiaoi?y?uaainy aeiea  134/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 135/159]
+0544 d  ActionID: 1063 (0x00000427)
+              [Eiiao iiaoi?y?uaainy aeiea  135/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 136/159]
+0548 d  ActionID: 1064 (0x00000428)
+              [Eiiao iiaoi?y?uaainy aeiea  136/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 137/159]
+0552 d  ActionID: 1065 (0x00000429)
+              [Eiiao iiaoi?y?uaainy aeiea  137/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 138/159]
+0556 d  ActionID: 1066 (0x0000042A)
+              [Eiiao iiaoi?y?uaainy aeiea  138/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 139/159]
+0560 d  ActionID: 1067 (0x0000042B)
+              [Eiiao iiaoi?y?uaainy aeiea  139/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 140/159]
+0564 d  ActionID: 1068 (0x0000042C)
+              [Eiiao iiaoi?y?uaainy aeiea  140/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 141/159]
+0568 d  ActionID: 1069 (0x0000042D)
+              [Eiiao iiaoi?y?uaainy aeiea  141/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 142/159]
+0572 d  ActionID: 1070 (0x0000042E)
+              [Eiiao iiaoi?y?uaainy aeiea  142/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 143/159]
+0576 d  ActionID: 1071 (0x0000042F)
+              [Eiiao iiaoi?y?uaainy aeiea  143/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 144/159]
+0580 d  ActionID: 1072 (0x00000430)
+              [Eiiao iiaoi?y?uaainy aeiea  144/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 145/159]
+0584 d  ActionID: 1073 (0x00000431)
+              [Eiiao iiaoi?y?uaainy aeiea  145/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 146/159]
+0588 d  ActionID: 1074 (0x00000432)
+              [Eiiao iiaoi?y?uaainy aeiea  146/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 147/159]
+0592 d  ActionID: 1075 (0x00000433)
+              [Eiiao iiaoi?y?uaainy aeiea  147/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 148/159]
+0596 d  ActionID: 1076 (0x00000434)
+              [Eiiao iiaoi?y?uaainy aeiea  148/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 149/159]
+0600 d  ActionID: 1077 (0x00000435)
+              [Eiiao iiaoi?y?uaainy aeiea  149/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 150/159]
+0604 d  ActionID: 1078 (0x00000436)
+              [Eiiao iiaoi?y?uaainy aeiea  150/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 151/159]
+0608 d  ActionID: 1079 (0x00000437)
+              [Eiiao iiaoi?y?uaainy aeiea  151/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 152/159]
+0612 d  ActionID: 1080 (0x00000438)
+              [Eiiao iiaoi?y?uaainy aeiea  152/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 153/159]
+0616 d  ActionID: 1081 (0x00000439)
+              [Eiiao iiaoi?y?uaainy aeiea  153/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 154/159]
+0620 d  ActionID: 1082 (0x0000043A)
+              [Eiiao iiaoi?y?uaainy aeiea  154/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 155/159]
+0624 d  ActionID: 1083 (0x0000043B)
+              [Eiiao iiaoi?y?uaainy aeiea  155/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 156/159]
+0628 d  ActionID: 1084 (0x0000043C)
+              [Eiiao iiaoi?y?uaainy aeiea  156/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 157/159]
+0632 d  ActionID: 1086 (0x0000043E)
+              [Eiiao iiaoi?y?uaainy aeiea  157/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 158/159]
+0636 d  ActionID: 1087 (0x0000043F)
+              [Eiiao iiaoi?y?uaainy aeiea  158/159]
+              [Ia?aei iiaoi?y?uaainy aeiea 159/159]
+0640 d  ActionID: 1088 (0x00000440)
+              [Eiiao iiaoi?y?uaainy aeiea  159/159]
+			  
+server =  b'_\x08\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x99\x04\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\xc0\x04\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00*\x05\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00v\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\xa3\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\xc2\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\xd6\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00(\x05\x00\x00\x00'
+Tei: 0x5F (SkillList)
+Pacia?: 109+2
+A?aiy i?eoiaa: 17:15:47:448
+0002 d  ListSize: 8 (0x00000008)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/8]
+0006 d  isPassive: 0 (0x00000000)
+0010 d  Level: 1 (0x00000001)
+0014 d  skillID: Oaa? Aao?a ID:1177 (0x0499)
+0018 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  1/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/8]
+0019 d  isPassive: 0 (0x00000000)
+0023 d  Level: 1 (0x00000001)
+0027 d  skillID: Naiiea?aiea ID:1216 (0x04C0)
+0031 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  2/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/8]
+0032 d  isPassive: 0 (0x00000000)
+0036 d  Level: 1 (0x00000001)
+0040 d  skillID: Iau?iia ?aianei ID:1322 (0x052A)
+0044 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  3/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 4/8]
+0045 d  isPassive: 1 (0x00000001)
+0049 d  Level: 1 (0x00000001)
+0053 d  skillID: Aae?aiea Iaaa ID:118 (0x0076)
+0057 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  4/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 5/8]
+0058 d  isPassive: 1 (0x00000001)
+0062 d  Level: 1 (0x00000001)
+0066 d  skillID: Eneoniia Eieaianoai ID:163 (0x00A3)
+0070 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  5/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 6/8]
+0071 d  isPassive: 1 (0x00000001)
+0075 d  Level: 1 (0x00000001)
+0079 d  skillID: Aacaiea ID:194 (0x00C2)
+0083 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  6/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 7/8]
+0084 d  isPassive: 1 (0x00000001)
+0088 d  Level: 1 (0x00000001)
+0092 d  skillID: Ainnoaiiaeaiea Iaiu ID:214 (0x00D6)
+0096 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  7/8]
+              [Ia?aei iiaoi?y?uaainy aeiea 8/8]
+0097 d  isPassive: 1 (0x00000001)
+0101 d  Level: 1 (0x00000001)
+0105 d  skillID: Nicaaou Iau?iue I?aaiao ID:1320 (0x0528)
+0109 c  c: 0 (0x00)
+              [Eiiao iiaoi?y?uaainy aeiea  8/8]
+
+server =  b"2\x15\x9e\xfe\xff\x13\xca\x03\x00\x10\xf2\xff\xff\x00\x00\x00\x00``\x11Jt\x00e\x00s\x00t\x00d\x00s\x00a\x00f\x00a\x00s\x00d\x00f\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\n\x00\x00\x00\x06\x00\x00\x00\xe8\x1d\x00\x00\x00\x00\x00\x00\x16\x00\x00\x00\x15\x00\x00\x00\x1b\x00\x00\x00)\x00\x00\x00\x14\x00\x00\x00'\x00\x00\x00\xb0\x00\x00\x00\xb0\x00\x00\x00\x8f\x00\x00\x00\x8f\x00\x00\x00\n\x02\x00\x00Z\x14\x00\x00$\x08\x01\x00(\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00p\xc3A\x00\x00\x00\x00\x00\x00\x00\x00\xf5\xc2\xd4B;\x92\x92B\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xa9\x01\x00\x00\xcd\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00~\x01\x00\x007\x00\x00\x00!\x00\x00\x00&\x00\x00\x00(\x00\x00\x00\t\x00\x00\x00M\x01\x00\x00~\x01\x00\x009\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00x\x00\x00\x00N\x00\x00\x002\x00\x00\x002\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00)\\\x8f\xc2\xf5(\xf0?4/\x87\xddw\x0c\xf6?\x00\x00\x00\x00\x00\x00\x1a@\x00\x00\x00\x00\x00\x806@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00P\x00\n\x00\x00\x00\x00\x00\x00\x00X\x00\x00\x00X\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\xa2\xf9\xec\x00\x00\x00\x00\x00\x00\x00\x00\x00\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00 N\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+Tei: 0x32 (UserInfo)
+Pacia?: 740+2
+A?aiy i?eoiaa: 17:16:09:023
+0002 d  X: -90603 (0xFFFE9E15)
+0006 d  Y: 248339 (0x0003CA13)
+0010 d  Z: -3568 (0xFFFFF210)
+0014 d  isInAirShip: 0 (0x00000000)
+0018 d  ObjectID: 1242652768 (0x4A116060)
+0022 s  Name: testdsafasdf
+0048 d  Race: 0 (0x00000000)
+0052 d  Sex: 1 (0x00000001)
+0056 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0060 d  Level: 6 (0x00000006)
+0064 q  Exp: 7656
+0072 d  Str: 22 (0x00000016)
+0076 d  Dex: 21 (0x00000015)
+0080 d  Con: 27 (0x0000001B)
+0084 d  Int: 41 (0x00000029)
+0088 d  Wit: 20 (0x00000014)
+0092 d  Men: 39 (0x00000027)
+0096 d  MaxHP: 176 (0x000000B0)
+0100 d  CurrentHP: 176 (0x000000B0)
+0104 d  MaxMP: 143 (0x0000008F)
+0108 d  CurrentMP: 143 (0x0000008F)
+0112 d  Sp: 522 (0x0000020A)
+0116 d  CurrentLoad: 5210 (0x0000145A)
+0120 d  MaxLoad: 67620 (0x00010824)
+0124 d  WeaponEquipment 20=no,40=yes: 40 (0x00000028)
+0128 d  OIDUnder: 0 (0x00000000)
+0132 d  OIDRear: 0 (0x00000000)
+0136 d  OIDLear: 0 (0x00000000)
+0140 d  OIDNeck: 0 (0x00000000)
+0144 d  OIDFinger: 0 (0x00000000)
+0148 d  OIDLfinger: 0 (0x00000000)
+0152 d  OIDHead: 0 (0x00000000)
+0156 d  OIDRhand: 1103327232 (0x41C37000)
+0160 d  OIDLhand: 0 (0x00000000)
+0164 d  OIDGloves: 0 (0x00000000)
+0168 d  OIDChest: 1121239797 (0x42D4C2F5)
+0172 d  OIDLegs: 1116901947 (0x4292923B)
+0176 d  OIDFeet: 0 (0x00000000)
+0180 d  OIDBack: 0 (0x00000000)
+0184 d  OIDLrhand: 0 (0x00000000)
+0188 d  OIDHair: 0 (0x00000000)
+0192 d  OIDHair2: 0 (0x00000000)
+0196 d  OIDRbracelet: 0 (0x00000000)
+0200 d  OIDLbracelet: 0 (0x00000000)
+0204 d  OIDDeco: 0 (0x00000000)
+0208 d  OIDDeco2: 0 (0x00000000)
+0212 d  OIDDeco3: 0 (0x00000000)
+0216 d  OIDDeco4: 0 (0x00000000)
+0220 d  OIDDeco5: 0 (0x00000000)
+0224 d  OIDDeco6: 0 (0x00000000)
+0228 d  OIDBelt: 0 (0x00000000)
+0232 d  IDUnder: 0
+0236 d  IDRear: 0
+0240 d  IDLear: 0
+0244 d  IDNeck: 0
+0248 d  IDFinger: 0
+0252 d  IDLfinger: 0
+0256 d  IDHead: 0
+0260 d  IDRhand: Neeiao? Iiae?e ID:6 (0x0006)
+0264 d  IDLhand: 0
+0268 d  IDGloves: 0
+0272 d  IDChest: Ooieea O?aieea  ID:425 (0x01A9)
+0276 d  IDLegs: Ooaiu O?aieea  ID:461 (0x01CD)
+0280 d  IDFeet: 0
+0284 d  IDBack: 0
+0288 d  IDLrhand: 0
+0292 d  IDHair: 0
+0296 d  IDHair2: 0
+0300 d  IDRbracelet: 0
+0304 d  IDLbracelet: 0
+0308 d  IDDeco: 0
+0312 d  IDDeco2: 0
+0316 d  IDDeco3: 0
+0320 d  IDDeco4: 0
+0324 d  IDDeco5: 0
+0328 d  IDDeco6: 0
+0332 d  IDBelt: 0
+0336 d  AugIDUnder: 0 (0x00000000)
+0340 d  AugIDRear: 0 (0x00000000)
+0344 d  AugIDLear: 0 (0x00000000)
+0348 d  AugIDNeck: 0 (0x00000000)
+0352 d  AugIDFinger: 0 (0x00000000)
+0356 d  AugIDLfinger: 0 (0x00000000)
+0360 d  AugIDHead: 0 (0x00000000)
+0364 d  AugIDRhand: 0 (0x00000000)
+0368 d  AugIDLhand: 0 (0x00000000)
+0372 d  AugIDGloves: 0 (0x00000000)
+0376 d  AugIDChest: 0 (0x00000000)
+0380 d  AugIDLegs: 0 (0x00000000)
+0384 d  AugIDFeet: 0 (0x00000000)
+0388 d  AugIDBack: 0 (0x00000000)
+0392 d  AugIDLrhand: 0 (0x00000000)
+0396 d  AugIDHair: 0 (0x00000000)
+0400 d  AugIDHair2: 0 (0x00000000)
+0404 d  AugIDRbracelet: 0 (0x00000000)
+0408 d  AugIDLbracelet: 0 (0x00000000)
+0412 d  AugIDDeco: 0 (0x00000000)
+0416 d  AugIDDeco2: 0 (0x00000000)
+0420 d  AugIDDeco3: 0 (0x00000000)
+0424 d  AugIDDeco4: 0 (0x00000000)
+0428 d  AugIDDeco5: 0 (0x00000000)
+0432 d  AugIDDeco6: 0 (0x00000000)
+0436 d  AugIDBelt: 0 (0x00000000)
+0440 d  TalismanSlots: 0 (0x00000000)
+0444 d  01: 0 (0x00000000)
+0448 d  Patk: 2 (0x00000002)
+0452 d  PatkSpd: 382 (0x0000017E)
+0456 d  Pdef: 55 (0x00000037)
+0460 d  EvasionRate: 33 (0x00000021)
+0464 d  Accuracy: 38 (0x00000026)
+0468 d  CriticalHit: 40 (0x00000028)
+0472 d  Matk: 9 (0x00000009)
+0476 d  MatkSpd: 333 (0x0000014D)
+0480 d  PatkSpd: 382 (0x0000017E)
+0484 d  Mdef: 57 (0x00000039)
+0488 d  PvPFlag: 0 (0x00000000)
+0492 d  Karma: 0 (0x00000000)
+0496 d  RunSpd: 120 (0x00000078)
+0500 d  WalkSpd: 78 (0x0000004E)
+0504 d  SwimRunSpd: 50 (0x00000032)
+0508 d  SwimWalkSpd: 50 (0x00000032)
+0512 d  0: 0 (0x00000000)
+0516 d  0: 0 (0x00000000)
+0520 d  FlyRunSpd: 0 (0x00000000)
+0524 d  FlyWalkSpd: 0 (0x00000000)
+0528 f  MoveMul: 1,01
+0536 f  AtkSpeedMul: 1,378044
+0544 f  ColRadius: 6,5
+0552 f  ColHeight: 22,5
+0560 d  HairStyle: 0 (0x00000000)
+0564 d  HairColor: 0 (0x00000000)
+0568 d  Face: 0 (0x00000000)
+0572 d  isGM: 0 (0x00000000)
+0576 s  Title: 
+0578 d  ClanID: 0 (0x00000000)
+0582 d  ClanCrestID: 0 (0x00000000)
+0586 d  AllyID: 0 (0x00000000)
+0590 d  AllyCrestID: 0 (0x00000000)
+0594 d  Relation: 0 (0x00000000)
+0598 c  MountType: 0 (0x00)
+0599 c  PrivateStoreType: 0 (0x00)
+0600 c  DwarvenCraft: 0 (0x00)
+0601 d  PkKills: 0 (0x00000000)
+0605 d  PvPKills: 0 (0x00000000)
+0609 h  CubicsSize: 0 (0x0000)
+0611 c  0: 0 (0x00)
+0612 d  AbnormalEffect: 0 (0x00000000)
+0616 c  FlayingMounted: 0 (0x00)
+0617 d  ClanPrivileges: 0 (0x00000000)
+0621 h  RecomLeft: 0 (0x0000)
+0623 h  RecomHave: 0 (0x0000)
+0625 d  MountNpcID: 0 (0x00000000)
+0629 h  InventoryLimit: 80 (0x0050)
+0631 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0635 d  0: 0 (0x00000000)
+0639 d  MaxCP: 88 (0x00000058)
+0643 d  CurrentCP: 88 (0x00000058)
+0647 c  isMounted: 0 (0x00)
+0648 c  Team: 0 (0x00)
+0649 d  ClanCrestLargeID: 0 (0x00000000)
+0653 c  isNoble: 0 (0x00)
+0654 c  isHero: 0 (0x00)
+0655 c  isFishing: 0 (0x00)
+0656 d  FishingX: 0 (0x00000000)
+0660 d  FishingY: 0 (0x00000000)
+0664 d  FishingZ: 0 (0x00000000)
+0668 d  NameColor: 16777215 (0x00FFFFFF)
+0672 c  isRunning: 1 (0x01)
+0673 d  PledgeClass: 0 (0x00000000)
+0677 d  PledgeType: 0 (0x00000000)
+0681 d  TitleColor: 15530402 (0x00ECF9A2)
+0685 d  CursedWeaponEquipID: 0 (0x00000000)
+0689 d  TranformationID: 0 (0x00000000)
+0693 h  AtkElementAttr: 65534 (0xFFFE)
+0695 h  AttackElementVal: 0 (0x0000)
+0697 h  DefAttrFire: 0 (0x0000)
+0699 h  DefAttrWater: 0 (0x0000)
+0701 h  DefAttrWind: 0 (0x0000)
+0703 h  DefAttrEarth: 0 (0x0000)
+0705 h  DefAttrHoly: 0 (0x0000)
+0707 h  DefAttrDark: 0 (0x0000)
+0709 d  AgathionId: 0 (0x00000000)
+0713 d  Fame: 0 (0x00000000)
+0717 d  Unknown: 1 (0x00000001)
+0721 d  VitalityPoints: 20000 (0x00004E20)
+0725 d  0: 0 (0x00000000)
+0729 d  0: 0 (0x00000000)
+0733 d  0: 0 (0x00000000)
+0737 d  0: 0 (0x00000000)
+
+server =  b'\xfe\xac\x00``\x11J\x00\x00\x00\x00'
+Tei: 0xFE (ExBrExtraUserInfo)
+Pacia?: 11+2
+A?aiy i?eoiaa: 17:16:33:562
+0002 h  subID: 172 (0x00AC)
+0004 d  CharOID: 1242652768 (0x4A116060)
+0008 d  Val: 0 (0x00000000)
+
+server =  b'\xfek\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0xFE (UnknownFE6B)
+Pacia?: 131+2
+A?aiy i?eoiaa: 17:16:55:854
+0002 h  subID: 107 (0x006B)
+
+server =  b"2\x15\x9e\xfe\xff\x13\xca\x03\x00\x10\xf2\xff\xff\x00\x00\x00\x00``\x11Jt\x00e\x00s\x00t\x00d\x00s\x00a\x00f\x00a\x00s\x00d\x00f\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\n\x00\x00\x00\x06\x00\x00\x00\xe8\x1d\x00\x00\x00\x00\x00\x00\x16\x00\x00\x00\x15\x00\x00\x00\x1b\x00\x00\x00)\x00\x00\x00\x14\x00\x00\x00'\x00\x00\x00\xb0\x00\x00\x00\xb0\x00\x00\x00\x8f\x00\x00\x00\x8f\x00\x00\x00\n\x02\x00\x00Z\x14\x00\x00$\x08\x01\x00(\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00p\xc3A\x00\x00\x00\x00\x00\x00\x00\x00\xf5\xc2\xd4B;\x92\x92B\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xa9\x01\x00\x00\xcd\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00~\x01\x00\x007\x00\x00\x00!\x00\x00\x00&\x00\x00\x00(\x00\x00\x00\t\x00\x00\x00M\x01\x00\x00~\x01\x00\x009\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00x\x00\x00\x00N\x00\x00\x002\x00\x00\x002\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00)\\\x8f\xc2\xf5(\xf0?4/\x87\xddw\x0c\xf6?\x00\x00\x00\x00\x00\x00\x1a@\x00\x00\x00\x00\x00\x806@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00P\x00\n\x00\x00\x00\x00\x00\x00\x00X\x00\x00\x00X\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\xa2\xf9\xec\x00\x00\x00\x00\x00\x00\x00\x00\x00\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00 N\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+Tei: 0x32 (UserInfo)
+Pacia?: 740+2
+A?aiy i?eoiaa: 17:17:50:735
+0002 d  X: -90603 (0xFFFE9E15)
+0006 d  Y: 248339 (0x0003CA13)
+0010 d  Z: -3568 (0xFFFFF210)
+0014 d  isInAirShip: 0 (0x00000000)
+0018 d  ObjectID: 1242652768 (0x4A116060)
+0022 s  Name: testdsafasdf
+0048 d  Race: 0 (0x00000000)
+0052 d  Sex: 1 (0x00000001)
+0056 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0060 d  Level: 6 (0x00000006)
+0064 q  Exp: 7656
+0072 d  Str: 22 (0x00000016)
+0076 d  Dex: 21 (0x00000015)
+0080 d  Con: 27 (0x0000001B)
+0084 d  Int: 41 (0x00000029)
+0088 d  Wit: 20 (0x00000014)
+0092 d  Men: 39 (0x00000027)
+0096 d  MaxHP: 176 (0x000000B0)
+0100 d  CurrentHP: 176 (0x000000B0)
+0104 d  MaxMP: 143 (0x0000008F)
+0108 d  CurrentMP: 143 (0x0000008F)
+0112 d  Sp: 522 (0x0000020A)
+0116 d  CurrentLoad: 5210 (0x0000145A)
+0120 d  MaxLoad: 67620 (0x00010824)
+0124 d  WeaponEquipment 20=no,40=yes: 40 (0x00000028)
+0128 d  OIDUnder: 0 (0x00000000)
+0132 d  OIDRear: 0 (0x00000000)
+0136 d  OIDLear: 0 (0x00000000)
+0140 d  OIDNeck: 0 (0x00000000)
+0144 d  OIDFinger: 0 (0x00000000)
+0148 d  OIDLfinger: 0 (0x00000000)
+0152 d  OIDHead: 0 (0x00000000)
+0156 d  OIDRhand: 1103327232 (0x41C37000)
+0160 d  OIDLhand: 0 (0x00000000)
+0164 d  OIDGloves: 0 (0x00000000)
+0168 d  OIDChest: 1121239797 (0x42D4C2F5)
+0172 d  OIDLegs: 1116901947 (0x4292923B)
+0176 d  OIDFeet: 0 (0x00000000)
+0180 d  OIDBack: 0 (0x00000000)
+0184 d  OIDLrhand: 0 (0x00000000)
+0188 d  OIDHair: 0 (0x00000000)
+0192 d  OIDHair2: 0 (0x00000000)
+0196 d  OIDRbracelet: 0 (0x00000000)
+0200 d  OIDLbracelet: 0 (0x00000000)
+0204 d  OIDDeco: 0 (0x00000000)
+0208 d  OIDDeco2: 0 (0x00000000)
+0212 d  OIDDeco3: 0 (0x00000000)
+0216 d  OIDDeco4: 0 (0x00000000)
+0220 d  OIDDeco5: 0 (0x00000000)
+0224 d  OIDDeco6: 0 (0x00000000)
+0228 d  OIDBelt: 0 (0x00000000)
+0232 d  IDUnder: 0
+0236 d  IDRear: 0
+0240 d  IDLear: 0
+0244 d  IDNeck: 0
+0248 d  IDFinger: 0
+0252 d  IDLfinger: 0
+0256 d  IDHead: 0
+0260 d  IDRhand: Neeiao? Iiae?e ID:6 (0x0006)
+0264 d  IDLhand: 0
+0268 d  IDGloves: 0
+0272 d  IDChest: Ooieea O?aieea  ID:425 (0x01A9)
+0276 d  IDLegs: Ooaiu O?aieea  ID:461 (0x01CD)
+0280 d  IDFeet: 0
+0284 d  IDBack: 0
+0288 d  IDLrhand: 0
+0292 d  IDHair: 0
+0296 d  IDHair2: 0
+0300 d  IDRbracelet: 0
+0304 d  IDLbracelet: 0
+0308 d  IDDeco: 0
+0312 d  IDDeco2: 0
+0316 d  IDDeco3: 0
+0320 d  IDDeco4: 0
+0324 d  IDDeco5: 0
+0328 d  IDDeco6: 0
+0332 d  IDBelt: 0
+0336 d  AugIDUnder: 0 (0x00000000)
+0340 d  AugIDRear: 0 (0x00000000)
+0344 d  AugIDLear: 0 (0x00000000)
+0348 d  AugIDNeck: 0 (0x00000000)
+0352 d  AugIDFinger: 0 (0x00000000)
+0356 d  AugIDLfinger: 0 (0x00000000)
+0360 d  AugIDHead: 0 (0x00000000)
+0364 d  AugIDRhand: 0 (0x00000000)
+0368 d  AugIDLhand: 0 (0x00000000)
+0372 d  AugIDGloves: 0 (0x00000000)
+0376 d  AugIDChest: 0 (0x00000000)
+0380 d  AugIDLegs: 0 (0x00000000)
+0384 d  AugIDFeet: 0 (0x00000000)
+0388 d  AugIDBack: 0 (0x00000000)
+0392 d  AugIDLrhand: 0 (0x00000000)
+0396 d  AugIDHair: 0 (0x00000000)
+0400 d  AugIDHair2: 0 (0x00000000)
+0404 d  AugIDRbracelet: 0 (0x00000000)
+0408 d  AugIDLbracelet: 0 (0x00000000)
+0412 d  AugIDDeco: 0 (0x00000000)
+0416 d  AugIDDeco2: 0 (0x00000000)
+0420 d  AugIDDeco3: 0 (0x00000000)
+0424 d  AugIDDeco4: 0 (0x00000000)
+0428 d  AugIDDeco5: 0 (0x00000000)
+0432 d  AugIDDeco6: 0 (0x00000000)
+0436 d  AugIDBelt: 0 (0x00000000)
+0440 d  TalismanSlots: 0 (0x00000000)
+0444 d  01: 0 (0x00000000)
+0448 d  Patk: 2 (0x00000002)
+0452 d  PatkSpd: 382 (0x0000017E)
+0456 d  Pdef: 55 (0x00000037)
+0460 d  EvasionRate: 33 (0x00000021)
+0464 d  Accuracy: 38 (0x00000026)
+0468 d  CriticalHit: 40 (0x00000028)
+0472 d  Matk: 9 (0x00000009)
+0476 d  MatkSpd: 333 (0x0000014D)
+0480 d  PatkSpd: 382 (0x0000017E)
+0484 d  Mdef: 57 (0x00000039)
+0488 d  PvPFlag: 0 (0x00000000)
+0492 d  Karma: 0 (0x00000000)
+0496 d  RunSpd: 120 (0x00000078)
+0500 d  WalkSpd: 78 (0x0000004E)
+0504 d  SwimRunSpd: 50 (0x00000032)
+0508 d  SwimWalkSpd: 50 (0x00000032)
+0512 d  0: 0 (0x00000000)
+0516 d  0: 0 (0x00000000)
+0520 d  FlyRunSpd: 0 (0x00000000)
+0524 d  FlyWalkSpd: 0 (0x00000000)
+0528 f  MoveMul: 1,01
+0536 f  AtkSpeedMul: 1,378044
+0544 f  ColRadius: 6,5
+0552 f  ColHeight: 22,5
+0560 d  HairStyle: 0 (0x00000000)
+0564 d  HairColor: 0 (0x00000000)
+0568 d  Face: 0 (0x00000000)
+0572 d  isGM: 0 (0x00000000)
+0576 s  Title: 
+0578 d  ClanID: 0 (0x00000000)
+0582 d  ClanCrestID: 0 (0x00000000)
+0586 d  AllyID: 0 (0x00000000)
+0590 d  AllyCrestID: 0 (0x00000000)
+0594 d  Relation: 0 (0x00000000)
+0598 c  MountType: 0 (0x00)
+0599 c  PrivateStoreType: 0 (0x00)
+0600 c  DwarvenCraft: 0 (0x00)
+0601 d  PkKills: 0 (0x00000000)
+0605 d  PvPKills: 0 (0x00000000)
+0609 h  CubicsSize: 0 (0x0000)
+0611 c  0: 0 (0x00)
+0612 d  AbnormalEffect: 0 (0x00000000)
+0616 c  FlayingMounted: 0 (0x00)
+0617 d  ClanPrivileges: 0 (0x00000000)
+0621 h  RecomLeft: 0 (0x0000)
+0623 h  RecomHave: 0 (0x0000)
+0625 d  MountNpcID: 0 (0x00000000)
+0629 h  InventoryLimit: 80 (0x0050)
+0631 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0635 d  0: 0 (0x00000000)
+0639 d  MaxCP: 88 (0x00000058)
+0643 d  CurrentCP: 88 (0x00000058)
+0647 c  isMounted: 0 (0x00)
+0648 c  Team: 0 (0x00)
+0649 d  ClanCrestLargeID: 0 (0x00000000)
+0653 c  isNoble: 0 (0x00)
+0654 c  isHero: 0 (0x00)
+0655 c  isFishing: 0 (0x00)
+0656 d  FishingX: 0 (0x00000000)
+0660 d  FishingY: 0 (0x00000000)
+0664 d  FishingZ: 0 (0x00000000)
+0668 d  NameColor: 16777215 (0x00FFFFFF)
+0672 c  isRunning: 1 (0x01)
+0673 d  PledgeClass: 0 (0x00000000)
+0677 d  PledgeType: 0 (0x00000000)
+0681 d  TitleColor: 15530402 (0x00ECF9A2)
+0685 d  CursedWeaponEquipID: 0 (0x00000000)
+0689 d  TranformationID: 0 (0x00000000)
+0693 h  AtkElementAttr: 65534 (0xFFFE)
+0695 h  AttackElementVal: 0 (0x0000)
+0697 h  DefAttrFire: 0 (0x0000)
+0699 h  DefAttrWater: 0 (0x0000)
+0701 h  DefAttrWind: 0 (0x0000)
+0703 h  DefAttrEarth: 0 (0x0000)
+0705 h  DefAttrHoly: 0 (0x0000)
+0707 h  DefAttrDark: 0 (0x0000)
+0709 d  AgathionId: 0 (0x00000000)
+0713 d  Fame: 0 (0x00000000)
+0717 d  Unknown: 1 (0x00000001)
+0721 d  VitalityPoints: 20000 (0x00004E20)
+0725 d  0: 0 (0x00000000)
+0729 d  0: 0 (0x00000000)
+0733 d  0: 0 (0x00000000)
+0737 d  0: 0 (0x00000000)
+
+server =  b'\xfe\xac\x00``\x11J\x00\x00\x00\x00'
+Tei: 0xFE (ExBrExtraUserInfo)
+Pacia?: 11+2
+A?aiy i?eoiaa: 17:18:22:793
+0002 h  subID: 172 (0x00AC)
+0004 d  CharOID: 1242652768 (0x4A116060)
+0008 d  Val: 0 (0x00000000)
+
+server =  b'\x86\x01\x00\xff\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0x86 (QuestList)
+Pacia?: 139+2
+A?aiy i?eoiaa: 17:18:40:718
+0002 h  ListSize: 1 (0x0001)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/1]
+0004 d  QuestId: 255 (0x000000FF)
+0008 d  Cond: 1 (0x00000001)
+              [Eiiao iiaoi?y?uaainy aeiea  1/1]
+0012 -  128: I?iioneaai 128 aaeo(a)
+
+server =  b'\xc7\x00\x00\x00\x00'
+Tei: 0xC7 (SkillCoolTime)
+Pacia?: 5+2
+A?aiy i?eoiaa: 17:19:06:848
+0002 d  ListSize: 0 (0x00000000)
+
+client =  b'\xa6'
+Tei: 0xA6 (RequestSkillCoolTime)
+Pacia?: 1+2
+A?aiy i?eoiaa: 17:19:32:244
+
+server =  b'/\x8c\xde\xf0N@\x91\xfe\xff\xe1\xd2\x03\x00 \xf2\xff\xffw\x90\xfe\xffZ\xd2\x03\x00 \xf2\xff\xff'
+Tei: 0x2F (MoveToLocation)
+Pacia?: 29+2
+A?aiy i?eoiaa: 17:19:52:431
+0002 d  CharID: 1324408460 (0x4EF0DE8C)
+0006 d  ToX: -93888 (0xFFFE9140)
+0010 d  ToY: 250593 (0x0003D2E1)
+0014 d  ToZ: -3552 (0xFFFFF220)
+0018 d  OriginX: -94089 (0xFFFE9077)
+0022 d  OriginY: 250458 (0x0003D25A)
+0026 d  OriginZ: -3552 (0xFFFFF220)
+
+server =  b"2\x15\x9e\xfe\xff\x13\xca\x03\x00\x10\xf2\xff\xff\x00\x00\x00\x00``\x11Jt\x00e\x00s\x00t\x00d\x00s\x00a\x00f\x00a\x00s\x00d\x00f\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\n\x00\x00\x00\x06\x00\x00\x00\xe8\x1d\x00\x00\x00\x00\x00\x00\x16\x00\x00\x00\x15\x00\x00\x00\x1b\x00\x00\x00)\x00\x00\x00\x14\x00\x00\x00'\x00\x00\x00\xb0\x00\x00\x00\xb0\x00\x00\x00\x8f\x00\x00\x00\x8f\x00\x00\x00\n\x02\x00\x00Z\x14\x00\x00$\x08\x01\x00(\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00p\xc3A\x00\x00\x00\x00\x00\x00\x00\x00\xf5\xc2\xd4B;\x92\x92B\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xa9\x01\x00\x00\xcd\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00~\x01\x00\x007\x00\x00\x00!\x00\x00\x00&\x00\x00\x00(\x00\x00\x00\t\x00\x00\x00M\x01\x00\x00~\x01\x00\x009\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00x\x00\x00\x00N\x00\x00\x002\x00\x00\x002\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00)\\\x8f\xc2\xf5(\xf0?4/\x87\xddw\x0c\xf6?\x00\x00\x00\x00\x00\x00\x1a@\x00\x00\x00\x00\x00\x806@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00P\x00\n\x00\x00\x00\x00\x00\x00\x00X\x00\x00\x00X\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\xa2\xf9\xec\x00\x00\x00\x00\x00\x00\x00\x00\x00\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00 N\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+Tei: 0x32 (UserInfo)
+Pacia?: 740+2
+A?aiy i?eoiaa: 17:20:23:210
+0002 d  X: -90603 (0xFFFE9E15)
+0006 d  Y: 248339 (0x0003CA13)
+0010 d  Z: -3568 (0xFFFFF210)
+0014 d  isInAirShip: 0 (0x00000000)
+0018 d  ObjectID: 1242652768 (0x4A116060)
+0022 s  Name: testdsafasdf
+0048 d  Race: 0 (0x00000000)
+0052 d  Sex: 1 (0x00000001)
+0056 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0060 d  Level: 6 (0x00000006)
+0064 q  Exp: 7656
+0072 d  Str: 22 (0x00000016)
+0076 d  Dex: 21 (0x00000015)
+0080 d  Con: 27 (0x0000001B)
+0084 d  Int: 41 (0x00000029)
+0088 d  Wit: 20 (0x00000014)
+0092 d  Men: 39 (0x00000027)
+0096 d  MaxHP: 176 (0x000000B0)
+0100 d  CurrentHP: 176 (0x000000B0)
+0104 d  MaxMP: 143 (0x0000008F)
+0108 d  CurrentMP: 143 (0x0000008F)
+0112 d  Sp: 522 (0x0000020A)
+0116 d  CurrentLoad: 5210 (0x0000145A)
+0120 d  MaxLoad: 67620 (0x00010824)
+0124 d  WeaponEquipment 20=no,40=yes: 40 (0x00000028)
+0128 d  OIDUnder: 0 (0x00000000)
+0132 d  OIDRear: 0 (0x00000000)
+0136 d  OIDLear: 0 (0x00000000)
+0140 d  OIDNeck: 0 (0x00000000)
+0144 d  OIDFinger: 0 (0x00000000)
+0148 d  OIDLfinger: 0 (0x00000000)
+0152 d  OIDHead: 0 (0x00000000)
+0156 d  OIDRhand: 1103327232 (0x41C37000)
+0160 d  OIDLhand: 0 (0x00000000)
+0164 d  OIDGloves: 0 (0x00000000)
+0168 d  OIDChest: 1121239797 (0x42D4C2F5)
+0172 d  OIDLegs: 1116901947 (0x4292923B)
+0176 d  OIDFeet: 0 (0x00000000)
+0180 d  OIDBack: 0 (0x00000000)
+0184 d  OIDLrhand: 0 (0x00000000)
+0188 d  OIDHair: 0 (0x00000000)
+0192 d  OIDHair2: 0 (0x00000000)
+0196 d  OIDRbracelet: 0 (0x00000000)
+0200 d  OIDLbracelet: 0 (0x00000000)
+0204 d  OIDDeco: 0 (0x00000000)
+0208 d  OIDDeco2: 0 (0x00000000)
+0212 d  OIDDeco3: 0 (0x00000000)
+0216 d  OIDDeco4: 0 (0x00000000)
+0220 d  OIDDeco5: 0 (0x00000000)
+0224 d  OIDDeco6: 0 (0x00000000)
+0228 d  OIDBelt: 0 (0x00000000)
+0232 d  IDUnder: 0
+0236 d  IDRear: 0
+0240 d  IDLear: 0
+0244 d  IDNeck: 0
+0248 d  IDFinger: 0
+0252 d  IDLfinger: 0
+0256 d  IDHead: 0
+0260 d  IDRhand: Neeiao? Iiae?e ID:6 (0x0006)
+0264 d  IDLhand: 0
+0268 d  IDGloves: 0
+0272 d  IDChest: Ooieea O?aieea  ID:425 (0x01A9)
+0276 d  IDLegs: Ooaiu O?aieea  ID:461 (0x01CD)
+0280 d  IDFeet: 0
+0284 d  IDBack: 0
+0288 d  IDLrhand: 0
+0292 d  IDHair: 0
+0296 d  IDHair2: 0
+0300 d  IDRbracelet: 0
+0304 d  IDLbracelet: 0
+0308 d  IDDeco: 0
+0312 d  IDDeco2: 0
+0316 d  IDDeco3: 0
+0320 d  IDDeco4: 0
+0324 d  IDDeco5: 0
+0328 d  IDDeco6: 0
+0332 d  IDBelt: 0
+0336 d  AugIDUnder: 0 (0x00000000)
+0340 d  AugIDRear: 0 (0x00000000)
+0344 d  AugIDLear: 0 (0x00000000)
+0348 d  AugIDNeck: 0 (0x00000000)
+0352 d  AugIDFinger: 0 (0x00000000)
+0356 d  AugIDLfinger: 0 (0x00000000)
+0360 d  AugIDHead: 0 (0x00000000)
+0364 d  AugIDRhand: 0 (0x00000000)
+0368 d  AugIDLhand: 0 (0x00000000)
+0372 d  AugIDGloves: 0 (0x00000000)
+0376 d  AugIDChest: 0 (0x00000000)
+0380 d  AugIDLegs: 0 (0x00000000)
+0384 d  AugIDFeet: 0 (0x00000000)
+0388 d  AugIDBack: 0 (0x00000000)
+0392 d  AugIDLrhand: 0 (0x00000000)
+0396 d  AugIDHair: 0 (0x00000000)
+0400 d  AugIDHair2: 0 (0x00000000)
+0404 d  AugIDRbracelet: 0 (0x00000000)
+0408 d  AugIDLbracelet: 0 (0x00000000)
+0412 d  AugIDDeco: 0 (0x00000000)
+0416 d  AugIDDeco2: 0 (0x00000000)
+0420 d  AugIDDeco3: 0 (0x00000000)
+0424 d  AugIDDeco4: 0 (0x00000000)
+0428 d  AugIDDeco5: 0 (0x00000000)
+0432 d  AugIDDeco6: 0 (0x00000000)
+0436 d  AugIDBelt: 0 (0x00000000)
+0440 d  TalismanSlots: 0 (0x00000000)
+0444 d  01: 0 (0x00000000)
+0448 d  Patk: 2 (0x00000002)
+0452 d  PatkSpd: 382 (0x0000017E)
+0456 d  Pdef: 55 (0x00000037)
+0460 d  EvasionRate: 33 (0x00000021)
+0464 d  Accuracy: 38 (0x00000026)
+0468 d  CriticalHit: 40 (0x00000028)
+0472 d  Matk: 9 (0x00000009)
+0476 d  MatkSpd: 333 (0x0000014D)
+0480 d  PatkSpd: 382 (0x0000017E)
+0484 d  Mdef: 57 (0x00000039)
+0488 d  PvPFlag: 0 (0x00000000)
+0492 d  Karma: 0 (0x00000000)
+0496 d  RunSpd: 120 (0x00000078)
+0500 d  WalkSpd: 78 (0x0000004E)
+0504 d  SwimRunSpd: 50 (0x00000032)
+0508 d  SwimWalkSpd: 50 (0x00000032)
+0512 d  0: 0 (0x00000000)
+0516 d  0: 0 (0x00000000)
+0520 d  FlyRunSpd: 0 (0x00000000)
+0524 d  FlyWalkSpd: 0 (0x00000000)
+0528 f  MoveMul: 1,01
+0536 f  AtkSpeedMul: 1,378044
+0544 f  ColRadius: 6,5
+0552 f  ColHeight: 22,5
+0560 d  HairStyle: 0 (0x00000000)
+0564 d  HairColor: 0 (0x00000000)
+0568 d  Face: 0 (0x00000000)
+0572 d  isGM: 0 (0x00000000)
+0576 s  Title: 
+0578 d  ClanID: 0 (0x00000000)
+0582 d  ClanCrestID: 0 (0x00000000)
+0586 d  AllyID: 0 (0x00000000)
+0590 d  AllyCrestID: 0 (0x00000000)
+0594 d  Relation: 0 (0x00000000)
+0598 c  MountType: 0 (0x00)
+0599 c  PrivateStoreType: 0 (0x00)
+0600 c  DwarvenCraft: 0 (0x00)
+0601 d  PkKills: 0 (0x00000000)
+0605 d  PvPKills: 0 (0x00000000)
+0609 h  CubicsSize: 0 (0x0000)
+0611 c  0: 0 (0x00)
+0612 d  AbnormalEffect: 0 (0x00000000)
+0616 c  FlayingMounted: 0 (0x00)
+0617 d  ClanPrivileges: 0 (0x00000000)
+0621 h  RecomLeft: 0 (0x0000)
+0623 h  RecomHave: 0 (0x0000)
+0625 d  MountNpcID: 0 (0x00000000)
+0629 h  InventoryLimit: 80 (0x0050)
+0631 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0635 d  0: 0 (0x00000000)
+0639 d  MaxCP: 88 (0x00000058)
+0643 d  CurrentCP: 88 (0x00000058)
+0647 c  isMounted: 0 (0x00)
+0648 c  Team: 0 (0x00)
+0649 d  ClanCrestLargeID: 0 (0x00000000)
+0653 c  isNoble: 0 (0x00)
+0654 c  isHero: 0 (0x00)
+0655 c  isFishing: 0 (0x00)
+0656 d  FishingX: 0 (0x00000000)
+0660 d  FishingY: 0 (0x00000000)
+0664 d  FishingZ: 0 (0x00000000)
+0668 d  NameColor: 16777215 (0x00FFFFFF)
+0672 c  isRunning: 1 (0x01)
+0673 d  PledgeClass: 0 (0x00000000)
+0677 d  PledgeType: 0 (0x00000000)
+0681 d  TitleColor: 15530402 (0x00ECF9A2)
+0685 d  CursedWeaponEquipID: 0 (0x00000000)
+0689 d  TranformationID: 0 (0x00000000)
+0693 h  AtkElementAttr: 65534 (0xFFFE)
+0695 h  AttackElementVal: 0 (0x0000)
+0697 h  DefAttrFire: 0 (0x0000)
+0699 h  DefAttrWater: 0 (0x0000)
+0701 h  DefAttrWind: 0 (0x0000)
+0703 h  DefAttrEarth: 0 (0x0000)
+0705 h  DefAttrHoly: 0 (0x0000)
+0707 h  DefAttrDark: 0 (0x0000)
+0709 d  AgathionId: 0 (0x00000000)
+0713 d  Fame: 0 (0x00000000)
+0717 d  Unknown: 1 (0x00000001)
+0721 d  VitalityPoints: 20000 (0x00004E20)
+0725 d  0: 0 (0x00000000)
+0729 d  0: 0 (0x00000000)
+0733 d  0: 0 (0x00000000)
+0737 d  0: 0 (0x00000000)
+
+server =  b'\xfe\xac\x00``\x11J\x00\x00\x00\x00'
+Tei: 0xFE (ExBrExtraUserInfo)
+Pacia?: 11+2
+A?aiy i?eoiaa: 17:20:48:903
+0002 h  subID: 172 (0x00AC)
+0004 d  CharOID: 1242652768 (0x4A116060)
+0008 d  Val: 0 (0x00000000)
+
+server =  b'\x85\x00\x00'
+Tei: 0x85 (AbnormalStatusUpdate)
+Pacia?: 3+2
+A?aiy i?eoiaa: 17:21:04:675
+0002 h  EffectSize: 0 (0x0000)
+
+server =  b'\xc7\x00\x00\x00\x00'
+Tei: 0xC7 (SkillCoolTime)
+Pacia?: 5+2
+A?aiy i?eoiaa: 17:21:26:015
+0002 d  ListSize: 0 (0x00000000)
+
+client =  b'8\x00\x00\x00\xb4y\x00\x00``\x11J'
+Tei: 0x38 (Unknown38)
+Pacia?: 12+2
+A?aiy i?eoiaa: 17:21:58:994
+
+client =  b'\xa6'
+Tei: 0xA6 (RequestSkillCoolTime)
+Pacia?: 1+2
+A?aiy i?eoiaa: 17:22:32:160
+
+client =  b'\xa6'
+Tei: 0xA6 (RequestSkillCoolTime)
+Pacia?: 1+2
+A?aiy i?eoiaa: 17:22:32:160
+
+server =  b'\xc7\x00\x00\x00\x00'
+Tei: 0xC7 (SkillCoolTime)
+Pacia?: 5+2
+A?aiy i?eoiaa: 17:22:59:709
+0002 d  ListSize: 0 (0x00000000)
+
+server =  b'\xc7\x00\x00\x00\x00'
+Tei: 0xC7 (SkillCoolTime)
+Pacia?: 5+2
+A?aiy i?eoiaa: 17:22:59:709
+0002 d  ListSize: 0 (0x00000000)
+
+server =  b'/U\x1f1I\xf3\x9e\xfe\xff\x16\xca\x03\x00\x10\xf2\xff\xff\x96\x9e\xfe\xff\x9f\xca\x03\x00\x10\xf2\xff\xff'
+Tei: 0x2F (MoveToLocation)
+Pacia?: 29+2
+A?aiy i?eoiaa: 17:23:25:621
+0002 d  CharID: 1227956053 (0x49311F55)
+0006 d  ToX: -90381 (0xFFFE9EF3)
+0010 d  ToY: 248342 (0x0003CA16)
+0014 d  ToZ: -3568 (0xFFFFF210)
+0018 d  OriginX: -90474 (0xFFFE9E96)
+0022 d  OriginY: 248479 (0x0003CA9F)
+0026 d  OriginZ: -3568 (0xFFFFF210)
+
+server =  b'\x18``\x11J\x04\x00\x00\x00\t\x00\x00\x00\xb0\x00\x00\x00\n\x00\x00\x00\xb0\x00\x00\x00!\x00\x00\x00X\x00\x00\x00"\x00\x00\x00X\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 41+2
+A?aiy i?eoiaa: 17:23:50:752
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 4 (0x00000004)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/4]
+0010 d  AttrID: cur_HP ID:9 (0x0009)
+0014 d  AttrValue: 176 (0x000000B0)
+              [Eiiao iiaoi?y?uaainy aeiea  1/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/4]
+0018 d  AttrID: max_HP ID:10 (0x000A)
+0022 d  AttrValue: 176 (0x000000B0)
+              [Eiiao iiaoi?y?uaainy aeiea  2/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/4]
+0026 d  AttrID: cur_CP ID:33 (0x0021)
+0030 d  AttrValue: 88 (0x00000058)
+              [Eiiao iiaoi?y?uaainy aeiea  3/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 4/4]
+0034 d  AttrID: max_CP ID:34 (0x0022)
+0038 d  AttrValue: 88 (0x00000058)
+              [Eiiao iiaoi?y?uaainy aeiea  4/4]
+
+server =  b'\x18``\x11J\x04\x00\x00\x00\t\x00\x00\x00\xb0\x00\x00\x00\n\x00\x00\x00\xb0\x00\x00\x00!\x00\x00\x00X\x00\x00\x00"\x00\x00\x00X\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 41+2
+A?aiy i?eoiaa: 17:25:49:593
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 4 (0x00000004)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/4]
+0010 d  AttrID: cur_HP ID:9 (0x0009)
+0014 d  AttrValue: 176 (0x000000B0)
+              [Eiiao iiaoi?y?uaainy aeiea  1/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/4]
+0018 d  AttrID: max_HP ID:10 (0x000A)
+0022 d  AttrValue: 176 (0x000000B0)
+              [Eiiao iiaoi?y?uaainy aeiea  2/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/4]
+0026 d  AttrID: cur_CP ID:33 (0x0021)
+0030 d  AttrValue: 88 (0x00000058)
+              [Eiiao iiaoi?y?uaainy aeiea  3/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 4/4]
+0034 d  AttrID: max_CP ID:34 (0x0022)
+0038 d  AttrValue: 88 (0x00000058)
+              [Eiiao iiaoi?y?uaainy aeiea  4/4]
+			  
+server =  b'\x18``\x11J\x02\x00\x00\x00\x0b\x00\x00\x00\x8f\x00\x00\x00\x0c\x00\x00\x00\x8f\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 25+2
+A?aiy i?eoiaa: 17:26:12:916
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 2 (0x00000002)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/2]
+0010 d  AttrID: cur_MP ID:11 (0x000B)
+0014 d  AttrValue: 143 (0x0000008F)
+              [Eiiao iiaoi?y?uaainy aeiea  1/2]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/2]
+0018 d  AttrID: max_MP ID:12 (0x000C)
+0022 d  AttrValue: 143 (0x0000008F)
+              [Eiiao iiaoi?y?uaainy aeiea  2/2]
+			  
+server =  b'/c#\xc1M>\x9e\xfe\xff\xc4\xca\x03\x00\x10\xf2\xff\xff\xa3\x9e\xfe\xff\xef\xca\x03\x00\x10\xf2\xff\xff'
+Tei: 0x2F (MoveToLocation)
+Pacia?: 29+2
+A?aiy i?eoiaa: 17:26:35:972
+0002 d  CharID: 1304503139 (0x4DC12363)
+0006 d  ToX: -90562 (0xFFFE9E3E)
+0010 d  ToY: 248516 (0x0003CAC4)
+0014 d  ToZ: -3568 (0xFFFFF210)
+0018 d  OriginX: -90461 (0xFFFE9EA3)
+0022 d  OriginY: 248559 (0x0003CAEF)
+0026 d  OriginZ: -3568 (0xFFFFF210)
+
+server =  b'/U\x1f1I\xe4\x9e\xfe\xff,\xca\x03\x00\x10\xf2\xff\xff\xf3\x9e\xfe\xff\x16\xca\x03\x00\x10\xf2\xff\xff'
+Tei: 0x2F (MoveToLocation)
+Pacia?: 29+2
+A?aiy i?eoiaa: 17:26:53:928
+0002 d  CharID: 1227956053 (0x49311F55)
+0006 d  ToX: -90396 (0xFFFE9EE4)
+0010 d  ToY: 248364 (0x0003CA2C)
+0014 d  ToZ: -3568 (0xFFFFF210)
+0018 d  OriginX: -90381 (0xFFFE9EF3)
+0022 d  OriginY: 248342 (0x0003CA16)
+0026 d  OriginZ: -3568 (0xFFFFF210)
+
+server =  b'/c#\xc1MO\x9e\xfe\xff\xca\xca\x03\x00\x10\xf2\xff\xff>\x9e\xfe\xff\xc4\xca\x03\x00\x10\xf2\xff\xff'
+Tei: 0x2F (MoveToLocation)
+Pacia?: 29+2
+A?aiy i?eoiaa: 17:27:38:263
+0002 d  CharID: 1304503139 (0x4DC12363)
+0006 d  ToX: -90545 (0xFFFE9E4F)
+0010 d  ToY: 248522 (0x0003CACA)
+0014 d  ToZ: -3568 (0xFFFFF210)
+0018 d  OriginX: -90562 (0xFFFE9E3E)
+0022 d  OriginY: 248516 (0x0003CAC4)
+0026 d  OriginZ: -3568 (0xFFFFF210)
+
+1F->01
+client =  b'\x01U\x1f1I\x15\x9e\xfe\xff\x13\xca\x03\x00\x0c\xf2\xff\xff\x00'
+Tei: 0x01 (AttackRequest)
+Pacia?: 18+2
+A?aiy i?eoiaa: 17:28:14:736
+0002 d  ObjectID: 1227956053 (0x49311F55)
+0006 d  OrigX: -90603 (0xFFFE9E15)
+0010 d  OrigY: 248339 (0x0003CA13)
+0014 d  OrigZ: -3572 (0xFFFFF20C)
+0018 c  AttackID: 0 (0x00)
+
+server =  b'\xb9U\x1f1I\x05\x00\x00\x00\x00\x00'
+Tei: 0xB9 (MyTargetSelected)
+Pacia?: 11+2
+A?aiy i?eoiaa: 17:28:45:967
+0002 d  ObjectID: 1227956053 (0x49311F55)
+0006 h  Color: 5 (0x0005)
+0008 d  0: 0 (0x00000000)
+
+server =  b'\x18U\x1f1I\x02\x00\x00\x00\n\x00\x00\x00>\x00\x00\x00\t\x00\x00\x00>\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 25+2
+A?aiy i?eoiaa: 17:29:04:594
+0002 d  ObjectID: 1227956053 (0x49311F55)
+0006 d  AttribCount: 2 (0x00000002)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/2]
+0010 d  AttrID: max_HP ID:10 (0x000A)
+0014 d  AttrValue: 62 (0x0000003E)
+              [Eiiao iiaoi?y?uaainy aeiea  1/2]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/2]
+0018 d  AttrID: cur_HP ID:9 (0x0009)
+0022 d  AttrValue: 62 (0x0000003E)
+              [Eiiao iiaoi?y?uaainy aeiea  2/2]
+			  
+server =  b'yU\x1f1I\xe4\x9e\xfe\xff,\xca\x03\x00\x10\xf2\xff\xffbX\x00\x00'
+Tei: 0x79 (ValidateLocation)
+Pacia?: 21+2
+A?aiy i?eoiaa: 17:29:24:453
+0002 d  CharID: 1227956053 (0x49311F55)
+0006 d  X: -90396 (0xFFFE9EE4)
+0010 d  Y: 248364 (0x0003CA2C)
+0014 d  Z: -3568 (0xFFFFF210)
+0018 d  Heading: 22626 (0x00005862
+
+server =  b'/\xe8a\xf0J\xb0\x9a\xfe\xffT\xd9\x03\x00\x88\xf2\xff\xff\xe4\x98\xfe\xff\xbc\xd8\x03\x00\x88\xf2\xff\xff'
+Tei: 0x2F (MoveToLocation)
+Pacia?: 29+2
+A?aiy i?eoiaa: 17:30:16:463
+0002 d  CharID: 1257267688 (0x4AF061E8)
+0006 d  ToX: -91472 (0xFFFE9AB0)
+0010 d  ToY: 252244 (0x0003D954)
+0014 d  ToZ: -3448 (0xFFFFF288)
+0018 d  OriginX: -91932 (0xFFFE98E4)
+0022 d  OriginY: 252092 (0x0003D8BC)
+0026 d  OriginZ: -3448 (0xFFFFF288)
+
+client =  b'9\x99\x04\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0x39 (RequestMagicSkillUse)
+Pacia?: 10+2
+A?aiy i?eoiaa: 17:30:40:986
+0002 d  skillID: Oaa? Aao?a ID:1177 (0x0499)
+0006 d  CtrlPressed: 0 (0x00000000)
+0010 c  ShiftPressed: 0 (0x00)
+
+server =  b'r``\x11JU\x1f1I\x04\x02\x00\x00\x15\x9e\xfe\xff\x13\xca\x03\x00\x10\xf2\xff\xff\xe4\x9e\xfe\xff,\xca\x03\x00\x10\xf2\xff\xff'
+Tei: 0x72 (MoveToPawn)
+Pacia?: 37+2
+A?aiy i?eoiaa: 17:31:01:625
+0002 d  CreatureObjId: 1242652768 (0x4A116060)
+0006 d  TargetObjID: 1227956053 (0x49311F55)
+0010 d  Distance: 516 (0x00000204)
+0014 d  CreatureX: -90603 (0xFFFE9E15)
+0018 d  CreatureY: 248339 (0x0003CA13)
+0022 d  CreatureZ: -3568 (0xFFFFF210)
+0026 d  TargetX: -90396 (0xFFFE9EE4)
+0030 d  TargetY: 248364 (0x0003CA2C)
+0034 d  TargetZ: -3568 (0xFFFFF210)
+
+server =  b'\x1f'
+Tei: 0xB1 (PetStatusShow)
+Pacia?: 1+2
+A?aiy i?eoiaa: 17:31:24:432
+
+server =  b'\x18``\x11J\x02\x00\x00\x00\x0b\x00\x00\x00\x8d\x00\x00\x00\x0c\x00\x00\x00\x8f\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 25+2
+A?aiy i?eoiaa: 17:31:49:439
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 2 (0x00000002)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/2]
+0010 d  AttrID: cur_MP ID:11 (0x000B)
+0014 d  AttrValue: 141 (0x0000008D)
+              [Eiiao iiaoi?y?uaainy aeiea  1/2]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/2]
+0018 d  AttrID: max_MP ID:12 (0x000C)
+0022 d  AttrValue: 143 (0x0000008F)
+              [Eiiao iiaoi?y?uaainy aeiea  2/2]
+			  
+server =  b'H``\x11JU\x1f1I\x99\x04\x00\x00\x01\x00\x00\x00\xa0\x0f\x00\x00\xb0\x04\x00\x00\x15\x9e\xfe\xff\x13\xca\x03\x00\x10\xf2\xff\xff\x00\x00\x00\x00\xe4\x9e\xfe\xff,\xca\x03\x00\x10\xf2\xff\xff'
+Tei: 0x48 (MagicSkillUse)
+Pacia?: 53+2
+A?aiy i?eoiaa: 17:32:56:488
+0002 d  CharID: 1242652768 (0x4A116060)
+0006 d  TargetID: 1227956053 (0x49311F55)
+0010 d  skillID: Oaa? Aao?a ID:1177 (0x0499)
+0014 d  SkillLevel: 1 (0x00000001)
+0018 d  HitTime: 4000 (0x00000FA0)
+0022 d  ReuseDelay: 1200 (0x000004B0)
+0026 d  X: -90603 (0xFFFE9E15)
+0030 d  Y: 248339 (0x0003CA13)
+0034 d  Z: -3568 (0xFFFFF210)
+0038 d  ?: 0 (0x00000000)
+0042 d  TargetX: -90396 (0xFFFE9EE4)
+0046 d  TargetY: 248364 (0x0003CA2C)
+0050 d  TargetZ: -3568 (0xFFFFF210)
+
+server =  b'\x18``\x11J\x02\x00\x00\x00\x0b\x00\x00\x00\x8d\x00\x00\x00\x0c\x00\x00\x00\x8f\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 25+2
+A?aiy i?eoiaa: 17:33:25:130
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 2 (0x00000002)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/2]
+0010 d  AttrID: cur_MP ID:11 (0x000B)
+0014 d  AttrValue: 141 (0x0000008D)
+              [Eiiao iiaoi?y?uaainy aeiea  1/2]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/2]
+0018 d  AttrID: max_MP ID:12 (0x000C)
+0022 d  AttrValue: 143 (0x0000008F)
+              [Eiiao iiaoi?y?uaainy aeiea  2/2]
+
+server =  b'b.\x00\x00\x00\x01\x00\x00\x00\x04\x00\x00\x00\x99\x04\x00\x00\x01\x00\x00\x00'
+Tei: 0x62 (SystemMessage)
+Pacia?: 21+2
+A?aiy i?eoiaa: 17:33:42:040
+0002 d  MsgID: Au eniieucoaoa: $s1. ID:46 (0x002E)
+0006 d  typesCount: 1 (0x00000001)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/1]
+0010 d  0=Str,1=Int,2=NpcID,3=ItmID,4=SklID,6=Amnt: 4 (0x00000004)
+0014 s  data: ?
+              [Eiiao iiaoi?y?uaainy aeiea  1/1]
+
+server =  b'k\x00\x00\x00\x00\xa0\x0f\x00\x00\xa0\x0f\x00\x00'
+Tei: 0x6B (SetupGauge)
+Pacia?: 13+2
+A?aiy i?eoiaa: 17:34:03:334
+0002 d  Dat1: 0 (0x00000000)
+0006 d  Time: 4000 (0x00000FA0)
+0010 d  Time: 4000 (0x00000FA0)
+
+client =  b'Y\x15\x9e\xfe\xff\x13\xca\x03\x00\x0c\xf2\xff\xff:\x03\x00\x00\x00\x00\x00\x00'
+Tei: 0x59 (ValidatePosition)
+Pacia?: 21+2
+A?aiy i?eoiaa: 17:34:40:899
+0002 d  X: -90603 (0xFFFE9E15)
+0006 d  Y: 248339 (0x0003CA13)
+0010 d  Z: -3572 (0xFFFFF20C)
+0014 d  Heading: 826 (0x0000033A)
+0018 d  Data: 0 (0x00000000)
+
+server =  b'/\x8c\xde\xf0N"\x91\xfe\xffJ\xd4\x03\x00\x18\xf2\xff\xff@\x91\xfe\xff\xe1\xd2\x03\x00\x18\xf2\xff\xff'
+Tei: 0x2F (MoveToLocation)
+Pacia?: 29+2
+A?aiy i?eoiaa: 17:35:03:894
+0002 d  CharID: 1324408460 (0x4EF0DE8C)
+0006 d  ToX: -93918 (0xFFFE9122)
+0010 d  ToY: 250954 (0x0003D44A)
+0014 d  ToZ: -3560 (0xFFFFF218)
+0018 d  OriginX: -93888 (0xFFFE9140)
+0022 d  OriginY: 250593 (0x0003D2E1)
+0026 d  OriginZ: -3560 (0xFFFFF218)
+
+server =  b'\x18``\x11J\x02\x00\x00\x00\x0b\x00\x00\x00\x8e\x00\x00\x00\x0c\x00\x00\x00\x8f\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 25+2
+A?aiy i?eoiaa: 17:35:26:389
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 2 (0x00000002)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/2]
+0010 d  AttrID: cur_MP ID:11 (0x000B)
+0014 d  AttrValue: 142 (0x0000008E)
+              [Eiiao iiaoi?y?uaainy aeiea  1/2]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/2]
+0018 d  AttrID: max_MP ID:12 (0x000C)
+0022 d  AttrValue: 143 (0x0000008F)
+              [Eiiao iiaoi?y?uaainy aeiea  2/2]
+			  
+server =  b'\x18``\x11J\x04\x00\x00\x00\t\x00\x00\x00\xb0\x00\x00\x00\n\x00\x00\x00\xb0\x00\x00\x00!\x00\x00\x00X\x00\x00\x00"\x00\x00\x00X\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 41+2
+A?aiy i?eoiaa: 17:35:44:501
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 4 (0x00000004)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/4]
+0010 d  AttrID: cur_HP ID:9 (0x0009)
+0014 d  AttrValue: 176 (0x000000B0)
+              [Eiiao iiaoi?y?uaainy aeiea  1/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/4]
+0018 d  AttrID: max_HP ID:10 (0x000A)
+0022 d  AttrValue: 176 (0x000000B0)
+              [Eiiao iiaoi?y?uaainy aeiea  2/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/4]
+0026 d  AttrID: cur_CP ID:33 (0x0021)
+0030 d  AttrValue: 88 (0x00000058)
+              [Eiiao iiaoi?y?uaainy aeiea  3/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 4/4]
+0034 d  AttrID: max_CP ID:34 (0x0022)
+0038 d  AttrValue: 88 (0x00000058)
+              [Eiiao iiaoi?y?uaainy aeiea  4/4]
+
+server =  b'\x18``\x11J\x02\x00\x00\x00\x0b\x00\x00\x00\x8e\x00\x00\x00\x0c\x00\x00\x00\x8f\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 25+2
+A?aiy i?eoiaa: 17:36:05:654
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 2 (0x00000002)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/2]
+0010 d  AttrID: cur_MP ID:11 (0x000B)
+0014 d  AttrValue: 142 (0x0000008E)
+              [Eiiao iiaoi?y?uaainy aeiea  1/2]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/2]
+0018 d  AttrID: max_MP ID:12 (0x000C)
+0022 d  AttrValue: 143 (0x0000008F)
+              [Eiiao iiaoi?y?uaainy aeiea  2/2]
+			  
+server =  b'/\xe8a\xf0JY\x9a\xfe\xff6\xd9\x03\x00\x88\xf2\xff\xff\xb0\x9a\xfe\xffS\xd9\x03\x00\x90\xf2\xff\xff'
+Tei: 0x2F (MoveToLocation)
+Pacia?: 29+2
+A?aiy i?eoiaa: 17:36:21:161
+0002 d  CharID: 1257267688 (0x4AF061E8)
+0006 d  ToX: -91559 (0xFFFE9A59)
+0010 d  ToY: 252214 (0x0003D936)
+0014 d  ToZ: -3448 (0xFFFFF288)
+0018 d  OriginX: -91472 (0xFFFE9AB0)
+0022 d  OriginY: 252243 (0x0003D953)
+0026 d  OriginZ: -3440 (0xFFFFF290)
+
+server =  b'T``\x11J\x99\x04\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00U\x1f1I'
+Tei: 0x54 (MagicSkillLaunched)
+Pacia?: 21+2
+A?aiy i?eoiaa: 17:36:39:225
+0002 d  CasterObjectID: 1242652768 (0x4A116060)
+0006 d  SkillID: Oaa? Aao?a ID:1177 (0x0499)
+0010 d  SkillLevel: 1 (0x00000001)
+0014 d  numberOfTargets: 1 (0x00000001)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/1]
+0018 d  TargetID: 1227956053 (0x49311F55)
+              [Eiiao iiaoi?y?uaainy aeiea  1/1]
+			  
+server =  b'\x18``\x11J\x02\x00\x00\x00\x0b\x00\x00\x00\x87\x00\x00\x00\x0c\x00\x00\x00\x8f\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 25+2
+A?aiy i?eoiaa: 17:36:55:013
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 2 (0x00000002)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/2]
+0010 d  AttrID: cur_MP ID:11 (0x000B)
+0014 d  AttrValue: 135 (0x00000087)
+              [Eiiao iiaoi?y?uaainy aeiea  1/2]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/2]
+0018 d  AttrID: max_MP ID:12 (0x000C)
+0022 d  AttrValue: 143 (0x0000008F)
+              [Eiiao iiaoi?y?uaainy aeiea  2/2]
+			  
+server =  b'%``\x11J'
+Tei: 0x25 (AutoAttackStart)
+Pacia?: 5+2
+A?aiy i?eoiaa: 17:37:10:285
+0002 d  TargetID: 1242652768 (0x4A116060)
+
+server =  b'%U\x1f1I'
+Tei: 0x25 (AutoAttackStart)
+Pacia?: 5+2
+A?aiy i?eoiaa: 17:37:30:113
+0002 d  TargetID: 1227956053 (0x49311F55)
+
+server =  b'b\x00\x05\x00\x00\x00\x00\x00\x00'
+Tei: 0x62 (SystemMessage)
+Pacia?: 9+2
+A?aiy i?eoiaa: 17:37:58:723
+0002 d  MsgID: ˰鳨??驠󤠰 ?馩! ID:1280 (0x0500)
+0006 d  typesCount: 0 (0x00000000)
+
+server =  b'b\xd5\x08\x00\x00\x03\x00\x00\x00\x00\x00\x00\x00t\x00e\x00s\x00t\x00d\x00s\x00a\x00f\x00a\x00s\x00d\x00f\x00\x00\x00\x02\x00\x00\x00\xe6\x89\x0f\x00\x01\x00\x00\x00\x15\x01\x00\x00'
+Tei: 0x62 (SystemMessage)
+Pacia?: 55+2
+A?aiy i?eoiaa: 17:38:27:989
+0002 d  MsgID: $s1 iaiineo oaee $s2 $s3 o?iia. ID:2261 (0x08D5)
+0006 d  typesCount: 3 (0x00000003)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/3]
+0010 d  0=Str,1=Int,2=NpcID,3=ItmID,4=SklID,6=Amnt: 0 (0x00000000)
+0014 s  data: testdsafasdf
+              [Eiiao iiaoi?y?uaainy aeiea  1/3]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/3]
+0040 d  0=Str,1=Int,2=NpcID,3=ItmID,4=SklID,6=Amnt: 2 (0x00000002)
+0044 s  data: ?
+              [Eiiao iiaoi?y?uaainy aeiea  2/3]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/3]
+0052 d  0=Str,1=Int,2=NpcID,3=ItmID,4=SklID,6=Amnt: 277 (0x00000115)
+0056 s  data: range error
+              [Eiiao iiaoi?y?uaainy aeiea  3/3]
+
+server =  b'\x18U\x1f1I\x01\x00\x00\x00\t\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 17+2
+A?aiy i?eoiaa: 17:38:55:086
+0002 d  ObjectID: 1227956053 (0x49311F55)
+0006 d  AttribCount: 1 (0x00000001)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/1]
+0010 d  AttrID: cur_HP ID:9 (0x0009)
+0014 d  AttrValue: 0 (0x00000000)
+              [Eiiao iiaoi?y?uaainy aeiea  1/1]
+			  
+server =  b'GU\x1f1I\xe4\x9e\xfe\xff,\xca\x03\x00\x10\xf2\xff\xffbX\x00\x00'
+Tei: 0x47 (StopMove)
+Pacia?: 21+2
+A?aiy i?eoiaa: 17:39:10:795
+0002 d  ObjectID: 1227956053 (0x49311F55)
+0006 d  X: -90396 (0xFFFE9EE4)
+0010 d  Y: 248364 (0x0003CA2C)
+0014 d  Z: -3568 (0xFFFFF210)
+0018 d  Heading: 22626 (0x00005862)
+
+server =  b'b_\x00\x00\x00\x02\x00\x00\x00\x06\x00\x00\x00\x08\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x12\x00\x00\x00'
+Tei: 0x62 (SystemMessage)
+Pacia?: 29+2
+A?aiy i?eoiaa: 17:39:25:568
+0002 d  MsgID: Iieo?aii: $s1 iiuoa e $s2 SP. ID:95 (0x005F)
+0006 d  typesCount: 2 (0x00000002)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/2]
+0010 d  0=Str,1=Int,2=NpcID,3=ItmID,4=SklID,6=Amnt: 6 (0x00000006)
+0014 s  data: C
+              [Eiiao iiaoi?y?uaainy aeiea  1/2]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/2]
+0018 d  0=Str,1=Int,2=NpcID,3=ItmID,4=SklID,6=Amnt: 0 (0x00000000)
+0022 s  data: 
+              [Eiiao iiaoi?y?uaainy aeiea  2/2]
+			  
+server =  b"2\x15\x9e\xfe\xff\x13\xca\x03\x00\x10\xf2\xff\xff\x00\x00\x00\x00``\x11Jt\x00e\x00s\x00t\x00d\x00s\x00a\x00f\x00a\x00s\x00d\x00f\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\n\x00\x00\x00\x06\x00\x00\x00\xf0\x1e\x00\x00\x00\x00\x00\x00\x16\x00\x00\x00\x15\x00\x00\x00\x1b\x00\x00\x00)\x00\x00\x00\x14\x00\x00\x00'\x00\x00\x00\xb0\x00\x00\x00\xb0\x00\x00\x00\x8f\x00\x00\x00\x87\x00\x00\x00\x1c\x02\x00\x00Z\x14\x00\x00$\x08\x01\x00(\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00p\xc3A\x00\x00\x00\x00\x00\x00\x00\x00\xf5\xc2\xd4B;\x92\x92B\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xa9\x01\x00\x00\xcd\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00~\x01\x00\x007\x00\x00\x00!\x00\x00\x00&\x00\x00\x00(\x00\x00\x00\t\x00\x00\x00M\x01\x00\x00~\x01\x00\x009\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00x\x00\x00\x00N\x00\x00\x002\x00\x00\x002\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00)\\\x8f\xc2\xf5(\xf0?4/\x87\xddw\x0c\xf6?\x00\x00\x00\x00\x00\x00\x1a@\x00\x00\x00\x00\x00\x806@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00P\x00\n\x00\x00\x00\x00\x00\x00\x00X\x00\x00\x00X\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\xa2\xf9\xec\x00\x00\x00\x00\x00\x00\x00\x00\x00\xfe\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00 N\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+Tei: 0x32 (UserInfo)
+Pacia?: 740+2
+A?aiy i?eoiaa: 17:39:47:877
+0002 d  X: -90603 (0xFFFE9E15)
+0006 d  Y: 248339 (0x0003CA13)
+0010 d  Z: -3568 (0xFFFFF210)
+0014 d  isInAirShip: 0 (0x00000000)
+0018 d  ObjectID: 1242652768 (0x4A116060)
+0022 s  Name: testdsafasdf
+0048 d  Race: 0 (0x00000000)
+0052 d  Sex: 1 (0x00000001)
+0056 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0060 d  Level: 6 (0x00000006)
+0064 q  Exp: 7920
+0072 d  Str: 22 (0x00000016)
+0076 d  Dex: 21 (0x00000015)
+0080 d  Con: 27 (0x0000001B)
+0084 d  Int: 41 (0x00000029)
+0088 d  Wit: 20 (0x00000014)
+0092 d  Men: 39 (0x00000027)
+0096 d  MaxHP: 176 (0x000000B0)
+0100 d  CurrentHP: 176 (0x000000B0)
+0104 d  MaxMP: 143 (0x0000008F)
+0108 d  CurrentMP: 135 (0x00000087)
+0112 d  Sp: 540 (0x0000021C)
+0116 d  CurrentLoad: 5210 (0x0000145A)
+0120 d  MaxLoad: 67620 (0x00010824)
+0124 d  WeaponEquipment 20=no,40=yes: 40 (0x00000028)
+0128 d  OIDUnder: 0 (0x00000000)
+0132 d  OIDRear: 0 (0x00000000)
+0136 d  OIDLear: 0 (0x00000000)
+0140 d  OIDNeck: 0 (0x00000000)
+0144 d  OIDFinger: 0 (0x00000000)
+0148 d  OIDLfinger: 0 (0x00000000)
+0152 d  OIDHead: 0 (0x00000000)
+0156 d  OIDRhand: 1103327232 (0x41C37000)
+0160 d  OIDLhand: 0 (0x00000000)
+0164 d  OIDGloves: 0 (0x00000000)
+0168 d  OIDChest: 1121239797 (0x42D4C2F5)
+0172 d  OIDLegs: 1116901947 (0x4292923B)
+0176 d  OIDFeet: 0 (0x00000000)
+0180 d  OIDBack: 0 (0x00000000)
+0184 d  OIDLrhand: 0 (0x00000000)
+0188 d  OIDHair: 0 (0x00000000)
+0192 d  OIDHair2: 0 (0x00000000)
+0196 d  OIDRbracelet: 0 (0x00000000)
+0200 d  OIDLbracelet: 0 (0x00000000)
+0204 d  OIDDeco: 0 (0x00000000)
+0208 d  OIDDeco2: 0 (0x00000000)
+0212 d  OIDDeco3: 0 (0x00000000)
+0216 d  OIDDeco4: 0 (0x00000000)
+0220 d  OIDDeco5: 0 (0x00000000)
+0224 d  OIDDeco6: 0 (0x00000000)
+0228 d  OIDBelt: 0 (0x00000000)
+0232 d  IDUnder: 0
+0236 d  IDRear: 0
+0240 d  IDLear: 0
+0244 d  IDNeck: 0
+0248 d  IDFinger: 0
+0252 d  IDLfinger: 0
+0256 d  IDHead: 0
+0260 d  IDRhand: Neeiao? Iiae?e ID:6 (0x0006)
+0264 d  IDLhand: 0
+0268 d  IDGloves: 0
+0272 d  IDChest: Ooieea O?aieea  ID:425 (0x01A9)
+0276 d  IDLegs: Ooaiu O?aieea  ID:461 (0x01CD)
+0280 d  IDFeet: 0
+0284 d  IDBack: 0
+0288 d  IDLrhand: 0
+0292 d  IDHair: 0
+0296 d  IDHair2: 0
+0300 d  IDRbracelet: 0
+0304 d  IDLbracelet: 0
+0308 d  IDDeco: 0
+0312 d  IDDeco2: 0
+0316 d  IDDeco3: 0
+0320 d  IDDeco4: 0
+0324 d  IDDeco5: 0
+0328 d  IDDeco6: 0
+0332 d  IDBelt: 0
+0336 d  AugIDUnder: 0 (0x00000000)
+0340 d  AugIDRear: 0 (0x00000000)
+0344 d  AugIDLear: 0 (0x00000000)
+0348 d  AugIDNeck: 0 (0x00000000)
+0352 d  AugIDFinger: 0 (0x00000000)
+0356 d  AugIDLfinger: 0 (0x00000000)
+0360 d  AugIDHead: 0 (0x00000000)
+0364 d  AugIDRhand: 0 (0x00000000)
+0368 d  AugIDLhand: 0 (0x00000000)
+0372 d  AugIDGloves: 0 (0x00000000)
+0376 d  AugIDChest: 0 (0x00000000)
+0380 d  AugIDLegs: 0 (0x00000000)
+0384 d  AugIDFeet: 0 (0x00000000)
+0388 d  AugIDBack: 0 (0x00000000)
+0392 d  AugIDLrhand: 0 (0x00000000)
+0396 d  AugIDHair: 0 (0x00000000)
+0400 d  AugIDHair2: 0 (0x00000000)
+0404 d  AugIDRbracelet: 0 (0x00000000)
+0408 d  AugIDLbracelet: 0 (0x00000000)
+0412 d  AugIDDeco: 0 (0x00000000)
+0416 d  AugIDDeco2: 0 (0x00000000)
+0420 d  AugIDDeco3: 0 (0x00000000)
+0424 d  AugIDDeco4: 0 (0x00000000)
+0428 d  AugIDDeco5: 0 (0x00000000)
+0432 d  AugIDDeco6: 0 (0x00000000)
+0436 d  AugIDBelt: 0 (0x00000000)
+0440 d  TalismanSlots: 0 (0x00000000)
+0444 d  01: 0 (0x00000000)
+0448 d  Patk: 2 (0x00000002)
+0452 d  PatkSpd: 382 (0x0000017E)
+0456 d  Pdef: 55 (0x00000037)
+0460 d  EvasionRate: 33 (0x00000021)
+0464 d  Accuracy: 38 (0x00000026)
+0468 d  CriticalHit: 40 (0x00000028)
+0472 d  Matk: 9 (0x00000009)
+0476 d  MatkSpd: 333 (0x0000014D)
+0480 d  PatkSpd: 382 (0x0000017E)
+0484 d  Mdef: 57 (0x00000039)
+0488 d  PvPFlag: 0 (0x00000000)
+0492 d  Karma: 0 (0x00000000)
+0496 d  RunSpd: 120 (0x00000078)
+0500 d  WalkSpd: 78 (0x0000004E)
+0504 d  SwimRunSpd: 50 (0x00000032)
+0508 d  SwimWalkSpd: 50 (0x00000032)
+0512 d  0: 0 (0x00000000)
+0516 d  0: 0 (0x00000000)
+0520 d  FlyRunSpd: 0 (0x00000000)
+0524 d  FlyWalkSpd: 0 (0x00000000)
+0528 f  MoveMul: 1,01
+0536 f  AtkSpeedMul: 1,378044
+0544 f  ColRadius: 6,5
+0552 f  ColHeight: 22,5
+0560 d  HairStyle: 0 (0x00000000)
+0564 d  HairColor: 0 (0x00000000)
+0568 d  Face: 0 (0x00000000)
+0572 d  isGM: 0 (0x00000000)
+0576 s  Title: 
+0578 d  ClanID: 0 (0x00000000)
+0582 d  ClanCrestID: 0 (0x00000000)
+0586 d  AllyID: 0 (0x00000000)
+0590 d  AllyCrestID: 0 (0x00000000)
+0594 d  Relation: 0 (0x00000000)
+0598 c  MountType: 0 (0x00)
+0599 c  PrivateStoreType: 0 (0x00)
+0600 c  DwarvenCraft: 0 (0x00)
+0601 d  PkKills: 0 (0x00000000)
+0605 d  PvPKills: 0 (0x00000000)
+0609 h  CubicsSize: 0 (0x0000)
+0611 c  0: 0 (0x00)
+0612 d  AbnormalEffect: 0 (0x00000000)
+0616 c  FlayingMounted: 0 (0x00)
+0617 d  ClanPrivileges: 0 (0x00000000)
+0621 h  RecomLeft: 0 (0x0000)
+0623 h  RecomHave: 0 (0x0000)
+0625 d  MountNpcID: 0 (0x00000000)
+0629 h  InventoryLimit: 80 (0x0050)
+0631 d  ClassID: Human Mystic (Ienoee) ID:10 (0x000A)
+0635 d  0: 0 (0x00000000)
+0639 d  MaxCP: 88 (0x00000058)
+0643 d  CurrentCP: 88 (0x00000058)
+0647 c  isMounted: 0 (0x00)
+0648 c  Team: 0 (0x00)
+0649 d  ClanCrestLargeID: 0 (0x00000000)
+0653 c  isNoble: 0 (0x00)
+0654 c  isHero: 0 (0x00)
+0655 c  isFishing: 0 (0x00)
+0656 d  FishingX: 0 (0x00000000)
+0660 d  FishingY: 0 (0x00000000)
+0664 d  FishingZ: 0 (0x00000000)
+0668 d  NameColor: 16777215 (0x00FFFFFF)
+0672 c  isRunning: 1 (0x01)
+0673 d  PledgeClass: 0 (0x00000000)
+0677 d  PledgeType: 0 (0x00000000)
+0681 d  TitleColor: 15530402 (0x00ECF9A2)
+0685 d  CursedWeaponEquipID: 0 (0x00000000)
+0689 d  TranformationID: 0 (0x00000000)
+0693 h  AtkElementAttr: 65534 (0xFFFE)
+0695 h  AttackElementVal: 0 (0x0000)
+0697 h  DefAttrFire: 0 (0x0000)
+0699 h  DefAttrWater: 0 (0x0000)
+0701 h  DefAttrWind: 0 (0x0000)
+0703 h  DefAttrEarth: 0 (0x0000)
+0705 h  DefAttrHoly: 0 (0x0000)
+0707 h  DefAttrDark: 0 (0x0000)
+0709 d  AgathionId: 0 (0x00000000)
+0713 d  Fame: 0 (0x00000000)
+0717 d  Unknown: 1 (0x00000001)
+0721 d  VitalityPoints: 20000 (0x00004E20)
+0725 d  0: 0 (0x00000000)
+0729 d  0: 0 (0x00000000)
+0733 d  0: 0 (0x00000000)
+0737 d  0: 0 (0x00000000)
+
+server =  b'\xfe\xac\x00``\x11J\x00\x00\x00\x00'
+Tei: 0xFE (ExBrExtraUserInfo)
+Pacia?: 11+2
+A?aiy i?eoiaa: 17:40:26:611
+0002 h  subID: 172 (0x00AC)
+0004 d  CharOID: 1242652768 (0x4A116060)
+0008 d  Val: 0 (0x00000000)
+
+server =  b'\x00U\x1f1I\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0x00 (Die)
+Pacia?: 33+2
+A?aiy i?eoiaa: 17:40:45:987
+0002 d  CharID: 1227956053 (0x49311F55)
+0006 d  1: 0 (0x00000000)
+0010 d  ToHideout: 0 (0x00000000)
+0014 d  ToCastle: 0 (0x00000000)
+0018 d  ToSiegeHQ: 0 (0x00000000)
+0022 d  Sweepable: 0 (0x00000000)
+0026 d  RespawnFixed: 0 (0x00000000)
+0030 d  ToFortess: 0 (0x00000000)
+
+server =  b'\x16U\x1f1I`\xe6{A9\x00\x00\x00\xff\x9e\xfe\xff<\xca\x03\x00\x10\xf2\xff\xff\x01\x00\x00\x00\x1c\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+Tei: 0x16 (DropItem)
+Pacia?: 41+2
+A?aiy i?eoiaa: 17:41:07:343
+0002 d  PlayerID: 1227956053 (0x49311F55)
+0006 d  ObjectID: 1098638944 (0x417BE660)
+0010 d  ItemID: Aaaia ID:57 (0x0039)
+0014 d  X: -90369 (0xFFFE9EFF)
+0018 d  Y: 248380 (0x0003CA3C)
+0022 d  Z: -3568 (0xFFFFF210)
+0026 d  Stackable: 1 (0x00000001)
+0030 q  Count: 28
+0038 d  1: 0 (0x00000000)
+
+server =  b'\x0c\xc0\xb83I\xe6\x89\x0f\x00\x01\x00\x00\x00\xe4\x9e\xfe\xff,\xca\x03\x00\x10\xf2\xff\xffbX\x00\x00\x00\x00\x00\x00M\x01\x00\x00\x16\x01\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x002\x00\x00\x00\x14\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xf1?\x81C\xa8R\xb3\x07\xf0?\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$@\x00\x00\x00\x00\x00\x00.@\x0e\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x01\x00\x00\x00\x00'
+Tei: 0x0C (NpcInfo)
+Pacia?: 198+2
+A?aiy i?eoiaa: 17:41:29:308
+0002 d  ObjectID: 1228126400 (0x4933B8C0)
+0006 d  NpcTypeId: A?aieei ID:1018342 (0xF89E6)
+0010 d  IsAttackable: 1 (0x00000001)
+0014 d  X: -90396 (0xFFFE9EE4)
+0018 d  Y: 248364 (0x0003CA2C)
+0022 d  Z: -3568 (0xFFFFF210)
+0026 d  Heading: 22626 (0x00005862)
+0030 d  0: 0 (0x00000000)
+0034 d  MatkSpd: 333 (0x0000014D)
+0038 d  PatkSpd: 278 (0x00000116)
+0042 d  RunSpd: 50 (0x00000032)
+0046 d  WalkSpd: 20 (0x00000014)
+0050 d  SwimRunSpd: 50 (0x00000032)
+0054 d  SwimWalkSpd: 20 (0x00000014)
+0058 d  FlRunSpd: 50 (0x00000032)
+0062 d  FlWalkSpd: 20 (0x00000014)
+0066 d  FlyRunSpd: 50 (0x00000032)
+0070 d  FlyWalkSpd: 20 (0x00000014)
+0074 f  MoveMultiplier: 1,1
+0082 f  AtkSpdMultiplier: 1,00188
+0090 f  CollisionRadius: 10
+0098 f  CollisionHeight: 15
+0106 d  IDRhand: 0
+0110 d  0: 0 (0x00000000)
+0114 d  IDLhand: Human Fighter (Aiei) ID:0 (0x0000)
+0118 c  1: 1 (0x01)
+0119 c  isRunning: 1 (0x01)
+0120 c  isInCombat: 1 (0x01)
+0121 c  isALikeDead: 1 (0x01)
+0122 c  Invisible: 1 (0x01)
+0123 s  VisibleName: 
+0125 s  VisibleTitle: 
+0127 d  0: 0 (0x00000000)
+0131 d  0: 0 (0x00000000)
+0135 d  0: 0 (0x00000000)
+0139 d  AbnormalEffect: 0 (0x00000000)
+0143 d  ClanID: 0 (0x00000000)
+0147 d  CrestID: 0 (0x00000000)
+0151 d  0: 0 (0x00000000)
+0155 d  0: 0 (0x00000000)
+0159 c  0: 0 (0x00)
+0160 c  Team: 0 (0x00)
+0161 f  CollisionRadius: 10
+0169 f  CollisionHeight: 15
+0177 d  0: 14 (0x0000000E)
+0181 d  0: 0 (0x00000000)
+0185 d  0: 0 (0x00000000)
+0189 d  0: 0 (0x00000000)
+0193 c  01: 1 (0x01)
+0194 c  01: 1 (0x01)
+0195 d  0: 0 (0x00000000)
+
+server =  b'\xd9\Tei: 0xD9 (NetPing)
+Pacia?: 5+2
+A?aiy i?eoiaa: 17:41:49:635
+0002 d  kID: -1399425641 (0xAC967597)
+
+client =  b'\xb1\x97u\x96\xac5\x00\x00\x00\x00\x14\x00\x00'
+Tei: 0xB1 (NetPing)
+Pacia?: 13+2
+A?aiy i?eoiaa: 17:42:38:510
+0002 d  kID: -1399425641 (0xAC967597)
+0006 d  ?: 53 (0x00000035)
+0010 d  ?: 5120 (0x00001400)
+
+server =  b'\x18``\x11J\x02\x00\x00\x00\x0b\x00\x00\x00\x89\x00\x00\x00\x0c\x00\x00\x00\x8f\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 25+2
+A?aiy i?eoiaa: 17:42:55:966
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 2 (0x00000002)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/2]
+0010 d  AttrID: cur_MP ID:11 (0x000B)
+0014 d  AttrValue: 137 (0x00000089)
+              [Eiiao iiaoi?y?uaainy aeiea  1/2]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/2]
+0018 d  AttrID: max_MP ID:12 (0x000C)
+0022 d  AttrValue: 143 (0x0000008F)
+              [Eiiao iiaoi?y?uaainy aeiea  2/2]
+			  
+server =  b'\x18``\x11J\x04\x00\x00\x00\t\x00\x00\x00\xb0\x00\x00\x00\n\x00\x00\x00\xb0\x00\x00\x00!\x00\x00\x00X\x00\x00\x00"\x00\x00\x00X\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 41+2
+A?aiy i?eoiaa: 17:43:22:424
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 4 (0x00000004)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/4]
+0010 d  AttrID: cur_HP ID:9 (0x0009)
+0014 d  AttrValue: 176 (0x000000B0)
+              [Eiiao iiaoi?y?uaainy aeiea  1/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/4]
+0018 d  AttrID: max_HP ID:10 (0x000A)
+0022 d  AttrValue: 176 (0x000000B0)
+              [Eiiao iiaoi?y?uaainy aeiea  2/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 3/4]
+0026 d  AttrID: cur_CP ID:33 (0x0021)
+0030 d  AttrValue: 88 (0x00000058)
+              [Eiiao iiaoi?y?uaainy aeiea  3/4]
+              [Ia?aei iiaoi?y?uaainy aeiea 4/4]
+0034 d  AttrID: max_CP ID:34 (0x0022)
+0038 d  AttrValue: 88 (0x00000058)
+              [Eiiao iiaoi?y?uaainy aeiea  4/4]
+			  
+server =  b'\x18``\x11J\x02\x00\x00\x00\x0b\x00\x00\x00\x89\x00\x00\x00\x0c\x00\x00\x00\x8f\x00\x00\x00'
+Tei: 0x18 (StatusUpdate)
+Pacia?: 25+2
+A?aiy i?eoiaa: 17:43:46:713
+0002 d  ObjectID: 1242652768 (0x4A116060)
+0006 d  AttribCount: 2 (0x00000002)
+              [Ia?aei iiaoi?y?uaainy aeiea 1/2]
+0010 d  AttrID: cur_MP ID:11 (0x000B)
+0014 d  AttrValue: 137 (0x00000089)
+              [Eiiao iiaoi?y?uaainy aeiea  1/2]
+              [Ia?aei iiaoi?y?uaainy aeiea 2/2]
+0018 d  AttrID: max_MP ID:12 (0x000C)
+0022 d  AttrValue: 143 (0x0000008F)
+              [Eiiao iiaoi?y?uaainy aeiea  2/2]
+			  
+server =  b"/ot\x01N\xf7\x9d\xfe\xff`\xc9\x03\x00\x10\xf2\xff\xff'\x9d\xfe\xff\xa9\xc9\x03\x00\x10\xf2\xff\xff"
+Tei: 0x2F (MoveToLocation)
+Pacia?: 29+2
+A?aiy i?eoiaa: 17:44:05:230
+0002 d  CharID: 1308718191 (0x4E01746F)
+0006 d  ToX: -90633 (0xFFFE9DF7)
+0010 d  ToY: 248160 (0x0003C960)
+0014 d  ToZ: -3568 (0xFFFFF210)
+0018 d  OriginX: -90841 (0xFFFE9D27)
+0022 d  OriginY: 248233 (0x0003C9A9)
+0026 d  OriginZ: -3568 (0xFFFFF210)
