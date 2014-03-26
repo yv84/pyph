@@ -29,7 +29,7 @@ class Server(asyncio.Protocol):
         # create a client if peername is not known or the client disconnect
         if client is None or not client.connected:
             protocol, client = yield from loop.create_connection(
-                Client, 'google.com', 80)
+                Client, '127.0.0.1', 9999)
             client.server_transport = self.transport
             self.clients[peername] = client
         # forward data to the client
