@@ -8,10 +8,15 @@ try:
 except ImportError:
     signal = None
 
+from msg_log import Message
+from game_log import game_log
+
+log, side_log = game_log()
 
 class EchoServer(asyncio.Protocol):
 
     TIMEOUT = 5.0
+    message_server = {}
 
     def timeout(self):
         print('connection timeout, closing.')
@@ -20,15 +25,18 @@ class EchoServer(asyncio.Protocol):
     def connection_made(self, transport):
         print('connection made')
         self.transport = transport
+        self.message_server[self.transport] = Message('server', log=log, side_log=side_log)
 
         # start 5 seconds timeout timer
         self.h_timeout = asyncio.get_event_loop().call_later(
             self.TIMEOUT, self.timeout)
 
     def data_received(self, data):
-        print('data received: ', data.decode())
-        self.transport.write(b'Re: ' + data)
-
+        #print('data received: ', data.decode())
+        #print('S: ', data)
+        #self.transport.write(b'Re: ' + data)
+        self.transport.write(b''.join(self.message_server[self.transport](data)))
+        #print('S send: ', b''.join(self.message_server[self.transport](data)))
         # restart timeout timer
         self.h_timeout.cancel()
         self.h_timeout = asyncio.get_event_loop().call_later(
@@ -45,15 +53,18 @@ class EchoServer(asyncio.Protocol):
 class EchoClient(asyncio.Protocol):
 
     message = 'This is the message. It will be echoed.'
+    message_client = Message('client', log=log, side_log=side_log)
 
     def connection_made(self, transport):
         self.transport = transport
-        self.transport.write(self.message.encode())
-        print('data sent:', self.message)
+        #print(b''.join(self.message_client(b'')))
+        self.transport.write(b''.join(self.message_client(b'')))
+        #self.transport.write(self.message.encode())
+        #print('data sent:', self.message)
 
     def data_received(self, data):
-        print('data received:', data)
-
+        #print('C:', data)
+        self.transport.write(b''.join(self.message_client(data)))
         # disconnect after 10 seconds
         asyncio.get_event_loop().call_later(10.0, self.transport.close)
 

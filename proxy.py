@@ -10,16 +10,19 @@ class Client(asyncio.Protocol):
 
     def data_received(self, data):
         # forward data to the server
+        #print(data)
         self.server_transport.write(data)
 
     def connection_lost(self, *args):
         self.connected = False
+
 
 class Server(asyncio.Protocol):
     clients = {}
     def connection_made(self, transport):
         # save the transport
         self.transport = transport
+
 
     @asyncio.coroutine
     def send_data(self, data):
@@ -32,11 +35,13 @@ class Server(asyncio.Protocol):
                 Client, '127.0.0.1', 9999)
             client.server_transport = self.transport
             self.clients[peername] = client
+            #print(self.clients)
         # forward data to the client
         client.transport.write(data)
 
     def data_received(self, data):
         # use a task so this is executed async
+        #print(data)
         asyncio.Task(self.send_data(data))
 
 @asyncio.coroutine
