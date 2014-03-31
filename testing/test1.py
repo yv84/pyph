@@ -13,6 +13,7 @@ from subprocess import Popen
 from multiprocessing import Process, Manager, JoinableQueue
 
 
+
 class TestCase(unittest.TestCase):
 
     def setUp(self):
@@ -28,7 +29,7 @@ class TestCase(unittest.TestCase):
     def testEchoServer(self):
         self.port1 = '9999'
         conn = {'ip': '127.0.0.1', 'port': self.port1}
-        N = 2
+        N = 3
         os.system('fuser -k '+conn['port']+'/tcp')
         def start_server():
             os.system('python3 testing/tcp_echo.py --server --port 9999 > /dev/null')
@@ -57,7 +58,7 @@ class TestCase(unittest.TestCase):
             'client': {'ip': '127.0.0.1', 'port': self.port1}, # client -> proxy
             'server': {'ip': '127.0.0.1', 'port': self.port2}, # proxy -> server
             }
-        N = 10
+        N = 2
         for d, k in zip([c for c in conn], [conn[c] for c in conn]):
             os.system('fuser -k '+conn[d]['port']+'/tcp')
         def start_server():
