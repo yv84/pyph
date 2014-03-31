@@ -13,7 +13,7 @@ class Client(asyncio.Protocol):
     def data_received(self, data):
         # forward data to the server
         self.server.buffers[self.peername].update_data('client', data)
-        print('S: ', data)
+        #print('S: ', data)
 
     def connection_lost(self, *args):
         self.connected = False
@@ -48,14 +48,16 @@ class Server(asyncio.Protocol):
         while self.clients[peername].connected:
             client_data, server_data = self.buffers[peername].run()
             if client_data:
+                #print('send from server', client_data)
                 self.clients[peername].server_transport.write(client_data)
             if server_data:
+                #print('send from client', server_data)
                 self.clients[peername].transport.write(server_data)
             yield from asyncio.sleep(0.1)
 
     def data_received(self, data):
         # use a task so this is executed async
-        print('C: ', data)
+        #print('C: ', data)
         asyncio.Task(self.send_data(data))
 
 @asyncio.coroutine
