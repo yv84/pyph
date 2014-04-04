@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import struct
+import types
 
 
 class LenL2PacketRcv():
@@ -10,7 +11,7 @@ class LenL2PacketRcv():
         self.data_rcv = b''
         self.l2_packets = []
 
-    def add_packet(self, value):
+    def add_packet(self, value: bytes) -> None:
         """
         get packet from length header
         """
@@ -27,10 +28,10 @@ class LenL2PacketRcv():
             pck = pck[2:]
             self.l2_packets.append(pck)
 
-    def get_packets(self):
+    def get_packets(self) -> list :
         return self.l2_packets
     
-    def pop_packets(self):
+    def pop_packets(self) -> types.GeneratorType :
         while self.l2_packets:
             yield self.l2_packets.pop(0)
 
@@ -40,14 +41,15 @@ class LenL2PacketSend():
         self.name = name
         self.data_send = b''
 
-    def pop_packet(self):
+    def pop_packet(self) -> bytes :
         data_send = self.data_send
         self.data_send = b''
         return data_send
 
-    def add_packet(self, value):
+    def add_packets(self, value: types.GeneratorType) -> None :
         """
         add length header to packet
         """
-        head = struct.pack('<H',len(value)+2)
-        self.data_send = b''.join([self.data_send, head, value])
+        for packet in value:
+            head = struct.pack('<H',len(packet)+2)
+            self.data_send = b''.join([self.data_send, head, packet])

@@ -1,7 +1,7 @@
 # based on http://stackoverflow.com/questions/21295068/how-can-i-create-a-relay-server-using-tulip-asyncio-in-python
 import asyncio
 
-from packet_buffer import Buffer
+from packet_buffer import Packet
 
 class Client(asyncio.Protocol):
 
@@ -39,7 +39,7 @@ class Server(asyncio.Protocol):
             client.peername = peername
             client.server_transport = self.transport
             self.clients[peername] = client
-            self.buffers[peername] = Buffer()
+            self.buffers[peername] = Packet()
             asyncio.Task(self.run(peername))
         self.buffers[peername].update_data('server', data)
 
@@ -53,7 +53,7 @@ class Server(asyncio.Protocol):
             if server_data:
                 #print('send from client', server_data)
                 self.clients[peername].transport.write(server_data)
-            yield from asyncio.sleep(0.1)
+            yield from asyncio.sleep(0.5)
 
     def data_received(self, data):
         # use a task so this is executed async
