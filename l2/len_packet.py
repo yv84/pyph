@@ -11,7 +11,7 @@ class LenL2PacketRcv():
         self.data_rcv = b''
         self.l2_packets = []
 
-    def add_packet(self, value: bytes) -> None:
+    def __add_packet(self, value: bytes) -> None:
         """
         get packet from length header
         """
@@ -31,7 +31,8 @@ class LenL2PacketRcv():
     def get_packets(self) -> list :
         return self.l2_packets
     
-    def pop_packets(self) -> types.GeneratorType :
+    def segmentation_packets(self, to_s_data: bytes) -> types.GeneratorType :
+        self.__add_packet(to_s_data)
         while self.l2_packets:
             yield self.l2_packets.pop(0)
 
