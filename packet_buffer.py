@@ -4,10 +4,9 @@ from l2.key_init import KeyInit, Connect
 class Packet():
     def __init__(self):
         self._data = {'client': b'', 'server': b''} # from side
-        self.client = Connect()
-        self.server = Connect()
+        self.client = Connect('client')
+        self.server = Connect('server')
         self.key_init = KeyInit(self)
-        self.server.command_stack.append(lambda data: self.key_init.key_packet_initialization(data))
 
     def update_data(self, side, data):
         if side == 'client':
@@ -28,5 +27,5 @@ class Packet():
                 gen = cmd(gen)
             to_data = gen
 
-        print(to_c_data, to_s_data)
+        #print(to_c_data, to_s_data)
         return to_c_data, to_s_data # to side

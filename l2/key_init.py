@@ -6,6 +6,7 @@ class KeyInit():
     def __init__(self, packet):
         self.server = packet.server
         self.client = packet.client
+        self.server.command_stack.append(lambda data: self.key_packet_initialization(data))
 
     def key_packet_initialization(self, to_s_data: bytes) -> bytes:
         def key_packet_initialization_remover(data):
@@ -19,18 +20,29 @@ class KeyInit():
                      [self.client, self.server]):
                 stack.append(lambda data: obj.pck_rcv.segmentation_packets(data))
                 stack.append(lambda gen: obj.xor_in.xor(gen))
+                (lambda name : stack.append(lambda gen: packet_print(name, gen)))(obj.name)
                 stack.append(lambda gen: obj.xor_out.xor(gen))
                 stack.append(lambda gen: obj.pck_send.add_packets(gen))
                 stack.append(lambda gen: obj.pck_send.pop_packet())
             self.server.command_stack.append(lambda gen: key_packet_initialization_remover(gen))
+        print(self.client.command_stack)
+        print(self.server.command_stack[1:-1])
         return to_s_data
 
 
 class Connect():
-    def __init__(self):
+    def __init__(self, name):
+        self.name = name
         self._data = b''
         self.command_stack = [] # func(gen: types.GeneratorType) -> types.GeneratorType
         self.pck_rcv = LenL2PacketRcv()
         self.pck_send = LenL2PacketSend()
         self.xor_in = Xor('decode')
         self.xor_out = Xor('code')
+
+
+def packet_print(name, gen):
+    for packet in gen:
+        print("{}: ".format(name), end='')
+        print(packet)
+        yield packet
