@@ -58,7 +58,7 @@ class TestCase(unittest.TestCase):
             'client': {'ip': '127.0.0.1', 'port': self.port1}, # client -> proxy
             'server': {'ip': '127.0.0.1', 'port': self.port2}, # proxy -> server
             }
-        N = 2
+        N = 1
         for d, k in zip([c for c in conn], [conn[c] for c in conn]):
             os.system('fuser -k '+conn[d]['port']+'/tcp')
         def start_server():
@@ -92,12 +92,11 @@ class TestCase(unittest.TestCase):
         # with open(os.path.dirname(__file__) + '/game_log_15122012', 'r') as f:
         message_client = Message('client', log=_log, side_log=_side_log)
         message_server = Message('server', log=_log, side_log=_side_log)
-        self.assertTrue(b''.join(message_client(b'')) == _log[0])
-        self.assertTrue(b''.join(message_server(_log[0])) == _log[1])
-        self.assertTrue(b''.join(message_client(_log[1])) == _log[2])
-        self.assertTrue(b''.join(message_server(_log[2])) == b''.join(_log[3:4+1]))
-        self.assertTrue(b''.join(message_client(b''.join(_log[3:4+1]))) == b''.join(_log[5:6+1]))
-
+        self.assertTrue(b''.join(message_client(b'')) == b''.join(_log[0:2]))
+        self.assertTrue(b''.join(message_server(_log[0+7])) == _log[1+7])
+        self.assertTrue(b''.join(message_client(_log[1+7])) == _log[2+7])
+        self.assertTrue(b''.join(message_server(_log[2+7])) == b''.join(_log[3+7:4+1+7]))
+        self.assertTrue(b''.join(message_client(b''.join(_log[3+7:4+1+7]))) == b''.join(_log[5+7:6+1+7]))
 
 
 def get_exec_path():
