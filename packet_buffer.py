@@ -3,7 +3,6 @@ from l2.key_init import KeyInit, Connect
 
 class Packet():
     def __init__(self):
-        self._data = {'client': b'', 'server': b''} # from side
         self.client = Connect('client')
         self.server = Connect('server')
         self.key_init = KeyInit(self)

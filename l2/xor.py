@@ -28,7 +28,7 @@ class Xor():
     def __set_new_key(pck, key):
         #packet without length header / pck[0]
         # print(pck)
-        if key == b'' and len(pck) > 12 and pck[2] == 46:             # prishel packet inicializacii key
+        if key == b'' and len(pck) > 12 and pck[0] == 46:             # prishel packet inicializacii key
             key = pck[2:10] + b'\xC8\x27\x93\x01\xA1\x6C\x31\x97'     # key v packete + const
         return key
 
