@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 pyph
 ====
 
@@ -29,3 +30,8 @@ $ sudo iptables -t nat -A PREROUTING -p tcp --dst 95.211.196.15 --dport 8081 -j 
 run it, looks like: 
 https://lh6.googleusercontent.com/--El2OfnpnqY/UQfQPDrfjQI/AAAAAAAADTg/mVOsDFi6FIM/s836/run.jpg
 https://lh6.googleusercontent.com/-pDy0LN3h7VY/UQfQO-jaLPI/AAAAAAAADTc/kOl4Yn-wG38/s1103/helloWorld.jpg
+=======
+<pre>
+      python packet hack
+</pre>
+>>>>>>> pyph-master
