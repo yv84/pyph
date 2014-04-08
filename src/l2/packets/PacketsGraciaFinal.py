@@ -3675,6 +3675,7 @@ class c_BR_ProductList():
 #--------------------------------------------------------------------------#D05100
 class c_RequestBookMarkSlotInfo():
   def __init__(self):
+    self.lst, self.pck, self.invoke= [], b'', b'\xD0\x66\x00' ### corrected manually
   def dtype(self, act, data):
     dtype = [('pck_type', 'i1')
               , ('subID', 'i2')
@@ -3683,6 +3684,7 @@ class c_RequestBookMarkSlotInfo():
 #--------------------------------------------------------------------------#D05101
 class c_RequestSaveBookMarkSlot():
   def __init__(self):
+    self.lst, self.pck, self.invoke= [], b'', b'\xD0\x66\x00' ### corrected manually
   def dtype(self, act, data):
     dtype = [('pck_type', 'i1')
               , ('subID', 'i2')
@@ -3691,6 +3693,7 @@ class c_RequestSaveBookMarkSlot():
 #--------------------------------------------------------------------------#D05102
 class c_RequestModifyBookMarkSlot():
   def __init__(self):
+    self.lst, self.pck, self.invoke= [], b'', b'\xD0\x66\x00' ### corrected manually
   def dtype(self, act, data):
     dtype = [('pck_type', 'i1')
               , ('subID', 'i2')
@@ -3699,6 +3702,7 @@ class c_RequestModifyBookMarkSlot():
 #--------------------------------------------------------------------------#D05103
 class c_RequestDeleteBookMarkSlot():
   def __init__(self):
+    self.lst, self.pck, self.invoke= [], b'', b'\xD0\x66\x00' ### corrected manually
   def dtype(self, act, data):
     dtype = [('pck_type', 'i1')
               , ('subID', 'i2')
@@ -9989,9 +9993,10 @@ class s_ExShowAgitInfo():
       s_len = len(self.lst[i])
       yield s_len
       i += 2
-#--------------------------------------------------------------------------#FE17 ExShowFortressSiegeInfo:h(subID)d(0)d(0)d(0)
-class s_FE17 ExShowFortressSiegeInfo():
+#--------------------------------------------------------------------------#FE17
+class s_ExShowFortressSiegeInfo():                          ### corrected manually
   def __init__(self):
+    self.lst, self.pck, self.invoke= [], b'', b'\xD0\x66\x00' 
   def dtype(self, act, data):
     dtype = [('pck_type', 'i1')
               , ('subID', 'i2')
@@ -10099,9 +10104,10 @@ class s_ExAskJoinMPCC():
    i += 1
    s_len = len(self.lst[i])
    yield s_len
-#--------------------------------------------------------------------------#FE1B ExPledgeCrestLarge:h(subID)d(0)d(CrestID)d(CrestSize)
-class s_FE1B ExPledgeCrestLarge():
+#--------------------------------------------------------------------------#FE1B
+class s_ExPledgeCrestLarge():                                 ### corrected manually
   def __init__(self):
+    self.lst, self.pck, self.invoke= [], b'', b'\xFE\x1E\x00' ### corrected manually
   def dtype(self, act, data):
     dtype = [('pck_type', 'i1')
               , ('subID', 'i2')
@@ -12036,7 +12042,7 @@ class Pck_invoke_dict():
    self.Pck_invoke_s[c_RequestAutoSoulShot().invoke] = c_RequestAutoSoulShot()
    self.Pck_invoke_s[c_RequestExEnchantSkillInfo().invoke] = c_RequestExEnchantSkillInfo()
    self.Pck_invoke_s[c_RequestExEnchantSkill().invoke] = c_RequestExEnchantSkill()
-   self.Pck_invoke_s[c_RequestExPledgeCrestLarge().invoke] = c_RequestExPledgeCrestLarge()
+   self.Pck_invoke_s[c_RequestExPledgeCrestLarge().invoke] = c_RequestExPledgeCrestLarge()  ### corrected manually
    self.Pck_invoke_s[c_RequestExSetPledgeCrestLarge().invoke] = c_RequestExSetPledgeCrestLarge()
    self.Pck_invoke_s[c_RequestPledgeSetAcademyMaster().invoke] = c_RequestPledgeSetAcademyMaster()
    self.Pck_invoke_s[c_RequestPledgePowerGradeList().invoke] = c_RequestPledgePowerGradeList()
@@ -12299,11 +12305,11 @@ class Pck_invoke_dict():
    self.Pck_invoke_c[s_ExShowCastleInfo().invoke] = s_ExShowCastleInfo()
    self.Pck_invoke_c[s_ExShowFortressInfo().invoke] = s_ExShowFortressInfo()
    self.Pck_invoke_c[s_ExShowAgitInfo().invoke] = s_ExShowAgitInfo()
-   self.Pck_invoke_c[s_FE17 ExShowFortressSiegeInfo().invoke] = s_FE17 ExShowFortressSiegeInfo()
+   self.Pck_invoke_c[s_ExShowFortressSiegeInfo().invoke] = s_ExShowFortressSiegeInfo()
    self.Pck_invoke_c[s_ExPartyPetWindowAdd().invoke] = s_ExPartyPetWindowAdd()
    self.Pck_invoke_c[s_ExPartyPetWindowUpdate().invoke] = s_ExPartyPetWindowUpdate()
    self.Pck_invoke_c[s_ExAskJoinMPCC().invoke] = s_ExAskJoinMPCC()
-   self.Pck_invoke_c[s_FE1B ExPledgeCrestLarge().invoke] = s_FE1B ExPledgeCrestLarge()
+   self.Pck_invoke_c[s_ExPledgeCrestLarge().invoke] = s_ExPledgeCrestLarge()
    self.Pck_invoke_c[s_ExFishingStart().invoke] = s_ExFishingStart()
    self.Pck_invoke_c[s_ExFishingEnd().invoke] = s_ExFishingEnd()
    self.Pck_invoke_c[s_ExShowQuestInfo().invoke] = s_ExShowQuestInfo()

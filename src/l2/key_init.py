@@ -1,5 +1,6 @@
 from .len_packet import LenL2PacketRcv, LenL2PacketSend
 from .xor import Xor
+from .packets.PacketsGraciaFinal import Pck_invoke_dict
 
 
 class KeyInit():
@@ -7,6 +8,7 @@ class KeyInit():
         self.server = packet.server
         self.client = packet.client
         self.server.command_stack.append(lambda data: self.key_packet_initialization(data))
+        self.gameapi = Pck_invoke_dict()
 
     def key_packet_initialization(self, to_s_data: bytes) -> bytes:
         def key_packet_initialization_remover(to_s_data):

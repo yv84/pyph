@@ -64,7 +64,7 @@ class TestCase(unittest.TestCase):
         def start_server():
             os.system('python3 testing/tcp_echo.py --server --port 9999 > /dev/null')
         def start_proxy():
-            os.system('python3 proxy.py')
+            os.system('python3 src/proxy.py')
         def start_client():
             os.system('python3 testing/tcp_echo.py --client --port 8888 > /dev/null')
         processes = [Process(target=start_server, args=()),]
