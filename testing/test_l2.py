@@ -36,6 +36,27 @@ class TestCase(unittest.TestCase):
         send.add_packets([b'123456789', b'123'])
         self.assertTrue(send.pop_packet() == b'\x0b\x00123456789\x05\x00123')
 
+    def test_xor_init(self):
+        from src.l2.xor import Xor
+        xor = Xor('decode')
+        pck = [b'.\x01\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\x01\x00\x00\x00\x19\x00\x00\x00\x00\x00\x00\x00\x00',]
+        key_xor = b"\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\xc8'\x93\x01\xa1l1\x97"
+        self.assertTrue(list(xor.xor(pck)) == pck)
+        self.assertTrue(xor.key == key_xor)
+        self.assertTrue(list(xor.xor([b'123456789101112'])) == \
+            [b'\x98\x93\x0e\x8c\x18\x81\xde\xaf\xc9/\x92\x00\xa1l2'])
+        self.assertFalse(xor.key == key_xor)
+        self.assertTrue(xor.key == b"\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\xd7'\x93\x01\xa1l1\x97")
+
+        xor = Xor('code')
+        self.assertTrue(list(xor.xor(pck)) == pck)
+        self.assertTrue(xor.key == key_xor)
+        self.assertTrue(list(xor.xor([b'\x98\x93\x0e\x8c\x18\x81\xde\xaf\xc9/\x92\x00\xa1l2'])) == \
+            [b'123456789101112'])
+        self.assertFalse(xor.key == key_xor)
+        self.assertTrue(xor.key == b"\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\xd7'\x93\x01\xa1l1\x97")
+
+
 
 def get_exec_path():
         try:
