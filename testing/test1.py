@@ -72,8 +72,9 @@ class TestCase(unittest.TestCase):
         for i in range(N):
             processes.append(Process(target=start_client, args=()))
         processes[0].start()
-        time.sleep(0.1)
-        for p in processes[1:]:
+        processes[1].start()
+        time.sleep(1)
+        for p in processes[2:]:
             p.start()
             time.sleep(0.1)
         time.sleep(10)
