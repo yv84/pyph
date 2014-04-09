@@ -27,9 +27,6 @@ class LenL2PacketRcv():
             # remove header from packet
             pck = pck[2:]
             self.l2_packets.append(pck)
-
-    def get_packets(self) -> list :
-        return self.l2_packets
     
     def segmentation_packets(self, to_s_data: bytes) -> types.GeneratorType :
         self.__add_packet(to_s_data)
