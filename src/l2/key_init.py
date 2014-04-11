@@ -61,5 +61,6 @@ def packet_print_dtype(name, gameapi, gen):
             yield pack
         except:
             print('error parsing packet')
-            #print(packet)
+            print("{}: ".format(name), end='')
+            print(packet)
             yield packet
