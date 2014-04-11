@@ -1,6 +1,6 @@
 from .len_packet import LenL2PacketRcv, LenL2PacketSend
 from .xor import Xor
-from .gs_l2_packet import gs_l2_packet
+from .gs_l2_packet import gs_l2_packet, PacketError
 
 
 class KeyInit():
@@ -59,7 +59,7 @@ def packet_print_dtype(name, gameapi, gen):
             pack = gameapi.pack(unpack, side)
             print(pack)
             yield pack
-        except:
+        except PacketError:
             print('error parsing packet')
             print("{}: ".format(name), end='')
             print(packet)

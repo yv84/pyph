@@ -4,6 +4,13 @@ import binascii
 from .packets.PacketsGraciaFinal import Pck_invoke_dict
 
 
+class PacketError(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
+
+
 class gs_l2_packet():
     def __init__(self):
         gameapi = Pck_invoke_dict()
@@ -20,15 +27,18 @@ class gs_l2_packet():
             else: return 0
         l = get_packet_head()
         if l:
-            dtype = self.gameapi[side][pck[:l]].dtype(1,pck)  # 1 - unpack
+            try:
+                dtype = self.gameapi[side][pck[:l]].dtype(1,pck)  # 1 - unpack
+            except:
+                raise PacketError('unpack error: cant get dtype')
             pck_np_array = numpy.zeros(1,dtype)
             if len(pck) == pck_np_array.dtype.itemsize : 
                 pck_np_array[:] = pck
             else:
-                raise Exception('unpack error: wrong dtype')
+                raise PacketError('unpack error: wrong dtype')
             return pck_np_array
         else: 
-            raise Exception("unpack error: unknown packet header")
+            raise PacketError("unpack error: unknown packet header")
 
     def pack(self, tpl, side):
         """na vxode list - na vixode packet
@@ -56,17 +66,17 @@ class gs_l2_packet():
                 try: 
                     pck_byte_array[:] = tpl
                 except: 
-                    raise Exception('pack error: wrong dtype')
+                    raise PacketError('pack error: wrong dtype')
                     return b''
                 return pck_byte_array.tostring()
             else: 
-                raise Exception("pack error: unknown packet header")
+                raise PacketError("pack error: unknown packet header")
 
         if isinstance(tpl, numpy.ndarray):
             return tpl.tostring()
         elif isinstance(i, tuple) or isinstance(i, list):   
             return islst(flat(tpl), get_packet_head(tpl))
         else:
-            raise Exception('wrong type of agrument')
+            raise PacketError('wrong type of agrument')
 
 
