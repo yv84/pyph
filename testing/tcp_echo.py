@@ -3,6 +3,7 @@
 import argparse
 import asyncio
 import sys
+import os
 try:
     import signal
 except ImportError:
@@ -11,7 +12,12 @@ except ImportError:
 
 from msg_log import Message
 from game_log import log
-log, side_log = Message.game_log_from_import(log())
+
+
+f = os.path.join(os.path.dirname(__file__), 'l2', 'game_log_with_xor_len.log')
+pattern = {'c': b'client:', 's': b'server:', 'start': 10, 'end': -2}
+log = Message.get_log_from_file(f, pattern)
+log, side_log = Message.game_log_from_import(log)
 
 
 class EchoServer(asyncio.Protocol):

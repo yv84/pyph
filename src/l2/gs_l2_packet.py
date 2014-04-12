@@ -47,7 +47,7 @@ class gs_l2_packet():
             lst = []
             for i in tpl:
                 if isinstance(i, tuple) or isinstance(i, list):
-                    lst.extend(x(i))
+                    lst.extend(flat(i))
                 else:
                     lst.append(i)
             return lst
@@ -63,6 +63,7 @@ class gs_l2_packet():
             if l:
                 dtype = self.gameapi[side][l].dtype(2, tpl) #при приеме функции list* # 2 -pack
                 pck_byte_array = numpy.zeros(1,dtype)
+                #d = numpy.array(data, dtype=dt)
                 try: 
                     pck_byte_array[:] = tpl
                 except: 

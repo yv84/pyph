@@ -18,13 +18,10 @@ class Packet():
     def run(self):
         to_c_data, to_s_data = self.client._data, self.server._data
         self.client._data, self.server._data = b'', b''
-
         for stack, to_data in zip([self.client.command_stack, self.server.command_stack],
                     [to_s_data, to_c_data]):
             gen = to_data
             for cmd in stack:
                 gen = cmd(gen)
             to_data = gen
-
-        #print(to_c_data, to_s_data)
         return to_c_data, to_s_data # to side

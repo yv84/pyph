@@ -53,7 +53,7 @@ class Server(asyncio.Protocol):
             if server_data:
                 #print('send from client', server_data)
                 self.clients[peername].transport.write(server_data)
-            yield from asyncio.sleep(0.5)
+            yield from asyncio.sleep(0.1)
 
     def data_received(self, data):
         # use a task so this is executed async

@@ -1,3 +1,5 @@
+import numpy
+
 from .len_packet import LenL2PacketRcv, LenL2PacketSend
 from .xor import Xor
 from .gs_l2_packet import gs_l2_packet, PacketError
@@ -17,16 +19,16 @@ class KeyInit():
             self.server.command_stack.pop(0) # key_packet_initialization
             self.client.xor_in = self.client.xor_out = self.server.xor_in
             return to_s_data
-
+        #print(to_s_data)
         if to_s_data.startswith(b'\x19\x00.'):
             for stack, obj in zip([self.client.command_stack, self.server.command_stack],
                      [self.client, self.server]):
                 stack.append(lambda data: obj.pck_rcv.segmentation_packets(data))
-                # stack.append(lambda gen: obj.xor_in.xor(gen))
+                stack.append(lambda gen: obj.xor_in.xor(gen))
                 #(lambda name : stack.append(lambda gen: packet_print(name, gen)))(obj.name)
                 (lambda name, gameapi : stack.append(lambda gen: \
                     packet_print_dtype(name, gameapi, gen)))(obj.name, self.gameapi)
-                # stack.append(lambda gen: obj.xor_out.xor(gen))
+                stack.append(lambda gen: obj.xor_out.xor(gen))
                 stack.append(lambda gen: obj.pck_send.add_packets(gen))
                 stack.append(lambda gen: obj.pck_send.pop_packet()) # -> bytes(data)
             self.server.command_stack.append(lambda data: key_packet_initialization_remover(data))
@@ -57,7 +59,11 @@ def packet_print_dtype(name, gameapi, gen):
         try:
             unpack = gameapi.unpack(packet, side)
             pack = gameapi.pack(unpack, side)
-            print(pack)
+            if isinstance(unpack, numpy.ndarray):
+                print("{ ", end='')
+                for i, j in zip(unpack.item(), unpack.dtype.fields):
+                    print(j, "=", i, end='; ')
+                print("} ")
             yield pack
         except PacketError:
             print('error parsing packet')

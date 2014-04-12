@@ -1,3 +1,6 @@
+from repr_to_bytes import repr_to_bytes
+
+
 class Message():
     def __init__(self, side, log=None, side_log=None):
         self.side = side
@@ -53,7 +56,6 @@ class Message():
 
     @staticmethod
     def get_log_from_file(f, pattern):
-        from .repr_to_bytes import repr_to_bytes
         log = []
         with open(f, 'rb') as f:
             for line in f:
