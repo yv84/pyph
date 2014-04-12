@@ -33,3 +33,33 @@ class Message():
         if self.msg in self.pin_pong:
             yield self.pin_pong[self.msg]
             self.msg = b''
+
+    @staticmethod
+    def game_log_from_import(log):
+        _log = []
+        _side_log = {'client': [], 'server': []}
+        i = 0
+        while log:
+            if log and log[0].get('C') != None:
+                _side_log['client'].append(i)
+                _log.append(log.pop(0)['C'])
+            elif log and log[0].get('S') != None:
+                _side_log['server'].append(i)
+                _log.append(log.pop(0)['S'])
+            else:
+                raise Exception("S/C key wrong")
+            i += 1
+        return (_log, _side_log,)
+
+    @staticmethod
+    def get_log_from_file(f, pattern):
+        from .repr_to_bytes import repr_to_bytes
+        log = []
+        with open(f, 'rb') as f:
+            for line in f:
+                line = b''.join(repr_to_bytes(line))
+                if line[0:len(pattern['c'])] == pattern['c']:
+                    log.append({"C": line[pattern['start']:pattern['end']]})
+                elif line[0:len(pattern['s'])] == pattern['s']:
+                    log.append({"S": line[pattern['start']:pattern['end']]})
+        return log

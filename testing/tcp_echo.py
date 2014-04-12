@@ -8,10 +8,11 @@ try:
 except ImportError:
     signal = None
 
-from msg_log import Message
-from game_log import game_log
 
-log, side_log = game_log()
+from msg_log import Message
+from game_log import log
+log, side_log = Message.game_log_from_import(log())
+
 
 class EchoServer(asyncio.Protocol):
 

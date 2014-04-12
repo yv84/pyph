@@ -22,9 +22,9 @@ class TestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
+    @unittest.skip("!")
     def testSimple(self):
         self.assertTrue(True)
-
 
     def testEchoServer(self):
         self.port1 = '9999'
@@ -48,8 +48,6 @@ class TestCase(unittest.TestCase):
         for p in processes:
             p.terminate()
             p.join()
-
-
 
     def testProxyServer(self):
         self.port1 = '9999'
@@ -84,12 +82,10 @@ class TestCase(unittest.TestCase):
             p.terminate()
             p.join()
 
-
-
     def testMessageClass(self):
         from testing.msg_log import Message
-        from testing.game_log import game_log
-        _log, _side_log = game_log()
+        from testing.game_log import log
+        _log, _side_log = Message.game_log_from_import(log())
         # with open(os.path.dirname(__file__) + '/game_log_15122012', 'r') as f:
         message_client = Message('client', log=_log, side_log=_side_log)
         message_server = Message('server', log=_log, side_log=_side_log)
@@ -99,6 +95,14 @@ class TestCase(unittest.TestCase):
         self.assertTrue(b''.join(message_server(_log[2+7])) == b''.join(_log[3+7:4+1+7]))
         self.assertTrue(b''.join(message_client(b''.join(_log[3+7:4+1+7]))) == b''.join(_log[5+7:6+1+7]))
 
+    @unittest.skip("!")
+    def test_repr_to_bytes(self):
+        from testing.msg_log import Message
+        f = os.path.dirname(__file__) + '/game_log_15122012'
+        pattern = {'c': b'C-', 's': b'S-', 'start': 6, 'end': -2}
+        log = Message.get_log_from_file(f, pattern)
+        print(log)
+
 
 def get_exec_path():
         try:
@@ -106,6 +110,7 @@ def get_exec_path():
         except:
             sFile = sys.executable
         return os.path.dirname(sFile)
+
 
 if __name__ == '__main__':
     print(get_exec_path())
