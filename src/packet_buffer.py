@@ -1,4 +1,5 @@
-from l2.key_init import KeyInit, Connect
+#from l2.key_init import KeyInit, Connect
+from aa.key_init import KeyInit, Connect
         
 
 class Packet():
