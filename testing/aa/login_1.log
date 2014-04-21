@@ -167,8 +167,8 @@ proxy client connection lost.
 
 
 proxy server connectionMade
-c->\n\x00\x01\x00\x15\xfc\x01\x00\xeew|\x1c'
-s->\x03\x00\x01\x00\x00'
+50: c->\n\x00\x01\x00\x15\xfc\x01\x00\xeew|\x1c'
+50: s->\x03\x00\x01\x00\x00'
 proxy server connection lost.
 proxy client connection lost.
 

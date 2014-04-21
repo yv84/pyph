@@ -21,6 +21,7 @@ class KeyInit():
                      [self.client, self.server]):
                 stack.append(lambda data: obj.pck_rcv.segmentation_packets(data))
                 (lambda name : stack.append(lambda gen: packet_print(name, gen)))(obj.name)
+                # if packet[1:2] in (b'\x03', b'\x04'): inflate(packet) -> deflate(packet)
                 # (lambda name, gameapi : stack.append(lambda gen: \
                 #     packet_print_dtype(name, gameapi, gen)))(obj.name, self.gameapi)
                 stack.append(lambda gen: obj.pck_send.add_packets(gen))
@@ -39,8 +40,9 @@ class Connect():
 
 def packet_print(name, gen):
     for packet in gen:
-        print("{}: ".format(name), end='')
-        print(packet)
+        if packet[1:2] == b'\x04': # нужны примеры пакетов \x03 \x04
+            print("{}: ".format(name), end='')
+            print(packet)
         yield packet
 
 def packet_print_dtype(name, gameapi, gen):

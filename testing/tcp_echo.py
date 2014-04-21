@@ -18,7 +18,7 @@ from game_log import log
 #f = os.path.join(os.path.dirname(__file__), 'l2', 'game_log_with_xor_len.log')
 #pattern = {'c': b'client:', 's': b'server:', 'start': 10, 'end': -2}
 #aa
-f = os.path.join(os.path.dirname(__file__), 'aa', 'login_1.log')
+f = os.path.join(os.path.dirname(__file__), 'aa', 'game_1.log')
 pattern = {'c': b"c->", 's': b"s->", 'start': 3, 'end': -2}
 # ---------------------------------------
 log = Message.get_log_from_file(f, pattern)

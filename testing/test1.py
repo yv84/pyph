@@ -26,6 +26,7 @@ class TestCase(unittest.TestCase):
     def testSimple(self):
         self.assertTrue(True)
 
+    @unittest.skip('-')
     def testEchoServer(self):
         self.port1 = '9999'
         conn = {'ip': '127.0.0.1', 'port': self.port1}

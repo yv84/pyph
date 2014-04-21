@@ -1,4 +1,7 @@
 # based on http://stackoverflow.com/questions/21295068/how-can-i-create-a-relay-server-using-tulip-asyncio-in-python
+import sys
+
+assert sys.version >= '3.3', 'Please use Python 3.3 or higher.'
 import asyncio
 
 from packet_buffer import Packet
