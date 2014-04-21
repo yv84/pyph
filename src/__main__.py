@@ -1,4 +1,4 @@
-from proxy.run import run
+from run import run
 
 def main():
     run()

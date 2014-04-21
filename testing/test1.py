@@ -13,7 +13,6 @@ from subprocess import Popen
 from multiprocessing import Process, Manager, JoinableQueue
 
 
-
 class TestCase(unittest.TestCase):
 
     def setUp(self):
@@ -68,7 +67,10 @@ class TestCase(unittest.TestCase):
         def start_client():
             os.system('python3 testing/tcp_echo.py --client --port 8888 > /dev/null')
         processes = [Process(target=start_server, args=()),]
-        processes.append(Process(target=start_proxy, args=()))
+        #processes.append(Process(target=start_proxy, args=()))
+        #from src.l2.xor import Xor
+        import __init__
+        processes.append(Process(target=__init__.main, args=()),)
         for i in range(N):
             processes.append(Process(target=start_client, args=()))
         processes[0].start()
@@ -117,4 +119,6 @@ def get_exec_path():
 
 if __name__ == '__main__':
     print(get_exec_path())
-    unittest.main()
+    suite = unittest.defaultTestLoader.loadTestsFromTestCase(TestCase)
+    unittest.TextTestRunner().run(suite)
+    #unittest.main()

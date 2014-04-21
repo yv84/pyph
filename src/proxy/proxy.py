@@ -2,7 +2,7 @@
 
 import asyncio
 
-from packet_buffer import Packet
+from .packet_buffer import Packet
 
 
 class Client(asyncio.Protocol):
@@ -15,15 +15,18 @@ class Client(asyncio.Protocol):
     def data_received(self, data):
         # forward data to the server
         self.server.buffers[self.peername].update_data('client', data)
-        #print('S: ', data)
 
     def connection_lost(self, *args):
         self.connected = False
 
 
 class Server(asyncio.Protocol):
-    clients = {}
-    buffers = {}
+    def __init__(self, loop):
+        self.loop = loop
+
+        self.clients = {}
+        self.buffers = {}
+    
     def connection_made(self, transport):
         # save the transport
         self.transport = transport
@@ -40,9 +43,7 @@ class Server(asyncio.Protocol):
         # create a client if peername is not known or the client disconnect
         if client is None or not client.connected:
             loop = asyncio.get_event_loop()
-            protocol, client = yield from create_client(loop)
-            # protocol, client = yield from loop.c`reate_connection(
-            #     Client, '127.0.0.1', 9999)
+            protocol, client = yield from create_client(self.loop)
             client.server = self
             client.peername = peername
             client.server_transport = self.transport
@@ -64,12 +65,14 @@ class Server(asyncio.Protocol):
             yield from asyncio.sleep(0.1)
 
 
+
 create_client = lambda loop: loop.create_connection(Client, '127.0.0.1', 9999)
-create_server = lambda loop: loop.create_server(Server, '127.0.0.1', 8888)
+create_server = lambda loop, server: loop.create_server(lambda : server, '127.0.0.1', 8888)
 
 @asyncio.coroutine
 def init_proxy(loop):
     # use a coroutine to use yield from and get the async result of
-    server = yield from create_server(loop)
+    server = Server(loop)
+    server = yield from create_server(loop, server)
 
 
