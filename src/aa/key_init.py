@@ -40,7 +40,7 @@ class Connect():
 
 def packet_print(name, gen):
     for packet in gen:
-        if packet[1:2] == b'\x04': # нужны примеры пакетов \x03 \x04
+        if packet[1:2] == b'\x02': # нужны примеры пакетов \x03 \x04
             print("{}: ".format(name), end='')
             print(packet)
         yield packet

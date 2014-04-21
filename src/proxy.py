@@ -5,6 +5,7 @@ assert sys.version >= '3.3', 'Please use Python 3.3 or higher.'
 import asyncio
 
 from packet_buffer import Packet
+from web_server import init_web_server
 
 class Client(asyncio.Protocol):
 
@@ -74,6 +75,7 @@ server = None
 
 # main task to initialize everything
 asyncio.Task(initialize(loop))
+asyncio.Task(init_web_server(loop))
 
 # run
 try:
