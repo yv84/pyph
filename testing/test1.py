@@ -60,10 +60,11 @@ class TestCase(unittest.TestCase):
         N = 1
         for d, k in zip([c for c in conn], [conn[c] for c in conn]):
             os.system('fuser -k '+conn[d]['port']+'/tcp')
+        os.system('fuser -k '+'5000'+'/tcp') # web
         def start_server():
             os.system('python3 testing/tcp_echo.py --server --port 9999 > /dev/null')
         def start_proxy():
-            os.system('python3 src/proxy.py')
+            os.system('python3 src/run.py')
         def start_client():
             os.system('python3 testing/tcp_echo.py --client --port 8888 > /dev/null')
         processes = [Process(target=start_server, args=()),]
@@ -76,7 +77,7 @@ class TestCase(unittest.TestCase):
         for p in processes[2:]:
             p.start()
             time.sleep(0.1)
-        time.sleep(10)
+        time.sleep(15)
         
         processes.reverse()
         for p in processes:

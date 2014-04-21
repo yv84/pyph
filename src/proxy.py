@@ -1,11 +1,9 @@
 # based on http://stackoverflow.com/questions/21295068/how-can-i-create-a-relay-server-using-tulip-asyncio-in-python
-import sys
 
-assert sys.version >= '3.3', 'Please use Python 3.3 or higher.'
 import asyncio
 
 from packet_buffer import Packet
-from web_server import init_web_server
+
 
 class Client(asyncio.Protocol):
 
@@ -30,6 +28,10 @@ class Server(asyncio.Protocol):
         # save the transport
         self.transport = transport
 
+    def data_received(self, data):
+        # use a task so this is executed async
+        asyncio.Task(self.send_data(data))
+
     @asyncio.coroutine
     def send_data(self, data):
         # get a client by its peername
@@ -37,8 +39,10 @@ class Server(asyncio.Protocol):
         client = self.clients.get(peername)
         # create a client if peername is not known or the client disconnect
         if client is None or not client.connected:
-            protocol, client = yield from loop.create_connection(
-                Client, '127.0.0.1', 9999)
+            loop = asyncio.get_event_loop()
+            protocol, client = yield from create_client(loop)
+            # protocol, client = yield from loop.c`reate_connection(
+            #     Client, '127.0.0.1', 9999)
             client.server = self
             client.peername = peername
             client.server_transport = self.transport
@@ -59,30 +63,13 @@ class Server(asyncio.Protocol):
                 self.clients[peername].transport.write(server_data)
             yield from asyncio.sleep(0.1)
 
-    def data_received(self, data):
-        # use a task so this is executed async
-        #print('C: ', data)
-        asyncio.Task(self.send_data(data))
+
+create_client = lambda loop: loop.create_connection(Client, '127.0.0.1', 9999)
+create_server = lambda loop: loop.create_server(Server, '127.0.0.1', 8888)
 
 @asyncio.coroutine
-def initialize(loop):
+def init_proxy(loop):
     # use a coroutine to use yield from and get the async result of
-    # create_server
-    server = yield from loop.create_server(Server, '127.0.0.1', 8888)
+    server = yield from create_server(loop)
 
-loop = asyncio.get_event_loop()
-server = None
-
-# main task to initialize everything
-asyncio.Task(initialize(loop))
-asyncio.Task(init_web_server(loop))
-
-# run
-try:
-    loop.run_forever()
-except KeyboardInterrupt:
-    print("exit")
-finally:
-    server.close()
-    loop.close()
 
