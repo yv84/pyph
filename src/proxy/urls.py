@@ -3,13 +3,13 @@ import asyncio
 from flask import Flask, render_template
 
 
-def flask_route(loop):
+def flask_route(loop, manager):
     app = Flask(__name__)
     app.debug = True
 
     @app.route('/')
     def index():
-        response = '<h1>Index page</h1><a href="/async">async</a>, <a href="/demo">async-demo</a>, <a href="/flask">flask</a>' + '<p>' + repr(loop) + '</p>' + '<p>' + repr(app) + '</p>'
+        response = '<h1>Index page</h1><a href="/async">async</a>, <a href="/demo">async-demo</a>, <a href="/flask">flask</a>' + '<p>' + repr(loop) + '</p>' + '<p>' + repr(app) + '</p>' + repr(manager.data)
         print(response)
         return response
      

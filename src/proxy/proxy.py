@@ -21,9 +21,9 @@ class Client(asyncio.Protocol):
 
 
 class Server(asyncio.Protocol):
-    def __init__(self, loop):
+    def __init__(self, loop, manager):
         self.loop = loop
-
+        self.manager = manager
         self.clients = {}
         self.buffers = {}
     
@@ -39,6 +39,7 @@ class Server(asyncio.Protocol):
     def send_data(self, data):
         # get a client by its peername
         peername = self.transport.get_extra_info('peername')
+        self.manager.data = peername
         client = self.clients.get(peername)
         # create a client if peername is not known or the client disconnect
         if client is None or not client.connected:
@@ -70,9 +71,9 @@ create_client = lambda loop: loop.create_connection(Client, '127.0.0.1', 9999)
 create_server = lambda loop, server: loop.create_server(lambda : server, '127.0.0.1', 8888)
 
 @asyncio.coroutine
-def init_proxy(loop):
+def init_proxy(loop, manager):
     # use a coroutine to use yield from and get the async result of
-    server = Server(loop)
+    server = Server(loop, manager)
     server = yield from create_server(loop, server)
 
 

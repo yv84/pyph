@@ -9,17 +9,21 @@ from .proxy import init_proxy
 from .web_server import init_web_server
 from .urls import flask_route
 
+from .manager import Manager
+
 
 def run():
     loop = asyncio.get_event_loop()
     server = None
 
     # main task to initialize everything
-    task1 = asyncio.Task(init_proxy(loop))
+    manager = Manager()
     
-    flask_app = flask_route(loop)
+    task1 = asyncio.Task(init_proxy(loop, manager))
+    
+    flask_app = flask_route(loop, manager)
     task2 = asyncio.Task(init_web_server(flask_app, loop))
-    
+
     # run
     try:
         server = loop.run_forever()
