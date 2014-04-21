@@ -3,8 +3,11 @@ import sys
 assert sys.version >= '3.3', 'Please use Python 3.3 or higher.'
 import asyncio
 
+from flask import Flask
+
 from .proxy import init_proxy
 from .web_server import init_web_server
+from .urls import flask_route
 
 
 def run():
@@ -13,7 +16,10 @@ def run():
 
     # main task to initialize everything
     task1 = asyncio.Task(init_proxy(loop))
-    task2 = asyncio.Task(init_web_server(loop))
+    
+    flask_app = flask_route(loop)
+    task2 = asyncio.Task(init_web_server(flask_app, loop))
+    
     # run
     try:
         server = loop.run_forever()

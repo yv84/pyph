@@ -79,7 +79,7 @@ class TestCase(unittest.TestCase):
         for p in processes[2:]:
             p.start()
             time.sleep(0.1)
-        time.sleep(15)
+        time.sleep(25)
         
         processes.reverse()
         for p in processes:
