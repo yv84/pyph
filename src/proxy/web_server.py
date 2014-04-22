@@ -1,8 +1,9 @@
-#!/usr/bin/env python3.4
- 
+# https://www.gitorious.org/aiohttp-werkzeug-demo/aiohttp-werkzeug-demo/source/a8fbc257805d927281bf75ea338d6dae321df2b2:demo.py#L60 
 import asyncio
+
 import aiohttp.wsgi 
  
+
 @asyncio.coroutine
 def init_web_server(app, loop):
     # use a coroutine to use yield from and get the async result of

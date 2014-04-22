@@ -7,6 +7,7 @@ class KeyInit():
     def __init__(self, packet):
         self.server = packet.server
         self.client = packet.client
+        self.manager = packet.manager
         self.client.command_stack.append(lambda data: self.key_packet_initialization(data))
         #self.gameapi = gs_l2_packet()
 
@@ -20,6 +21,7 @@ class KeyInit():
             for stack, obj in zip([self.client.command_stack, self.server.command_stack],
                      [self.client, self.server]):
                 stack.append(lambda data: obj.pck_rcv.segmentation_packets(data))
+                (lambda obj : stack.append(lambda gen: set_manager_data(obj, gen)))(self.manager)
                 (lambda name : stack.append(lambda gen: packet_print(name, gen)))(obj.name)
                 # if packet[1:2] in (b'\x03', b'\x04'): inflate(packet) -> deflate(packet)
                 # (lambda name, gameapi : stack.append(lambda gen: \
@@ -38,9 +40,16 @@ class Connect():
         self.pck_rcv = LenL2PacketRcv()
         self.pck_send = LenL2PacketSend()
 
-def packet_print(name, gen):
+
+def set_manager_data(obj, gen):
     for packet in gen:
-        if packet[1:2] == b'\x02': # нужны примеры пакетов \x03 \x04
+        obj.data = ''.join([obj.data, str(packet)])
+        yield packet
+
+def packet_print(name, gen):
+
+    for packet in gen:
+        if packet[1:2] == b'\x05': # нужны примеры пакетов \x03 \x04
             print("{}: ".format(name), end='')
             print(packet)
         yield packet

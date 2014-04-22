@@ -4,9 +4,10 @@ from ..aa.key_init import KeyInit, Connect # testsuite
         
 
 class Packet():
-    def __init__(self):
+    def __init__(self, manager):
         self.client = Connect('client')
         self.server = Connect('server')
+        self.manager = manager
         self.key_init = KeyInit(self)
 
     def update_data(self, side, data):

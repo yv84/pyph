@@ -9,6 +9,7 @@ class KeyInit():
     def __init__(self, packet):
         self.server = packet.server
         self.client = packet.client
+        self.manager = packet.manager
         self.server.command_stack.append(lambda data: self.key_packet_initialization(data))
         self.gameapi = gs_l2_packet()
 

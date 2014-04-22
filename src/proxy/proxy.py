@@ -39,17 +39,17 @@ class Server(asyncio.Protocol):
     def send_data(self, data):
         # get a client by its peername
         peername = self.transport.get_extra_info('peername')
-        self.manager.data = peername
         client = self.clients.get(peername)
         # create a client if peername is not known or the client disconnect
         if client is None or not client.connected:
+            self.manager.data = repr(peername)
             loop = asyncio.get_event_loop()
             protocol, client = yield from create_client(self.loop)
             client.server = self
             client.peername = peername
             client.server_transport = self.transport
             self.clients[peername] = client
-            self.buffers[peername] = Packet()
+            self.buffers[peername] = Packet(self.manager)
             asyncio.Task(self.run(peername))
         self.buffers[peername].update_data('server', data)
 
