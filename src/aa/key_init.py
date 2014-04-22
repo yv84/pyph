@@ -43,7 +43,7 @@ class Connect():
 
 def set_manager_data(obj, gen):
     for packet in gen:
-        obj.data = ''.join([obj.data, str(packet)])
+        obj.packets.append(packet)
         yield packet
 
 def packet_print(name, gen):
