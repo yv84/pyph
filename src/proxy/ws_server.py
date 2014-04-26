@@ -3,6 +3,7 @@
 import asyncio
 import websockets
 
+
 @asyncio.coroutine
 def hello(websocket, path):
     name = yield from websocket.recv()
@@ -11,20 +12,19 @@ def hello(websocket, path):
     print("s:> {}".format(greeting))
     yield from websocket.send(greeting)
 
+
 # @app.route('/')
 @asyncio.coroutine
-def  index(websocket, path):
-    response = '<h1>Index page</h1><a href="/async">async</a>, <a href="/demo">async-demo</a>, <a href="/flask">flask</a>'
-#       '<p>' + repr(loop) + '</p>' + '<p>' + repr(app) + '</p>' + \
-#       '<p>' + repr(manager.data) + '</p>' +\
-#       repr(b''.join([b'<p><ol><li>',
-#           (b'</li><li>'.join(manager.packets)),
-#           b'</li></ol></p>']))
-    print("s:> {}".format(response))
-    yield from websocket.send(response)
+def index(websocket, path):
+    while True:
+        response = repr(websocket)[1:-1] + ' | ' + repr(path)
+        print("s:> {}".format(response))
+        yield from websocket.send(response)
+        yield from asyncio.sleep(1)
+
 
 @asyncio.coroutine
-def site(websocket, path):
+def ws_handler(websocket, path):
     print(path, end=' , ')
     print(websocket)
     if path == ('/'):
@@ -34,5 +34,4 @@ def site(websocket, path):
 
 
 def websocket_serve(loop):
-    start_server = yield from websockets.serve(site, 'localhost', 8765)
-
+    start_server = yield from websockets.serve(ws_handler, '0.0.0.0', 8765)
