@@ -10,6 +10,7 @@ from .web_server import init_web_server
 from .urls import flask_route
 
 from .manager import Manager
+from .ws_server import websocket_serve
 
 
 def run():
@@ -19,10 +20,12 @@ def run():
     # main task to initialize everything
     manager = Manager()
     
-    task1 = asyncio.Task(init_proxy(loop, manager))
+    task_game_proxy = asyncio.Task(init_proxy(loop, manager))
     
     flask_app = flask_route(loop, manager)
     task2 = asyncio.Task(init_web_server(flask_app, loop))
+
+    task_ws = asyncio.Task(websocket_serve(loop))
 
     # run
     try:
@@ -32,8 +35,9 @@ def run():
     except:
         print("killed")
     finally:
-        task1.close()
+        task_game_proxy.close()
         task2.close()
+        task_ws.close()
         loop.close()
 
 if __name__ == '__main__':

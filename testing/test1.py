@@ -71,6 +71,8 @@ class TestCase(unittest.TestCase):
         #from src.l2.xor import Xor
         import __init__
         processes.append(Process(target=__init__.main, args=()),)
+        from testing import ws_client
+        processes.append(Process(target=ws_client.main, args=()),) # test_web_socket
         for i in range(N):
             processes.append(Process(target=start_client, args=()))
         processes[0].start()
@@ -107,6 +109,8 @@ class TestCase(unittest.TestCase):
         pattern = {'c': b'C-', 's': b'S-', 'start': 6, 'end': -2}
         log = Message.get_log_from_file(f, pattern)
         print(log)
+
+
 
 
 def get_exec_path():
