@@ -25,7 +25,7 @@ def run():
     flask_app = flask_route(loop, manager)
     task2 = asyncio.Task(init_web_server(flask_app, loop))
 
-    task_ws = asyncio.Task(websocket_serve(loop))
+    task_ws = asyncio.Task(websocket_serve(loop, manager))
 
     # run
     try:

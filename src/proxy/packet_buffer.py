@@ -1,6 +1,8 @@
 # from l2.key_init import KeyInit, Connect
-# from aa.key_init import KeyInit, Connect
-from ..aa.key_init import KeyInit, Connect # testsuite
+try:
+    from aa.key_init import KeyInit, Connect
+except:
+    from ..aa.key_init import KeyInit, Connect # testsuite
         
 
 class Packet():

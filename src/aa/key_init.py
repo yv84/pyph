@@ -21,7 +21,7 @@ class KeyInit():
             for stack, obj in zip([self.client.command_stack, self.server.command_stack],
                      [self.client, self.server]):
                 stack.append(lambda data: obj.pck_rcv.segmentation_packets(data))
-                (lambda obj : stack.append(lambda gen: set_manager_data(obj, gen)))(self.manager)
+                (lambda name, manager : stack.append(lambda gen: set_manager_data(name, manager, gen)))(obj.name, self.manager)
                 (lambda name : stack.append(lambda gen: packet_print(name, gen)))(obj.name)
                 # if packet[1:2] in (b'\x03', b'\x04'): inflate(packet) -> deflate(packet)
                 # (lambda name, gameapi : stack.append(lambda gen: \
@@ -41,9 +41,9 @@ class Connect():
         self.pck_send = LenL2PacketSend()
 
 
-def set_manager_data(obj, gen):
+def set_manager_data(name, manager, gen):
     for packet in gen:
-        obj.packets.append(packet)
+        manager.packets.append(b''.join([name.encode('latin-1'), b': ', packet]))
         yield packet
 
 def packet_print(name, gen):

@@ -13,25 +13,43 @@ def hello(websocket, path):
     yield from websocket.send(greeting)
 
 
-# @app.route('/')
-@asyncio.coroutine
-def index(websocket, path):
-    while True:
-        response = repr(websocket)[1:-1] + ' | ' + repr(path)
-        print("s:> {}".format(response))
-        yield from websocket.send(response)
-        yield from asyncio.sleep(1)
+
+class WsHandler():
+    def __init__(self, manager):
+        self.manager = manager
+        self.manager.ws_handler = self
+
+    def __call__(self, websocket, path):
+        return self.ws_handler(websocket, path)
+
+    # @app.route('/')
+    @asyncio.coroutine
+    def index(self, websocket, path):
+        while True:
+            if self.manager.packets:
+                response = repr(websocket)[1:-1] + ' | ' + repr(path) +\
+                    repr(self.manager.data) +\
+                    repr(b''.join([b'<p><ol><li>',
+                        (b'</li><li>'.join(self.manager.packets)),
+                        b'</li></ol></p>']))
+                self.manager.packets = []
+                print("s:> {}".format(response))
+                yield from websocket.send(response)
+            else:
+                pass
+            yield from asyncio.sleep(1)
 
 
-@asyncio.coroutine
-def ws_handler(websocket, path):
-    print(path, end=' , ')
-    print(websocket)
-    if path == ('/'):
-        yield from index(websocket, path)
-    elif path.startswith('/hello'):
-        yield from hello(websocket, path)
+    @asyncio.coroutine
+    def ws_handler(self, websocket, path):
+        print(path, end=' , ')
+        print(websocket)
+        if path == ('/'):
+            yield from self.index(websocket, path)
+        elif path.startswith('/hello'):
+            yield from hello(websocket, path)
 
 
-def websocket_serve(loop):
+def websocket_serve(loop, manager):
+    ws_handler = WsHandler(manager)
     start_server = yield from websockets.serve(ws_handler, '0.0.0.0', 8765)

@@ -25,9 +25,12 @@ def index():
         print("c:< {}".format(greeting))
         yield from asyncio.sleep(4)
 
+@asyncio.coroutine
+def index():
+    pass
 
 def main():
-    asyncio.get_event_loop().run_until_complete(index())
+    asyncio.get_event_loop().run_until_complete(index1())
 
 if __name__ == '__main__':
     main()
