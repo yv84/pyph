@@ -18,6 +18,7 @@ class WsHandler():
     def __init__(self, manager):
         self.manager = manager
         self.manager.ws_handler = self
+        self.websockets = {}
 
     def __call__(self, websocket, path):
         return self.ws_handler(websocket, path)
@@ -33,8 +34,10 @@ class WsHandler():
                         (b'</li><li>'.join(self.manager.packets)),
                         b'</li></ol></p>']))
                 self.manager.packets = []
-                print("s:> {}".format(response))
-                yield from websocket.send(response)
+                for _websocket in [_websocket for _websocket in \
+                        self.websockets if \
+                        self.websockets.get(_websocket)['path'] == path]:
+                    yield from _websocket.send(response)
             else:
                 pass
             yield from asyncio.sleep(1)
@@ -42,14 +45,27 @@ class WsHandler():
 
     @asyncio.coroutine
     def ws_handler(self, websocket, path):
-        print(path, end=' , ')
-        print(websocket)
+        self.websockets[websocket].update({'path': path})
         if path == ('/'):
             yield from self.index(websocket, path)
         elif path.startswith('/hello'):
             yield from hello(websocket, path)
 
 
+class WebSocketServerProtocol(websockets.WebSocketServerProtocol):
+
+    def connection_made(self, transport):
+        self.ws_handler.websockets[self] = {}
+        super().connection_made(transport)
+
+    def connection_lost(self, exc):
+        print('connection_lost', end=' , ')
+        print(self)
+        self.ws_handler.websockets.pop(self)
+        super().connection_lost(exc)
+
+
 def websocket_serve(loop, manager):
     ws_handler = WsHandler(manager)
-    start_server = yield from websockets.serve(ws_handler, '0.0.0.0', 8765)
+    start_server = yield from websockets.serve(ws_handler,
+        '0.0.0.0', 8765, klass=WebSocketServerProtocol, )
