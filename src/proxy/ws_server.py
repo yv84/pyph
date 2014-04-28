@@ -27,6 +27,9 @@ class WsHandler():
     @asyncio.coroutine
     def index(self, websocket, path):
         while True:
+            recv = yield from websocket.recv()
+            if recv:
+                print(recv)#self.manager.client.send
             if self.manager.packets:
                 response = repr(websocket)[1:-1] + ' | ' + repr(path) +\
                     repr(self.manager.data) +\
@@ -59,8 +62,7 @@ class WebSocketServerProtocol(websockets.WebSocketServerProtocol):
         super().connection_made(transport)
 
     def connection_lost(self, exc):
-        print('connection_lost', end=' , ')
-        print(self)
+        print('connection_lost : {}'.format(self))
         self.ws_handler.websockets.pop(self)
         super().connection_lost(exc)
 

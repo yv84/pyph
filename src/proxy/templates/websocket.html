@@ -62,20 +62,30 @@
         update_ui();
         return false;
       });
-      $('#send').click(function() {
+
+      $('#send_client').click(function() {
         var text = $('#text').val();
         console.log(conn)
-        log('Sending: ' + text);
-        conn.send(text);
+        log('c>: ' + text);
+        conn.send('c>'+text);
         $('#text').val('').focus();
         return false;
       });
-      $('#text').keyup(function(e) {
+
+      $('#send_server').click(function() {
+        var text = $('#text').val();
+        console.log(conn)
+        log('s>: ' + text);
+        conn.send('s>'+text);
+        $('#text').val('').focus();
+        return false;
+      });
+/*      $('#text').keyup(function(e) {
         if (e.keyCode === 13) {
-          $('#send').click();
+          $('#send_server').click();
           return false;
         }
-      });
+      });*/
     });
 </script>
 </head>
@@ -89,8 +99,9 @@
      style="width:70em;height:30em;overflow:auto;border:1px solid black">
 </div>
 <form id="chatform" onsubmit="return false;">
-  <input id="text" type="text" />
-  <input id="send" type="button" value="Send" />
+  <input id="text" type="text" style="width: 70em;" />
+  <input id="send_client" type="button" value="c>" placeholder="Client" />
+  <input id="send_server" type="button" value="s>" placeholder="Server" />
 </form>
 </body>
 </html>
