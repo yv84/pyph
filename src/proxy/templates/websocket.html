@@ -8,9 +8,9 @@
     $(function() {
       var conn = null;
       function log(msg) {
-        var control = $('#log');
-        control.html(control.html() + msg + '<br/>');
-        control.scrollTop(control.scrollTop() + 1000);
+        var control = $('#_log');
+        control.html(control.html() + msg);
+        control.scrollTop(control.scrollTop() + 999);
       }
       function connect() {
         disconnect();
@@ -27,7 +27,7 @@
           update_ui();
         };
         conn.onmessage = function(e) {
-          log('Received: ' + e.data);
+          log(e.data); // Received
         };
         conn.onclose = function() {
           log('Disconnected.');
@@ -66,7 +66,7 @@
       $('#send_client').click(function() {
         var text = $('#text').val();
         console.log(conn)
-        log('c>: ' + text);
+        //log('c>: ' + text);
         conn.send('c>'+text);
         $('#text').val('').focus();
         return false;
@@ -75,7 +75,7 @@
       $('#send_server').click(function() {
         var text = $('#text').val();
         console.log(conn)
-        log('s>: ' + text);
+        //log('s>: ' + text);
         conn.send('s>'+text);
         $('#text').val('').focus();
         return false;
@@ -97,6 +97,8 @@
 </div>
 <div id="log"
      style="width:70em;height:30em;overflow:auto;border:1px solid black">
+     <br/>
+     <ol id="_log"></ol>
 </div>
 <form id="chatform" onsubmit="return false;">
   <input id="text" type="text" style="width: 70em;" />

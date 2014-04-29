@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
 import asyncio
+from asyncio.queues import Queue, QueueEmpty
+
+
 import websockets
 
 
@@ -31,11 +34,10 @@ class WsHandler():
             if recv:
                 print(recv)#self.manager.client.send
             if self.manager.packets:
-                response = repr(websocket)[1:-1] + ' | ' + repr(path) +\
-                    repr(self.manager.data) +\
-                    repr(b''.join([b'<p><ol><li>',
+                response = repr(b''.join([b'<li>',
                         (b'</li><li>'.join(self.manager.packets)),
-                        b'</li></ol></p>']))
+                        b'</li>']))[2:-1]
+                #repr(websocket)[1:-1] + ' | ' + repr(path) +repr(self.manager.data)
                 self.manager.packets = []
                 for _websocket in [_websocket for _websocket in \
                         self.websockets if \
@@ -43,7 +45,7 @@ class WsHandler():
                     yield from _websocket.send(response)
             else:
                 pass
-            yield from asyncio.sleep(1)
+            yield from asyncio.sleep(0.5)
 
 
     @asyncio.coroutine
@@ -51,8 +53,10 @@ class WsHandler():
         self.websockets[websocket].update({'path': path})
         if path == ('/'):
             yield from self.index(websocket, path)
+            
         elif path.startswith('/hello'):
             yield from hello(websocket, path)
+
 
 
 class WebSocketServerProtocol(websockets.WebSocketServerProtocol):
@@ -60,6 +64,23 @@ class WebSocketServerProtocol(websockets.WebSocketServerProtocol):
     def connection_made(self, transport):
         self.ws_handler.websockets[self] = {}
         super().connection_made(transport)
+
+    @asyncio.coroutine
+    def recv(self):
+        """
+        This coroutine receives the next message.
+
+        It returns a :class:`str` for a text frame and :class:`bytes` for a
+        binary frame.
+
+        Non blocking version
+        """
+        #Return any available message
+        try:
+            msg = self.messages.get_nowait()
+            return msg
+        except QueueEmpty:
+            pass
 
     def connection_lost(self, exc):
         print('connection_lost : {}'.format(self))
