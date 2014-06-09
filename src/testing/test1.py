@@ -63,7 +63,7 @@ class TestCase(unittest.TestCase):
         def start_server():
             os.system('python3 testing/tcp_echo.py --server --port 9999 > /dev/null')
         def start_proxy():
-            os.system('python3 src/run.py')
+            os.system('python3 run.py')
         def start_client():
             os.system('python3 testing/tcp_echo.py --client --port 8888 > /dev/null')
         processes = [Process(target=start_server, args=()),]
@@ -82,7 +82,7 @@ class TestCase(unittest.TestCase):
             p.start()
             time.sleep(0.1)
         time.sleep(25)
-        
+
         processes.reverse()
         for p in processes:
             p.terminate()

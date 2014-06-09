@@ -1,4 +1,5 @@
 pyphenv
 *.pyc
 venv
+tmp__pycache__
 tmp
