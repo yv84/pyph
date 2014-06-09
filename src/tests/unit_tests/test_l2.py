@@ -23,7 +23,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(True)
 
     def test_len_packet(self):
-        from src.l2.len_packet import LenL2PacketRcv, LenL2PacketSend
+        from l2.len_packet import LenL2PacketRcv, LenL2PacketSend
         rcv = LenL2PacketRcv('test')
         send = LenL2PacketSend('test')
         self.assertTrue(rcv.name == 'test')
@@ -37,7 +37,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(send.pop_packet() == b'\x0b\x00123456789\x05\x00123')
 
     def test_xor_init(self):
-        from src.l2.xor import Xor
+        from l2.xor import Xor
         xor = Xor('decode')
         pck = [b'.\x01\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\x01\x00\x00\x00\x19\x00\x00\x00\x00\x00\x00\x00\x00',]
         key_xor = b"\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\xc8'\x93\x01\xa1l1\x97"

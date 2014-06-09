@@ -21,10 +21,6 @@ class TestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
-    @unittest.skip("!")
-    def testSimple(self):
-        self.assertTrue(True)
-
     @unittest.skip('-')
     def testEchoServer(self):
         self.port1 = '9999'
@@ -32,9 +28,9 @@ class TestCase(unittest.TestCase):
         N = 3
         os.system('fuser -k '+conn['port']+'/tcp')
         def start_server():
-            os.system('python3 testing/tcp_echo.py --server --port 9999 > /dev/null')
+            os.system('python3 tests/integrate_tests/tcp_echo.py --server --port 9999 > /dev/null')
         def start_client():
-            os.system('python3 testing/tcp_echo.py --client --port 9999 > /dev/null')
+            os.system('python3 tests/integrate_tests/tcp_echo.py --client --port 9999 > /dev/null')
         processes = [Process(target=start_server, args=()),]
         for i in range(N):
             processes.append(Process(target=start_client, args=()))
@@ -61,17 +57,17 @@ class TestCase(unittest.TestCase):
             os.system('fuser -k '+conn[d]['port']+'/tcp')
         os.system('fuser -k '+'5000'+'/tcp') # web
         def start_server():
-            os.system('python3 testing/tcp_echo.py --server --port 9999 > /dev/null')
+            os.system('python3 tests/integrate_tests/tcp_echo.py --server --port 9999 > /dev/null')
         def start_proxy():
             os.system('python3 run.py')
         def start_client():
-            os.system('python3 testing/tcp_echo.py --client --port 8888 > /dev/null')
+            os.system('python3 tests/integrate_tests/tcp_echo.py --client --port 8888 > /dev/null')
         processes = [Process(target=start_server, args=()),]
         #processes.append(Process(target=start_proxy, args=()))
         #from src.l2.xor import Xor
         import __init__
         processes.append(Process(target=__init__.main, args=()),)
-        from testing import ws_client
+        from tests.integrate_tests import ws_client
         processes.append(Process(target=ws_client.main, args=()),) # test_web_socket
         for i in range(N):
             processes.append(Process(target=start_client, args=()))
@@ -87,28 +83,6 @@ class TestCase(unittest.TestCase):
         for p in processes:
             p.terminate()
             p.join()
-
-    @unittest.skip("import Message -> ImportError: No module named 'repr_to_bytes'")
-    def testMessageClass(self):
-        from testing.msg_log import Message
-        from testing.game_log import log
-        _log, _side_log = Message.game_log_from_import(log())
-        # with open(os.path.dirname(__file__) + '/game_log_15122012', 'r') as f:
-        message_client = Message('client', log=_log, side_log=_side_log)
-        message_server = Message('server', log=_log, side_log=_side_log)
-        self.assertTrue(b''.join(message_client(b'')) == b''.join(_log[0:2]))
-        self.assertTrue(b''.join(message_server(_log[0+7])) == _log[1+7])
-        self.assertTrue(b''.join(message_client(_log[1+7])) == _log[2+7])
-        self.assertTrue(b''.join(message_server(_log[2+7])) == b''.join(_log[3+7:4+1+7]))
-        self.assertTrue(b''.join(message_client(b''.join(_log[3+7:4+1+7]))) == b''.join(_log[5+7:6+1+7]))
-
-    @unittest.skip("import Message -> ImportError: No module named 'repr_to_bytes'")
-    def test_repr_to_bytes(self):
-        from testing.msg_log import Message
-        f = os.path.dirname(__file__) + '/game_log_15122012'
-        pattern = {'c': b'C-', 's': b'S-', 'start': 6, 'end': -2}
-        log = Message.get_log_from_file(f, pattern)
-        print(log)
 
 
 
