@@ -26,17 +26,17 @@ class Server(asyncio.Protocol):
         self.manager = manager
         self.clients = {}
         self.buffers = {}
-    
+
     def connection_made(self, transport):
         # save the transport
         self.transport = transport
 
     def data_received(self, data):
         # use a task so this is executed async
-        asyncio.Task(self.send_data(data))
+        asyncio.Task(self.rcv_data(data))
 
     @asyncio.coroutine
-    def send_data(self, data):
+    def rcv_data(self, data):
         # get a client by its peername
         peername = self.transport.get_extra_info('peername')
         client = self.clients.get(peername)
@@ -50,13 +50,13 @@ class Server(asyncio.Protocol):
             client.server_transport = self.transport
             self.clients[peername] = client
             self.buffers[peername] = Packet(self.manager)
-            asyncio.Task(self.run(peername))
+            asyncio.Task(self.send_data(peername))
         self.buffers[peername].update_data('server', data)
 
     @asyncio.coroutine
-    def run(self, peername):
+    def send_data(self, peername):
         while self.clients[peername].connected:
-            client_data, server_data = self.buffers[peername].run()
+            client_data, server_data = self.buffers[peername].packet_handlers()
             if client_data:
                 #print('send from server', client_data)
                 self.clients[peername].server_transport.write(client_data)
@@ -75,5 +75,3 @@ def init_proxy(loop, manager):
     # use a coroutine to use yield from and get the async result of
     server = Server(loop, manager)
     server = yield from create_server(loop, server)
-
-

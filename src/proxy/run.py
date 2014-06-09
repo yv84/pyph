@@ -5,7 +5,7 @@ import asyncio
 
 from flask import Flask
 
-from .proxy import init_proxy
+from .gs_proxy import init_proxy
 from .web_server import init_web_server
 from .urls import flask_route
 
@@ -19,9 +19,9 @@ def run():
 
     # main task to initialize everything
     manager = Manager()
-    
+
     task_game_proxy = asyncio.Task(init_proxy(loop, manager))
-    
+
     flask_app = flask_route(loop, manager)
     task2 = asyncio.Task(init_web_server(flask_app, loop))
 

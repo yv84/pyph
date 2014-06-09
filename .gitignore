@@ -3,3 +3,4 @@ pyphenv
 venv
 tmp__pycache__
 tmp
+tmp_*
