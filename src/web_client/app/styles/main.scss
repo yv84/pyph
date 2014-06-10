@@ -92,7 +92,14 @@ body {
     }
 }
 
-.packet_log{
+.packet_log {
     word-break: break-all;
     word-wrap: break-word;
+}
+.gsconnection {
+
+    border-color: blue white;
+    border-style: solid;
+    padding: 2px;
+    margin: 3px;
 }
