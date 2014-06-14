@@ -19,7 +19,18 @@ class TestCase(unittest.TestCase):
     def testIndexPage(self):
         self.assertTrue((self.driver.find_element_by_class_name("text-muted")).text == 'web_client')
 
+        self.assertTrue(len(self.driver.find_elements_by_css_selector(".dropdown.btn-group.gsconnection")) == 1)
+        self.assertTrue((self.driver.find_elements_by_css_selector(".dropdown.btn-group.gsconnection"))[0].text == 'GSConnection: Conn1')
 
+        self.assertTrue(self.driver.find_element_by_css_selector("#btn-connect").text == 'Connect')
+        self.assertTrue(self.driver.find_element_by_css_selector("#btn-stop").text == 'Stop')
+        self.assertTrue(self.driver.find_element_by_css_selector("#btn-clear").text == 'Clear')
+        self.assertTrue(self.driver.find_element_by_css_selector("#status").text == 'disconnected')
+
+        self.assertTrue(len(self.driver.find_elements_by_css_selector(".span1.packet_log")) == 1) # #log
+        self.assertTrue(len(self.driver.find_elements_by_css_selector(".span1.packet_log")) == 1)
+        self.assertTrue(self.driver.find_element_by_css_selector(".span1.packet_log > dt").text == 'log')
+        self.assertTrue(len(self.driver.find_elements_by_css_selector(".span1.packet_log > dd")) > 0)
 
 
 
