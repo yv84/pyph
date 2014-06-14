@@ -4,3 +4,4 @@ venv
 tmp__pycache__
 tmp
 tmp_*
+ghostdriver.log
