@@ -1,14 +1,6 @@
-pyphenv
-*.pyc
-venv
-tmp__pycache__
-tmp
-tmp_*
-
 node_modules
 dist
 .tmp
 .sass-cache
 bower_components
 test/bower_components
-ghostdriver.log

@@ -1,0 +1,10 @@
+{
+  "name": "web-client",
+  "private": true,
+  "dependencies": {
+    "chai": "~1.8.0",
+    "mocha": "~1.14.0",
+    "sinon": "1.10.2"
+  },
+  "devDependencies": {}
+}
