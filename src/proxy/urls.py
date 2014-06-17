@@ -51,10 +51,4 @@ def flask_route(loop, manager):
         raise NotFound()
 
 
-    @app.route('/1')
-    def index1():
-        return render_template('websocket.html')
-
-
-
     return app
