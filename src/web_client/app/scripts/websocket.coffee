@@ -2,12 +2,13 @@ websocket = () ->
   console.log('load websocket')
   conn = null
 
-  log = (msg) ->
-      # jQuery('<li/>', {
-      #     class: "btn-success"
-      #     text: msg
-      # }).appendTo('#packet_log');
-      $( "#packet_log" ).append(msg)
+  log = (json_msg) ->
+      msg = JSON.parse(json_msg)
+      for ii in msg
+          jQuery('<li/>', {
+              class: "btn-success",
+              text: ii}).prependTo('#packet_log')
+
 
   connect = () ->
       disconnect();

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import json
 import asyncio
 from asyncio.queues import Queue, QueueEmpty
 
@@ -34,12 +35,8 @@ class WsHandler():
             if recv:
                 print(recv)#self.manager.client.send
             if self.manager.packets:
-                response = repr(b''.join([b'<li>',   #repr(self.manager.packets.pop())# 
-                        (b'</li><li>'.join(self.manager.packets)),
-                        b'</li>']))[2:-1]
-                #repr(websocket)[1:-1] + ' | ' + repr(path) +repr(self.manager.data)
+                response = json.dumps(tuple(map (lambda x: repr(x)[2:-1], self.manager.packets )))
                 self.manager.packets = []
-                print(response)
                 for _websocket in [_websocket for _websocket in \
                         self.websockets if \
                         self.websockets.get(_websocket)['path'] == path]:
