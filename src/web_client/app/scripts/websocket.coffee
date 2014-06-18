@@ -3,9 +3,11 @@ websocket = () ->
   conn = null
 
   log = (msg) ->
-      control = $('#_log')
-      control.html(control.html() + msg)
-      control.scrollTop(control.scrollTop() + 999)
+      # jQuery('<li/>', {
+      #     class: "btn-success"
+      #     text: msg
+      # }).appendTo('#packet_log');
+      $( "#packet_log" ).append(msg)
 
   connect = () ->
       disconnect();
@@ -15,23 +17,19 @@ websocket = () ->
       wsUri +='/' # path
       console.log(wsUri)
       conn = new WebSocket(wsUri)
-      log('Connecting...')
       console.log(conn)
       conn.onopen = () ->
-          log('Connected.')
           update_ui()
 
       conn.onmessage = (e) ->
           log(e.data); # Received
 
       conn.onclose = () ->
-          log('Disconnected.')
           conn = null
           update_ui()
 
   disconnect = () ->
       if (conn != null)
-          log('Disconnecting...')
           conn.close()
           conn = null
           update_ui()
@@ -73,7 +71,5 @@ websocket = () ->
 
 
 
-window.websocket = websocket
+#window.websocket = websocket
 $(websocket);
-
-console.log "websocket"

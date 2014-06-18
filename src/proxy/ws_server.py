@@ -34,11 +34,12 @@ class WsHandler():
             if recv:
                 print(recv)#self.manager.client.send
             if self.manager.packets:
-                response = repr(b''.join([b'<li>',
+                response = repr(b''.join([b'<li>',   #repr(self.manager.packets.pop())# 
                         (b'</li><li>'.join(self.manager.packets)),
                         b'</li>']))[2:-1]
                 #repr(websocket)[1:-1] + ' | ' + repr(path) +repr(self.manager.data)
                 self.manager.packets = []
+                print(response)
                 for _websocket in [_websocket for _websocket in \
                         self.websockets if \
                         self.websockets.get(_websocket)['path'] == path]:
@@ -53,7 +54,7 @@ class WsHandler():
         self.websockets[websocket].update({'path': path})
         if path == ('/'):
             yield from self.index(websocket, path)
-            
+
         elif path.startswith('/hello'):
             yield from hello(websocket, path)
 
