@@ -56,17 +56,15 @@ websocket = () ->
 
   $('#send_client').on 'click', () ->
       text = $('#text').val()
-      console.log(conn)
-      #log('c>: ' + text);
-      conn.send('c>'+text)
+      msg = JSON.stringify({'c':text})
+      conn.send(msg)
       $('#text').val('').focus()
       return false
 
   $('#send_server').on 'click', () ->
       text = $('#text').val()
-      console.log(conn)
-      #log('s>: ' + text);
-      conn.send('s>'+text)
+      msg = JSON.stringify({'s':text})
+      conn.send(msg)
       $('#text').val('').focus()
       return false
 
