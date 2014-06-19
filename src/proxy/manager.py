@@ -1,10 +1,11 @@
 class Side():
     def __init__(self):
-        self.packets = []
+        self.packets_to_ws = []
+        self.packets_to_gs = []
 
 class Manager():
     def __init__(self):
-        client = Side()
-        server = Side()
+        self.client = Side()
+        self.server = Side()
         self.data = ''
         self.packets = []

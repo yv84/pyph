@@ -7,6 +7,8 @@ from asyncio.queues import Queue, QueueEmpty
 
 import websockets
 
+from .repr_to_bytes import from_str_to_repr_bytes
+
 
 @asyncio.coroutine
 def hello(websocket, path):
@@ -33,7 +35,15 @@ class WsHandler():
         while True:
             recv = yield from websocket.recv()
             if recv:
-                print(recv)#self.manager.client.send
+                d = json.loads(recv)
+                for k,v in d.items():
+                    if k == 'c':
+                        self.manager.client.packets_to_gs.append(from_str_to_repr_bytes(v))
+                        print(self.manager.client.packets_to_gs)
+                    elif k == 's':
+                        self.manager.server.packets_to_gs.append(from_str_to_repr_bytes(v))
+                        print(self.manager.server.packets_to_gs)
+
             if self.manager.packets:
                 response = json.dumps(tuple(map (lambda x: repr(x)[2:-1], self.manager.packets )))
                 self.manager.packets = []

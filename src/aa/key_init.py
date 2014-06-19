@@ -42,6 +42,10 @@ class Connect():
 
 
 def set_manager_data(name, manager, gen):
+    while manager.client.packets_to_gs:
+        yield manager.client.packets_to_gs.pop()
+    while manager.server.packets_to_gs:
+        yield manager.server.packets_to_gs.pop()
     for packet in gen:
         manager.packets.append(b''.join([name.encode('latin-1'), b': ', packet]))
         yield packet

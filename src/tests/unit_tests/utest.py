@@ -26,7 +26,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(True)
 
 
-    @unittest.skip("import Message -> ImportError: No module named 'repr_to_bytes'")
+    @unittest.skip("import Message -> ImportError: No module named 'repr_to_bytes'") # from proxy.repr_to_bytes import repr_to_bytes
     def testMessageClass(self):
         from testing.msg_log import Message
         from testing.game_log import log

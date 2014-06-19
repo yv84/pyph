@@ -30,7 +30,8 @@ def index1():
     pass
 
 def main():
-    asyncio.get_event_loop().run_until_complete(index())
+    pass
+    #asyncio.get_event_loop().run_until_complete(index())
 
 if __name__ == '__main__':
     main()

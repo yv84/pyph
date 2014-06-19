@@ -1,4 +1,17 @@
-from repr_to_bytes import repr_to_bytes
+import sys
+import os
+
+PACKAGE_PARENT = '../..'
+SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
+print("!"*80, SCRIPT_DIR)
+p = sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
+print("!"*80, p)
+
+#from mypackage.mymodule import as_int
+
+
+
+from proxy.repr_to_bytes import repr_bytes_to_bytes_gen
 
 
 class Message():
@@ -59,7 +72,7 @@ class Message():
         log = []
         with open(f, 'rb') as f:
             for line in f:
-                line = b''.join(repr_to_bytes(line))
+                line = b''.join(repr_bytes_to_bytes_gen(line))
                 if line[0:len(pattern['c'])] == pattern['c']:
                     log.append({"C": line[pattern['start']:pattern['end']]})
                 elif line[0:len(pattern['s'])] == pattern['s']:
