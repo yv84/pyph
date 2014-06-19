@@ -54,6 +54,12 @@ websocket = () ->
       update_ui()
       return false
 
+  $('#clear').on 'click', () ->
+      console.log('button clear')
+      jQuery("#packet_log").empty()
+      return false
+
+
   $('#send_client').on 'click', () ->
       text = $('#text').val()
       msg = JSON.stringify({'c':text})
