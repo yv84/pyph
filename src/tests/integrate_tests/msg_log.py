@@ -3,13 +3,7 @@ import os
 
 PACKAGE_PARENT = '../..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
-print("!"*80, SCRIPT_DIR)
-p = sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
-print("!"*80, p)
-
-#from mypackage.mymodule import as_int
-
-
+sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
 from proxy.repr_to_bytes import repr_bytes_to_bytes_gen
 
