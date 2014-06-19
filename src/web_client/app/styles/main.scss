@@ -116,3 +116,20 @@ body {
     padding: 2px;
     margin: 3px;
 }
+
+#chatform {
+    #send_client {
+        text-align: center;
+        line-height: 20px;
+        font-size: 20px;
+        width: 176px;
+        height: 25px;
+    }
+    #send_server {
+        text-align: center;
+        line-height: 20px;
+        font-size: 20px;
+        width: 176px;
+        height: 25px;
+    }
+}
