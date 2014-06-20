@@ -11,6 +11,13 @@ import io
 import re
 
 
+PACKAGE_PARENT = '../..'
+SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
+sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
+
+
+
+
 class TestCase(unittest.TestCase):
 
     def setUp(self):
@@ -58,13 +65,5 @@ class TestCase(unittest.TestCase):
 
 
 
-def get_exec_path():
-        try:
-            sFile = os.path.abspath(sys.modules['__main__'].__file__)
-        except:
-            sFile = sys.executable
-        return os.path.dirname(sFile)
-
 if __name__ == '__main__':
-    print(get_exec_path())
     unittest.main()

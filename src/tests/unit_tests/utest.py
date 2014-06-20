@@ -13,6 +13,13 @@ from subprocess import Popen
 from multiprocessing import Process, Manager, JoinableQueue
 
 
+PACKAGE_PARENT = '../..'
+SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
+sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
+
+from proxy.repr_to_bytes import repr_bytes_to_bytes_gen
+
+
 class TestCase(unittest.TestCase):
 
     def setUp(self):
@@ -21,15 +28,9 @@ class TestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
-    @unittest.skip("!")
-    def testSimple(self):
-        self.assertTrue(True)
-
-
-    @unittest.skip("import Message -> ImportError: No module named 'repr_to_bytes'") # from proxy.repr_to_bytes import repr_to_bytes
     def testMessageClass(self):
-        from testing.msg_log import Message
-        from testing.game_log import log
+        from tests.integrate_tests.msg_log import Message
+        from tests.integrate_tests.game_log import log
         _log, _side_log = Message.game_log_from_import(log())
         # with open(os.path.dirname(__file__) + '/game_log_15122012', 'r') as f:
         message_client = Message('client', log=_log, side_log=_side_log)
@@ -40,28 +41,14 @@ class TestCase(unittest.TestCase):
         self.assertTrue(b''.join(message_server(_log[2+7])) == b''.join(_log[3+7:4+1+7]))
         self.assertTrue(b''.join(message_client(b''.join(_log[3+7:4+1+7]))) == b''.join(_log[5+7:6+1+7]))
 
-    @unittest.skip("import Message -> ImportError: No module named 'repr_to_bytes'")
     def test_repr_to_bytes(self):
-        from testing.msg_log import Message
-        f = os.path.dirname(__file__) + '/game_log_15122012'
+        from tests.integrate_tests.msg_log import Message
+        f = os.path.dirname(__file__) + '/../integrate_tests/game_log_15122012'
         pattern = {'c': b'C-', 's': b'S-', 'start': 6, 'end': -2}
         log = Message.get_log_from_file(f, pattern)
-        print(log)
-
-
-
-
-
-def get_exec_path():
-        try:
-            sFile = os.path.abspath(sys.modules['__main__'].__file__)
-        except:
-            sFile = sys.executable
-        return os.path.dirname(sFile)
 
 
 if __name__ == '__main__':
-    print(get_exec_path())
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(TestCase)
     unittest.TextTestRunner().run(suite)
     #unittest.main()
