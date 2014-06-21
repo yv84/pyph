@@ -5,30 +5,29 @@ from .len_packet import LenL2PacketRcv, LenL2PacketSend
 
 class KeyInit():
     def __init__(self, packet):
-        self.server = packet.server
-        self.client = packet.client
-        self.manager = packet.manager
-        self.client.command_stack.append(lambda data: self.key_packet_initialization(data))
+        self.packet = packet
+        self.packet.client.command_stack.append(lambda data: self.key_packet_initialization(data))
         #self.gameapi = gs_l2_packet()
 
 
     def key_packet_initialization(self, to_c_data: bytes) -> bytes:
         def key_packet_initialization_remover(to_c_data):
-            self.client.command_stack.pop()  # key_packet_initialization_remover
-            self.client.command_stack.pop(0) # key_packet_initialization
+            self.packet.client.command_stack.pop()  # key_packet_initialization_remover
+            self.packet.client.command_stack.pop(0) # key_packet_initialization
             return to_c_data
         if to_c_data:
-            for stack, obj in zip([self.client.command_stack, self.server.command_stack],
-                     [self.client, self.server]):
+            for stack, obj in zip([self.packet.client.command_stack, self.packet.server.command_stack],
+                     [self.packet.client, self.packet.server]):
                 stack.append(lambda data: obj.pck_rcv.segmentation_packets(data))
-                stack.append(lambda gen, manager=self.manager, name=obj.name : self.manager.set_manager_data(name, gen))
+                stack.append(lambda gen, manager=self.packet.manager, name=obj.name,
+                   peername=self.packet.peername : self.packet.manager.set_manager_data(name, gen, peername))
                 stack.append(lambda gen, name=obj.name: packet_print(name, gen))
                 # if packet[1:2] in (b'\x03', b'\x04'): inflate(packet) -> deflate(packet)
                 # (lambda name, gameapi : stack.append(lambda gen: \
                 #     packet_print_dtype(name, gameapi, gen)))(obj.name, self.gameapi)
                 stack.append(lambda gen: obj.pck_send.add_packets(gen))
                 stack.append(lambda gen: obj.pck_send.pop_packet()) # -> bytes(data)
-            self.client.command_stack.append(lambda data: key_packet_initialization_remover(data))
+            self.packet.client.command_stack.append(lambda data: key_packet_initialization_remover(data))
         return to_c_data
 
 

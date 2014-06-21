@@ -6,14 +6,15 @@ from aa.key_init import KeyInit, Connect
 
 
 class Packet():
-    def __init__(self, manager):
+
+    def __init__(self, manager, peername):
         self.client = Connect('client')
         self.client.q = Queue()
         self.server = Connect('server')
         self.server.q = Queue()
         self.manager = manager
+        self.peername = peername
         self.key_init = KeyInit(self)
-
 
     def update_data(self, side, data):
         """change in_data buffer"""

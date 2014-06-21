@@ -65,8 +65,9 @@ class TestCase(unittest.TestCase):
         processes = [Process(target=start_server, args=()),]
         #processes.append(Process(target=start_proxy, args=()))
         #from src.l2.xor import Xor
-        import __init__
-        processes.append(Process(target=__init__.main, args=()),)
+        #import __init__
+        #processes.append(Process(target=__init__.main, args=()),)
+        processes.append(Process(target=start_proxy, args=()))
         from tests.integrate_tests import ws_client
         processes.append(Process(target=ws_client.main, args=()),) # test_web_socket
         for i in range(N):

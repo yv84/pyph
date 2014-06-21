@@ -32,6 +32,9 @@ class Server(asyncio.Protocol):
         # save the transport
         self.transport = transport
 
+    def connection_lost(self, exc):
+        pass
+
     def data_received(self, data):
         """receive data from transport socket"""
         # use a task so this is executed async
@@ -52,7 +55,8 @@ class Server(asyncio.Protocol):
             client.peername = peername
             client.server_transport = self.transport
             self.clients[peername] = client
-            self.buffers[peername] = Packet(self.manager)
+            self.manager.list_gs_conn.append(peername)
+            self.buffers[peername] = Packet(self.manager, peername)
             asyncio.Task(self.send_data(peername))
             asyncio.Task(self.data_from_packet_buffer_to_queue(peername))
         self.buffers[peername].update_data('server', data)
@@ -64,6 +68,7 @@ class Server(asyncio.Protocol):
         while self.clients[peername].connected:
             yield from self.buffers[peername].packet_handlers()
             yield from asyncio.sleep(0.1)
+        self.manager.list_gs_conn.remove(peername)
 
     @asyncio.coroutine
     def send_data(self, peername):

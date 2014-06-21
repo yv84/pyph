@@ -13,14 +13,18 @@ class Manager():
         self.data = ''
         self.packets = []
         self.cmd_line = cmd_line
+        self.list_gs_conn = []
 
-    def set_manager_data(self, name, gen):
+    def set_manager_data(self, name, gen, peername):
         while self.client.packets_to_gs:
             print(self.client.packets_to_gs)
             yield self.client.packets_to_gs.pop()
         while self.server.packets_to_gs:
             print(self.server.packets_to_gs)
             yield self.server.packets_to_gs.pop()
+        assert(self.list_gs_conn[0] == peername) ## should be fixed !!!!
         for packet in gen:
-            self.packets.append(b''.join([name.encode('latin-1'), b': ', packet]))
+            self.packets.append(b''.join([name.encode('latin-1'), b'|',
+              peername[0].encode('latin-1'), b'|', str(peername[1]).encode('latin-1'),
+              b': ', packet]))
             yield packet
