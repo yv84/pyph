@@ -32,7 +32,7 @@ class TestCase(unittest.TestCase):
         from tests.integrate_tests.msg_log import Message
         from tests.integrate_tests.game_log import log
         _log, _side_log = Message.game_log_from_import(log())
-        # with open(os.path.dirname(__file__) + '/game_log_15122012', 'r') as f:
+        # with open(os.path.dirname(__file__) + '/../integrate_tests/fixtures/l2/game_log_15122012', 'r') as f:
         message_client = Message('client', log=_log, side_log=_side_log)
         message_server = Message('server', log=_log, side_log=_side_log)
         self.assertTrue(b''.join(message_client(b'')) == b''.join(_log[0:2]))
@@ -43,7 +43,7 @@ class TestCase(unittest.TestCase):
 
     def test_repr_to_bytes(self):
         from tests.integrate_tests.msg_log import Message
-        f = os.path.dirname(__file__) + '/../integrate_tests/game_log_15122012'
+        f = os.path.dirname(__file__) + '/../integrate_tests/fixtures/l2/game_log_15122012'
         pattern = {'c': b'C-', 's': b'S-', 'start': 6, 'end': -2}
         log = Message.get_log_from_file(f, pattern)
 
