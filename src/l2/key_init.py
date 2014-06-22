@@ -34,21 +34,21 @@ class KeyInit():
 
     def packet_print_dtype(self, name, gameapi, gen, peername):
         for packet in gen:
-            print("{}: ".format(name), end='')
+            # print("{}: ".format(name), end='')
             side = 's' if name == 'server' else 'c'
             try:
                 unpack = gameapi.unpack(packet, side)
                 pack = gameapi.pack(unpack, side)
-                if isinstance(unpack, numpy.ndarray):
-                    print("{ ", end='')
-                    for i, j in zip(unpack.item(), unpack.dtype.fields):
-                        print(j, "=", i, end='; ')
-                    print("} ")
+                # if isinstance(unpack, numpy.ndarray):
+                #     print("{ ", end='')
+                #     for i, j in zip(unpack.item(), unpack.dtype.fields):
+                #         print(j, "=", i, end='; ')
+                #     print("} ")
                 yield pack
             except PacketError:
-                print('error parsing packet')
-                print("{}: ".format(name), end='')
-                print(packet)
+                # print('error parsing packet')
+                # print("{}: ".format(name), end='')
+                # print(packet)
                 yield packet
 
 
@@ -64,7 +64,3 @@ class Connect():
         self.pck_send = LenL2PacketSend()
         self.xor_in = Xor('decode')
         self.xor_out = Xor('code')
-
-
-# stack.append(lambda gen, manager=self.packet.manager, name=obj.name,
-#    peername=self.packet.peername : self.packet.manager.set_manager_data(name, gen, peername))

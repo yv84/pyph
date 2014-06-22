@@ -43,7 +43,7 @@ class WsHandler():
                         self.manager.server.packets_to_gs.append(from_str_to_repr_bytes(v))
 
             if self.manager.packets:
-                response = json.dumps(tuple(map (lambda x: repr(x)[2:-1], self.manager.packets )))
+                response = json.dumps(self.manager.packets)
                 self.manager.packets = []
                 for _websocket in [_websocket for _websocket in \
                         self.websockets if \

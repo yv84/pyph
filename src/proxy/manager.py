@@ -25,7 +25,5 @@ class Manager():
             yield self.server.packets_to_gs.pop()
         assert(self.list_gs_conn[0] == peername) ## should be fixed !!!!
         for packet in gen:
-            self.packets.append(b''.join([name.encode('latin-1'), b'|',
-              peername[0].encode('latin-1'), b'|', str(peername[1]).encode('latin-1'),
-              b': ', packet]))
+            self.packets.append([peername, name, repr(packet)[1:]])
             yield packet
