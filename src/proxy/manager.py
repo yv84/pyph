@@ -15,6 +15,7 @@ class Manager():
         self.cmd_line = cmd_line
         self.list_gs_conn = []
 
+
     def set_manager_data(self, name, gen, peername):
         while self.client.packets_to_gs:
             print(self.client.packets_to_gs)

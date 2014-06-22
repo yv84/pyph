@@ -21,10 +21,6 @@ class KeyInit():
                 stack.append(lambda data: obj.pck_rcv.segmentation_packets(data))
                 stack.append(lambda gen, manager=self.packet.manager, name=obj.name,
                    peername=self.packet.peername : self.packet.manager.set_manager_data(name, gen, peername))
-                stack.append(lambda gen, name=obj.name: packet_print(name, gen))
-                # if packet[1:2] in (b'\x03', b'\x04'): inflate(packet) -> deflate(packet)
-                # (lambda name, gameapi : stack.append(lambda gen: \
-                #     packet_print_dtype(name, gameapi, gen)))(obj.name, self.gameapi)
                 stack.append(lambda gen: obj.pck_send.add_packets(gen))
                 stack.append(lambda gen: obj.pck_send.pop_packet()) # -> bytes(data)
             self.packet.client.command_stack.append(lambda data: key_packet_initialization_remover(data))
@@ -42,28 +38,8 @@ class Connect():
 
 
 def packet_print(name, gen):
-
     for packet in gen:
         if packet[1:2] == b'\x05': # нужны примеры пакетов \x03 \x04
             print("{}: ".format(name), end='')
             print(packet)
         yield packet
-
-def packet_print_dtype(name, gameapi, gen):
-    for packet in gen:
-        print("{}: ".format(name), end='')
-        side = 's' if name == 'server' else 'c'
-        try:
-            unpack = gameapi.unpack(packet, side)
-            pack = gameapi.pack(unpack, side)
-            if isinstance(unpack, numpy.ndarray):
-                print("{ ", end='')
-                for i, j in zip(unpack.item(), unpack.dtype.fields):
-                    print(j, "=", i, end='; ')
-                print("} ")
-            yield pack
-        except PacketError:
-            print('error parsing packet')
-            print("{}: ".format(name), end='')
-            print(packet)
-            yield packet

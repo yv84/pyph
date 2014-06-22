@@ -46,7 +46,7 @@ class TestCase(unittest.TestCase):
             p.join()
 
     def testProxyServer(self):
-        game = 'aa'
+        game = 'l2'
         self.port1 = '9999'
         self.port2 = '8888'
         conn = {
