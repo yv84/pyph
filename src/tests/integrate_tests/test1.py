@@ -46,6 +46,7 @@ class TestCase(unittest.TestCase):
             p.join()
 
     def testProxyServer(self):
+        game = 'aa'
         self.port1 = '9999'
         self.port2 = '8888'
         conn = {
@@ -57,11 +58,13 @@ class TestCase(unittest.TestCase):
             os.system('fuser -k '+conn[d]['port']+'/tcp')
         os.system('fuser -k '+'5000'+'/tcp') # web
         def start_server():
-            os.system('python3 tests/integrate_tests/tcp_echo.py --server --port 9999 > /dev/null')
+            os.system('python3 tests/integrate_tests/tcp_echo.py '
+            '--server --port '+self.port1+' --game '+game+' > /dev/null')
         def start_proxy():
-            os.system('python3 run.py')
+            os.system('python3 run.py --game '+game+'')
         def start_client():
-            os.system('python3 tests/integrate_tests/tcp_echo.py --client --port 8888 > /dev/null')
+            os.system('python3 tests/integrate_tests/tcp_echo.py '
+             '--client --port '+self.port2+' --game '+game+' > /dev/null')
         processes = [Process(target=start_server, args=()),]
         #processes.append(Process(target=start_proxy, args=()))
         #from src.l2.xor import Xor

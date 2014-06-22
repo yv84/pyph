@@ -5,7 +5,7 @@ class CmdLine():
         parser = argparse.ArgumentParser(
                            description='PyPh')
         parser.add_argument("--game", dest='game', type=str, required=False,
-                           help='aa || l2', default='l2')
+                           help='aa || l2', default='aa')
         parser.add_argument("--l2_chronicle", dest='l2_chronicle', type=str, required=False,
                            help='so many options', default='gracia_final')
         self.args = parser.parse_args()

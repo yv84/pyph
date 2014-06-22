@@ -13,13 +13,43 @@ except ImportError:
 from msg_log import Message
 from game_log import log
 
+
+
+
+ARGS = argparse.ArgumentParser(description="PyPh test fixtures.")
+ARGS.add_argument(
+    '--server', action="store_true", dest='server',
+    default=False, help='Run tcp server')
+ARGS.add_argument(
+    '--client', action="store_true", dest='client',
+    default=False, help='Run tcp client')
+ARGS.add_argument(
+    '--host', action="store", dest='host',
+    default='127.0.0.1', help='Host name')
+ARGS.add_argument(
+    '--port', action="store", dest='port',
+    default=9999, type=int, help='Port number')
+ARGS.add_argument(
+    '--iocp', action="store_true", dest='iocp',
+    default=False, help='Use IOCP event loop')
+
+ARGS.add_argument("--game", dest='game', type=str, required=False,
+                   help='aa || l2', default='aa')
+ARGS.add_argument("--l2_chronicle", dest='l2_chronicle', type=str, required=False,
+                   help='so many options', default='gracia_final')
+
+args = ARGS.parse_args()
+
+
 # ---------------------------------------
-#l2
-#f = os.path.join(os.path.dirname(__file__), 'l2', 'game_log_with_xor_len.log')
-#pattern = {'c': b'client:', 's': b'server:', 'start': 10, 'end': -2}
-#aa
-f = os.path.join(os.path.dirname(__file__), 'aa', 'game_1.log')
-pattern = {'c': b"c->", 's': b"s->", 'start': 3, 'end': -2}
+if args.game == 'l2':
+    #l2
+    f = os.path.join(os.path.dirname(__file__), 'l2', 'game_log_with_xor_len.log')
+    pattern = {'c': b'client:', 's': b'server:', 'start': 10, 'end': -2}
+    #aa
+elif args.game == 'aa':
+    f = os.path.join(os.path.dirname(__file__), 'aa', 'game_1.log')
+    pattern = {'c': b"c->", 's': b"s->", 'start': 3, 'end': -2}
 # ---------------------------------------
 log = Message.get_log_from_file(f, pattern)
 log, side_log = Message.game_log_from_import(log)
@@ -99,26 +129,7 @@ def start_server(loop, host, port):
     return loop.run_until_complete(f)
 
 
-ARGS = argparse.ArgumentParser(description="TCP Echo example.")
-ARGS.add_argument(
-    '--server', action="store_true", dest='server',
-    default=False, help='Run tcp server')
-ARGS.add_argument(
-    '--client', action="store_true", dest='client',
-    default=False, help='Run tcp client')
-ARGS.add_argument(
-    '--host', action="store", dest='host',
-    default='127.0.0.1', help='Host name')
-ARGS.add_argument(
-    '--port', action="store", dest='port',
-    default=9999, type=int, help='Port number')
-ARGS.add_argument(
-    '--iocp', action="store_true", dest='iocp',
-    default=False, help='Use IOCP event loop')
-
-
 if __name__ == '__main__':
-    args = ARGS.parse_args()
 
     if ':' in args.host:
         args.host, port = args.host.split(':', 1)
