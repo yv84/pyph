@@ -34,15 +34,16 @@ class Server(asyncio.Protocol):
     def connection_made(self, transport):
         # save the transport
         self.transport = transport
-        print('Server(asyncio.Protocol) connection_made/', repr(self.transport).split('at')[1], ' id= ',id(self))
+        print('Server(asyncio.Protocol) connection_made/',
+            repr(self.transport).split('at')[1], ' id= ',id(self))
 
     def connection_lost(self, exc):
-        print('Server(asyncio.Protocol) connection_lost/', repr(self.transport).split('at')[1], ' id= ',id(self))
+        print('Server(asyncio.Protocol) connection_lost/',
+            repr(self.transport).split('at')[1], ' id= ',id(self))
 
     def data_received(self, data):
         """receive data from transport socket"""
         # use a task so this is executed async
-        print("RCV: ", repr(self.transport).split('at')[1], ' id= ',id(self))
         asyncio.Task(self.rcv_data(data))
 
     @asyncio.coroutine
@@ -89,7 +90,6 @@ class Server(asyncio.Protocol):
                     self.clients[peername].transport]):
                 if future_data in done:
                     transport.write(future_data.result())
-                    print("SEND: ", repr(transport).split('at')[1], ' id= ',id(self))
                 else:
                     future_data.cancel()
 

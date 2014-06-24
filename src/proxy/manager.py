@@ -23,7 +23,6 @@ class Manager():
         while self.server.packets_to_gs:
             print(self.server.packets_to_gs)
             yield self.server.packets_to_gs.pop()
-        assert(self.list_gs_conn[0] == peername) ## should be fixed !!!!
         for packet in gen:
             self.packets.append([peername, name, repr(packet)[1:]])
             yield packet

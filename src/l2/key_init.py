@@ -22,8 +22,8 @@ class KeyInit():
                      [self.packet.client, self.packet.server]):
                 stack.append(lambda data: obj.pck_rcv.segmentation_packets(data))
                 stack.append(lambda gen: obj.xor_in.xor(gen))
-                # stack.append(lambda gen, manager=self.packet.manager, name=obj.name,
-                #    peername=self.packet.peername : self.packet.manager.set_manager_data(name, gen, peername))
+                stack.append(lambda gen, manager=self.packet.manager, name=obj.name,
+                   peername=self.packet.peername : self.packet.manager.set_manager_data(name, gen, peername))
                 stack.append(lambda gen, name=obj.name, gameapi=self.gameapi, peername=self.packet.peername: \
                     self.packet_print_dtype(name, gameapi, gen, peername))
                 stack.append(lambda gen: obj.xor_out.xor(gen))
