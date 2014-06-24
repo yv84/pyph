@@ -76,7 +76,11 @@ class EchoServer(asyncio.Protocol):
         #print('data received: ', data.decode())
         #print('S: ', data)
         #self.transport.write(b'Re: ' + data)
-        self.transport.write(b''.join(self.message_server[self.transport](data)))
+        data = b''.join(self.message_server[self.transport](data))
+        if data:
+            self.transport.write(data)
+        else:
+            self.transport.close()
         #print('S send: ', b''.join(self.message_server[self.transport](data)))
         # restart timeout timer
         self.h_timeout.cancel()
@@ -105,7 +109,11 @@ class EchoClient(asyncio.Protocol):
 
     def data_received(self, data):
         #print('C:', data)
-        self.transport.write(b''.join(self.message_client(data)))
+        data = b''.join(self.message_client(data))
+        if data:
+            self.transport.write(data)
+        else:
+            self.transport.close()
         # disconnect after 10 seconds
         asyncio.get_event_loop().call_later(10.0, self.transport.close)
 

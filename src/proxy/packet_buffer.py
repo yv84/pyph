@@ -5,10 +5,10 @@ from asyncio.queues import Queue, QueueEmpty
 class Packet():
 
     def __init__(self, manager, peername):
-        # if manager.cmd_line.game == 'l2':
-        from l2.key_init import KeyInit, Connect
-        # elif manager.cmd_line.game == 'aa':
-        #     from aa.key_init import KeyInit, Connect
+        if manager.cmd_line.game == 'l2':
+            from l2.key_init import KeyInit, Connect
+        elif manager.cmd_line.game == 'aa':
+            from aa.key_init import KeyInit, Connect
         self.client = Connect('client')
         self.client.q = Queue()
         self.server = Connect('server')
@@ -31,14 +31,13 @@ class Packet():
         """pass through a set of commands"""
         to_c_data, to_s_data = self.client._data, self.server._data
         self.client._data, self.server._data = b'', b''
-        # for stack, to_data in zip([self.client.command_stack,
-        #                           self.server.command_stack],
-        #                           [to_s_data, to_c_data]):
-        #     gen = to_data
-        #     for cmd in stack:
-        #         gen = cmd(gen)
-        #     to_data = gen
-
+        for stack, to_data in zip([self.client.command_stack,
+                                  self.server.command_stack],
+                                  [to_s_data, to_c_data]):
+            gen = to_data
+            for cmd in stack:
+                gen = cmd(gen)
+            to_data = gen
         for q, data in zip([self.client.q, self.server.q],
                             [to_c_data, to_s_data]):
             if data:
