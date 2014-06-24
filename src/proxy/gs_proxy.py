@@ -20,25 +20,27 @@ class Client(asyncio.Protocol):
     def connection_lost(self, *args):
         self.connected = False
 
-
 class Server(asyncio.Protocol):
-    def __init__(self, loop, manager):
-        self.loop = loop
-        self.manager = manager
-        self.clients = {}
-        self.buffers = {}
+    # def __init__(self, manager):
+    #     #self.loop = loop
+    manager = None
+    clients = {}
+    buffers = {}
+    #     super(asyncio.Protocol, self).__init__()
 
     def connection_made(self, transport):
         # save the transport
         self.transport = transport
+        print('Server(asyncio.Protocol) connection_made/', repr(self.transport).split('at')[1], ' id= ',id(self))
 
     def connection_lost(self, exc):
-        pass
+        print('Server(asyncio.Protocol) connection_lost/', repr(self.transport).split('at')[1], ' id= ',id(self))
 
     def data_received(self, data):
         """receive data from transport socket"""
         # use a task so this is executed async
-        asyncio.Task(self.rcv_data(data))
+        print("RCV: ", repr(self.transport).split('at')[1], ' id= ',id(self))
+        asyncio.Task(self.rcv_data(data)) # which transport data come form
 
     @asyncio.coroutine
     def rcv_data(self, data):
@@ -48,14 +50,14 @@ class Server(asyncio.Protocol):
         client = self.clients.get(peername)
         # create a client if peername is not known or the client disconnect
         if client is None or not client.connected:
-            self.manager.data = repr(peername)
+            # self.manager.data = repr(peername)
             loop = asyncio.get_event_loop()
-            protocol, client = yield from create_client(self.loop)
+            protocol, client = yield from create_client(loop)
             client.server = self
             client.peername = peername
             client.server_transport = self.transport
             self.clients[peername] = client
-            self.manager.list_gs_conn.append(peername)
+            # self.manager.list_gs_conn.append(peername)
             self.buffers[peername] = Packet(self.manager, peername)
             asyncio.Task(self.send_data(peername))
             asyncio.Task(self.data_from_packet_buffer_to_queue(peername))
@@ -67,8 +69,8 @@ class Server(asyncio.Protocol):
         """put out data to queue"""
         while self.clients[peername].connected:
             yield from self.buffers[peername].packet_handlers()
-            yield from asyncio.sleep(0.1)
-        self.manager.list_gs_conn.remove(peername)
+            yield from asyncio.sleep(0.01)
+        # self.manager.list_gs_conn.remove(peername)
 
     @asyncio.coroutine
     def send_data(self, peername):
@@ -85,6 +87,7 @@ class Server(asyncio.Protocol):
                     self.clients[peername].transport]):
                 if future_data in done:
                     transport.write(future_data.result())
+                    print("SEND: ", repr(transport).split('at')[1], ' id= ',id(self))
                 else:
                     future_data.cancel()
 
@@ -95,5 +98,6 @@ create_server = lambda loop, server: loop.create_server(lambda : server, '127.0.
 @asyncio.coroutine
 def init_proxy(loop, manager):
     # use a coroutine to use yield from and get the async result of
-    server = Server(loop, manager)
-    server = yield from create_server(loop, server)
+    # server = Server(loop, manager)
+    # server = yield from create_server(loop, server)
+    yield from loop.create_server(Server, '127.0.0.1', 8888)

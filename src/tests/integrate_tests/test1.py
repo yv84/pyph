@@ -46,14 +46,14 @@ class TestCase(unittest.TestCase):
             p.join()
 
     def testProxyServer(self):
-        game = 'aa'
+        game = 'l2'
         self.port1 = '9999'
         self.port2 = '8888'
         conn = {
             'client': {'ip': '127.0.0.1', 'port': self.port1}, # client -> proxy
             'server': {'ip': '127.0.0.1', 'port': self.port2}, # proxy -> server
             }
-        N = 1
+        N = 2
         for d, k in zip([c for c in conn], [conn[c] for c in conn]):
             os.system('fuser -k '+conn[d]['port']+'/tcp')
         os.system('fuser -k '+'5000'+'/tcp') # web
