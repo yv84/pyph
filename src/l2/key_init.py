@@ -2,14 +2,14 @@ import numpy
 
 from .len_packet import LenL2PacketRcv, LenL2PacketSend
 from .xor import Xor
-from .gs_l2_packet import gs_l2_packet, PacketError
+from .gs_l2_packet import PacketError
 
 
 class KeyInit():
     def __init__(self, packet):
         self.packet = packet
         self.packet.server.command_stack.append(lambda data: self.key_packet_initialization(data))
-        self.gameapi = gs_l2_packet()
+        self.gameapi = packet.manager.gameapi
 
     def key_packet_initialization(self, to_s_data: bytes) -> bytes:
         def key_packet_initialization_remover(to_s_data):
@@ -39,16 +39,16 @@ class KeyInit():
             try:
                 unpack = gameapi.unpack(packet, side)
                 pack = gameapi.pack(unpack, side)
-                # if isinstance(unpack, numpy.ndarray):
-                #     print("{ ", end='')
-                #     for i, j in zip(unpack.item(), unpack.dtype.fields):
-                #         print(j, "=", i, end='; ')
-                #     print("} ")
+                if isinstance(unpack, numpy.ndarray):
+                    print("{ ", end='')
+                    for i, j in zip(unpack.item(), unpack.dtype.fields):
+                        print(j, "=", i, end='; ')
+                    print("} ")
                 yield pack
             except PacketError:
-                # print('error parsing packet')
-                # print("{}: ".format(name), end='')
-                # print(packet)
+                print('error parsing packet')
+                print("{}: ".format(name), end='')
+                print(packet)
                 yield packet
 
 

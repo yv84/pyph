@@ -14,7 +14,13 @@ class Manager():
         self.packets = []
         self.cmd_line = cmd_line
         self.list_gs_conn = []
-
+        if self.cmd_line.game == 'l2':
+            from l2.gs_l2_packet import gs_l2_packet
+            self.gameapi = gs_l2_packet()
+        elif self.cmd_line.game == 'aa':
+            pass
+        else:
+            raise Exception('invalid cmd_line.game')
 
     def set_manager_data(self, name, gen, peername):
         while self.client.packets_to_gs:
