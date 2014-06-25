@@ -4,6 +4,8 @@ websocket = () ->
 
   log = (json_msg) ->
       msg = JSON.parse(json_msg)
+      if msg.conn
+          console.log(msg.conn)
       for ii in msg
           jQuery('<li/>', {
               class: "btn-success",

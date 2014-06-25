@@ -1,23 +1,10 @@
-#!/usr/bin/env python
-
 import json
 import asyncio
 from asyncio.queues import Queue, QueueEmpty
 
-
 import websockets
 
 from .repr_to_bytes import from_str_to_repr_bytes
-
-
-@asyncio.coroutine
-def hello(websocket, path):
-    name = yield from websocket.recv()
-    print("s:< {}".format(name))
-    greeting = "Hello {}!".format(name)
-    print("s:> {}".format(greeting))
-    yield from websocket.send(greeting)
-
 
 
 class WsHandler():
@@ -29,9 +16,20 @@ class WsHandler():
     def __call__(self, websocket, path):
         return self.ws_handler(websocket, path)
 
+
+    def send_to_subscribers(self, path):
+        return [_websocket for _websocket in \
+                self.websockets if \
+                self.websockets.get(_websocket)['path'] == path]
+
     # @app.route('/')
     @asyncio.coroutine
     def index(self, websocket, path):
+        gs_conn = -1
+        response = json.dumps({'conn':self.manager.list_gs_conn})
+        print('self.manager.list_gs_conn:', response)
+        for _ws in self.send_to_subscribers(path):
+            yield from _ws.send(response)
         while True:
             recv = yield from websocket.recv()
             if recv:
@@ -41,18 +39,17 @@ class WsHandler():
                         self.manager.client.packets_to_gs.append(from_str_to_repr_bytes(v))
                     elif k == 's':
                         self.manager.server.packets_to_gs.append(from_str_to_repr_bytes(v))
+                    elif k == 'conn':
+                        gs_conn = int(k['conn'])
 
             if self.manager.packets:
                 response = json.dumps(self.manager.packets)
                 self.manager.packets = []
-                for _websocket in [_websocket for _websocket in \
-                        self.websockets if \
-                        self.websockets.get(_websocket)['path'] == path]:
-                    yield from _websocket.send(response)
+                for _ws in self.send_to_subscribers(path):
+                    yield from _ws.send(response)
             else:
                 pass
             yield from asyncio.sleep(0.5)
-
 
     @asyncio.coroutine
     def ws_handler(self, websocket, path):
@@ -62,7 +59,6 @@ class WsHandler():
 
         elif path.startswith('/hello'):
             yield from hello(websocket, path)
-
 
 
 class WebSocketServerProtocol(websockets.WebSocketServerProtocol):
