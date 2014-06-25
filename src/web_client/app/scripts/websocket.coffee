@@ -6,6 +6,12 @@ websocket = () ->
       msg = JSON.parse(json_msg)
       if msg.conn
           console.log(msg.conn)
+          # <li><a href="#">Conn1</a></li>
+          $('#connections').find('li').remove()
+          for _ii in msg.conn
+              jQuery('<li/>').appendTo('#connections')
+              jQuery('<a/>', {href: "#", text: _ii}).appendTo('#connections>:last-child')
+
       for ii in msg
           jQuery('<li/>', {
               class: "btn-success",
