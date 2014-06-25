@@ -4,6 +4,9 @@ MarkupSafe==0.21
 Werkzeug==0.9.4
 aiohttp==0.7.0
 asyncio==0.4.1
+cffi==0.8.2
 itsdangerous==0.24
 numpy==1.8.1
+pycparser==2.10
+selenium==2.42.1
 websockets==2.0
