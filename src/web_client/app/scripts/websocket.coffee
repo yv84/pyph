@@ -7,10 +7,14 @@ websocket = () ->
       if msg.conn
           console.log(msg.conn)
           # <li><a href="#">Conn1</a></li>
-          $('#connections').find('li').remove()
-          for _ii in msg.conn
-              jQuery('<li/>').appendTo('#connections')
-              jQuery('<a/>', {href: "#", text: _ii}).appendTo('#connections>:last-child')
+          $('#connections>ul').find('li').remove()
+          for _conn in msg.conn
+              jQuery('<li/>').appendTo('#connections>ul')
+              jQuery('<a/>', {href: "#", text: _conn}).appendTo('#connections>ul>:last-child')
+          $('#connections>ul').find('li')
+          $('#connections>ul').find('>li').on 'click', () ->
+                  choice_conn($(this).text())
+          #$('#connections>ul').css({'display': 'none'})
 
       for ii in msg
           jQuery('<li/>', {
@@ -82,7 +86,11 @@ websocket = () ->
       $('#text').val('').focus()
       return false
 
-
+  choice_conn = (_conn) ->
+      jQuery('#connections>a').text(_conn)
+      msg = JSON.stringify({'conn':_conn})
+      conn.send(msg)
+      return false
 
 #window.websocket = websocket
 $(websocket);

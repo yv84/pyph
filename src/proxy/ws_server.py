@@ -37,10 +37,14 @@ class WsHandler():
                 for k,v in d.items():
                     if k == 'c':
                         self.manager.client.packets_to_gs.append(from_str_to_repr_bytes(v))
+                        print('c: ', v)
                     elif k == 's':
                         self.manager.server.packets_to_gs.append(from_str_to_repr_bytes(v))
+                        print('s: ', v)
                     elif k == 'conn':
-                        gs_conn = int(k['conn'])
+                        #gs_conn = int(k['conn'])
+                        print('gs_conn: ', v.split(','))
+                        print(self.manager.list_gs_conn)
 
             if self.manager.packets:
                 response = json.dumps(self.manager.packets)
