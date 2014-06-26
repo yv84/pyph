@@ -15,11 +15,11 @@ class Manager():
         self.cmd_line = cmd_line
         self.list_gs_conn = []
         self.web_socket = None
-        if self.cmd_line.game == 'l2':
+        if self.cmd_line.game in ('aa', 'raw'):
+            pass
+        elif self.cmd_line.game == 'l2':
             from l2.gs_l2_packet import gs_l2_packet
             self.gameapi = gs_l2_packet()
-        elif self.cmd_line.game == 'aa':
-            pass
         else:
             raise Exception('invalid cmd_line.game')
 

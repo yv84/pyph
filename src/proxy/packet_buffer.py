@@ -5,10 +5,13 @@ from asyncio.queues import Queue, QueueEmpty
 class Packet():
 
     def __init__(self, manager, peername):
-        if manager.cmd_line.game == 'l2':
+        if manager.cmd_line.game == 'raw':
+            from raw.key_init import KeyInit, Connect
+        elif manager.cmd_line.game == 'l2':
             from l2.key_init import KeyInit, Connect
         elif manager.cmd_line.game == 'aa':
             from aa.key_init import KeyInit, Connect
+
         self.client = Connect('client')
         self.client.q = Queue()
         self.server = Connect('server')

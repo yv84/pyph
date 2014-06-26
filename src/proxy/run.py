@@ -37,9 +37,9 @@ def run():
     except:
         print("killed")
     finally:
-        task_game_proxy.close()
-        task_web_server.close()
-        task_websocket.close()
+        task_game_proxy.cancel()
+        task_web_server.cancel()
+        task_websocket.cancel()
         loop.close()
 
 
