@@ -2,6 +2,7 @@ websocket = () ->
   console.log('load websocket')
   conn = null
 
+  # setup drop menu
   do add_li_in_drop_list = () ->
       jQuery('<li/>').appendTo('#connections>ul')
       jQuery('<a/>', {href: "#", text: "None"}).appendTo('#connections>ul>:last-child')
@@ -16,6 +17,7 @@ websocket = () ->
 
   log = (json_msg) ->
       msg = JSON.parse(json_msg)
+      # list of gsconnections
       if msg.conn
           console.log(msg.conn)
           # <li><a href="#">Conn1</a></li>
@@ -44,6 +46,7 @@ websocket = () ->
       console.log(conn)
       conn.onopen = () ->
           update_ui()
+          choice_conn()
 
       conn.onmessage = (e) ->
           log(e.data); # Received
@@ -106,6 +109,8 @@ websocket = () ->
       return false
 
   choice_conn = (_conn) ->
+      if _conn == undefined
+          _conn = 'None'
       jQuery('#connections>a').text(_conn)
       msg = JSON.stringify({'conn':_conn})
       conn.send(msg)
