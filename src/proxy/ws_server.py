@@ -10,8 +10,9 @@ from .repr_to_bytes import from_str_to_repr_bytes
 class WsHandler():
     def __init__(self, manager):
         self.manager = manager
-        self.manager.ws_handler = self
+        self.manager.web_socket = self
         self.websockets = {}
+        self.peernames = set()
 
     def __call__(self, websocket, path):
         return self.ws_handler(websocket, path)
@@ -25,7 +26,7 @@ class WsHandler():
     # @app.route('/')
     @asyncio.coroutine
     def index(self, websocket, path):
-        gs_conn = -1
+        self.websockets[websocket].update({'packets': []})
         response = json.dumps({'conn':self.manager.list_gs_conn})
         print('self.manager.list_gs_conn:', response)
         for _ws in self.send_to_subscribers(path):
@@ -42,13 +43,15 @@ class WsHandler():
                         self.manager.server.packets_to_gs.append(from_str_to_repr_bytes(v))
                         print('s: ', v)
                     elif k == 'conn':
-                        #gs_conn = int(k['conn'])
-                        print('gs_conn: ', v.split(','))
-                        print(self.manager.list_gs_conn)
+                        self.websockets[websocket].update({'gs_conn': v})
+                        print(self.websockets)
+                        self.peernames = set()
+                        for _ws in self.websockets:
+                            self.peernames.add(self.websockets[_ws]['gs_conn'])
 
-            if self.manager.packets:
-                response = json.dumps(self.manager.packets)
-                self.manager.packets = []
+            if self.websockets[websocket]['packets']:
+                response = json.dumps(self.websockets[websocket]['packets'])
+                self.websockets[websocket]['packets'] = []
                 for _ws in self.send_to_subscribers(path):
                     yield from _ws.send(response)
             else:
