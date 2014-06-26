@@ -2,12 +2,18 @@ websocket = () ->
   console.log('load websocket')
   conn = null
 
+  do add_li_in_drop_list = () ->
+      jQuery('<li/>').appendTo('#connections>ul')
+      jQuery('<a/>', {href: "#", text: "None"}).appendTo('#connections>ul>:last-child')
+      jQuery('<li/>').appendTo('#connections>ul')
+      jQuery('<a/>', {href: "#", text: "Waiting"}).appendTo('#connections>ul>:last-child')
+
   log = (json_msg) ->
       msg = JSON.parse(json_msg)
       if msg.conn
           console.log(msg.conn)
           # <li><a href="#">Conn1</a></li>
-          $('#connections>ul').find('li').remove()
+          $('#connections>ul').find('li:gt(1)').remove()
           for _conn in msg.conn
               jQuery('<li/>').appendTo('#connections>ul')
               jQuery('<a/>', {href: "#", text: _conn}).appendTo('#connections>ul>:last-child')

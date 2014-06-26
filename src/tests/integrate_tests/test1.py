@@ -61,7 +61,7 @@ class TestCase(unittest.TestCase):
             os.system('python3 tests/integrate_tests/tcp_echo.py '
             '--server --port '+self.port1+' --game '+game+' > /dev/null')
         def start_proxy():
-            os.system('python3 run.py --game raw' )# '+game+'')
+            os.system('python3 run.py --game '+game+'')
         def start_client():
             os.system('python3 tests/integrate_tests/tcp_echo.py '
              '--client --port '+self.port2+' --game '+game+' > /dev/null')
