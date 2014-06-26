@@ -7,6 +7,31 @@ import websockets
 from .repr_to_bytes import from_str_to_repr_bytes
 
 
+class Websocket():
+    def __init__(self):
+        self.path = ''
+        self.gs_conn = ''
+        self.packets = []
+        self.ws_set = False
+
+
+class Websockets():
+    def __init__(self):
+        self._websockets = []
+
+    @property
+    def websockets(self):
+        return self._websockets
+
+    def add(self):
+        self._websockets.append(Websocket())
+
+    def remove(self, obj):
+        self._websockets.remove(obj)
+
+
+
+
 class WsHandler():
     def __init__(self, manager):
         self.manager = manager
@@ -22,23 +47,23 @@ class WsHandler():
     def send_to_subscribers(self, path):
         return [_websocket for _websocket in \
                 self.websockets if \
-                self.websockets.get(_websocket)['path'] == path]
+                self.websockets.get(_websocket).path == path]
 
     def add_ws_conn_to_set(self, v):
         print('ws-> ', v)
         self.peernames = set()
         for _ws in self.websockets:
-            self.peernames.add(self.websockets[_ws]['gs_conn'])
+            self.peernames.add(self.websockets[_ws].gs_conn)
         for _ws in self.websockets:
-            if not self.websockets[_ws]['gs_conn'] in self.peernames:
-                self.websockets[_ws]['packets'] = []  # remove data from buffer if noone needs it
+            if not self.websockets[_ws].gs_conn in self.peernames:
+                self.websockets[_ws].packets = []  # remove data from buffer if noone needs it
 
 
 
     # @app.route('/')
     @asyncio.coroutine
     def index(self, websocket, path):
-        self.websockets[websocket].update({'packets': []})
+        self.websockets[websocket].packets = []
         self.client_list_of_gs_conn_should_be_updated = True
 
         while True:
@@ -53,7 +78,7 @@ class WsHandler():
                         self.manager.server.packets_to_gs.append(from_str_to_repr_bytes(v))
                         print('s: ', v)
                     elif k == 'conn':
-                        self.websockets[websocket].update({'gs_conn': v})
+                        self.websockets[websocket].gs_conn = v
                         self.add_ws_conn_to_set(v)
 
             if self.client_list_of_gs_conn_should_be_updated:
@@ -63,9 +88,9 @@ class WsHandler():
                     yield from _ws.send(response)
                 self.client_list_of_gs_conn_should_be_updated = False
 
-            if self.websockets[websocket]['packets']:
-                response = json.dumps(self.websockets[websocket]['packets'])
-                self.websockets[websocket]['packets'] = []
+            if self.websockets[websocket].packets:
+                response = json.dumps(self.websockets[websocket].packets)
+                self.websockets[websocket].packets = []
                 for _ws in self.send_to_subscribers(path):
                     yield from _ws.send(response)
             else:
@@ -74,7 +99,7 @@ class WsHandler():
 
     @asyncio.coroutine
     def ws_handler(self, websocket, path):
-        self.websockets[websocket].update({'path': path})
+        self.websockets[websocket].path = path
         if path == ('/'):
             yield from self.index(websocket, path)
 
@@ -85,7 +110,7 @@ class WsHandler():
 class WebSocketServerProtocol(websockets.WebSocketServerProtocol):
 
     def connection_made(self, transport):
-        self.ws_handler.websockets[self] = {}
+        self.ws_handler.websockets[self] = Websocket()
         super().connection_made(transport)
 
     @asyncio.coroutine

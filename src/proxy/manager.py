@@ -50,8 +50,8 @@ class Manager():
             if peername[0]+','+str(peername[1]) in self.web_socket.peernames:
                 for packet in gen:
                     for _ws in self.web_socket.websockets:
-                        if self.web_socket.websockets[_ws].get('gs_conn', 'None') == peername[0]+','+str(peername[1]):
-                            self.web_socket.websockets[_ws]['packets'].append([peername, side, repr(packet)[1:]])
+                        if self.web_socket.websockets[_ws].gs_conn == peername[0]+','+str(peername[1]):
+                            self.web_socket.websockets[_ws].packets.append([peername, side, repr(packet)[1:]])
                     yield packet
             else:
                 yield from gen
