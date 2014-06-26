@@ -59,7 +59,7 @@ class Server(asyncio.Protocol):
             client.peername = peername
             client.server_transport = self.transport
             self.clients[peername] = client
-            self.manager.list_gs_conn.append(peername)
+            self.manager.list_gs_conn_append(peername)
             self.buffers[peername] = Packet(self.manager, peername)
             asyncio.Task(self.send_data(peername))
             asyncio.Task(self.data_from_packet_buffer_to_queue(peername))
@@ -72,7 +72,7 @@ class Server(asyncio.Protocol):
         while self.clients[peername].connected:
             yield from self.buffers[peername].packet_handlers()
             yield from asyncio.sleep(0.02)
-        self.manager.list_gs_conn.remove(peername)
+        self.manager.list_gs_conn_remove(peername)
         self.transport.close()
 
     @asyncio.coroutine

@@ -13,7 +13,7 @@ class Manager():
         self.data = ''
         self.packets = []
         self.cmd_line = cmd_line
-        self.list_gs_conn = []
+        self._list_gs_conn = []
         self.web_socket = None
         if self.cmd_line.game in ('aa', 'raw'):
             pass
@@ -22,6 +22,22 @@ class Manager():
             self.gameapi = gs_l2_packet()
         else:
             raise Exception('invalid cmd_line.game')
+
+    @property
+    def list_gs_conn(self):
+        return self._list_gs_conn
+
+    def list_gs_conn_append(self, peername):
+        self._list_gs_conn.append(peername)
+        self.web_socket.client_list_of_gs_conn_should_be_updated = True
+        return
+
+    def list_gs_conn_remove(self, peername):
+        self._list_gs_conn.remove(peername)
+        self.web_socket.client_list_of_gs_conn_should_be_updated = True
+        return
+
+
 
     def set_manager_data(self, side, gen, peername):
         if self.web_socket.peernames:

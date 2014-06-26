@@ -53,7 +53,7 @@ class TestCase(unittest.TestCase):
             'client': {'ip': '127.0.0.1', 'port': self.port1}, # client -> proxy
             'server': {'ip': '127.0.0.1', 'port': self.port2}, # proxy -> server
             }
-        N = 2
+        N = 3
         for d, k in zip([c for c in conn], [conn[c] for c in conn]):
             os.system('fuser -k '+conn[d]['port']+'/tcp')
         os.system('fuser -k '+'5000'+'/tcp') # web
@@ -77,10 +77,10 @@ class TestCase(unittest.TestCase):
             processes.append(Process(target=start_client, args=()))
         processes[0].start()
         processes[1].start()
-        time.sleep(1)
+        time.sleep(2)
         for p in processes[2:]:
             p.start()
-            time.sleep(0.1)
+            time.sleep(2)
         time.sleep(25)
 
         processes.reverse()

@@ -13,6 +13,7 @@ class WsHandler():
         self.manager.web_socket = self
         self.websockets = {}
         self.peernames = set()
+        self.client_list_of_gs_conn_should_be_updated = False
 
     def __call__(self, websocket, path):
         return self.ws_handler(websocket, path)
@@ -23,14 +24,23 @@ class WsHandler():
                 self.websockets if \
                 self.websockets.get(_websocket)['path'] == path]
 
+    def add_ws_conn_to_set(self, v):
+        print('ws-> ', v)
+        self.peernames = set()
+        for _ws in self.websockets:
+            self.peernames.add(self.websockets[_ws]['gs_conn'])
+        for _ws in self.websockets:
+            if not self.websockets[_ws]['gs_conn'] in self.peernames:
+                self.websockets[_ws]['packets'] = []  # remove data from buffer if noone needs it
+
+
+
     # @app.route('/')
     @asyncio.coroutine
     def index(self, websocket, path):
         self.websockets[websocket].update({'packets': []})
-        response = json.dumps({'conn':self.manager.list_gs_conn})
-        print('self.manager.list_gs_conn:', response)
-        for _ws in self.send_to_subscribers(path):
-            yield from _ws.send(response)
+        self.client_list_of_gs_conn_should_be_updated = True
+
         while True:
             recv = yield from websocket.recv()
             if recv:
@@ -44,12 +54,14 @@ class WsHandler():
                         print('s: ', v)
                     elif k == 'conn':
                         self.websockets[websocket].update({'gs_conn': v})
-                        self.peernames = set()
-                        for _ws in self.websockets:
-                            self.peernames.add(self.websockets[_ws]['gs_conn'])
-                        for _ws in self.websockets:
-                            if not self.websockets[_ws]['gs_conn'] in self.peernames:
-                                self.websockets[_ws]['packets'] = []  # remove data from buffer if noone needs it
+                        self.add_ws_conn_to_set(v)
+
+            if self.client_list_of_gs_conn_should_be_updated:
+                response = json.dumps({'conn':self.manager.list_gs_conn})
+                print('self.manager.list_gs_conn:', response)
+                for _ws in self.send_to_subscribers(path):
+                    yield from _ws.send(response)
+                self.client_list_of_gs_conn_should_be_updated = False
 
             if self.websockets[websocket]['packets']:
                 response = json.dumps(self.websockets[websocket]['packets'])
