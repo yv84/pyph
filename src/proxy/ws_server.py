@@ -44,10 +44,12 @@ class WsHandler():
                         print('s: ', v)
                     elif k == 'conn':
                         self.websockets[websocket].update({'gs_conn': v})
-                        print(self.websockets)
                         self.peernames = set()
                         for _ws in self.websockets:
                             self.peernames.add(self.websockets[_ws]['gs_conn'])
+                        for _ws in self.websockets:
+                            if not self.websockets[_ws]['gs_conn'] in self.peernames:
+                                self.websockets[_ws]['packets'] = []  # remove data from buffer if noone needs it
 
             if self.websockets[websocket]['packets']:
                 response = json.dumps(self.websockets[websocket]['packets'])
