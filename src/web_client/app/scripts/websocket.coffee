@@ -7,6 +7,12 @@ websocket = () ->
       jQuery('<a/>', {href: "#", text: "None"}).appendTo('#connections>ul>:last-child')
       jQuery('<li/>').appendTo('#connections>ul')
       jQuery('<a/>', {href: "#", text: "Waiting"}).appendTo('#connections>ul>:last-child')
+      $('#connections>ul').find('>li').on 'click', () ->
+              choice_conn($(this).text())
+      $('#connections').on 'mouseenter', () ->
+          $('#connections>ul').css({'display': 'block'})
+      $('#connections').on 'mouseleave', () ->
+          $('#connections>ul').css({'display': 'none'})
 
   log = (json_msg) ->
       msg = JSON.parse(json_msg)
@@ -17,15 +23,14 @@ websocket = () ->
           for _conn in msg.conn
               jQuery('<li/>').appendTo('#connections>ul')
               jQuery('<a/>', {href: "#", text: _conn}).appendTo('#connections>ul>:last-child')
-          $('#connections>ul').find('li')
           $('#connections>ul').find('>li').on 'click', () ->
                   choice_conn($(this).text())
-          #$('#connections>ul').css({'display': 'none'})
 
-      for ii in msg
-          jQuery('<li/>', {
-              class: "btn-success",
-              text: ii}).prependTo('#packet_log')
+      else if jQuery('#stop').text() == 'Stop '
+          for ii in msg
+              jQuery('<li/>', {
+                  class: "btn-success",
+                  text: ii}).prependTo('#packet_log')
 
 
   connect = () ->
@@ -62,6 +67,14 @@ websocket = () ->
         $('#status').text('connected (' + conn.protocol + ')')
         $('#connect').html('Disconnect')
 
+  $('#stop').on 'click', () ->
+      console.log(jQuery('#stop').text())
+      if jQuery('#stop').text() == 'Stop '
+          jQuery('#stop').text('Resume ')
+          jQuery('<span/>', {class: "glyphicon glyphicon-play"}).appendTo('#stop')
+      else if jQuery('#stop').text() == 'Resume '
+          jQuery('#stop').text('Stop ')
+          jQuery('<span/>', {class: "glyphicon glyphicon-stop"}).appendTo('#stop')
 
   $('#connect').on 'click', () ->
       console.log('button connect')
