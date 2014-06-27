@@ -40,18 +40,18 @@ class Manager():
 
 
     def set_manager_data(self, side, gen, peername):
-        if self.web_socket.peernames:
+        if self.web_socket.ws.peernames():
             while self.client.packets_to_gs:
                 print(self.client.packets_to_gs)
                 yield self.client.packets_to_gs.pop()
             while self.server.packets_to_gs:
                 print(self.server.packets_to_gs)
                 yield self.server.packets_to_gs.pop()
-            if peername[0]+','+str(peername[1]) in self.web_socket.peernames:
+            if peername[0]+','+str(peername[1]) in self.web_socket.ws.peernames():
                 for packet in gen:
-                    for _ws in self.web_socket.websockets:
-                        if self.web_socket.websockets[_ws].gs_conn == peername[0]+','+str(peername[1]):
-                            self.web_socket.websockets[_ws].packets.append([peername, side, repr(packet)[1:]])
+                    for _ws in self.web_socket.ws.get_ws():
+                        if _ws.gs_conn == peername[0]+','+str(peername[1]):
+                            _ws.packets.append([peername, side, repr(packet)[1:]])
                     yield packet
             else:
                 yield from gen

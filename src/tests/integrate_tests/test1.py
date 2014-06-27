@@ -57,6 +57,7 @@ class TestCase(unittest.TestCase):
         for d, k in zip([c for c in conn], [conn[c] for c in conn]):
             os.system('fuser -k '+conn[d]['port']+'/tcp')
         os.system('fuser -k '+'5000'+'/tcp') # web
+        os.system('fuser -k '+'8765'+'/tcp') # websocket
         def start_server():
             os.system('python3 tests/integrate_tests/tcp_echo.py '
             '--server --port '+self.port1+' --game '+game+' > /dev/null')
