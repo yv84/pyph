@@ -17,6 +17,7 @@ class Websocket():
         self.gs_conn = ''
         self.packets = []
         self.update_require = False
+        self._packets_to_gs = []
 
     def __repr__(self):
         return "<{path} | <p at {server_protocol} | {gs_conn} | <ws at {id}>".format(
@@ -68,6 +69,13 @@ class Websocket():
     def peernames(cls):
         return cls._peernames
 
+    @classmethod
+    def get_packets_to_gs(cls, peername, side):
+        return [] # Not Implemented[peername, side, repr(packet)[1:]]
+
+    def add_packets_to_gs(self, side, pck):
+        pass # Not Implemented[peername, side, repr(packet)[1:]]
+
 
 class WsHandler():
     def __init__(self, manager):
@@ -91,21 +99,23 @@ class WsHandler():
                 d = json.loads(recv)
                 for k,v in d.items():
                     if k == 'c':
-                        self.manager.client.packets_to_gs.append(from_str_to_repr_bytes(v))
+                        self.ws.get_from_protocol(websocket).add_packets_to_gs(
+                            'client', from_str_to_repr_bytes(v))
                         print('c: ', v)
                     elif k == 's':
-                        self.manager.server.packets_to_gs.append(from_str_to_repr_bytes(v))
+                        self.ws.get_from_protocol(websocket).add_packets_to_gs(
+                            'server', from_str_to_repr_bytes(v))
                         print('s: ', v)
                     elif k == 'conn':
                         self.ws.get_from_protocol(websocket).gs_conn = v
                         self.ws.add_ws_conn_to_set()
 
             if self.client_list_of_gs_conn_should_be_updated:
-                response = json.dumps({'conn':self.manager.list_gs_conn})
+                response = json.dumps({'reload_peername':self.manager.list_gs_conn})
                 for _ws in self.ws.send_to_subscribers(path):
                     yield from _ws.server_protocol.send(response)
                 for _ws in self.ws.get_from_update_require():
-                    response = json.dumps({'conn_set':_ws.gs_conn})
+                    response = json.dumps({'set_peername':_ws.gs_conn})
                     yield from _ws.server_protocol.send(response)
                 self.client_list_of_gs_conn_should_be_updated = False
 

@@ -18,25 +18,24 @@ websocket = () ->
   log = (json_msg) ->
       msg = JSON.parse(json_msg)
       # list of gsconnections
-      if msg.conn
-          console.log(msg.conn)
+      if msg.reload_peername
+          console.log(msg.reload_peername)
           # <li><a href="#">Conn1</a></li>
           $('#connections>ul').find('li:gt(1)').remove()
-          for _conn in msg.conn
+          for _conn in msg.reload_peername
               jQuery('<li/>').appendTo('#connections>ul')
               jQuery('<a/>', {href: "#", text: _conn}).appendTo('#connections>ul>:last-child')
           $('#connections>ul').find('>li').on 'click', () ->
                   choice_conn($(this).text())
 
-      else if msg.conn_set
+      else if msg.set_peername
           if jQuery('#connections>a').text() == 'Waiting'
-              $('#connections>ul>li:contains('+msg.conn_set+')').trigger( "click" )
+              $('#connections>ul>li:contains('+msg.set_peername+')').trigger( "click" )
 
       else if jQuery('#stop').text() == 'Stop '
           for ii in msg
-              jQuery('<li/>', {
-                  class: "btn-success",
-                  text: ii}).appendTo('#packet_log')
+              jQuery('<li/>',
+                  {class: "packet",text: ii}).appendTo('#packet_log')
 
 
   connect = () ->
@@ -47,9 +46,8 @@ websocket = () ->
       wsUri +='/' # path
       console.log(wsUri)
       conn = new WebSocket(wsUri)
-      console.log(conn)
       conn.onopen = () ->
-          console.log('conn.onopen')
+          console.log('conn.onopen'+conn)
           update_ui()
           choice_conn()
 
