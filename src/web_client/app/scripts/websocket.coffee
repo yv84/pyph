@@ -9,7 +9,7 @@ websocket = () ->
       jQuery('<li/>').appendTo('#connections>ul')
       jQuery('<a/>', {href: "#", text: "Waiting"}).appendTo('#connections>ul>:last-child')
       $('#connections>ul').find('>li').on 'click', () ->
-              choice_conn($(this).text())
+          choice_conn($(this).text())
       $('#connections').on 'mouseenter', () ->
           $('#connections>ul').css({'display': 'block'})
       $('#connections').on 'mouseleave', () ->
@@ -28,11 +28,15 @@ websocket = () ->
           $('#connections>ul').find('>li').on 'click', () ->
                   choice_conn($(this).text())
 
+      else if msg.conn_set
+          if jQuery('#connections>a').text() == 'Waiting'
+              $('#connections>ul>li:contains('+msg.conn_set+')').trigger( "click" )
+
       else if jQuery('#stop').text() == 'Stop '
           for ii in msg
               jQuery('<li/>', {
                   class: "btn-success",
-                  text: ii}).prependTo('#packet_log')
+                  text: ii}).appendTo('#packet_log')
 
 
   connect = () ->
@@ -45,6 +49,7 @@ websocket = () ->
       conn = new WebSocket(wsUri)
       console.log(conn)
       conn.onopen = () ->
+          console.log('conn.onopen')
           update_ui()
           choice_conn()
 

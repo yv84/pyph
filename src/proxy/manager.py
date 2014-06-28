@@ -30,6 +30,11 @@ class Manager():
     def list_gs_conn_append(self, peername):
         self._list_gs_conn.append(peername)
         self.web_socket.client_list_of_gs_conn_should_be_updated = True
+        # if waiting -> peername
+        for _ws in self.web_socket.ws.get_from_peername('Waiting'):
+            _ws.gs_conn = peername[0]+','+str(peername[1])
+            _ws.update_require = True
+            print('update_require->', _ws)
         return
 
     def list_gs_conn_remove(self, peername):

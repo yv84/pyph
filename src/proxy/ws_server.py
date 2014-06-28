@@ -7,7 +7,6 @@ import websockets
 from .repr_to_bytes import from_str_to_repr_bytes
 
 
-# decorator ?
 class Websocket():
     _id_ws = []
     _peernames = set()
@@ -17,7 +16,7 @@ class Websocket():
         self.path = ''
         self.gs_conn = ''
         self.packets = []
-        self.ws_set = False
+        self.update_require = False
 
     def __repr__(self):
         return "<{path} | <p at {server_protocol} | {gs_conn} | <ws at {id}>".format(
@@ -25,13 +24,24 @@ class Websocket():
             gs_conn=self.gs_conn, id=id(self))
 
     @classmethod
-    def send_to_subscribers(cls, path):
+    def send_to_subscribers(cls, path) -> list:
         return [_ws for _ws in cls.get_ws() if _ws.path == path]
 
     @classmethod
     def get_from_protocol(cls, server_protocol):
         return [_ws for _ws in cls.get_ws() \
            if _ws.server_protocol == server_protocol][0]
+
+    @classmethod
+    def get_from_peername(cls, gs_conn) -> list :
+        return [_ws for _ws in cls.get_ws() \
+           if _ws.gs_conn == gs_conn]
+
+    @classmethod
+    def get_from_update_require(cls) -> list :
+        return [_ws for _ws in cls.get_ws() \
+           if _ws.update_require == True]
+
 
     @classmethod
     def add_ws_conn_to_set(cls):
@@ -57,6 +67,7 @@ class Websocket():
     @classmethod
     def peernames(cls):
         return cls._peernames
+
 
 class WsHandler():
     def __init__(self, manager):
@@ -93,6 +104,10 @@ class WsHandler():
                 response = json.dumps({'conn':self.manager.list_gs_conn})
                 print('self.manager.list_gs_conn:', response)
                 for _ws in self.ws.send_to_subscribers(path):
+                    yield from _ws.server_protocol.send(response)
+                for _ws in self.ws.get_from_update_require():
+                    response = json.dumps({'conn_set':_ws.gs_conn})
+                    print(_ws, '=>', response)
                     yield from _ws.server_protocol.send(response)
                 self.client_list_of_gs_conn_should_be_updated = False
 
