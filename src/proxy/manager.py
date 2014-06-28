@@ -34,7 +34,7 @@ class Manager():
         for _ws in self.web_socket.ws.get_from_peername('Waiting'):
             _ws.gs_conn = peername[0]+','+str(peername[1])
             _ws.update_require = True
-            print('update_require->', _ws)
+        self.web_socket.ws.add_ws_conn_to_set()
         return
 
     def list_gs_conn_remove(self, peername):

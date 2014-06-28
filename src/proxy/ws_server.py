@@ -102,12 +102,10 @@ class WsHandler():
 
             if self.client_list_of_gs_conn_should_be_updated:
                 response = json.dumps({'conn':self.manager.list_gs_conn})
-                print('self.manager.list_gs_conn:', response)
                 for _ws in self.ws.send_to_subscribers(path):
                     yield from _ws.server_protocol.send(response)
                 for _ws in self.ws.get_from_update_require():
                     response = json.dumps({'conn_set':_ws.gs_conn})
-                    print(_ws, '=>', response)
                     yield from _ws.server_protocol.send(response)
                 self.client_list_of_gs_conn_should_be_updated = False
 
