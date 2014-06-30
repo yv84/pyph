@@ -14,6 +14,7 @@ class KeyInit():
             for stack, obj in zip([self.packet.client.command_stack, self.packet.server.command_stack],
                      [self.packet.client, self.packet.server]):
                 stack.append(lambda data: obj.pck_rcv.segmentation_packets(data))
+                # stack.append(lambda gen, name=obj.name: packet_print(name, gen))
                 stack.append(lambda gen, manager=self.packet.manager, name=obj.name,
                    peername=self.packet.peername : self.packet.manager.set_manager_data(name, gen, peername))
                 stack.append(lambda gen: obj.pck_send.add_packets(gen))

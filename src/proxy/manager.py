@@ -34,6 +34,8 @@ class Manager():
         for _ws in self.web_socket.ws.get_from_peername('Waiting'):
             _ws.gs_conn = peername[0]+','+str(peername[1])
             _ws.update_require = True
+            for pck in _ws._packets_to_gs:
+                pck[0] = peername
         self.web_socket.ws.add_ws_conn_to_set()
         return
 
@@ -46,8 +48,9 @@ class Manager():
 
     def set_manager_data(self, side, gen, peername):
         if self.web_socket.ws.peernames():
-            for _packet in self.web_socket.ws.get_packets_to_gs(peername, side):
-                yield _packet
+            # for _packet in self.web_socket.ws.get_packets_to_gs(peername, side):
+            #     yield _packet
+            yield from self.web_socket.ws.get_packets_to_gs(peername[0]+','+str(peername[1]), side)
 
             if peername[0]+','+str(peername[1]) in self.web_socket.ws.peernames():
                 for _packet in gen:

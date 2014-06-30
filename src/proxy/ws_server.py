@@ -71,11 +71,14 @@ class Websocket():
 
     @classmethod
     def get_packets_to_gs(cls, peername, side):
-        return [] # Not Implemented[peername, side, repr(packet)[1:]]
+        for _ws in cls.get_from_peername(peername):
+            for pck in _ws._packets_to_gs: # [peername, side, repr(packet)[1:]]
+                yield pck[2]
+            _ws._packets_to_gs = []
 
     def add_packets_to_gs(self, side, pck):
-        pass # Not Implemented[peername, side, repr(packet)[1:]]
-
+        self._packets_to_gs.append([self.gs_conn, side, pck]) # Not Implemented[peername, side, repr(packet)[1:]]
+        print(self._packets_to_gs)
 
 class WsHandler():
     def __init__(self, manager):
@@ -97,15 +100,13 @@ class WsHandler():
             recv = yield from websocket.recv()
             if recv:
                 d = json.loads(recv)
-                for k,v in d.items():
+                for k, v in d.items():
                     if k == 'c':
                         self.ws.get_from_protocol(websocket).add_packets_to_gs(
                             'client', from_str_to_repr_bytes(v))
-                        print('c: ', v)
                     elif k == 's':
                         self.ws.get_from_protocol(websocket).add_packets_to_gs(
                             'server', from_str_to_repr_bytes(v))
-                        print('s: ', v)
                     elif k == 'conn':
                         self.ws.get_from_protocol(websocket).gs_conn = v
                         self.ws.add_ws_conn_to_set()
