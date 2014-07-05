@@ -14,13 +14,13 @@ from .manager import Manager
 from .ws_server import websocket_serve
 
 
-def run():
+def run(BASE_DIR):
     loop = asyncio.get_event_loop()
     server = None
     cmd_line = CmdLine()
 
     # main task to initialize everything
-    manager = Manager(cmd_line=cmd_line)
+    manager = Manager(base_dir=BASE_DIR, cmd_line=cmd_line)
 
     task_game_proxy = asyncio.Task(init_proxy(loop, manager))
 

@@ -77,7 +77,7 @@ class Websocket():
             _ws._packets_to_gs = []
 
     def add_packets_to_gs(self, side, pck):
-        self._packets_to_gs.append([self.gs_conn, side, pck]) # Not Implemented[peername, side, repr(packet)[1:]]
+        self._packets_to_gs.append([self.gs_conn, side, pck])
         print(self._packets_to_gs)
 
 class WsHandler():

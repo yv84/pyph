@@ -7,7 +7,8 @@ class Side():
 
 class Manager():
 
-    def __init__(self, cmd_line, *args, **kw):
+    def __init__(self, cmd_line, base_dir, *args, **kw):
+        self.base_dir = base_dir
         self.client = Side()
         self.server = Side()
         self.data = ''
@@ -48,8 +49,6 @@ class Manager():
 
     def set_manager_data(self, side, gen, peername):
         if self.web_socket.ws.peernames():
-            # for _packet in self.web_socket.ws.get_packets_to_gs(peername, side):
-            #     yield _packet
             yield from self.web_socket.ws.get_packets_to_gs(peername[0]+','+str(peername[1]), side)
 
             if peername[0]+','+str(peername[1]) in self.web_socket.ws.peernames():

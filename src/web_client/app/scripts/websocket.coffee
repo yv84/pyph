@@ -27,12 +27,10 @@ websocket = () ->
               jQuery('<a/>', {href: "#", text: _conn}).appendTo('#connections>ul>:last-child')
           $('#connections>ul>li').unbind();
           $('#connections>ul').find('>li').on 'click', () ->
-              console.log('click!', this)
               choice_conn($(this).text())
 
       else if msg.set_peername
           if jQuery('#connections>a').text() == 'Waiting'
-              console.log('trigger')
               $('#connections>ul>li:contains('+msg.set_peername+')').trigger( "click" )
 
       else if jQuery('#stop').text() == 'Stop '
@@ -105,7 +103,7 @@ websocket = () ->
       msg = JSON.stringify({'c':text})
       conn.send(msg)
       $('#text').val('').focus()
-      console.log('send: c', msg)
+      console.log('send c: ', msg)
       return false
 
   $('#send_server').on 'click', () ->
@@ -113,6 +111,7 @@ websocket = () ->
       msg = JSON.stringify({'s':text})
       conn.send(msg)
       $('#text').val('').focus()
+      console.log('send s: ', msg)
       return false
 
   choice_conn = (_conn) ->
@@ -121,7 +120,6 @@ websocket = () ->
       jQuery('#connections>a').text(_conn)
       msg = JSON.stringify({'conn':_conn})
       conn.send(msg)
-      console.log(msg)
       return false
 
 #window.websocket = websocket
