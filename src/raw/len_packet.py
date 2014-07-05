@@ -15,8 +15,8 @@ class LenL2PacketRcv():
         """
         get packet from length header
         """
-        if value:
-            self.l2_packets.append(value)
+        for i in value:
+            self.l2_packets.append(i)
 
     def segmentation_packets(self, data: bytes) -> types.GeneratorType :
         self.__add_packet(data)
@@ -30,9 +30,8 @@ class LenL2PacketSend():
         self.data_send = b''
 
     def pop_packet(self) -> bytes :
-        data_send = self.data_send
+        yield self.data_send
         self.data_send = b''
-        return data_send
 
     def add_packets(self, value: types.GeneratorType) -> None :
         """

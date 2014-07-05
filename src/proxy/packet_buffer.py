@@ -1,3 +1,6 @@
+from importlib import import_module
+from abc import ABCMeta, abstractmethod
+import types
 import asyncio
 from asyncio.queues import Queue, QueueEmpty
 
@@ -5,20 +8,14 @@ from asyncio.queues import Queue, QueueEmpty
 class Packet():
 
     def __init__(self, manager, peername):
-        if manager.cmd_line.game == 'raw':
-            from raw.key_init import KeyInit, Connect
-        elif manager.cmd_line.game == 'l2':
-            from l2.key_init import KeyInit, Connect
-        elif manager.cmd_line.game == 'aa':
-            from aa.key_init import KeyInit, Connect
-
-        self.client = Connect('client')
+        key_init = import_module(manager.cmd_line.game+'.key_init')
+        self.client = key_init.Connect('client')
         self.client.q = Queue()
-        self.server = Connect('server')
+        self.server = key_init.Connect('server')
         self.server.q = Queue()
         self.manager = manager
         self.peername = peername
-        self.key_init = KeyInit(self)
+        self.key_init = key_init.KeyInit(self)
 
     def update_data(self, side, data):
         """change in_data buffer"""
@@ -37,10 +34,10 @@ class Packet():
         for stack, to_data in zip([self.client.command_stack,
                                   self.server.command_stack],
                                   [to_s_data, to_c_data]):
-            gen = to_data
+            gen = (lambda gen: (yield gen))(to_data)
             for cmd in stack:
                 gen = cmd(gen)
-            to_data = gen
+            to_data = b''.join(gen)
         for q, data in zip([self.client.q, self.server.q],
                             [to_c_data, to_s_data]):
             if data:

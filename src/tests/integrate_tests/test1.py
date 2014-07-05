@@ -46,14 +46,14 @@ class TestCase(unittest.TestCase):
             p.join()
 
     def testProxyServer(self):
-        game = 'aa'
+        game = 'l2'
         self.port1 = '9999'
         self.port2 = '8888'
         conn = {
             'client': {'ip': '127.0.0.1', 'port': self.port1}, # client -> proxy
             'server': {'ip': '127.0.0.1', 'port': self.port2}, # proxy -> server
             }
-        N = 3
+        N = 1
         for d, k in zip([c for c in conn], [conn[c] for c in conn]):
             os.system('fuser -k '+conn[d]['port']+'/tcp')
         os.system('fuser -k '+'5000'+'/tcp') # web
@@ -62,7 +62,7 @@ class TestCase(unittest.TestCase):
             os.system('python3 tests/integrate_tests/tcp_echo.py '
             '--server --port '+self.port1+' --game '+game+' > /dev/null')
         def start_proxy():
-            os.system('python3 run.py --game '+game+'')
+            os.system('python3 run.py --game '+game+'') # raw')#
         def start_client():
             os.system('python3 tests/integrate_tests/tcp_echo.py '
              '--client --port '+self.port2+' --game '+game+' > /dev/null')

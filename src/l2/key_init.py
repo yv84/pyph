@@ -1,3 +1,4 @@
+import itertools
 import numpy
 
 from .len_packet import LenL2PacketRcv, LenL2PacketSend
@@ -17,15 +18,17 @@ class KeyInit():
             self.packet.server.command_stack.pop(0) # key_packet_initialization
             self.packet.client.xor_in = self.packet.client.xor_out = self.packet.server.xor_in
             return to_s_data
-        if to_s_data.startswith(b'\x19\x00.'):
+        to_s_data, _to_s_d = itertools.tee(to_s_data)
+        to_s_d = b''.join(_to_s_d)
+        if to_s_d.startswith(b'\x19\x00.'):
             for stack, obj in zip([self.packet.client.command_stack, self.packet.server.command_stack],
                      [self.packet.client, self.packet.server]):
                 stack.append(lambda data: obj.pck_rcv.segmentation_packets(data))
                 stack.append(lambda gen: obj.xor_in.xor(gen))
                 stack.append(lambda gen, manager=self.packet.manager, name=obj.name,
                    peername=self.packet.peername : self.packet.manager.set_manager_data(name, gen, peername))
-                # stack.append(lambda gen, name=obj.name, gameapi=self.gameapi, peername=self.packet.peername: \
-                #     self.packet_print_dtype(name, gameapi, gen, peername))
+                stack.append(lambda gen, name=obj.name, gameapi=self.gameapi, peername=self.packet.peername: \
+                    self.packet_print_dtype(name, gameapi, gen, peername))
                 stack.append(lambda gen: obj.xor_out.xor(gen))
                 stack.append(lambda gen: obj.pck_send.add_packets(gen))
                 stack.append(lambda gen: obj.pck_send.pop_packet()) # -> bytes(data)

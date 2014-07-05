@@ -15,7 +15,7 @@ class LenL2PacketRcv():
         """
         get packet from length header
         """
-        self.data_rcv = b''.join([self.data_rcv, value])
+        self.data_rcv = b''.join([self.data_rcv, b''.join(value)])
         # esli razmer packeta dostatochen dlya dekodirovaniya
         while (len(self.data_rcv) > 2) and (len(self.data_rcv) >= (struct.unpack('<H',self.data_rcv[:2])[0])):
             # print('''struct.unpack('<H',self.data_rcv[:2])[0]) = ''',struct.unpack('<H',self.data_rcv[:2])[0])
@@ -27,7 +27,7 @@ class LenL2PacketRcv():
             # remove header from packet
             pck = pck[2:]
             self.l2_packets.append(pck)
-    
+
     def segmentation_packets(self, to_s_data: bytes) -> types.GeneratorType :
         self.__add_packet(to_s_data)
         while self.l2_packets:
@@ -40,9 +40,8 @@ class LenL2PacketSend():
         self.data_send = b''
 
     def pop_packet(self) -> bytes :
-        data_send = self.data_send
+        yield self.data_send
         self.data_send = b''
-        return data_send
 
     def add_packets(self, value: types.GeneratorType) -> None :
         """
