@@ -1,7 +1,5 @@
-#! /usr/local/bin/python3
-# -*- coding: utf-8 -*-
-
 import struct
+import types
 
 class Xor():
     def __init__(self, xor_type):
@@ -13,6 +11,12 @@ class Xor():
         else:
             raise Exception("xor_type can be code/decode, not: " + xor_type)
 
+    def init_key(self, key):
+        self.key = key
+
+    def get_key(self):
+        return self.key
+
     def xor(self, generator):
         for packet in generator:
             if self.key:
@@ -21,15 +25,14 @@ class Xor():
             elif self.key == b'':
                 yield packet
                 self.key = self.__set_new_key(packet, self.key)
-                #print('key: {}'.format(self.key))
 
     #get xor key
     @staticmethod
     def __set_new_key(pck, key):
         #packet without length header / pck[0]
-        # print(pck)
         if key == b'' and len(pck) > 12 and pck[0] == 46:             # prishel packet inicializacii key
             key = pck[2:10] + b'\xC8\x27\x93\x01\xA1\x6C\x31\x97'     # key v packete + const
+        print('new key ->', key)
         return key
 
     # get_new_key(old.key, len(packet))
@@ -67,3 +70,21 @@ class Xor():
             k = k + 1
         pck_code = struct.pack('B' * len(pck_new_list), *pck_new_list)           # - kodirovaniu' packet
         return pck_code
+
+
+class XorInOut():
+    def __init__(self):
+        self.xor_in = Xor('decode')
+        self.xor_out = Xor('code')
+
+    def pck_in(self, gen: types.GeneratorType) -> types.GeneratorType:
+        yield from self.xor_in.xor(gen)
+
+    def pck_out(self, gen: types.GeneratorType) -> types.GeneratorType:
+        yield from self.xor_out.xor(gen)
+
+    @classmethod
+    def init_xor(cls, obj_source, obj_dest):
+        print('init_xor ->', obj_source, obj_dest, obj_source.xor_in.get_key())
+        obj_dest.xor_in.init_key(obj_source.xor_in.get_key())
+        obj_dest.xor_out.init_key(obj_source.xor_in.get_key())

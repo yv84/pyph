@@ -9,5 +9,5 @@ class LenPackets():
         if _data:
             yield _data
 
-    def pck_out(self, value: types.GeneratorType) -> bytes :
+    def pck_out(self, value: types.GeneratorType) -> types.GeneratorType :
         yield from value

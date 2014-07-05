@@ -23,7 +23,7 @@ class LenPackets():
             # remove header from packet
             yield pck[2:]
 
-    def pck_out(self, value: types.GeneratorType) -> None :
+    def pck_out(self, value: types.GeneratorType) -> types.GeneratorType :
         """
         add length header to packet
         """
