@@ -23,7 +23,7 @@ class KeyInit():
         if to_s_d.startswith(b'\x19\x00.'):
             for stack, obj in zip([self.packet.client.command_stack, self.packet.server.command_stack],
                      [self.packet.client, self.packet.server]):
-                stack.append(lambda data: obj.pck_len.pck_in(data))
+                stack.append(lambda gen: obj.pck_len.pck_in(gen))
                 stack.append(lambda gen: obj.xor_in.xor(gen))
                 stack.append(lambda gen, manager=self.packet.manager, name=obj.name,
                    peername=self.packet.peername : self.packet.manager.set_manager_data(name, gen, peername))

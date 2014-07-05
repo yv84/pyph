@@ -1,6 +1,6 @@
 import numpy
 
-from .len_packet import LenL2PacketRcv, LenL2PacketSend
+from .len_packet import LenPackets
 
 
 class KeyInit():
@@ -18,11 +18,10 @@ class KeyInit():
         if to_c_data:
             for stack, obj in zip([self.packet.client.command_stack, self.packet.server.command_stack],
                      [self.packet.client, self.packet.server]):
-                stack.append(lambda data: obj.pck_rcv.segmentation_packets(data))
+                stack.append(lambda gen: obj.pck_len.pck_in(gen))
                 stack.append(lambda gen, manager=self.packet.manager, name=obj.name,
                    peername=self.packet.peername : self.packet.manager.set_manager_data(name, gen, peername))
-                stack.append(lambda gen: obj.pck_send.add_packets(gen))
-                stack.append(lambda gen: obj.pck_send.pop_packet()) # -> bytes(data)
+                stack.append(lambda gen: obj.pck_len.pck_out(gen))
             self.packet.client.command_stack.append(lambda data: key_packet_initialization_remover(data))
         return to_c_data
 
@@ -32,8 +31,7 @@ class Connect():
         self.name = name
         self._data = b''
         self.command_stack = [] # func(gen: types.GeneratorType) -> types.GeneratorType
-        self.pck_rcv = LenL2PacketRcv()
-        self.pck_send = LenL2PacketSend()
+        self.pck_len = LenPackets()
 
 
 

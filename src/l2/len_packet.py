@@ -6,7 +6,7 @@ class LenPackets():
     def __init__(self):
         self.data_rcv = b''
 
-    def pck_in(self, data: types.GeneratorType) -> None:
+    def pck_in(self, data: types.GeneratorType) -> types.GeneratorType:
         """
         get packet from length header
         """
