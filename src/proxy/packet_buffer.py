@@ -9,9 +9,9 @@ class Packet():
 
     def __init__(self, manager, peername):
         key_init = import_module(manager.cmd_line.game+'.key_init')
-        self.client = key_init.Connect('client')
+        self.client = key_init.Connect('client', self)
         self.client.q = Queue()
-        self.server = key_init.Connect('server')
+        self.server = key_init.Connect('server', self)
         self.server.q = Queue()
         self.manager = manager
         self.peername = peername
