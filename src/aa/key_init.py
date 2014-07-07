@@ -31,7 +31,7 @@ class KeyInit():
 
 
 class Connect():
-    def __init__(self, name):
+    def __init__(self, name, *args, **kwargs):
         self.name = name
         self._data = b''
         self.command_stack = [] # func(gen: types.GeneratorType) -> types.GeneratorType
