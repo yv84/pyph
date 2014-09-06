@@ -42,8 +42,11 @@ args = ARGS.parse_args()
 
 
 # ---------------------------------------
-if args.game == 'l2':
+if args.game == '_l2':
     f = os.path.join(os.path.dirname(__file__), 'fixtures/l2', 'game_log_with_xor_len.log')
+    pattern = {'c': b'client:', 's': b'server:', 'start': 10, 'end': -2}
+if args.game == 'l2':
+    f = os.path.join(os.path.dirname(__file__), 'fixtures/l2', 'game_log_15122012_with_pck_len.log')
     pattern = {'c': b'client:', 's': b'server:', 'start': 10, 'end': -2}
 elif args.game == 'aa':
     f = os.path.join(os.path.dirname(__file__), 'fixtures/aa', 'game_1.log')

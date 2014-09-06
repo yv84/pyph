@@ -20,19 +20,19 @@ class KeyInit():
             return to_s_data
         to_s_data, _to_s_d = itertools.tee(to_s_data)
         to_s_d = b''.join(_to_s_d)
-        if to_s_d.startswith(b'\x19\x00.'):
+        if to_s_d: #to_s_d.startswith(b'\x19\x00.'):
             for stack, obj in zip([self.packet.client.command_stack,
                                    self.packet.server.command_stack],
                                    [self.packet.client, self.packet.server]):
                 stack.append(lambda gen, obj=obj: obj.pck_len.pck_in(gen))
-                stack.append(lambda gen, obj=obj: obj.xor.pck_in(gen))
+                #stack.append(lambda gen, obj=obj: obj.xor.pck_in(gen))
                 stack.append(lambda gen, manager=self.packet.manager,
                     name=obj.name, peername=self.packet.peername : \
                     manager.set_manager_data(name, gen, peername))
                 stack.append(lambda gen, name=obj.name, gameapi=self.gameapi,
                     peername=self.packet.peername: \
                     self.packet_print_dtype(name, gameapi, gen, peername))
-                stack.append(lambda gen, obj=obj: obj.xor.pck_out(gen))
+                #stack.append(lambda gen, obj=obj: obj.xor.pck_out(gen))
                 stack.append(lambda gen, obj=obj: obj.pck_len.pck_out(gen))
             self.packet.server.command_stack.append(lambda gen: \
                           key_packet_initialization_remover(gen))
