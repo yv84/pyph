@@ -25,7 +25,7 @@ class TestCase(unittest.TestCase):
 
     @staticmethod
     def xml_string_trim (xml_string):
-        return b''.join(re.findall(b"<[\w\"\'=_ ]+(?:>|/>)", xml_string))
+        return b''.join(re.findall(b"<.+?>", xml_string))
 
     def setUp(self):
         self.ini_to_xml = IniToXml()
@@ -33,24 +33,22 @@ class TestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testSmoke(self):
-        self.assertEqual(1, 2)
-
-
     def testEasy1(self):
         ini_string = b"""
           00=Logout:
         """
         xml_string = b"""
-          <pck_struct name="c_Logout" side="client" type="00" />
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="c_logout" side="client" type="00"/>
+          </root>
         """
 
         self.assertEqual(
-            self.ini_to_xml.convert(self.ini_string_trim(ini_string)),
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
-
-
 
 
     def testMiddle1(self):
@@ -58,14 +56,25 @@ class TestCase(unittest.TestCase):
           01=AttackRequest:d(ObjectID)d(OrigX)d(OrigY)d(OrigZ)c(AttackClick)
         """
         xml_string = b"""
-          <pck_struct name="c_AttackRequest" side="client" type="01" >
-            <primitive name="ObjectID" type="i4" />
-            <primitive name="OrigX" type="i4" />
-            <primitive name="OrigY" type="i4" />
-            <primitive name="OrigZ" type="i4" />
-            <primitive name="AttackClick" type="i1" />
-          </pck_struct>
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+          <la2:pck_struct name="c_attackrequest" side="client" type="01">
+            <la2:primitive name="ObjectID" type="d"/>
+            <la2:primitive name="OrigX" type="d"/>
+            <la2:primitive name="OrigY" type="d"/>
+            <la2:primitive name="OrigZ" type="d"/>
+            <la2:primitive name="AttackClick" type="c"/>
+          </la2:pck_struct>
+          </root>
         """
+        print(self.xml_string_trim(xml_string))
+        print(self.xml_string_trim(
+            self.ini_to_xml.convert(self.ini_string_trim(ini_string))))
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
 
     def testMiddle2(self):
         ini_string = b"""
