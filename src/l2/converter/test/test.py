@@ -163,15 +163,11 @@ class TestCase(unittest.TestCase):
           </root>
         """
         self.ini_to_xml.side = b"server"
-        print(self.xml_string_trim(xml_string))
-        print(self.xml_string_trim(
-            self.ini_to_xml.convert(self.ini_string_trim(ini_string))))
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
-
 
     def testHard1(self):
         ini_string = b"""
@@ -179,16 +175,24 @@ class TestCase(unittest.TestCase):
             d(count:Loop.01.0003)d(ObjectID)q(Count)q(Price)
         """
         xml_string = b"""
-          <pck_struct pck_name="c_SetPrivateStoreListSell" pck_type="31">
-            <i4.isPackage/>
-            <i4.countValue loop="3" skip="0">
-              <i4.ObjectID/>
-              <i8.Count/>
-              <i8.Price/>
-            </i4.countValue>
-          </pck_struct>
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="c_SetPrivateStoreListSell" side="client" type="31">
+              <la2:primitive name="isPackage" type="i4"/>
+              <la2:loop loop="3" name="count" skip="0" type="i4">
+                <la2:primitive name="ObjectID" type="i4"/>
+                <la2:primitive name="Count" type="i8"/>
+                <la2:primitive name="Price" type="i8"/>
+              </la2:loop>
+            </la2:pck_struct>
+          </root>
         """
-
+        self.ini_to_xml.side = b"client"
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
 
     def testHard2(self):
         ini_string = b"""
@@ -197,19 +201,28 @@ class TestCase(unittest.TestCase):
             d(ObjID)q(count)q(reqAdena)
         """
         xml_string = b"""
-          <pck_struct pck_name="c_RequestSendPost" pck_type="D066">
-            <i2.subID/>
-            <S.receiver/>
-            <i4.isCod/>
-            <S.subj/>
-            <S.text/>
-            <i4.attachCountValue loop="2" skip="0">
-              <i4.ObjID/>
-              <i8.count/>
-            </i4.attachCountValue>
-            <i8.reqAdena/>
-          </pck_struct>
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="c_RequestSendPost" side="client" type="D066">
+              <la2:primitive name="subID" type="i2"/>
+              <la2:primitive name="receiver" type="S"/>
+              <la2:primitive name="isCod" type="i4"/>
+              <la2:primitive name="subj" type="S"/>
+              <la2:primitive name="text" type="S"/>
+              <la2:loop loop="2" name="attachCount" skip="0" type="i4">
+                <la2:primitive name="ObjID" type="i4"/>
+                <la2:primitive name="count" type="i8"/>
+              </la2:loop>
+              <la2:primitive name="reqAdena" type="i8"/>
+            </la2:pck_struct>
+          </root>
         """
+        self.ini_to_xml.side = b"client"
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
 
     def testHard3(self):
         ini_string = b"""
@@ -219,16 +232,25 @@ class TestCase(unittest.TestCase):
             s(HallName)s(LeaderName)d(Grade)
         """
         xml_string = b"""
-          <pck_struct pck_name="s_ExShowAgitInfo" pck_type="FE16">
-            <i2.subID/>
-            <i4.ClanHallsSizeValue loop="4" skip="0">
-              <i4.ClanHallID/>
-              <S.HallName/>
-              <S.LeaderName/>
-              <i4.Grade/>
-            </i4.ClanHallsSizeValue>
-          </pck_struct>
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="s_ExShowAgitInfo" side="server" type="FE16">
+              <la2:primitive name="subID" type="i2"/>
+              <la2:loop loop="4" name="ClanHallsSize" skip="0" type="i4">
+                <la2:primitive name="ClanHallID" type="i4"/>
+                <la2:primitive name="HallName" type="S"/>
+                <la2:primitive name="LeaderName" type="S"/>
+                <la2:primitive name="Grade" type="i4"/>
+              </la2:loop>
+            </la2:pck_struct>
+          </root>
         """
+        self.ini_to_xml.side = b"server"
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
 
 
     def testHard4(self):
@@ -238,31 +260,43 @@ class TestCase(unittest.TestCase):
             c(cmdID)c(cmd2sz:Loop.01.0001)c(cmdID)d(cmdSz:Loop.01.0005)
             d(cmd)d(key)d(tgK1)d(tgK2)d(show)d(:)d(:)
         """
-
-
-        xml_string = b"""<?xml version="1.0" encoding="utf-16"?>
-          <pck_struct pck_name="c_RequestSaveKeyMapping" side="c" pck_type="D022">
-            <subID type="i2" />
-            <U type="i4" />
-            <U type="i4" />
-            <countValue type="i4" loop="10" skip="0">
-              <cmd1szValue type="i1" loop="1" skip="0">
-                <cmdID type="i1" />
-                <cmd2szValue type="i1" loop="1" skip="0">
-                  <cmdID type="i1" />
-                  <cmdSzValue type="i4" loop="5" skip="0">
-                    <cmd type="i4" />
-                    <key type="i4" />
-                    <tgK1 type="i4" />
-                    <tgK2 type="i4" />
-                    <show type="i4" />
-                    <U type="i4" />
-                    <U type="i4" />
-                  </cmdSzValue>
-                </cmd2szValue>
-              </cmd1szValue>
-            </countValue>
-          </pck_struct>"""
+        xml_string = b"""
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="c_RequestSaveKeyMapping" side="client" type="D022">
+              <la2:primitive name="subID" type="i2"/>
+              <la2:primitive name="U" type="i4"/>
+              <la2:primitive name="U" type="i4"/>
+              <la2:loop loop="10" name="count" skip="0" type="i4">
+                <la2:loop loop="1" name="cmd1sz" skip="0" type="i1">
+                  <la2:primitive name="cmdID" type="i1"/>
+                <la2:loop>
+                <la2:loop loop="1" name="cmd2sz" skip="0" type="i1">
+                  <la2:primitive name="cmdID" type="i1"/>
+                <la2:loop>
+                <la2:loop loop="5" name="cmd2sz" skip="0" type="i1">
+                  <la2:primitive name="cmd" type="i4"/>
+                  <la2:primitive name="key" type="i4"/>
+                  <la2:primitive name="tgK1" type="i4"/>
+                  <la2:primitive name="tgK2" type="i4/>
+                  <la2:primitive name="show" type="i4"/>
+                <la2:loop>
+              </la2:loop>
+              <la2:primitive name="U" type="i4"/>
+              <la2:primitive name="U" type="i4"/>
+            </la2:pck_struct>
+          </root>
+        """
+        self.ini_to_xml.side = b"client"
+        print()
+        print(self.xml_string_trim(
+            self.ini_to_xml.convert(self.ini_string_trim(ini_string))))
+        print(self.xml_string_trim(xml_string))
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
 
 
 
