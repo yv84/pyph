@@ -40,10 +40,10 @@ class TestCase(unittest.TestCase):
         xml_string = b"""
           <?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="c_logout" side="client" type="00"/>
+            <la2:pck_struct name="c_Logout" side="client" type="00"/>
           </root>
         """
-
+        self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
@@ -58,18 +58,16 @@ class TestCase(unittest.TestCase):
         xml_string = b"""
           <?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-          <la2:pck_struct name="c_attackrequest" side="client" type="01">
-            <la2:primitive name="ObjectID" type="d"/>
-            <la2:primitive name="OrigX" type="d"/>
-            <la2:primitive name="OrigY" type="d"/>
-            <la2:primitive name="OrigZ" type="d"/>
-            <la2:primitive name="AttackClick" type="c"/>
+          <la2:pck_struct name="c_AttackRequest" side="client" type="01">
+            <la2:primitive name="ObjectID" type="i4"/>
+            <la2:primitive name="OrigX" type="i4"/>
+            <la2:primitive name="OrigY" type="i4"/>
+            <la2:primitive name="OrigZ" type="i4"/>
+            <la2:primitive name="AttackClick" type="i1"/>
           </la2:pck_struct>
           </root>
         """
-        print(self.xml_string_trim(xml_string))
-        print(self.xml_string_trim(
-            self.ini_to_xml.convert(self.ini_string_trim(ini_string))))
+        self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
@@ -81,11 +79,19 @@ class TestCase(unittest.TestCase):
           03=ReqStartPledgeWar:s(PledgeName)
         """
         xml_string = b"""
-          <pck_struct pck_name="c_ReqStartPledgeWar" pck_type="03">
-            <S.PledgeName/>
-          </pck_struct>
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="c_ReqStartPledgeWar" side="client" type="03">
+              <la2:primitive name="PledgeName" type="S"/>
+            </la2:pck_struct>
+          </root>
         """
-
+        self.ini_to_xml.side = b"client"
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
 
     def testMiddle4(self):
         ini_string = b"""
@@ -94,27 +100,44 @@ class TestCase(unittest.TestCase):
             d(isDisguised)d(isDisgTerrID)
         """
         xml_string = b"""
-          <pck_struct pck_name="s_ExDominionWarStart" pck_type="FEA3">
-            <i2.subID/>
-            <i4.objID/>
-            <i4.1/>
-            <i4.terrID/>
-            <i4.isDisguised/>
-            <i4.isDisgTerrID/>
-          </pck_struct>
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="s_ExDominionWarStart" side="server" type="FEA3">
+              <la2:primitive name="subID" type="i2"/>
+              <la2:primitive name="objID" type="i4"/>
+              <la2:primitive name="1" type="i4"/>
+              <la2:primitive name="terrID" type="i4"/>
+              <la2:primitive name="isDisguised" type="i4"/>
+              <la2:primitive name="isDisgTerrID" type="i4"/>
+            </la2:pck_struct>
+          </root>
         """
-
+        self.ini_to_xml.side = b"server"
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
 
     def testMiddle5(self):
         ini_string = b"""
           0B=RequestGiveNickName:s(Target)s(Title)
         """
         xml_string = b"""
-          <pck_struct pck_name="c_RequestGiveNickName" pck_type="0B">
-            <S.Target/>
-            <S.Title/>
-          </pck_struct>
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="c_RequestGiveNickName" side="client" type="0B">
+              <la2:primitive name="Target" type="S"/>
+              <la2:primitive name="Title" type="S"/>
+            </la2:pck_struct>
+          </root>
         """
+        self.ini_to_xml.side = b"client"
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
 
     def testMiddle6(self):
         ini_string = b"""
@@ -123,19 +146,32 @@ class TestCase(unittest.TestCase):
             d(:)d(:)d(:)d(:)d(:)s(:)s(:)
         """
         xml_string = b"""
-          <pck_struct pck_name="s_ExBrBroadcastEventState" pck_type="FECE">
-            <i2.subID/>
-            <i4.eventID/>
-            <i4.eventState/>
-            <i4.U/>
-            <i4.U/>
-            <i4.U/>
-            <i4.U/>
-            <i4.U/>
-            <S.U/>
-            <S.U/>
-          </pck_struct>
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="s_ExBrBroadcastEventState" side="server" type="FECE">
+              <la2:primitive name="subID" type="i2"/>
+              <la2:primitive name="eventID" type="i4"/>
+              <la2:primitive name="eventState" type="i4"/>
+              <la2:primitive name="U" type="i4"/>
+              <la2:primitive name="U" type="i4"/>
+              <la2:primitive name="U" type="i4"/>
+              <la2:primitive name="U" type="i4"/>
+              <la2:primitive name="U" type="i4"/>
+              <la2:primitive name="U" type="S"/>
+              <la2:primitive name="U" type="S"/>
+            </la2:pck_struct>
+          </root>
         """
+        self.ini_to_xml.side = b"server"
+        print(self.xml_string_trim(xml_string))
+        print(self.xml_string_trim(
+            self.ini_to_xml.convert(self.ini_string_trim(ini_string))))
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
+
 
     def testHard1(self):
         ini_string = b"""

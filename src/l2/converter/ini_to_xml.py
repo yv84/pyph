@@ -17,9 +17,36 @@ class IniToXml():
         self.regex_body = re.compile(b"""(?xi)
             (?P<type>[a-z0-9])
             \(
-            (?P<name>[a-z0-9]+)
+            (?P<name>[a-z0-9:]+)
             \)
         """)
+        self.ctypes_to_numpy = {
+            b'b': b'i1',
+            b'c': b'i1',
+            b'B': b'u1',
+            b'h': b'i2',
+            b'H': b'u2',
+            b'z': b'i4',
+            b'd': b'i4',
+            b'i': b'i4',
+            b'l': b'i4',
+            b'I': b'u4',
+            b'L': b'u4',
+            b'o': b'i4',
+            b'd': b'i4',
+            b'q': b'i8',
+            b'Q': b'u8',
+            b'f': b'f8',
+            b's': b'S', # UTF-16-LE string
+            b'-': b'S', # byte string
+        }
+
+    # header - replace cames style - > underscore
+    @staticmethod
+    def camel(s):
+        if s == b':':
+            return b'U'
+        return s  #.lower()
 
     def convert(self, line_in):
         xml_out = b''
@@ -31,13 +58,14 @@ class IniToXml():
         root = etree.Element('root', nsmap={'la2': 'la2'})
         tree = etree.ElementTree(root)
         packet = etree.SubElement(root, '{la2}pck_struct',
-            name=b''.join([self.side[0:1], b'_', header.lower()]),
+            name=b''.join([self.side[0:1], b'_', self.camel(header)]),
             side=self.side,
             type=opt_code)
+
         for primitive in primitives:
             etree.SubElement(packet, '{la2}primitive',
-                name=primitive[1],
-                type=primitive[0])
+                name=self.camel(primitive[1]),
+                type=self.ctypes_to_numpy[primitive[0]])
         xml_out = etree.tostring(tree, encoding='ASCII', xml_declaration=True,
             pretty_print=True)
 
