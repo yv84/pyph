@@ -10,13 +10,17 @@ class XmlToPy():
         root = etree.XML(xml_string)
         root.getchildren()
         pck_struct = root.getchildren()[0]
+        dtype = [('pck_type', 'i1'),]
+        for primitive in pck_struct.iterchildren():
+            dtype.append((primitive.attrib['name'], primitive.attrib['type']))
+
         py_string = """
 class {name}(UTF):
     @staticmethod
     def dtype(act, data):
-        dtype = [('pck_type', 'i1')]
+        dtype = {dtype}
         return dtype
 
-pck["{type}"] = c_Logout""".format(**pck_struct.attrib)
+pck["{type}"] = {name}""".format(dtype=dtype, **pck_struct.attrib)
 
         return py_string

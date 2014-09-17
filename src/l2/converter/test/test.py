@@ -63,9 +63,6 @@ pck["00"] = c_Logout"""
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
-        print()
-        print(self.xml_to_py.convert(xml_string))
-        print(py_string)
         self.assertEqual(
             self.xml_to_py.convert(xml_string),
             py_string,
@@ -75,8 +72,7 @@ pck["00"] = c_Logout"""
         ini_string = b"""
           01=AttackRequest:d(ObjectID)d(OrigX)d(OrigY)d(OrigZ)c(AttackClick)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
           <la2:pck_struct name="c_AttackRequest" side="client" type="01">
             <la2:primitive name="ObjectID" type="i4"/>
@@ -87,11 +83,26 @@ pck["00"] = c_Logout"""
           </la2:pck_struct>
           </root>
         """
+        py_string = """
+class c_AttackRequest(UTF):
+    @staticmethod
+    def dtype(act, data):
+        dtype = [('pck_type', 'i1'), ('ObjectID', 'i4'), ('OrigX', 'i4'), ('OrigY', 'i4'), ('OrigZ', 'i4'), ('AttackClick', 'i1')]
+        return dtype
+
+pck["01"] = c_AttackRequest"""
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
+        )
+        print()
+        print(self.xml_to_py.convert(xml_string))
+        print(py_string)
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
         )
 
     def testMiddle2(self):
