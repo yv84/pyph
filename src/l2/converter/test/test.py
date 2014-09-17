@@ -15,6 +15,7 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
 from converter.ini_to_xml import IniToXml
+from converter.xml_to_py import XmlToPy
 
 
 class TestCase(unittest.TestCase):
@@ -29,25 +30,45 @@ class TestCase(unittest.TestCase):
 
     def setUp(self):
         self.ini_to_xml = IniToXml()
+        self.xml_to_py = XmlToPy()
 
     def tearDown(self):
         pass
 
+    py_header = """import struct
+
+class UTF():
+    unicode_string = (lambda data: (data[::2].find(b'\x00')+1)*2)
+"""
     def testEasy1(self):
         ini_string = b"""
           00=Logout:
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="c_Logout" side="client" type="00"/>
           </root>
         """
+        py_string = """
+class c_Logout(UTF):
+    @staticmethod
+    def dtype(act, data):
+        dtype = [('pck_type', 'i1')]
+        return dtype
+
+pck["00"] = c_Logout"""
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
+        )
+        print()
+        print(self.xml_to_py.convert(xml_string))
+        print(py_string)
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
         )
 
     def testMiddle1(self):
