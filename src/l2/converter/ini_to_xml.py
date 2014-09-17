@@ -66,7 +66,7 @@ class IniToXml():
             skip=str(skip).encode('utf-8'),
             loop=str(loop).encode('utf-8'),
         )
-        return element, loop
+        return element, loop, skip
 
     def element_append_primitive(self, cursor, primitive):
         return etree.SubElement(cursor, '{la2}primitive',
@@ -74,17 +74,15 @@ class IniToXml():
             type=self.ctypes_to_numpy[primitive[0]])
 
 
-    def element_append(self, cursor, primitive, loop):
+    def element_append(self, cursor, primitive, loop, skip):
         element_loop = self.regex_body_loop.match(primitive[1])
-        #print(primitive, loop, cursor.tag)
-
         if element_loop:
-            chield, loop = self.element_append_loop(
+            chield, loop, skip = self.element_append_loop(
                               cursor, element_loop, primitive)
             cursor = chield
         else:
             chield = self.element_append_primitive(cursor, primitive)
-        return cursor, loop
+        return cursor, loop, skip
 
 
     def xml_body(self, primitives, root):
@@ -92,11 +90,18 @@ class IniToXml():
         loop = 0
         skip = 0
         loop_primitives = []
+        skip_primitives = []
         primitives.reverse()
         while primitives:
             primitive = primitives.pop()
 
-            if loop:
+            if skip:
+                skip -= 1
+                skip_primitives.append(primitive)
+                if not skip:
+                    self.xml_body(skip_primitives, cursor.getparent())
+                    skip_primitives = []
+            elif loop:
                 loop -= 1
                 loop_primitives.append(primitive)
                 if not loop:
@@ -104,7 +109,8 @@ class IniToXml():
                     loop_primitives = []
                     cursor = cursor.getparent()
             else:
-                cursor, loop = self.element_append(cursor, primitive, loop)
+                cursor, loop, skip = self.element_append(
+                                  cursor, primitive, loop, skip)
 
 
     def convert(self, line_in):

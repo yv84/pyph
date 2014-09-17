@@ -252,7 +252,6 @@ class TestCase(unittest.TestCase):
             self.xml_string_trim(xml_string),
         )
 
-
     def testHard4(self):
         ini_string = b"""
           D022=RequestSaveKeyMapping:
@@ -291,18 +290,11 @@ class TestCase(unittest.TestCase):
           </root>
         """
         self.ini_to_xml.side = b"client"
-        print()
-        print(self.xml_string_trim(
-            self.ini_to_xml.convert(self.ini_string_trim(ini_string))))
-        print(self.xml_string_trim(xml_string))
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
-
-
-
 
 
     def testHard5(self):
@@ -320,40 +312,53 @@ class TestCase(unittest.TestCase):
             c(blockMode)d(blockItem)
         """
         xml_string = b"""
-          <pck_struct pck_name="s_ItemList" pck_type="11">
-            <i2.ShowWindow/>
-            <i2.countValue loop="24" skip="0">
-              <i4.ObjectID/>
-              <i4.ItemID/>
-              <i4.LocationSlot/>
-              <i8.Count/>
-              <i2.ItemType2/>
-              <i2.CustomType1/>
-              <i2.isEquipped/>
-              <i4.BodyPart/>
-              <i2.EnchantLevel/>
-              <i2.CustType2/>
-              <i4.AugmentID/>
-              <i4.Mana/>
-              <i4.remainTime/>
-              <i2.AttackElem/>
-              <i2.AttackElemVal/>
-              <i2.DefAttrFire/>
-              <i2.DefAttrWater/>
-              <i2.DefAttrWind/>
-              <i2.DefAttrEarth/>
-              <i2.DefAttrHoly/>
-              <i2.DefAttrUnholy/>
-              <i2.EnchEff1/>
-              <i2.enchEff2/>
-              <i2.enchEff3/>
-            </i2.countValue>
-            <i2.blockedItemsValue loop="1" skip="1">
-              <i4.blockItem/>
-            </i2.blockedItemsValue>
-            <i1.blockMode/>
-          </pck_struct>
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="s_ItemList" side="server" type="11">
+              <la2:primitive name="ShowWindow" type="i2"/>
+              <la2:loop loop="24" name="count" skip="0" type="i2">
+                <la2:primitive name="ObjectID" type="i4"/>
+                <la2:primitive name="ItemID:Get.F0" type="i4"/>
+                <la2:primitive name="LocationSlot" type="i4"/>
+                <la2:primitive name="Count" type="i8"/>
+                <la2:primitive name="ItemType2" type="i2"/>
+                <la2:primitive name="CustomType1" type="i2"/>
+                <la2:primitive name="isEquipped" type="i2"/>
+                <la2:primitive name="BodyPart" type="i4"/>
+                <la2:primitive name="EnchantLevel" type="i2"/>
+                <la2:primitive name="CustType2" type="i2"/>
+                <la2:primitive name="AugmentID:Get.F1" type="i4"/>
+                <la2:primitive name="Mana" type="i4"/>
+                <la2:primitive name="remainTime" type="i4"/>
+                <la2:primitive name="AttackElem" type="i2"/>
+                <la2:primitive name="AttackElemVal" type="i2"/>
+                <la2:primitive name="DefAttrFire" type="i2"/>
+                <la2:primitive name="DefAttrWater" type="i2"/>
+                <la2:primitive name="DefAttrWind" type="i2"/>
+                <la2:primitive name="DefAttrEarth" type="i2"/>
+                <la2:primitive name="DefAttrHoly" type="i2"/>
+                <la2:primitive name="DefAttrUnholy" type="i2"/>
+                <la2:primitive name="EnchEff1" type="i2"/>
+                <la2:primitive name="enchEff2" type="i2"/>
+                <la2:primitive name="enchEff3" type="i2"/>
+              </la2:loop>
+              <la2:loop loop="1" name="blockedItems" skip="1" type="i2">
+                <la2:primitive name="blockItem" type="i4"/>
+              </la2:loop>
+              <la2:primitive name="blockMode" type="i1"/>
+            </la2:pck_struct>
+          </root>
         """
+        self.ini_to_xml.side = b"server"
+        print()
+        print(self.xml_string_trim(
+            self.ini_to_xml.convert(self.ini_string_trim(ini_string))))
+        print(self.xml_string_trim(xml_string))
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
 
 
 
