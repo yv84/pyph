@@ -38,7 +38,7 @@ class TestCase(unittest.TestCase):
     py_header = """import struct
 
 class UTF():
-    unicode_string = (lambda data: (data[::2].find(b'\x00')+1)*2)
+    unicode_string = lambda data: str(data[::2].find(b'\x00')+1)*2
 """
     def testEasy1(self):
         ini_string = b"""
@@ -97,9 +97,6 @@ pck["01"] = c_AttackRequest"""
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
-        print()
-        print(self.xml_to_py.convert(xml_string))
-        print(py_string)
         self.assertEqual(
             self.xml_to_py.convert(xml_string),
             py_string,
@@ -109,19 +106,33 @@ pck["01"] = c_AttackRequest"""
         ini_string = b"""
           03=ReqStartPledgeWar:s(PledgeName)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="c_ReqStartPledgeWar" side="client" type="03">
               <la2:primitive name="PledgeName" type="S"/>
             </la2:pck_struct>
           </root>
         """
+        py_string = """
+class c_ReqStartPledgeWar(UTF):
+    @staticmethod
+    def dtype(act, data):
+        dtype = [('pck_type', 'i1'), ('PledgeName', '|S'+self.unicode_string(data))]
+        return dtype
+
+pck["03"] = c_ReqStartPledgeWar"""
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
+        )
+        print()
+        print(self.xml_to_py.convert(xml_string))
+        print(py_string)
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
         )
 
     def testMiddle4(self):

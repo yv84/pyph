@@ -12,7 +12,8 @@ class XmlToPy():
         pck_struct = root.getchildren()[0]
         dtype = [('pck_type', 'i1'),]
         for primitive in pck_struct.iterchildren():
-            dtype.append((primitive.attrib['name'], primitive.attrib['type']))
+            dtype.append((primitive.attrib['name'],
+                primitive.attrib['type']))
 
         py_string = """
 class {name}(UTF):
@@ -21,6 +22,8 @@ class {name}(UTF):
         dtype = {dtype}
         return dtype
 
-pck["{type}"] = {name}""".format(dtype=dtype, **pck_struct.attrib)
+pck["{type}"] = {name}""" \
+            .format(dtype=dtype, **pck_struct.attrib) \
+            .replace("'S')", "'|S'+self.unicode_string(data))")
 
         return py_string
