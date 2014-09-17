@@ -56,7 +56,7 @@ class c_Logout(UTF):
         dtype = [('pck_type', 'i1')]
         return dtype
 
-pck["00"] = c_Logout"""
+pck_client["00"] = c_Logout"""
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
@@ -90,7 +90,7 @@ class c_AttackRequest(UTF):
         dtype = [('pck_type', 'i1'), ('ObjectID', 'i4'), ('OrigX', 'i4'), ('OrigY', 'i4'), ('OrigZ', 'i4'), ('AttackClick', 'i1')]
         return dtype
 
-pck["01"] = c_AttackRequest"""
+pck_client["01"] = c_AttackRequest"""
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
@@ -120,16 +120,13 @@ class c_ReqStartPledgeWar(UTF):
         dtype = [('pck_type', 'i1'), ('PledgeName', '|S'+self.unicode_string(data))]
         return dtype
 
-pck["03"] = c_ReqStartPledgeWar"""
+pck_client["03"] = c_ReqStartPledgeWar"""
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
-        print()
-        print(self.xml_to_py.convert(xml_string))
-        print(py_string)
         self.assertEqual(
             self.xml_to_py.convert(xml_string),
             py_string,
@@ -141,8 +138,7 @@ pck["03"] = c_ReqStartPledgeWar"""
             h(subID)d(objID)d(1)d(terrID)
             d(isDisguised)d(isDisgTerrID)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="s_ExDominionWarStart" side="server" type="FEA3">
               <la2:primitive name="subID" type="i2"/>
@@ -159,6 +155,26 @@ pck["03"] = c_ReqStartPledgeWar"""
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
+        )
+        py_string = """
+class s_ExDominionWarStart(UTF):
+    @staticmethod
+    def dtype(act, data):
+        dtype = [('pck_type', 'i1'), ('subID', 'i2'), ('objID', 'i4'), ('1', 'i4'), ('terrID', 'i4'), ('isDisguised', 'i4'), ('isDisgTerrID', 'i4')]
+        return dtype
+
+pck_server["FEA3"] = s_ExDominionWarStart"""
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
+        print()
+        print(self.xml_to_py.convert(xml_string))
+        print(py_string)
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
         )
 
     def testMiddle5(self):

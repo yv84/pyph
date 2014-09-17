@@ -22,7 +22,7 @@ class {name}(UTF):
         dtype = {dtype}
         return dtype
 
-pck["{type}"] = {name}""" \
+pck_{side}["{type}"] = {name}""" \
             .format(dtype=dtype, **pck_struct.attrib) \
             .replace("'S')", "'|S'+self.unicode_string(data))")
 
