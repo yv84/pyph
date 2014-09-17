@@ -58,7 +58,7 @@ class IniToXml():
 
     def element_append_loop(self, cursor, element_loop, primitive):
         el = element_loop.groupdict()
-        skip = int(el['skip'])-1
+        skip = int(el['skip']) - 1
         loop = int(el['loop'])
         element = etree.SubElement(cursor, '{la2}loop',
             name=self.camel(el['name']),
@@ -74,6 +74,39 @@ class IniToXml():
             type=self.ctypes_to_numpy[primitive[0]])
 
 
+    def element_append(self, cursor, primitive, loop):
+        element_loop = self.regex_body_loop.match(primitive[1])
+        #print(primitive, loop, cursor.tag)
+
+        if element_loop:
+            chield, loop = self.element_append_loop(
+                              cursor, element_loop, primitive)
+            cursor = chield
+        else:
+            chield = self.element_append_primitive(cursor, primitive)
+        return cursor, loop
+
+
+    def xml_body(self, primitives, root):
+        cursor = root
+        loop = 0
+        skip = 0
+        loop_primitives = []
+        primitives.reverse()
+        while primitives:
+            primitive = primitives.pop()
+
+            if loop:
+                loop -= 1
+                loop_primitives.append(primitive)
+                if not loop:
+                    self.xml_body(loop_primitives, cursor)
+                    loop_primitives = []
+                    cursor = cursor.getparent()
+            else:
+                cursor, loop = self.element_append(cursor, primitive, loop)
+
+
     def convert(self, line_in):
         xml_out = b''
 
@@ -83,31 +116,11 @@ class IniToXml():
 
         root = etree.Element('root', nsmap={'la2': 'la2'})
         tree = etree.ElementTree(root)
-        packet = etree.SubElement(root, '{la2}pck_struct',
+        root = etree.SubElement(root, '{la2}pck_struct',
             name=b''.join([self.side[0:1], b'_', self.camel(header)]),
             side=self.side,
             type=opt_code)
-        cursor = packet
-        loop = 0
-        skip = 0
-
-        for primitive in primitives:
-            element_loop = self.regex_body_loop.match(primitive[1])
-            #print(primitive, loop, cursor.tag)
-
-            if element_loop:
-                chield, loop = self.element_append_loop(
-                                  cursor, element_loop, primitive)
-                cursor = chield
-                loop += 1
-            else:
-                chield = self.element_append_primitive(cursor, primitive)
-
-            if loop:
-                loop -= 1
-                if not loop:
-                    cursor = cursor.getparent()
-
+        self.xml_body(primitives, root)
         xml_out = etree.tostring(tree, encoding='ASCII', xml_declaration=True,
             pretty_print=True)
 

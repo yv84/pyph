@@ -256,9 +256,12 @@ class TestCase(unittest.TestCase):
     def testHard4(self):
         ini_string = b"""
           D022=RequestSaveKeyMapping:
-            h(subID)d(:)d(:)d(count:Loop.01.0010)c(cmd1sz:Loop.01.0001)
-            c(cmdID)c(cmd2sz:Loop.01.0001)c(cmdID)d(cmdSz:Loop.01.0005)
-            d(cmd)d(key)d(tgK1)d(tgK2)d(show)d(:)d(:)
+            h(subID)d(:)d(:)
+            d(count:Loop.01.0010)
+            c(cmd1sz:Loop.01.0001)c(cmdID)
+            c(cmd2sz:Loop.01.0001)c(cmdID)
+            d(cmdSz:Loop.01.0005)d(cmd)d(key)d(tgK1)d(tgK2)d(show)
+            d(:)d(:)
         """
         xml_string = b"""
           <?xml version=\'1.0\' encoding=\'ASCII\'?>
@@ -270,17 +273,17 @@ class TestCase(unittest.TestCase):
               <la2:loop loop="10" name="count" skip="0" type="i4">
                 <la2:loop loop="1" name="cmd1sz" skip="0" type="i1">
                   <la2:primitive name="cmdID" type="i1"/>
-                <la2:loop>
+                </la2:loop>
                 <la2:loop loop="1" name="cmd2sz" skip="0" type="i1">
                   <la2:primitive name="cmdID" type="i1"/>
-                <la2:loop>
-                <la2:loop loop="5" name="cmd2sz" skip="0" type="i1">
+                </la2:loop>
+                <la2:loop loop="5" name="cmdSz" skip="0" type="i4">
                   <la2:primitive name="cmd" type="i4"/>
                   <la2:primitive name="key" type="i4"/>
                   <la2:primitive name="tgK1" type="i4"/>
-                  <la2:primitive name="tgK2" type="i4/>
+                  <la2:primitive name="tgK2" type="i4"/>
                   <la2:primitive name="show" type="i4"/>
-                <la2:loop>
+                </la2:loop>
               </la2:loop>
               <la2:primitive name="U" type="i4"/>
               <la2:primitive name="U" type="i4"/>
