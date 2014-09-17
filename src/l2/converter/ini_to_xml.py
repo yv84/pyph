@@ -8,7 +8,7 @@ class IniToXml():
         self.side = b'client'
         self.regex_header = re.compile(b"""(?xi)
             ^[\s\t\r\n]*
-            (?P<opt_code>[0-9a-f]{2,4})
+            (?P<opt_code>[0-9a-f]{2,8})
             =
             (?P<header>[a-z][a-z0-9]*)
             :
@@ -17,12 +17,12 @@ class IniToXml():
         self.regex_body = re.compile(b"""(?xi)
             (?P<type>[a-z0-9])
             \(
-            (?P<name>[a-z0-9:.]+)
+            (?P<name>[a-z0-9:.-]+)
             \)
         """)
         self.regex_body_loop = re.compile(b"""(?xi) # :Loop.01.0001
             ^
-            (?P<name>[a-z0-9:]+?)
+            (?P<name>[a-z0-9:.-]+?)
             :Loop.
             (?P<skip>\d{2}).
             (?P<loop>\d{4})
@@ -115,11 +115,9 @@ class IniToXml():
 
     def convert(self, line_in):
         xml_out = b''
-
         d = self.regex_header.match(line_in).groupdict() #
         opt_code, header, body = d['opt_code'], d['header'], d['body']
         primitives = self.regex_body.findall(body) # list(type, name)
-
         root = etree.Element('root', nsmap={'la2': 'la2'})
         tree = etree.ElementTree(root)
         root = etree.SubElement(root, '{la2}pck_struct',

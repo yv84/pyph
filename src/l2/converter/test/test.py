@@ -21,7 +21,7 @@ class TestCase(unittest.TestCase):
 
     @staticmethod
     def ini_string_trim (ini_string):
-        return b''.join(re.findall(b"[\w'=:().]+", ini_string))
+        return b''.join(re.findall(b"[\w'=:().-]+", ini_string))
 
     @staticmethod
     def xml_string_trim (xml_string):
@@ -49,7 +49,6 @@ class TestCase(unittest.TestCase):
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
-
 
     def testMiddle1(self):
         ini_string = b"""
@@ -296,7 +295,6 @@ class TestCase(unittest.TestCase):
             self.xml_string_trim(xml_string),
         )
 
-
     def testHard5(self):
         ini_string = b"""
           11=ItemList:
@@ -350,78 +348,88 @@ class TestCase(unittest.TestCase):
           </root>
         """
         self.ini_to_xml.side = b"server"
-        print()
-        print(self.xml_string_trim(
-            self.ini_to_xml.convert(self.ini_string_trim(ini_string))))
-        print(self.xml_string_trim(xml_string))
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
 
-
-
     def testHard6(self):
         ini_string = b"""
           FE70=ExUISetting:h(subID)d(bufsize)d(categories)
-            d(count:Loop.01.0010)c(catList1:Loop.01.0001)c(cmd)
-            c(catList2:Loop.01.0001)c(cmd)d(keyList:Loop.01.0005)
-            d(cmdID)d(keyID)d(toogleKey1)d(toogleKey2)
-            d(showStatus)d(11)d(10)
+            d(count:Loop.01.0010)
+            c(catList1:Loop.01.0001)c(cmd)
+            c(catList2:Loop.01.0001)c(cmd)
+            d(keyList:Loop.01.0005)d(cmdID)d(keyID)
+              d(toogleKey1)d(toogleKey2)d(showStatus)
+            d(11)d(10)
         """
         xml_string = b"""
-          <pck_struct pck_name="s_ExUISetting" pck_type="FE70">
-            <i2.subID/>
-            <i4.bufsize/>
-            <i4.categories/>
-            <i4.countValue loop="10" skip="0">
-              <i1.catList1Value loop="1" skip="0">
-                <i1.cmd/>
-                <i1.catList2Value loop="1" skip="0">
-                  <i1.cmd/>
-                  <i4.keyListValue loop="5" skip="0">
-                    <i4.cmdID/>
-                    <i4.keyID/>
-                    <i4.toogleKey1/>
-                    <i4.toogleKey2/>
-                    <i4.showStatus/>
-                    <i4.11/>
-                    <i4.10/>
-                  </i4.keyListValue>
-                </i1.catList2Value>
-              </i1.catList1Value>
-            </i4.countValue>
-          </pck_struct>
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="s_ExUISetting" side="server" type="FE70">
+              <la2:primitive name="subID" type="i2"/>
+              <la2:primitive name="bufsize" type="i4"/>
+              <la2:primitive name="categories" type="i4"/>
+              <la2:loop loop="10" name="count" skip="0" type="i4">
+                <la2:loop loop="1" name="catList1" skip="0" type="i1">
+                  <la2:primitive name="cmd" type="i1"/>
+                </la2:loop>
+                <la2:loop loop="1" name="catList2" skip="0" type="i1">
+                  <la2:primitive name="cmd" type="i1"/>
+                </la2:loop>
+                <la2:loop loop="5" name="keyList" skip="0" type="i4">
+                  <la2:primitive name="cmdID" type="i4"/>
+                  <la2:primitive name="keyID" type="i4"/>
+                  <la2:primitive name="toogleKey1" type="i4"/>
+                  <la2:primitive name="toogleKey2" type="i4"/>
+                  <la2:primitive name="showStatus" type="i4"/>
+                </la2:loop>
+              </la2:loop>
+              <la2:primitive name="11" type="i4"/>
+              <la2:primitive name="10" type="i4"/>
+            </la2:pck_struct>
+          </root>
         """
-
+        self.ini_to_xml.side = b"server"
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
 
     def testHard7(self):
         ini_string = b"""
           FE970000=ExCubeGameTeamList:
             h(subID)d(sub2ID)d(roomNumber)d(-1)
-            d(bluePlayersCount:Loop.01.0002)d(playerObjID)
-            d(name)d(redPlayersCount:Loop.01.0002)
-            d(playerObjID)d(name)
+            d(bluePlayersCount:Loop.01.0002)d(playerObjID)d(name)
+            d(redPlayersCount:Loop.01.0002)d(playerObjID)d(name)
         """
         xml_string = b"""
-          <pck_struct pck_name="s_ExCubeGameTeamList" pck_type="FE970000">
-            <i2.subID/>
-            <i4.sub2ID/>
-            <i4.roomNumber/>
-            <i4.1/>
-            <i4.bluePlayersCountValue loop="2" skip="0">
-              <i4.playerObjID/>
-              <i4.name/>
-            </i4.bluePlayersCountValue>
-            <i4.redPlayersCountValue loop="2" skip="0">
-              <i4.playerObjID/>
-              <i4.name/>
-            </i4.redPlayersCountValue>
-          </pck_struct>
+          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct name="s_ExCubeGameTeamList" side="server" type="FE970000">
+              <la2:primitive name="subID" type="i2"/>
+              <la2:primitive name="sub2ID" type="i4"/>
+              <la2:primitive name="roomNumber" type="i4"/>
+              <la2:primitive name="-1" type="i4"/>
+              <la2:loop loop="2" name="bluePlayersCount" skip="0" type="i4">
+                <la2:primitive name="playerObjID" type="i4"/>
+                <la2:primitive name="name" type="i4"/>
+              </la2:loop>
+              <la2:loop loop="2" name="redPlayersCount" skip="0" type="i4">
+                <la2:primitive name="playerObjID" type="i4"/>
+                <la2:primitive name="name" type="i4"/>
+              </la2:loop>
+            </la2:pck_struct>
+          </root>
         """
-
-
+        self.ini_to_xml.side = b"server"
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+            self.xml_string_trim(xml_string),
+        )
 
 
 if __name__ == '__main__':
