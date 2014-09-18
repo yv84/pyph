@@ -10,6 +10,7 @@ import io
 import re
 import random
 import struct
+import binascii
 
 
 import numpy
@@ -52,7 +53,18 @@ class TestCase(unittest.TestCase):
     py_header = """import struct
 
 class UTF():
-    unicode_string = lambda data: str(data[::2].find(b'\x00')+1)*2
+    unicode_string = lambda data: str(data[::2].find(b'\\x00')+1)*2
+
+pck_client = {}
+pck_server = {}
+"""
+    py_footer = """
+
+class pck():
+    pass
+
+pck.client = pck_client
+pck.server = pck_server
 """
     def testEasy1(self):
         ini_string = b"""
@@ -70,7 +82,7 @@ class c_Logout(UTF):
         dtype = [('pck_type', 'i1')]
         return dtype
 
-pck_client["00"] = c_Logout"""
+pck_client[b'\\x00'] = c_Logout"""
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
@@ -81,15 +93,20 @@ pck_client["00"] = c_Logout"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
+        code = ''.join([self.py_header, py_string, self.py_footer])
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in [(b"\x00", 0)]]
         py_execute = b"".join(pack_value)
-        dtype = [('pck_type', 'i1')]
+        dtype = ns['pck'].client[pack_value[0]].dtype(0, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
             unpack_value[0])
+
 
     def testMiddle1(self):
         ini_string = b"""
@@ -113,7 +130,7 @@ class c_AttackRequest(UTF):
         dtype = [('pck_type', 'i1'), ('ObjectID', 'i4'), ('OrigX', 'i4'), ('OrigY', 'i4'), ('OrigZ', 'i4'), ('AttackClick', 'i1')]
         return dtype
 
-pck_client["01"] = c_AttackRequest"""
+pck_client[b'\\x01'] = c_AttackRequest"""
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
@@ -124,7 +141,10 @@ pck_client["01"] = c_AttackRequest"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-
+        code = ''.join([self.py_header, py_string, self.py_footer])
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in [(b"\x01", 1)]]
@@ -133,7 +153,7 @@ pck_client["01"] = c_AttackRequest"""
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in [(b"\x01", 1)]]
         py_execute = b"".join(pack_value)
-        dtype = [('pck_type', 'i1'), ('ObjectID', 'i4'), ('OrigX', 'i4'), ('OrigY', 'i4'), ('OrigZ', 'i4'), ('AttackClick', 'i1')]
+        dtype = ns['pck'].client[pack_value[0]].dtype(0, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -169,7 +189,7 @@ class c_ReqStartPledgeWar(UTF):
         dtype = [('pck_type', 'i1'), ('PledgeName', '|S'+self.unicode_string(data))]
         return dtype
 
-pck_client["03"] = c_ReqStartPledgeWar"""
+pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
         py_execute = b"".join([b"\x03", ('test_string\x00').encode('UTF-16LE')])
         self.ini_to_xml.side = b"client"
         self.assertEqual(
@@ -213,15 +233,15 @@ class s_ExDominionWarStart(UTF):
         dtype = [('pck_type', 'i1'), ('subID', 'i2'), ('objID', 'i4'), ('1', 'i4'), ('terrID', 'i4'), ('isDisguised', 'i4'), ('isDisgTerrID', 'i4')]
         return dtype
 
-pck_server["FEA3"] = s_ExDominionWarStart"""
+pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
-        print()
-        print(self.xml_to_py.convert(xml_string))
-        print(py_string)
+        # print()
+        # print(self.xml_to_py.convert(xml_string))
+        # print(py_string)
         self.assertEqual(
             self.xml_to_py.convert(xml_string),
             py_string,

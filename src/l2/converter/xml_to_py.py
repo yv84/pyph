@@ -1,4 +1,5 @@
 from lxml import etree
+import binascii
 
 
 class XmlToPy():
@@ -22,8 +23,11 @@ class {name}(UTF):
         dtype = {dtype}
         return dtype
 
-pck_{side}["{type}"] = {name}""" \
-            .format(dtype=dtype, **pck_struct.attrib) \
+pck_{side}[{b_type}] = {name}""" \
+            .format(
+                dtype=dtype,
+                b_type=binascii.unhexlify(pck_struct.attrib["type"]),
+                **pck_struct.attrib) \
             .replace("'S')", "'|S'+self.unicode_string(data))")
 
         return py_string
