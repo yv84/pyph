@@ -8,6 +8,11 @@ import os
 import time
 import io
 import re
+import random
+import struct
+
+
+import numpy
 
 
 PACKAGE_PARENT = '../..'
@@ -28,12 +33,21 @@ class TestCase(unittest.TestCase):
     def xml_string_trim (xml_string):
         return b''.join(re.findall(b"<.+?>", xml_string))
 
+    @staticmethod
+    def random_i(count):
+        return (lambda count: [(lambda x: \
+            [struct.pack(b'i', x), x]) \
+            (int(0xffffffff*random.random())-2147483648) \
+            for i in range(count)])(count)
+
     def setUp(self):
         self.ini_to_xml = IniToXml()
         self.xml_to_py = XmlToPy()
 
     def tearDown(self):
         pass
+
+
 
     py_header = """import struct
 
@@ -67,6 +81,15 @@ pck_client["00"] = c_Logout"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in [(b"\x00", 0)]]
+        py_execute = b"".join(pack_value)
+        dtype = [('pck_type', 'i1')]
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
 
     def testMiddle1(self):
         ini_string = b"""
@@ -102,6 +125,32 @@ pck_client["01"] = c_AttackRequest"""
             py_string,
         )
 
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in [(b"\x01", 1)]]
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in self.random_i(4)]
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in [(b"\x01", 1)]]
+        py_execute = b"".join(pack_value)
+        dtype = [('pck_type', 'i1'), ('ObjectID', 'i4'), ('OrigX', 'i4'), ('OrigY', 'i4'), ('OrigZ', 'i4'), ('AttackClick', 'i1')]
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['ObjectID'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['OrigX'].item(),
+            unpack_value[2])
+        self.assertEqual(pck_np_array['OrigY'].item(),
+            unpack_value[3])
+        self.assertEqual(pck_np_array['OrigZ'].item(),
+            unpack_value[4])
+        self.assertEqual(pck_np_array['AttackClick'].item(),
+            unpack_value[5])
+
+
+
     def testMiddle2(self):
         ini_string = b"""
           03=ReqStartPledgeWar:s(PledgeName)
@@ -121,6 +170,7 @@ class c_ReqStartPledgeWar(UTF):
         return dtype
 
 pck_client["03"] = c_ReqStartPledgeWar"""
+        py_execute = b"".join([b"\x03", ('test_string\x00').encode('UTF-16LE')])
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
