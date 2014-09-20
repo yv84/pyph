@@ -11,7 +11,8 @@ import re
 import random
 import struct
 import binascii
-
+from itertools import chain
+import string
 
 import numpy
 
@@ -35,11 +36,24 @@ class TestCase(unittest.TestCase):
         return b''.join(re.findall(b"<.+?>", xml_string))
 
     @staticmethod
-    def random_i(count):
+    def random_i4(count):
         return (lambda count: [(lambda x: \
             [struct.pack(b'i', x), x]) \
             (int(0xffffffff*random.random())-2147483648) \
             for i in range(count)])(count)
+
+    @staticmethod
+    def random_string(count):
+        MIN_STRING = 1
+        MAX_STRING = 16
+        return (lambda count: [(lambda x: \
+            [b''.join([x, '\x00'.encode('UTF-16LE')]), x[:-1] ]) \
+            (''.join([random.choice(string.ascii_letters+string.digits) \
+                for i in range(
+                    int(random.random()*(MAX_STRING-MIN_STRING)+MIN_STRING))
+            ]).encode('UTF-16LE')) \
+            for i in range(count)])(count)
+
 
     def setUp(self):
         self.ini_to_xml = IniToXml()
@@ -53,7 +67,11 @@ class TestCase(unittest.TestCase):
     py_header = """import struct
 
 class UTF():
-    unicode_string = lambda data: str(data[::2].find(b'\\x00')+1)*2
+    @staticmethod
+    def unicode_string(i, data):
+        while data and data[i:i+2] != b"\\x00\\x00":
+            i += 2
+        return str(i+1)
 
 pck_client = {}
 pck_server = {}
@@ -77,8 +95,8 @@ pck.server = pck_server
         """
         py_string = """
 class c_Logout(UTF):
-    @staticmethod
-    def dtype(act, data):
+    @classmethod
+    def dtype(self, data):
         dtype = [('pck_type', 'i1')]
         return dtype
 
@@ -99,9 +117,12 @@ pck_client[b'\\x00'] = c_Logout"""
         exec(code, ns)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
-            for i in [(b"\x00", 0)]]
+            for i in chain(
+                [(b"\x00", 0),],
+            )
+        ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].client[pack_value[0]].dtype(0, py_execute)
+        dtype = ns['pck'].client[pack_value[0]].dtype(py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -125,8 +146,8 @@ pck_client[b'\\x00'] = c_Logout"""
         """
         py_string = """
 class c_AttackRequest(UTF):
-    @staticmethod
-    def dtype(act, data):
+    @classmethod
+    def dtype(self, data):
         dtype = [('pck_type', 'i1'), ('ObjectID', 'i4'), ('OrigX', 'i4'), ('OrigY', 'i4'), ('OrigZ', 'i4'), ('AttackClick', 'i1')]
         return dtype
 
@@ -147,13 +168,14 @@ pck_client[b'\\x01'] = c_AttackRequest"""
         exec(code, ns)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
-            for i in [(b"\x01", 1)]]
-        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
-            for i in self.random_i(4)]
-        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
-            for i in [(b"\x01", 1)]]
+            for i in chain(
+                [(b"\x01", 1),],
+                self.random_i4(4),
+                [(b"\x01", 1),],
+            )
+        ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].client[pack_value[0]].dtype(0, py_execute)
+        dtype = ns['pck'].client[pack_value[0]].dtype(py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -184,9 +206,9 @@ pck_client[b'\\x01'] = c_AttackRequest"""
         """
         py_string = """
 class c_ReqStartPledgeWar(UTF):
-    @staticmethod
-    def dtype(act, data):
-        dtype = [('pck_type', 'i1'), ('PledgeName', '|S'+self.unicode_string(data))]
+    @classmethod
+    def dtype(self, data):
+        dtype = [('pck_type', 'i1'), ('PledgeName', '|S'+self.unicode_string(1, data))]
         return dtype
 
 pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
@@ -201,6 +223,27 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
+        code = ''.join([self.py_header, py_string, self.py_footer])
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\x03", 3),],
+                self.random_string(1),
+            )
+        ]
+        py_execute = b"".join(pack_value)
+        dtype = ns['pck'].client[pack_value[0]].dtype(py_execute)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['PledgeName'].item(),
+            unpack_value[1])
+
+
 
     def testMiddle4(self):
         ini_string = b"""
@@ -228,8 +271,8 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
         )
         py_string = """
 class s_ExDominionWarStart(UTF):
-    @staticmethod
-    def dtype(act, data):
+    @classmethod
+    def dtype(self, data):
         dtype = [('pck_type', 'i1'), ('subID', 'i2'), ('objID', 'i4'), ('1', 'i4'), ('terrID', 'i4'), ('isDisguised', 'i4'), ('isDisgTerrID', 'i4')]
         return dtype
 

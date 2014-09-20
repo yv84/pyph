@@ -12,14 +12,15 @@ class XmlToPy():
         root.getchildren()
         pck_struct = root.getchildren()[0]
         dtype = [('pck_type', 'i1'),]
+        i = 1
         for primitive in pck_struct.iterchildren():
             dtype.append((primitive.attrib['name'],
                 primitive.attrib['type']))
 
         py_string = """
 class {name}(UTF):
-    @staticmethod
-    def dtype(act, data):
+    @classmethod
+    def dtype(self, data):
         dtype = {dtype}
         return dtype
 
@@ -28,6 +29,6 @@ pck_{side}[{b_type}] = {name}""" \
                 dtype=dtype,
                 b_type=binascii.unhexlify(pck_struct.attrib["type"]),
                 **pck_struct.attrib) \
-            .replace("'S')", "'|S'+self.unicode_string(data))")
+            .replace("'S')", "'|S'+self.unicode_string("+str(i)+", data))")
 
         return py_string
