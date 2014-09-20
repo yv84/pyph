@@ -36,10 +36,16 @@ class TestCase(unittest.TestCase):
         return b''.join(re.findall(b"<.+?>", xml_string))
 
     @staticmethod
-    def random_i4(count):
+    def random_i(np_type, count):
+        c_type = {b"i1": b"b", b"i2": b"h", b"i4": b"i", b"i8": b"q",}
+        signed_value_min = {b"i1": -128, b"i2": -32767,
+            b"i4": -2147483648, b"i8": -9223372036854775808}
+        signed_value = {b"i1": 0xff, b"i2": 0xffff,
+            b"i4": 0xffffffff, b"i8": 0xffffffffffffffff}
         return (lambda count: [(lambda x: \
-            [struct.pack(b'i', x), x]) \
-            (int(0xffffffff*random.random())-2147483648) \
+            [struct.pack(c_type[np_type], x), x]) \
+            (int(signed_value[np_type]*random.random())+\
+                  signed_value_min[np_type]) \
             for i in range(count)])(count)
 
     @staticmethod
@@ -63,27 +69,6 @@ class TestCase(unittest.TestCase):
         pass
 
 
-
-    py_header = """import struct
-
-class UTF():
-    @staticmethod
-    def unicode_string(i, data):
-        while data and data[i:i+2] != b"\\x00\\x00":
-            i += 2
-        return str(i+1)
-
-pck_client = {}
-pck_server = {}
-"""
-    py_footer = """
-
-class pck():
-    pass
-
-pck.client = pck_client
-pck.server = pck_server
-"""
     def testEasy1(self):
         ini_string = b"""
           00=Logout:
@@ -111,7 +96,8 @@ pck_client[b'\\x00'] = c_Logout"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.py_header, py_string, self.py_footer])
+        code = ''.join([
+            self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
         code = compile(code, '<string>', 'exec')
         ns = {}
         exec(code, ns)
@@ -122,7 +108,7 @@ pck_client[b'\\x00'] = c_Logout"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].client[pack_value[0]].dtype(py_execute)
+        dtype = ns['pck'].dtype('c', py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -162,7 +148,7 @@ pck_client[b'\\x01'] = c_AttackRequest"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.py_header, py_string, self.py_footer])
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
         code = compile(code, '<string>', 'exec')
         ns = {}
         exec(code, ns)
@@ -170,12 +156,12 @@ pck_client[b'\\x01'] = c_AttackRequest"""
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
                 [(b"\x01", 1),],
-                self.random_i4(4),
-                [(b"\x01", 1),],
+                self.random_i(b"i4", 4),
+                self.random_i(b"i1", 1),
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].client[pack_value[0]].dtype(py_execute)
+        dtype = ns['pck'].dtype('c', py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -223,7 +209,7 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.py_header, py_string, self.py_footer])
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
         code = compile(code, '<string>', 'exec')
         ns = {}
         exec(code, ns)
@@ -235,7 +221,7 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].client[pack_value[0]].dtype(py_execute)
+        dtype = ns['pck'].dtype('c', py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -282,13 +268,53 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
-        # print()
-        # print(self.xml_to_py.convert(xml_string))
-        # print(py_string)
+        print()
+        print(self.xml_to_py.convert(xml_string))
+        print(py_string)
         self.assertEqual(
             self.xml_to_py.convert(xml_string),
             py_string,
         )
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\xfe", -2),],
+                [(b"\xa3\x00", 0x00a3),],
+                self.random_i(b"i4", 5),
+            )
+        ]
+        py_execute = b"".join(pack_value)
+        dtype = ns['pck'].dtype('s', py_execute)
+        print(dtype)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['subID'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['objID'].item(),
+            unpack_value[2])
+        self.assertEqual(pck_np_array['1'].item(),
+            unpack_value[3])
+        self.assertEqual(pck_np_array['terrID'].item(),
+            unpack_value[4])
+        self.assertEqual(pck_np_array['isDisguised'].item(),
+            unpack_value[5])
+        self.assertEqual(pck_np_array['isDisgTerrID'].item(),
+            unpack_value[6])
+
+
+
+
+
+
+
+
+
 
     def testMiddle5(self):
         ini_string = b"""
