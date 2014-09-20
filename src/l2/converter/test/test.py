@@ -69,6 +69,7 @@ class TestCase(unittest.TestCase):
         pass
 
 
+
     def testEasy1(self):
         ini_string = b"""
           00=Logout:
@@ -81,7 +82,7 @@ class TestCase(unittest.TestCase):
         py_string = """
 class c_Logout(UTF):
     @classmethod
-    def dtype(self, data):
+    def dtype(cls, data):
         dtype = [('pck_type', 'i1')]
         return dtype
 
@@ -115,6 +116,7 @@ pck_client[b'\\x00'] = c_Logout"""
             unpack_value[0])
 
 
+
     def testMiddle1(self):
         ini_string = b"""
           01=AttackRequest:d(ObjectID)d(OrigX)d(OrigY)d(OrigZ)c(AttackClick)
@@ -133,7 +135,7 @@ pck_client[b'\\x00'] = c_Logout"""
         py_string = """
 class c_AttackRequest(UTF):
     @classmethod
-    def dtype(self, data):
+    def dtype(cls, data):
         dtype = [('pck_type', 'i1'), ('ObjectID', 'i4'), ('OrigX', 'i4'), ('OrigY', 'i4'), ('OrigZ', 'i4'), ('AttackClick', 'i1')]
         return dtype
 
@@ -193,8 +195,9 @@ pck_client[b'\\x01'] = c_AttackRequest"""
         py_string = """
 class c_ReqStartPledgeWar(UTF):
     @classmethod
-    def dtype(self, data):
-        dtype = [('pck_type', 'i1'), ('PledgeName', '|S'+self.unicode_string(1, data))]
+    def dtype(cls, data):
+        gen = cls.var_value(1, data)
+        dtype = [('pck_type', 'i1'), ('PledgeName', '|S'+gen.__next__())]
         return dtype
 
 pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
@@ -258,7 +261,7 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
         py_string = """
 class s_ExDominionWarStart(UTF):
     @classmethod
-    def dtype(self, data):
+    def dtype(cls, data):
         dtype = [('pck_type', 'i1'), ('subID', 'i2'), ('objID', 'i4'), ('1', 'i4'), ('terrID', 'i4'), ('isDisguised', 'i4'), ('isDisgTerrID', 'i4')]
         return dtype
 
@@ -268,9 +271,6 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
-        print()
-        print(self.xml_to_py.convert(xml_string))
-        print(py_string)
         self.assertEqual(
             self.xml_to_py.convert(xml_string),
             py_string,
@@ -289,7 +289,6 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
         ]
         py_execute = b"".join(pack_value)
         dtype = ns['pck'].dtype('s', py_execute)
-        print(dtype)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -308,20 +307,11 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
             unpack_value[6])
 
 
-
-
-
-
-
-
-
-
     def testMiddle5(self):
         ini_string = b"""
           0B=RequestGiveNickName:s(Target)s(Title)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="c_RequestGiveNickName" side="client" type="0B">
               <la2:primitive name="Target" type="S"/>
@@ -330,11 +320,55 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
           </root>
         """
         self.ini_to_xml.side = b"client"
+
+        py_string = """
+class c_RequestGiveNickName(UTF):
+    @classmethod
+    def dtype(cls, data):
+        gen = cls.var_value(1, data)
+        dtype = [('pck_type', 'i1'), ('Target', '|S'+gen.__next__()), ('Title', '|S'+gen.__next__())]
+        return dtype
+
+pck_client[b'\\x0b'] = c_RequestGiveNickName"""
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
+        print()
+        print(self.xml_to_py.convert(xml_string))
+        print(py_string)
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
+        )
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
+        print(code)
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\x0b", 0x0b),],
+                self.random_string(2),
+            )
+        ]
+        py_execute = b"".join(pack_value)
+        dtype = ns['pck'].dtype('c', py_execute)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['Target'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['Title'].item(),
+            unpack_value[2])
+
+
+
+
+
 
     def testMiddle6(self):
         ini_string = b"""
@@ -342,8 +376,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
             h(subID)d(eventID)d(eventState)
             d(:)d(:)d(:)d(:)d(:)s(:)s(:)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="s_ExBrBroadcastEventState" side="server" type="FECE">
               <la2:primitive name="subID" type="i2"/>
@@ -371,8 +404,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
           31=SetPrivateStoreListSell:d(isPackage)
             d(count:Loop.01.0003)d(ObjectID)q(Count)q(Price)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="c_SetPrivateStoreListSell" side="client" type="31">
               <la2:primitive name="isPackage" type="i4"/>
@@ -397,8 +429,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
             s(subj)s(text)d(attachCount:Loop.01.0002)
             d(ObjID)q(count)q(reqAdena)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="c_RequestSendPost" side="client" type="D066">
               <la2:primitive name="subID" type="i2"/>
@@ -428,8 +459,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
             d(ClanHallsSize:Loop.01.0004)d(ClanHallID)
             s(HallName)s(LeaderName)d(Grade)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="s_ExShowAgitInfo" side="server" type="FE16">
               <la2:primitive name="subID" type="i2"/>
@@ -459,8 +489,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
             d(cmdSz:Loop.01.0005)d(cmd)d(key)d(tgK1)d(tgK2)d(show)
             d(:)d(:)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="c_RequestSaveKeyMapping" side="client" type="D022">
               <la2:primitive name="subID" type="i2"/>
@@ -507,8 +536,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
             h(enchEff2)h(enchEff3)h(blockedItems:Loop.02.0001)
             c(blockMode)d(blockItem)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="s_ItemList" side="server" type="11">
               <la2:primitive name="ShowWindow" type="i2"/>
@@ -562,8 +590,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
               d(toogleKey1)d(toogleKey2)d(showStatus)
             d(11)d(10)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="s_ExUISetting" side="server" type="FE70">
               <la2:primitive name="subID" type="i2"/>
@@ -603,8 +630,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
             d(bluePlayersCount:Loop.01.0002)d(playerObjID)d(name)
             d(redPlayersCount:Loop.01.0002)d(playerObjID)d(name)
         """
-        xml_string = b"""
-          <?xml version=\'1.0\' encoding=\'ASCII\'?>
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct name="s_ExCubeGameTeamList" side="server" type="FE970000">
               <la2:primitive name="subID" type="i2"/>

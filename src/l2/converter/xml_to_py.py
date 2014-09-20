@@ -20,7 +20,7 @@ class XmlToPy():
         py_string = """
 class {name}(UTF):
     @classmethod
-    def dtype(self, data):
+    def dtype(cls, data):
         dtype = {dtype}
         return dtype
 
@@ -28,9 +28,14 @@ pck_{side}[{b_type}] = {name}""" \
             .format(
                 dtype=dtype,
                 b_type=binascii.unhexlify(pck_struct.attrib["type"]),
-                **pck_struct.attrib) \
-            .replace("'S')", "'|S'+self.unicode_string("+str(i)+", data))")
-
+                **pck_struct.attrib)
+        if py_string.find("'S')") != -1:
+              print("!"*100)
+              py_string = py_string.replace("def dtype(cls, data):",
+"""def dtype(cls, data):
+        gen = cls.var_value(1, data)""")
+              py_string = py_string.replace("'S')", "'|S'+gen.__next__())")
+              print(py_string)
         return py_string
 
     @property
@@ -42,7 +47,15 @@ class UTF():
     def unicode_string(i, data):
         while data and data[i:i+2] != b"\\x00\\x00":
             i += 2
-        return str(i+1)
+        return (i+1)
+
+    @classmethod
+    def var_value(cls, i, data):
+        j = 0
+        while True:
+            i += int(j)
+            j = cls.unicode_string(i, data)
+            yield str(j-i+1)
 
 pck_client = {}
 pck_server = {}
