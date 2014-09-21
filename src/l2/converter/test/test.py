@@ -76,7 +76,7 @@ class TestCase(unittest.TestCase):
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="c_Logout" side="client" type="00"/>
+            <la2:pck_struct complexity="simple" name="c_Logout" side="client" type="00"/>
           </root>
         """
         py_string = """
@@ -123,7 +123,7 @@ pck_client[b'\\x00'] = c_Logout"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-          <la2:pck_struct name="c_AttackRequest" side="client" type="01">
+          <la2:pck_struct complexity="simple" name="c_AttackRequest" side="client" type="01">
             <la2:primitive name="ObjectID" type="i4"/>
             <la2:primitive name="OrigX" type="i4"/>
             <la2:primitive name="OrigY" type="i4"/>
@@ -187,7 +187,7 @@ pck_client[b'\\x01'] = c_AttackRequest"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="c_ReqStartPledgeWar" side="client" type="03">
+            <la2:pck_struct complexity="complex" name="c_ReqStartPledgeWar" side="client" type="03">
               <la2:primitive name="PledgeName" type="S"/>
             </la2:pck_struct>
           </root>
@@ -196,8 +196,8 @@ pck_client[b'\\x01'] = c_AttackRequest"""
 class c_ReqStartPledgeWar(UTF):
     @classmethod
     def dtype(cls, data):
-        gen = cls.var_value(1, data)
-        dtype = [('pck_type', 'i1'), ('PledgeName', '|S'+gen.__next__())]
+        pos = GetPosition(data)
+        dtype = [('pck_type', pos.next('i1')), ('PledgeName', pos.next('|S'))]
         return dtype
 
 pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
@@ -242,7 +242,7 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="s_ExDominionWarStart" side="server" type="FEA3">
+            <la2:pck_struct complexity="simple" name="s_ExDominionWarStart" side="server" type="FEA3">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="objID" type="i4"/>
               <la2:primitive name="1" type="i4"/>
@@ -313,7 +313,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="c_RequestGiveNickName" side="client" type="0B">
+            <la2:pck_struct complexity="complex" name="c_RequestGiveNickName" side="client" type="0B">
               <la2:primitive name="Target" type="S"/>
               <la2:primitive name="Title" type="S"/>
             </la2:pck_struct>
@@ -325,8 +325,8 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
 class c_RequestGiveNickName(UTF):
     @classmethod
     def dtype(cls, data):
-        gen = cls.var_value(1, data)
-        dtype = [('pck_type', 'i1'), ('Target', '|S'+gen.__next__()), ('Title', '|S'+gen.__next__())]
+        pos = GetPosition(data)
+        dtype = [('pck_type', pos.next('i1')), ('Target', pos.next('|S')), ('Title', pos.next('|S'))]
         return dtype
 
 pck_client[b'\\x0b'] = c_RequestGiveNickName"""
@@ -371,7 +371,7 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="s_ExBrBroadcastEventState" side="server" type="FECE">
+            <la2:pck_struct complexity="complex" name="s_ExBrBroadcastEventState" side="server" type="FECE">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="eventID" type="i4"/>
               <la2:primitive name="eventState" type="i4"/>
@@ -390,8 +390,8 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
 class s_ExBrBroadcastEventState(UTF):
     @classmethod
     def dtype(cls, data):
-        gen = cls.var_value(1, data)
-        dtype = [('pck_type', 'i1'), ('subID', 'i2'), ('eventID', 'i4'), ('eventState', 'i4'), ('U', 'i4'), ('U_', 'i4'), ('U__', 'i4'), ('U___', 'i4'), ('U____', 'i4'), ('U_____', '|S'+gen.__next__()), ('U______', '|S'+gen.__next__())]
+        pos = GetPosition(data)
+        dtype = [('pck_type', pos.next('i1')), ('subID', pos.next('i2')), ('eventID', pos.next('i4')), ('eventState', pos.next('i4')), ('U', pos.next('i4')), ('U_', pos.next('i4')), ('U__', pos.next('i4')), ('U___', pos.next('i4')), ('U____', pos.next('i4')), ('U_____', pos.next('|S')), ('U______', pos.next('|S'))]
         return dtype
 
 pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
@@ -440,10 +440,20 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
             unpack_value[2])
         self.assertEqual(pck_np_array['eventState'].item(),
             unpack_value[3])
-        # ValueError: two fields with the same name
-        # String[0]: 1 -> 1+2+4*7
-
-
+        self.assertEqual(pck_np_array['U'].item(),
+            unpack_value[4])
+        self.assertEqual(pck_np_array['U_'].item(),
+            unpack_value[5])
+        self.assertEqual(pck_np_array['U__'].item(),
+            unpack_value[6])
+        self.assertEqual(pck_np_array['U___'].item(),
+            unpack_value[7])
+        self.assertEqual(pck_np_array['U____'].item(),
+            unpack_value[8])
+        self.assertEqual(pck_np_array['U_____'].item(),
+            unpack_value[9])
+        self.assertEqual(pck_np_array['U______'].item(),
+            unpack_value[10])
 
 
 
@@ -456,7 +466,7 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="c_SetPrivateStoreListSell" side="client" type="31">
+            <la2:pck_struct complexity="complex" name="c_SetPrivateStoreListSell" side="client" type="31">
               <la2:primitive name="isPackage" type="i4"/>
               <la2:loop loop="3" name="count" skip="0" type="i4">
                 <la2:primitive name="ObjectID" type="i4"/>
@@ -481,7 +491,7 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="c_RequestSendPost" side="client" type="D066">
+            <la2:pck_struct complexity="complex" name="c_RequestSendPost" side="client" type="D066">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="receiver" type="S"/>
               <la2:primitive name="isCod" type="i4"/>
@@ -511,7 +521,7 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="s_ExShowAgitInfo" side="server" type="FE16">
+            <la2:pck_struct complexity="complex" name="s_ExShowAgitInfo" side="server" type="FE16">
               <la2:primitive name="subID" type="i2"/>
               <la2:loop loop="4" name="ClanHallsSize" skip="0" type="i4">
                 <la2:primitive name="ClanHallID" type="i4"/>
@@ -541,7 +551,7 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="c_RequestSaveKeyMapping" side="client" type="D022">
+            <la2:pck_struct complexity="complex" name="c_RequestSaveKeyMapping" side="client" type="D022">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="U" type="i4"/>
               <la2:primitive name="U_" type="i4"/>
@@ -588,7 +598,7 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="s_ItemList" side="server" type="11">
+            <la2:pck_struct complexity="complex" name="s_ItemList" side="server" type="11">
               <la2:primitive name="ShowWindow" type="i2"/>
               <la2:loop loop="24" name="count" skip="0" type="i2">
                 <la2:primitive name="ObjectID" type="i4"/>
@@ -642,7 +652,7 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="s_ExUISetting" side="server" type="FE70">
+            <la2:pck_struct complexity="complex" name="s_ExUISetting" side="server" type="FE70">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="bufsize" type="i4"/>
               <la2:primitive name="categories" type="i4"/>
@@ -682,7 +692,7 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct name="s_ExCubeGameTeamList" side="server" type="FE970000">
+            <la2:pck_struct complexity="complex" name="s_ExCubeGameTeamList" side="server" type="FE970000">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="sub2ID" type="i4"/>
               <la2:primitive name="roomNumber" type="i4"/>

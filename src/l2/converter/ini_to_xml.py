@@ -28,6 +28,11 @@ class IniToXml():
             (?P<loop>\d{4})
             $
         """)
+        self.regex_complexity = re.compile(b"""(?xi)
+            .*?s\(
+            |
+            .*?:Loop.
+        """)
         self.ctypes_to_numpy = {
             b'b': b'i1',
             b'c': b'i1',
@@ -123,12 +128,17 @@ class IniToXml():
         d = self.regex_header.match(line_in).groupdict() #
         opt_code, header, body = d['opt_code'], d['header'], d['body']
         primitives = self.regex_body.findall(body) # list(type, name)
+        if self.regex_complexity.match(body):
+            complexity = b"complex"
+        else:
+            complexity = b"simple"
         root = etree.Element('root', nsmap={'la2': 'la2'})
         tree = etree.ElementTree(root)
         root = etree.SubElement(root, '{la2}pck_struct',
             name=b''.join([self.side[0:1], b'_', self.camel(header)]),
             side=self.side,
-            type=opt_code)
+            type=opt_code,
+            complexity=complexity)
         self.xml_body(primitives, root)
         xml_out = etree.tostring(tree, encoding='ASCII', xml_declaration=True,
             pretty_print=True)
