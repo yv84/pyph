@@ -70,7 +70,7 @@ class IniToXml():
 
     def element_append_primitive(self, cursor, primitive):
         return etree.SubElement(cursor, '{la2}primitive',
-            name=self.camel(primitive[1]),
+            name=primitive[1],
             type=self.ctypes_to_numpy[primitive[0]])
 
 
@@ -92,6 +92,7 @@ class IniToXml():
         loop_primitives = []
         skip_primitives = []
         primitives.reverse()
+        primitive_names = []
         while primitives:
             primitive = primitives.pop()
 
@@ -109,8 +110,12 @@ class IniToXml():
                     loop_primitives = []
                     cursor = cursor.getparent()
             else:
+                primitive_name = self.camel(primitive[1])
+                while primitive_name in primitive_names:
+                    primitive_name = b"".join([primitive_name, b"_"])
+                primitive_names.append(primitive_name)
                 cursor, loop, skip = self.element_append(
-                                  cursor, primitive, loop, skip)
+                    cursor, [primitive[0], primitive_name], loop, skip)
 
 
     def convert(self, line_in):

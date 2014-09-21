@@ -109,7 +109,7 @@ pck_client[b'\\x00'] = c_Logout"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype('c', py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -163,7 +163,7 @@ pck_client[b'\\x01'] = c_AttackRequest"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype('c', py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -224,7 +224,7 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype('c', py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -288,7 +288,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype('s', py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -335,15 +335,11 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
-        print()
-        print(self.xml_to_py.convert(xml_string))
-        print(py_string)
         self.assertEqual(
             self.xml_to_py.convert(xml_string),
             py_string,
         )
         code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        print(code)
         code = compile(code, '<string>', 'exec')
         ns = {}
         exec(code, ns)
@@ -355,7 +351,7 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype('c', py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -364,9 +360,6 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
             unpack_value[1])
         self.assertEqual(pck_np_array['Title'].item(),
             unpack_value[2])
-
-
-
 
 
 
@@ -383,21 +376,78 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
               <la2:primitive name="eventID" type="i4"/>
               <la2:primitive name="eventState" type="i4"/>
               <la2:primitive name="U" type="i4"/>
-              <la2:primitive name="U" type="i4"/>
-              <la2:primitive name="U" type="i4"/>
-              <la2:primitive name="U" type="i4"/>
-              <la2:primitive name="U" type="i4"/>
-              <la2:primitive name="U" type="S"/>
-              <la2:primitive name="U" type="S"/>
+              <la2:primitive name="U_" type="i4"/>
+              <la2:primitive name="U__" type="i4"/>
+              <la2:primitive name="U___" type="i4"/>
+              <la2:primitive name="U____" type="i4"/>
+              <la2:primitive name="U_____" type="S"/>
+              <la2:primitive name="U______" type="S"/>
             </la2:pck_struct>
           </root>
         """
         self.ini_to_xml.side = b"server"
+        py_string = """
+class s_ExBrBroadcastEventState(UTF):
+    @classmethod
+    def dtype(cls, data):
+        gen = cls.var_value(1, data)
+        dtype = [('pck_type', 'i1'), ('subID', 'i2'), ('eventID', 'i4'), ('eventState', 'i4'), ('U', 'i4'), ('U_', 'i4'), ('U__', 'i4'), ('U___', 'i4'), ('U____', 'i4'), ('U_____', '|S'+gen.__next__()), ('U______', '|S'+gen.__next__())]
+        return dtype
+
+pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
+        self.maxDiff = None
+        print()
+        print(self.xml_to_py.convert(xml_string))
+        print(py_string)
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
+        )
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
+        print(code)
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\xfe", -2),],
+                [(b"\xce\x00", 0x00CE),],
+                self.random_i(b"i4", 7),
+                self.random_string(2),
+            )
+        ]
+        py_execute = b"".join(pack_value)
+        print(py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        print(dtype)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        print(pck_np_array['pck_type'])
+        print(pck_np_array['U____'])
+        print(pck_np_array['U_____'])
+        print(pck_np_array['U______'])
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['subID'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['eventID'].item(),
+            unpack_value[2])
+        self.assertEqual(pck_np_array['eventState'].item(),
+            unpack_value[3])
+        # ValueError: two fields with the same name
+        # String[0]: 1 -> 1+2+4*7
+
+
+
+
+
+
 
     def testHard1(self):
         ini_string = b"""
@@ -494,7 +544,7 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
             <la2:pck_struct name="c_RequestSaveKeyMapping" side="client" type="D022">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="U" type="i4"/>
-              <la2:primitive name="U" type="i4"/>
+              <la2:primitive name="U_" type="i4"/>
               <la2:loop loop="10" name="count" skip="0" type="i4">
                 <la2:loop loop="1" name="cmd1sz" skip="0" type="i1">
                   <la2:primitive name="cmdID" type="i1"/>
@@ -510,8 +560,8 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
                   <la2:primitive name="show" type="i4"/>
                 </la2:loop>
               </la2:loop>
-              <la2:primitive name="U" type="i4"/>
-              <la2:primitive name="U" type="i4"/>
+              <la2:primitive name="U__" type="i4"/>
+              <la2:primitive name="U___" type="i4"/>
             </la2:pck_struct>
           </root>
         """

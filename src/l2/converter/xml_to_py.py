@@ -30,12 +30,10 @@ pck_{side}[{b_type}] = {name}""" \
                 b_type=binascii.unhexlify(pck_struct.attrib["type"]),
                 **pck_struct.attrib)
         if py_string.find("'S')") != -1:
-              print("!"*100)
               py_string = py_string.replace("def dtype(cls, data):",
 """def dtype(cls, data):
         gen = cls.var_value(1, data)""")
               py_string = py_string.replace("'S')", "'|S'+gen.__next__())")
-              print(py_string)
         return py_string
 
     @property
@@ -71,12 +69,12 @@ class Pck():
         Pck.server = pck_server
 
     def dtype(self, side, data):
-        if side.lower() in ("c", "client"):
+        if side.lower() in ("c", "client", b"c", b"client"):
             if data[0:1] != b'\\xd0':
                 return self.client[data[0:1]].dtype(data)
             else:
                 return self.client[data[0:2]].dtype(data)
-        elif side.lower() in ("s", "server"):
+        elif side.lower() in ("s", "server", b"s", b"server"):
             if data[0:1] != b'\\xfe':
                 return self.server[data[0:1]].dtype(data)
             else:
