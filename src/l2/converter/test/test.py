@@ -60,6 +60,23 @@ class TestCase(unittest.TestCase):
             ]).encode('UTF-16LE')) \
             for i in range(count)])(count)
 
+    @staticmethod
+    def random_loop(np_type, list_loop):
+        MIN_LOOP = 2
+        MAX_LOOP = 2
+        c_type = {b"i1": b"b", b"i2": b"h", b"i4": b"i", b"i8": b"q",}
+        signed_value_min = {b"i1": -128, b"i2": -32767,
+            b"i4": -2147483648, b"i8": -9223372036854775808}
+        signed_value = {b"i1": 0xff, b"i2": 0xffff,
+            b"i4": 0xffffffff, b"i8": 0xffffffffffffffff}
+        return (lambda loop: list(
+                   chain((loop,), list(chain.from_iterable(loop[1]*list_loop))))
+               )(\
+            (lambda x: \
+                [struct.pack(c_type[np_type], x), x])( \
+                int(random.random()*(MAX_LOOP+1-MIN_LOOP)+MIN_LOOP))
+                )
+
 
     def setUp(self):
         self.ini_to_xml = IniToXml()
@@ -401,15 +418,11 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
             self.xml_string_trim(xml_string),
         )
         self.maxDiff = None
-        print()
-        print(self.xml_to_py.convert(xml_string))
-        print(py_string)
         self.assertEqual(
             self.xml_to_py.convert(xml_string),
             py_string,
         )
         code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        print(code)
         code = compile(code, '<string>', 'exec')
         ns = {}
         exec(code, ns)
@@ -423,15 +436,9 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
             )
         ]
         py_execute = b"".join(pack_value)
-        print(py_execute)
         dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
-        print(dtype)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
-        print(pck_np_array['pck_type'])
-        print(pck_np_array['U____'])
-        print(pck_np_array['U_____'])
-        print(pck_np_array['U______'])
         self.assertEqual(pck_np_array['pck_type'].item(),
             unpack_value[0])
         self.assertEqual(pck_np_array['subID'].item(),
@@ -457,8 +464,6 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
 
 
 
-
-
     def testHard1(self):
         ini_string = b"""
           31=SetPrivateStoreListSell:d(isPackage)
@@ -477,11 +482,105 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
           </root>
         """
         self.ini_to_xml.side = b"client"
+        py_string = """
+class c_SetPrivateStoreListSell(UTF):
+    @classmethod
+    def dtype(cls, data):
+        pos = GetPosition(data)
+        dtype = [
+          ('pck_type', pos.next('i1')),
+          ('isPackage', pos.next('i4')),
+          ('count', pos.next('loop:i4')),
+          ("count1",
+            list((
+              ('ObjectID', pos.next('i4')),
+              ('Count', pos.next('i8')),
+              ('Price', pos.next('i8'))
+            )),
+          ),
+          ("count2",
+            list((
+              ('ObjectID', pos.next('i4')),
+              ('Count', pos.next('i8')),
+              ('Price', pos.next('i8'))
+            )),
+          ),
+        ]
+        return dtype
+
+pck_client[b'1'] = c_SetPrivateStoreListSell"""
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
+        self.maxDiff = None
+        print()
+        print(self.xml_to_py.convert(xml_string))
+        print(py_string)
+        # self.assertEqual(
+        #     self.xml_to_py.convert(xml_string),
+        #     py_string,
+        # )
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
+        print(code)
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\x31", 49),],
+                self.random_i(b"i4", 1),
+                self.random_loop(b"i4",
+                    (
+                      self.random_i(b"i4", 1),
+                      self.random_i(b"i8", 2),
+                    )
+                ),
+            )
+        ]
+        print("pack: ", pack_value, unpack_value)
+        py_execute = b"".join(pack_value)
+        print(py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        print(dtype)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        print("COUNT=", pck_np_array['count'].item())
+        print("pck_np_array=", pck_np_array)
+
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['isPackage'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['count'].item(),
+            unpack_value[2])
+
+        loop_count, unpack_value_count = 0, 2
+        while loop_count < pck_np_array['count']:
+            loop_count += 1
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['ObjectID'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['Count'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['Price'].item(),
+                unpack_value[unpack_value_count])
+
+
+
+
+
+
+
+
+
+
+
+
 
     def testHard2(self):
         ini_string = b"""
