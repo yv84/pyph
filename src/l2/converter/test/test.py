@@ -93,7 +93,7 @@ class TestCase(unittest.TestCase):
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="simple" name="c_Logout" side="client" type="00"/>
+            <la2:pck_struct complexity="simple" name="pck_type" opt_code="00" pck_name="c_Logout" side="client" type="i1"/>
           </root>
         """
         py_string = """
@@ -140,7 +140,7 @@ pck_client[b'\\x00'] = c_Logout"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-          <la2:pck_struct complexity="simple" name="c_AttackRequest" side="client" type="01">
+          <la2:pck_struct complexity="simple" name="pck_type" opt_code="01" pck_name="c_AttackRequest" side="client" type="i1">
             <la2:primitive name="ObjectID" type="i4"/>
             <la2:primitive name="OrigX" type="i4"/>
             <la2:primitive name="OrigY" type="i4"/>
@@ -204,7 +204,7 @@ pck_client[b'\\x01'] = c_AttackRequest"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="complex" name="c_ReqStartPledgeWar" side="client" type="03">
+            <la2:pck_struct complexity="complex" name="pck_type" opt_code="03" pck_name="c_ReqStartPledgeWar" side="client" type="i1">
               <la2:primitive name="PledgeName" type="|S"/>
             </la2:pck_struct>
           </root>
@@ -214,7 +214,7 @@ class c_ReqStartPledgeWar(UTF):
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
-        dtype = [('pck_type', pos.next('i1')), ('PledgeName', pos.next('|S'))]
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('PledgeName', '|S')])
         return dtype
 
 pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
@@ -259,7 +259,7 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="simple" name="s_ExDominionWarStart" side="server" type="FEA3">
+            <la2:pck_struct complexity="simple" name="pck_type" opt_code="FEA3" pck_name="s_ExDominionWarStart" side="server" type="i1">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="objID" type="i4"/>
               <la2:primitive name="1" type="i4"/>
@@ -330,7 +330,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="complex" name="c_RequestGiveNickName" side="client" type="0B">
+            <la2:pck_struct complexity="complex" name="pck_type" opt_code="0B" pck_name="c_RequestGiveNickName" side="client" type="i1">
               <la2:primitive name="Target" type="|S"/>
               <la2:primitive name="Title" type="|S"/>
             </la2:pck_struct>
@@ -343,7 +343,7 @@ class c_RequestGiveNickName(UTF):
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
-        dtype = [('pck_type', pos.next('i1')), ('Target', pos.next('|S')), ('Title', pos.next('|S'))]
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('Target', '|S'), ('Title', '|S')])
         return dtype
 
 pck_client[b'\\x0b'] = c_RequestGiveNickName"""
@@ -388,7 +388,7 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="complex" name="s_ExBrBroadcastEventState" side="server" type="FECE">
+            <la2:pck_struct complexity="complex" name="pck_type" opt_code="FECE" pck_name="s_ExBrBroadcastEventState" side="server" type="i1">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="eventID" type="i4"/>
               <la2:primitive name="eventState" type="i4"/>
@@ -408,7 +408,7 @@ class s_ExBrBroadcastEventState(UTF):
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
-        dtype = [('pck_type', pos.next('i1')), ('subID', pos.next('i2')), ('eventID', pos.next('i4')), ('eventState', pos.next('i4')), ('U', pos.next('i4')), ('U_', pos.next('i4')), ('U__', pos.next('i4')), ('U___', pos.next('i4')), ('U____', pos.next('i4')), ('U_____', pos.next('|S')), ('U______', pos.next('|S'))]
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('eventID', 'i4'), ('eventState', 'i4'), ('U', 'i4'), ('U_', 'i4'), ('U__', 'i4'), ('U___', 'i4'), ('U____', 'i4'), ('U_____', '|S'), ('U______', '|S')])
         return dtype
 
 pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
@@ -471,7 +471,7 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="complex" name="c_SetPrivateStoreListSell" side="client" type="31">
+            <la2:pck_struct complexity="complex" name="pck_type" opt_code="31" pck_name="c_SetPrivateStoreListSell" side="client" type="i1">
               <la2:primitive name="isPackage" type="i4"/>
               <la2:loop loop="3" name="count" skip="0" type="i4">
                 <la2:primitive name="ObjectID" type="i4"/>
@@ -487,25 +487,7 @@ class c_SetPrivateStoreListSell(UTF):
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
-        dtype = [
-          ('pck_type', pos.next('i1')),
-          ('isPackage', pos.next('i4')),
-          ('count', pos.next('loop:i4')),
-          ("count1",
-            list((
-              ('ObjectID', pos.next('i4')),
-              ('Count', pos.next('i8')),
-              ('Price', pos.next('i8'))
-            )),
-          ),
-          ("count2",
-            list((
-              ('ObjectID', pos.next('i4')),
-              ('Count', pos.next('i8')),
-              ('Price', pos.next('i8'))
-            )),
-          ),
-        ]
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('isPackage', 'i4'), ('count', 'i4'), ('count:loop', [('ObjectID', 'i4'), ('Count', 'i8'), ('Price', 'i8')])])
         return dtype
 
 pck_client[b'1'] = c_SetPrivateStoreListSell"""
@@ -515,12 +497,13 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
             self.xml_string_trim(xml_string),
         )
         self.maxDiff = None
-        # self.assertEqual(
-        #     self.xml_to_py.convert(xml_string),
-        #     py_string,
-        # )
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
+        )
         code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
         print(code)
+        print(self.xml_to_py.convert(xml_string))
         code = compile(code, '<string>', 'exec')
         ns = {}
         exec(code, ns)
@@ -587,7 +570,7 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="complex" name="c_RequestSendPost" side="client" type="D066">
+            <la2:pck_struct complexity="complex" name="pck_type" opt_code="D066" pck_name="c_RequestSendPost" side="client" type="i1">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="receiver" type="|S"/>
               <la2:primitive name="isCod" type="i4"/>
@@ -617,7 +600,7 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="complex" name="s_ExShowAgitInfo" side="server" type="FE16">
+            <la2:pck_struct complexity="complex" name="pck_type" opt_code="FE16" pck_name="s_ExShowAgitInfo" side="server" type="i1">
               <la2:primitive name="subID" type="i2"/>
               <la2:loop loop="4" name="ClanHallsSize" skip="0" type="i4">
                 <la2:primitive name="ClanHallID" type="i4"/>
@@ -647,7 +630,7 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="complex" name="c_RequestSaveKeyMapping" side="client" type="D022">
+            <la2:pck_struct complexity="complex" name="pck_type" opt_code="D022" pck_name="c_RequestSaveKeyMapping" side="client" type="i1">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="U" type="i4"/>
               <la2:primitive name="U_" type="i4"/>
@@ -694,7 +677,7 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="complex" name="s_ItemList" side="server" type="11">
+            <la2:pck_struct complexity="complex" name="pck_type" opt_code="11" pck_name="s_ItemList" side="server" type="i1">
               <la2:primitive name="ShowWindow" type="i2"/>
               <la2:loop loop="24" name="count" skip="0" type="i2">
                 <la2:primitive name="ObjectID" type="i4"/>
@@ -748,7 +731,7 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="complex" name="s_ExUISetting" side="server" type="FE70">
+            <la2:pck_struct complexity="complex" name="pck_type" opt_code="FE70" pck_name="s_ExUISetting" side="server" type="i1">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="bufsize" type="i4"/>
               <la2:primitive name="categories" type="i4"/>
@@ -788,7 +771,7 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
         """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
-            <la2:pck_struct complexity="complex" name="s_ExCubeGameTeamList" side="server" type="FE970000">
+            <la2:pck_struct complexity="complex" name="pck_type" opt_code="FE970000" pck_name="s_ExCubeGameTeamList" side="server" type="i1">
               <la2:primitive name="subID" type="i2"/>
               <la2:primitive name="sub2ID" type="i4"/>
               <la2:primitive name="roomNumber" type="i4"/>

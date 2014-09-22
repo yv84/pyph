@@ -135,10 +135,12 @@ class IniToXml():
         root = etree.Element('root', nsmap={'la2': 'la2'})
         tree = etree.ElementTree(root)
         root = etree.SubElement(root, '{la2}pck_struct',
-            name=b''.join([self.side[0:1], b'_', self.camel(header)]),
+            pck_name=b''.join([self.side[0:1], b'_', self.camel(header)]),
             side=self.side,
-            type=opt_code,
-            complexity=complexity)
+            opt_code=opt_code,
+            complexity=complexity,
+            name=b'pck_type',
+            type=b'i1')
         self.xml_body(primitives, root)
         xml_out = etree.tostring(tree, encoding='ASCII', xml_declaration=True,
             pretty_print=True)
