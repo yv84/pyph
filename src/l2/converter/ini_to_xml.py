@@ -50,8 +50,8 @@ class IniToXml():
             b'q': b'i8',
             b'Q': b'u8',
             b'f': b'f8',
-            b's': b'S', # UTF-16-LE string
-            b'-': b'S', # byte string
+            b's': b'|S', # UTF-16-LE string
+            b'-': b'|S', # byte string
         }
 
     # header - replace cames style - > underscore

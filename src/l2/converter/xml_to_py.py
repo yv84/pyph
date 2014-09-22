@@ -1,5 +1,8 @@
-from lxml import etree
 import binascii
+
+
+from lxml import etree
+from jinja2 import Template
 
 
 class XmlToPy():
@@ -11,31 +14,23 @@ class XmlToPy():
         root = etree.XML(xml_string)
         pck_struct = root.getchildren()[0]
         dtype = [('pck_type', 'i1'),]
-        i = 1
         for primitive in pck_struct.iterchildren():
             dtype.append((primitive.attrib['name'],
                 primitive.attrib['type']))
 
-        py_string = """
-class {name}(UTF):
+        py_string = Template("""
+class {{name}}(UTF):
     @classmethod
-    def dtype(cls, data):
-        dtype = {dtype}
+    def dtype(cls, data):{% if complexity == "complex" %}
+        pos = GetPosition(data){% endif %}
+        {% if complexity == "simple" %}dtype = [{% for n, t in dtype %}(\'{{n}}\', \'{{t}}\'){% if not loop.last %}, {% endif %}{% endfor %}]{% elif complexity == "complex" %}dtype = [{% for n, t in dtype %}(\'{{n}}\', pos.next(\'{{t}}\')){% if not loop.last %}, {% endif %}{% endfor %}]{% endif %}
         return dtype
 
-pck_{side}[{b_type}] = {name}""" \
-            .format(
-                dtype=dtype,
-                b_type=binascii.unhexlify(pck_struct.attrib["type"]),
-                **pck_struct.attrib)
-        if pck_struct.attrib['complexity'] == 'complex': # 'i1' -> pos.next('i1')
-              py_string = py_string.replace("def dtype(cls, data):",
-"""def dtype(cls, data):
-        pos = GetPosition(data)""")
-              py_string = py_string.replace("'S')", "pos.next('|S'))")
-              py_string = py_string.replace("'i1')", "pos.next('i1'))")
-              py_string = py_string.replace("'i2')", "pos.next('i2'))")
-              py_string = py_string.replace("'i4')", "pos.next('i4'))")
+pck_{{side}}[{{b_type}}] = {{name}}""") \
+        .render(
+            dtype=dtype,
+            b_type=binascii.unhexlify(pck_struct.attrib["type"]),
+            **pck_struct.attrib)
         return py_string
 
     @property
@@ -52,11 +47,9 @@ class UTF():
     @classmethod
     def var_value(cls, i, data):
         j = i
-        print("init i, j=",i, j, data)
         while True:
             i = j
             j = cls.unicode_string(i, data)
-            print("i, j=",i, j)
             yield str(j-i+1)
 
 class GetPosition():
@@ -74,6 +67,9 @@ class GetPosition():
             i = self.i
             self.i = j
             return np_type+str(j-i+1)
+        elif np_type.startswith('loop'):
+            self.i += int(np_type[6:7])
+            return np_type[5:7]
         else:
             raise Exception("Unknown np_type")
 

@@ -69,13 +69,13 @@ class TestCase(unittest.TestCase):
             b"i4": -2147483648, b"i8": -9223372036854775808}
         signed_value = {b"i1": 0xff, b"i2": 0xffff,
             b"i4": 0xffffffff, b"i8": 0xffffffffffffffff}
-        return (lambda loop: list(
-                   chain((loop,), list(chain.from_iterable(loop[1]*list_loop))))
-               )(\
+        return (lambda loop: list(chain(
+                  (loop,), list(chain.from_iterable(loop[1]*list_loop))
+               )))(\
             (lambda x: \
                 [struct.pack(c_type[np_type], x), x])( \
                 int(random.random()*(MAX_LOOP+1-MIN_LOOP)+MIN_LOOP))
-                )
+                  )
 
 
     def setUp(self):
@@ -205,7 +205,7 @@ pck_client[b'\\x01'] = c_AttackRequest"""
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct complexity="complex" name="c_ReqStartPledgeWar" side="client" type="03">
-              <la2:primitive name="PledgeName" type="S"/>
+              <la2:primitive name="PledgeName" type="|S"/>
             </la2:pck_struct>
           </root>
         """
@@ -331,8 +331,8 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct complexity="complex" name="c_RequestGiveNickName" side="client" type="0B">
-              <la2:primitive name="Target" type="S"/>
-              <la2:primitive name="Title" type="S"/>
+              <la2:primitive name="Target" type="|S"/>
+              <la2:primitive name="Title" type="|S"/>
             </la2:pck_struct>
           </root>
         """
@@ -397,8 +397,8 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
               <la2:primitive name="U__" type="i4"/>
               <la2:primitive name="U___" type="i4"/>
               <la2:primitive name="U____" type="i4"/>
-              <la2:primitive name="U_____" type="S"/>
-              <la2:primitive name="U______" type="S"/>
+              <la2:primitive name="U_____" type="|S"/>
+              <la2:primitive name="U______" type="|S"/>
             </la2:pck_struct>
           </root>
         """
@@ -515,9 +515,6 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
             self.xml_string_trim(xml_string),
         )
         self.maxDiff = None
-        print()
-        print(self.xml_to_py.convert(xml_string))
-        print(py_string)
         # self.assertEqual(
         #     self.xml_to_py.convert(xml_string),
         #     py_string,
@@ -592,10 +589,10 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
           <root xmlns:la2="la2">
             <la2:pck_struct complexity="complex" name="c_RequestSendPost" side="client" type="D066">
               <la2:primitive name="subID" type="i2"/>
-              <la2:primitive name="receiver" type="S"/>
+              <la2:primitive name="receiver" type="|S"/>
               <la2:primitive name="isCod" type="i4"/>
-              <la2:primitive name="subj" type="S"/>
-              <la2:primitive name="text" type="S"/>
+              <la2:primitive name="subj" type="|S"/>
+              <la2:primitive name="text" type="|S"/>
               <la2:loop loop="2" name="attachCount" skip="0" type="i4">
                 <la2:primitive name="ObjID" type="i4"/>
                 <la2:primitive name="count" type="i8"/>
@@ -624,8 +621,8 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
               <la2:primitive name="subID" type="i2"/>
               <la2:loop loop="4" name="ClanHallsSize" skip="0" type="i4">
                 <la2:primitive name="ClanHallID" type="i4"/>
-                <la2:primitive name="HallName" type="S"/>
-                <la2:primitive name="LeaderName" type="S"/>
+                <la2:primitive name="HallName" type="|S"/>
+                <la2:primitive name="LeaderName" type="|S"/>
                 <la2:primitive name="Grade" type="i4"/>
               </la2:loop>
             </la2:pck_struct>
