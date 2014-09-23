@@ -53,6 +53,8 @@ class GetPosition():
     def __init__(self, data):
         self.data = data
         self.i = 0
+        self.c_type = {"i1": b"b", "i2": b"h", "i4": b"i", "i8": b"q",}
+        self.c_type_len = {"i1": 1, "i2": 2, "i4": 4, "i8": 8,}
 
     def get_dtype(self, np_type):
         dtype = []
@@ -62,11 +64,12 @@ class GetPosition():
                 dtype.append((primitive[0], primitive[1]))
             elif isinstance(primitive[1], str) and primitive[1] == '|S':
                 j = self.unicode_string(self.i)
+                # import pdb; pdb.set_trace()
                 i = self.i
                 self.i = j
-                dtype.append((primitive[0], primitive[1]+str(j-i+1)))
+                dtype.append((primitive[0], primitive[1]+str(j-i)))
             elif isinstance(primitive[1], list):
-                loop_value = self.get_loop_value(self.i, b"i")
+                loop_value = self.get_loop_value(self.i, dtype[-1][1])
                 for i in range(1, loop_value+1):
                     dtype.append((primitive[0][:-5]+str(i), self.get_dtype(primitive[1])))
             else:
@@ -74,12 +77,13 @@ class GetPosition():
         return dtype
 
     def unicode_string(self, i):
-        while self.data and self.data[i:i+2] != b"\\x00\\x00":
+        while self.data and self.data[i+1:i+3] != b"\\x00\\x00":
             i += 2
-        return (i+1)
+        return i+4
 
     def get_loop_value(self, i, t):
-        return struct.unpack(t, self.data[i-4:i])[0]
+        count = struct.unpack(self.c_type[t], self.data[i-self.c_type_len[t]:i])[0]
+        return count if count < 50 else 50
 
 
 pck_client = {}

@@ -502,8 +502,6 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
             py_string,
         )
         code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        print(code)
-        print(self.xml_to_py.convert(xml_string))
         code = compile(code, '<string>', 'exec')
         ns = {}
         exec(code, ns)
@@ -520,15 +518,10 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
                 ),
             )
         ]
-        print("pack: ", pack_value, unpack_value)
         py_execute = b"".join(pack_value)
-        print(py_execute)
         dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
-        print(dtype)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
-        print("COUNT=", pck_np_array['count'].item())
-        print("pck_np_array=", pck_np_array)
 
         self.assertEqual(pck_np_array['pck_type'].item(),
             unpack_value[0])
@@ -536,7 +529,6 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
             unpack_value[1])
         self.assertEqual(pck_np_array['count'].item(),
             unpack_value[2])
-
         loop_count, unpack_value_count = 0, 2
         while loop_count < pck_np_array['count']:
             loop_count += 1
@@ -549,14 +541,6 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
             unpack_value_count += 1
             self.assertEqual(pck_np_array['count'+str(loop_count)]['Price'].item(),
                 unpack_value[unpack_value_count])
-
-
-
-
-
-
-
-
 
 
 
@@ -585,11 +569,94 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
           </root>
         """
         self.ini_to_xml.side = b"client"
+        py_string = """
+class c_RequestSendPost(UTF):
+    @classmethod
+    def dtype(cls, data):
+        pos = GetPosition(data)
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('receiver', '|S'), ('isCod', 'i4'), ('subj', '|S'), ('text', '|S'), ('attachCount', 'i4'), ('attachCount:loop', [('ObjID', 'i4'), ('count', 'i8')]), ('reqAdena', 'i8')])
+        return dtype
+
+pck_client[b'\\xd0f'] = c_RequestSendPost"""
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
+        self.maxDiff = None
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
+        )
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
+        print(code)
+        print(self.xml_to_py.convert(xml_string))
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\xd0", -48),],
+                [(b"\x66\x00", 0x0066),],
+                self.random_string(1),
+                self.random_i(b"i4", 1),
+                self.random_string(2),
+                self.random_loop(b"i4",
+                    (
+                      self.random_i(b"i4", 1),
+                      self.random_i(b"i8", 1),
+                    )
+                ),
+                self.random_i(b"i8", 1),
+            )
+        ]
+        print("pack: ", pack_value, unpack_value)
+        py_execute = b"".join(pack_value)
+        print(py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        print(dtype)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        print("COUNT=", pck_np_array['attachCount'].item())
+        print("pck_np_array=", pck_np_array)
+
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['subID'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['receiver'].item(),
+            unpack_value[2])
+        self.assertEqual(pck_np_array['isCod'].item(),
+            unpack_value[3])
+        self.assertEqual(pck_np_array['subj'].item(),
+            unpack_value[4])
+        self.assertEqual(pck_np_array['text'].item(),
+            unpack_value[5])
+        self.assertEqual(pck_np_array['attachCount'].item(),
+            unpack_value[6])
+        loop_count, unpack_value_count = 0, 6
+        while loop_count < pck_np_array['attachCount']:
+            loop_count += 1
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['attachCount'+str(loop_count)]['ObjID'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['attachCount'+str(loop_count)]['count'].item(),
+                unpack_value[unpack_value_count])
+        unpack_value_count += 1
+        self.assertEqual(pck_np_array['reqAdena'].item(),
+            unpack_value[unpack_value_count])
+
+
+
+
+
+
+
+
+
+
 
     def testHard3(self):
         ini_string = b"""
