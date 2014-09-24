@@ -545,7 +545,6 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
 
 
 
-
     def testHard2(self):
         ini_string = b"""
           D066=RequestSendPost:h(subID)s(receiver)d(isCod)
@@ -589,8 +588,6 @@ pck_client[b'\\xd0f'] = c_RequestSendPost"""
             py_string,
         )
         code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        print(code)
-        print(self.xml_to_py.convert(xml_string))
         code = compile(code, '<string>', 'exec')
         ns = {}
         exec(code, ns)
@@ -611,15 +608,10 @@ pck_client[b'\\xd0f'] = c_RequestSendPost"""
                 self.random_i(b"i8", 1),
             )
         ]
-        print("pack: ", pack_value, unpack_value)
         py_execute = b"".join(pack_value)
-        print(py_execute)
         dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
-        print(dtype)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
-        print("COUNT=", pck_np_array['attachCount'].item())
-        print("pck_np_array=", pck_np_array)
 
         self.assertEqual(pck_np_array['pck_type'].item(),
             unpack_value[0])
@@ -651,13 +643,6 @@ pck_client[b'\\xd0f'] = c_RequestSendPost"""
 
 
 
-
-
-
-
-
-
-
     def testHard3(self):
         ini_string = b"""
           FE16=ExShowAgitInfo:
@@ -679,11 +664,90 @@ pck_client[b'\\xd0f'] = c_RequestSendPost"""
           </root>
         """
         self.ini_to_xml.side = b"server"
+        py_string = """
+class s_ExShowAgitInfo(UTF):
+    @classmethod
+    def dtype(cls, data):
+        pos = GetPosition(data)
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('ClanHallsSize', 'i4'), ('ClanHallsSize:loop', [('ClanHallID', 'i4'), ('HallName', '|S'), ('LeaderName', '|S'), ('Grade', 'i4')])])
+        return dtype
+
+pck_server[b'\\xfe\\x16'] = s_ExShowAgitInfo"""
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
+        self.maxDiff = None
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
+        )
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
+        print(code)
+        print(self.xml_to_py.convert(xml_string))
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\xfe", -2),],
+                [(b"\x16\x00", 0x0016),],
+                self.random_loop(b"i4",
+                    (
+                      self.random_i(b"i4", 1),
+                      self.random_string(2),
+                      self.random_i(b"i4", 1),
+                    )
+                ),
+            )
+        ]
+        print("pack: ", pack_value, unpack_value)
+        py_execute = b"".join(pack_value)
+        print(py_execute)
+
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        print(dtype)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        print("COUNT=", pck_np_array['ClanHallsSize'].item())
+        print("pck_np_array=", pck_np_array)
+
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['subID'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['ClanHallsSize'].item(),
+            unpack_value[2])
+        loop_count, unpack_value_count = 0, 2
+        while loop_count < pck_np_array['ClanHallsSize']:
+            loop_count += 1
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['ClanHallsSize'+str(loop_count)]['ClanHallID'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['ClanHallsSize'+str(loop_count)]['HallName'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['ClanHallsSize'+str(loop_count)]['LeaderName'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['ClanHallsSize'+str(loop_count)]['Grade'].item(),
+                unpack_value[unpack_value_count])
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     def testHard4(self):
         ini_string = b"""

@@ -64,12 +64,12 @@ class GetPosition():
                 dtype.append((primitive[0], primitive[1]))
             elif isinstance(primitive[1], str) and primitive[1] == '|S':
                 j = self.unicode_string(self.i)
-                # import pdb; pdb.set_trace()
                 i = self.i
                 self.i = j
                 dtype.append((primitive[0], primitive[1]+str(j-i)))
             elif isinstance(primitive[1], list):
                 loop_value = self.get_loop_value(self.i, dtype[-1][1])
+                # import pdb; pdb.set_trace()
                 for i in range(1, loop_value+1):
                     dtype.append((primitive[0][:-5]+str(i), self.get_dtype(primitive[1])))
             else:
@@ -77,12 +77,20 @@ class GetPosition():
         return dtype
 
     def unicode_string(self, i):
-        while self.data and self.data[i+1:i+3] != b"\\x00\\x00":
+        i += 4
+        l = len(self.data)
+        while self.data[i-3:i-1] != b"\\x00\\x00":
+            if i > l:
+                raise Exception("Error parsing np_type: get string value")
             i += 2
-        return i+4
+        return i
 
     def get_loop_value(self, i, t):
+        if i > len(self.data):
+            raise Exception("Error parsing np_type: get loop value")
         count = struct.unpack(self.c_type[t], self.data[i-self.c_type_len[t]:i])[0]
+        if count > 50:
+            raise Exception("Error parsing np_type: to many loops")
         return count if count < 50 else 50
 
 
