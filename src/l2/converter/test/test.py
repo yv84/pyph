@@ -62,8 +62,8 @@ class TestCase(unittest.TestCase):
 
     @staticmethod
     def random_loop(np_type, list_loop):
-        MIN_LOOP = 2
-        MAX_LOOP = 2
+        MIN_LOOP = 0
+        MAX_LOOP = 5
         c_type = {b"i1": b"b", b"i2": b"h", b"i4": b"i", b"i8": b"q",}
         signed_value_min = {b"i1": -128, b"i2": -32767,
             b"i4": -2147483648, b"i8": -9223372036854775808}
@@ -97,7 +97,7 @@ class TestCase(unittest.TestCase):
           </root>
         """
         py_string = """
-class c_Logout(UTF):
+class c_Logout():
     @classmethod
     def dtype(cls, data):
         dtype = [('pck_type', 'i1')]
@@ -150,7 +150,7 @@ pck_client[b'\\x00'] = c_Logout"""
           </root>
         """
         py_string = """
-class c_AttackRequest(UTF):
+class c_AttackRequest():
     @classmethod
     def dtype(cls, data):
         dtype = [('pck_type', 'i1'), ('ObjectID', 'i4'), ('OrigX', 'i4'), ('OrigY', 'i4'), ('OrigZ', 'i4'), ('AttackClick', 'i1')]
@@ -210,7 +210,7 @@ pck_client[b'\\x01'] = c_AttackRequest"""
           </root>
         """
         py_string = """
-class c_ReqStartPledgeWar(UTF):
+class c_ReqStartPledgeWar():
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
@@ -276,7 +276,7 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
             self.xml_string_trim(xml_string),
         )
         py_string = """
-class s_ExDominionWarStart(UTF):
+class s_ExDominionWarStart():
     @classmethod
     def dtype(cls, data):
         dtype = [('pck_type', 'i1'), ('subID', 'i2'), ('objID', 'i4'), ('1', 'i4'), ('terrID', 'i4'), ('isDisguised', 'i4'), ('isDisgTerrID', 'i4')]
@@ -339,7 +339,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
         self.ini_to_xml.side = b"client"
 
         py_string = """
-class c_RequestGiveNickName(UTF):
+class c_RequestGiveNickName():
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
@@ -404,7 +404,7 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
         """
         self.ini_to_xml.side = b"server"
         py_string = """
-class s_ExBrBroadcastEventState(UTF):
+class s_ExBrBroadcastEventState():
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
@@ -483,7 +483,7 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
         """
         self.ini_to_xml.side = b"client"
         py_string = """
-class c_SetPrivateStoreListSell(UTF):
+class c_SetPrivateStoreListSell():
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
@@ -512,8 +512,8 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
                 self.random_i(b"i4", 1),
                 self.random_loop(b"i4",
                     (
-                      self.random_i(b"i4", 1),
-                      self.random_i(b"i8", 2),
+                        self.random_i(b"i4", 1),
+                        self.random_i(b"i8", 2),
                     )
                 ),
             )
@@ -569,7 +569,7 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
         """
         self.ini_to_xml.side = b"client"
         py_string = """
-class c_RequestSendPost(UTF):
+class c_RequestSendPost():
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
@@ -601,8 +601,8 @@ pck_client[b'\\xd0f'] = c_RequestSendPost"""
                 self.random_string(2),
                 self.random_loop(b"i4",
                     (
-                      self.random_i(b"i4", 1),
-                      self.random_i(b"i8", 1),
+                        self.random_i(b"i4", 1),
+                        self.random_i(b"i8", 1),
                     )
                 ),
                 self.random_i(b"i8", 1),
@@ -665,7 +665,7 @@ pck_client[b'\\xd0f'] = c_RequestSendPost"""
         """
         self.ini_to_xml.side = b"server"
         py_string = """
-class s_ExShowAgitInfo(UTF):
+class s_ExShowAgitInfo():
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
@@ -684,8 +684,6 @@ pck_server[b'\\xfe\\x16'] = s_ExShowAgitInfo"""
             py_string,
         )
         code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        print(code)
-        print(self.xml_to_py.convert(xml_string))
         code = compile(code, '<string>', 'exec')
         ns = {}
         exec(code, ns)
@@ -696,23 +694,17 @@ pck_server[b'\\xfe\\x16'] = s_ExShowAgitInfo"""
                 [(b"\x16\x00", 0x0016),],
                 self.random_loop(b"i4",
                     (
-                      self.random_i(b"i4", 1),
-                      self.random_string(2),
-                      self.random_i(b"i4", 1),
+                        self.random_i(b"i4", 1),
+                        self.random_string(2),
+                        self.random_i(b"i4", 1),
                     )
                 ),
             )
         ]
-        print("pack: ", pack_value, unpack_value)
         py_execute = b"".join(pack_value)
-        print(py_execute)
-
         dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
-        print(dtype)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
-        print("COUNT=", pck_np_array['ClanHallsSize'].item())
-        print("pck_np_array=", pck_np_array)
 
         self.assertEqual(pck_np_array['pck_type'].item(),
             unpack_value[0])
@@ -735,16 +727,6 @@ pck_server[b'\\xfe\\x16'] = s_ExShowAgitInfo"""
             unpack_value_count += 1
             self.assertEqual(pck_np_array['ClanHallsSize'+str(loop_count)]['Grade'].item(),
                 unpack_value[unpack_value_count])
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -786,11 +768,136 @@ pck_server[b'\\xfe\\x16'] = s_ExShowAgitInfo"""
           </root>
         """
         self.ini_to_xml.side = b"client"
+        py_string = """
+class c_RequestSaveKeyMapping():
+    @classmethod
+    def dtype(cls, data):
+        pos = GetPosition(data)
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('U', 'i4'), ('U_', 'i4'), ('count', 'i4'), ('count:loop', [('cmd1sz', 'i1'), ('cmd1sz:loop', [('cmdID', 'i1')]), ('cmd2sz', 'i1'), ('cmd2sz:loop', [('cmdID', 'i1')]), ('cmdSz', 'i4'), ('cmdSz:loop', [('cmd', 'i4'), ('key', 'i4'), ('tgK1', 'i4'), ('tgK2', 'i4'), ('show', 'i4')])]), ('U__', 'i4'), ('U___', 'i4')])
+        return dtype
+
+pck_client[b'\\xd0"'] = c_RequestSaveKeyMapping"""
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
             self.xml_string_trim(xml_string),
         )
+        self.maxDiff = None
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
+        )
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
+        print(code)
+        print(self.xml_to_py.convert(xml_string))
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\xd0", -48),],
+                [(b"\x22\x00", 0x0022),],
+                self.random_i(b"i4", 2),
+                self.random_loop(b"i4",
+                    (
+                        self.random_loop(b"i1",
+                            (
+                                self.random_i(b"i1", 1),
+                            )
+                        ),
+                        self.random_loop(b"i1",
+                            (
+                                self.random_i(b"i1", 1),
+                            )
+                        ),
+                        self.random_loop(b"i4",
+                            (
+                                self.random_i(b"i4", 5),
+                            )
+                        ),
+                    )
+                ),
+                self.random_i(b"i4", 2),
+            )
+        ]
+        print("pack: ", pack_value, unpack_value)
+        py_execute = b"".join(pack_value)
+        print(py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        print(dtype)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        print("COUNT=", pck_np_array['count'].item())
+        print("pck_np_array=", pck_np_array)
+
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['subID'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['U'].item(),
+            unpack_value[2])
+        self.assertEqual(pck_np_array['U_'].item(),
+            unpack_value[3])
+        self.assertEqual(pck_np_array['count'].item(),
+            unpack_value[4])
+        loop_count, unpack_value_count = 0, 4
+        while loop_count < pck_np_array['count'].item():
+            loop_count += 1
+            unpack_value_count += 1
+
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['cmd1sz'].item(),
+                unpack_value[unpack_value_count])
+            loop_count1, unpack_value_count = 0, unpack_value_count
+            while loop_count1 < pck_np_array['count'+str(loop_count)]['cmd1sz'].item():
+                loop_count1 += 1
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['cmd1sz'+str(loop_count1)]['cmdID'].item(),
+                    unpack_value[unpack_value_count])
+
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['cmd2sz'].item(),
+                unpack_value[unpack_value_count])
+            loop_count1, unpack_value_count = 0, unpack_value_count
+            while loop_count1 < pck_np_array['count'+str(loop_count)]['cmd2sz'].item():
+                loop_count1 += 1
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['cmd2sz'+str(loop_count1)]['cmdID'].item(),
+                    unpack_value[unpack_value_count])
+
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['cmdSz'].item(),
+                unpack_value[unpack_value_count])
+            loop_count1, unpack_value_count = 0, unpack_value_count
+            while loop_count1 < pck_np_array['count'+str(loop_count)]['cmdSz'].item():
+                loop_count1 += 1
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['cmdSz'+str(loop_count1)]['cmd'].item(),
+                    unpack_value[unpack_value_count])
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['cmdSz'+str(loop_count1)]['key'].item(),
+                    unpack_value[unpack_value_count])
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['cmdSz'+str(loop_count1)]['tgK1'].item(),
+                    unpack_value[unpack_value_count])
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['cmdSz'+str(loop_count1)]['tgK2'].item(),
+                    unpack_value[unpack_value_count])
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['cmdSz'+str(loop_count1)]['show'].item(),
+                    unpack_value[unpack_value_count])
+        unpack_value_count += 1
+        self.assertEqual(pck_np_array['U__'].item(),
+            unpack_value[unpack_value_count])
+        unpack_value_count += 1
+        self.assertEqual(pck_np_array['U___'].item(),
+            unpack_value[unpack_value_count])
+
+
+
+
+
+
 
     def testHard5(self):
         ini_string = b"""

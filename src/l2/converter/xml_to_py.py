@@ -8,7 +8,7 @@ from jinja2 import Template
 class XmlToPy():
     def __init__(self):
         self.py_string = Template("""
-class {{pck_name}}(UTF):
+class {{pck_name}}():
     @classmethod
     def dtype(cls, data):{% if complexity == "complex" %}
         pos = GetPosition(data){% endif %}
@@ -31,7 +31,6 @@ pck_{{side}}[{{b_type}}] = {{pck_name}}""")
         root = etree.XML(xml_string)
         pck_struct = root.getchildren()[0]
         dtype = [(pck_struct.attrib['name'], pck_struct.attrib['type']),]
-        #import pdb; pdb.set_trace()
         dtype.extend(self.get_children(pck_struct))
 
         py_string = self.py_string.render(
@@ -44,9 +43,6 @@ pck_{{side}}[{{b_type}}] = {{pck_name}}""")
     @property
     def py_header(self):
         return """import struct
-
-class UTF():
-    pass
 
 class GetPosition():
 
@@ -91,7 +87,7 @@ class GetPosition():
         count = struct.unpack(self.c_type[t], self.data[i-self.c_type_len[t]:i])[0]
         if count > 50:
             raise Exception("Error parsing np_type: to many loops")
-        return count if count < 50 else 50
+        return count
 
 
 pck_client = {}
