@@ -94,6 +94,7 @@ class IniToXml():
         cursor = root
         loop = 0
         skip = 0
+        skipped = False
         loop_primitives = []
         skip_primitives = []
         primitives.reverse()
@@ -105,15 +106,26 @@ class IniToXml():
                 skip -= 1
                 skip_primitives.append(primitive)
                 if not skip:
-                    self.xml_body(skip_primitives, cursor.getparent())
+                    element_skip = etree.SubElement(cursor, '{la2}skip',
+                        # skip=cursor.attrib['skip'].encode('utf-8'),
+                    )
+                    self.xml_body(skip_primitives, element_skip)
                     skip_primitives = []
+                    skipped = True
             elif loop:
                 loop -= 1
                 loop_primitives.append(primitive)
                 if not loop:
-                    self.xml_body(loop_primitives, cursor)
+                    if skipped:
+                        element_loop = etree.SubElement(cursor, '{la2}loop',
+                            # loop=cursor.attrib['loop'].encode('utf-8'),
+                        )
+                        self.xml_body(loop_primitives, element_loop)
+                    else:
+                        self.xml_body(loop_primitives, cursor)
                     loop_primitives = []
                     cursor = cursor.getparent()
+                    skipped = False
             else:
                 primitive_name = self.camel(primitive[1])
                 while primitive_name in primitive_names:

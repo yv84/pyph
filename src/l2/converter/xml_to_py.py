@@ -20,11 +20,19 @@ pck_{{side}}[{{b_type}}] = {{pck_name}}""")
     def get_children(self, parent):
         dtype = []
         for primitive in parent.iterchildren():
-            dtype.append((primitive.attrib['name'],
-                primitive.attrib['type']))
             if primitive.tag.endswith('loop'):
-                dtype.append((primitive.attrib['name']+":loop",
-                    self.get_children(primitive)))
+                dtype.append((primitive.attrib['name'], 'value',
+                    primitive.attrib['type']))
+                if int(primitive.attrib['skip']) != 0:
+                    dtype.extend(self.get_children(primitive[0]))
+                    dtype.append((primitive.attrib['name'], 'loop',
+                        self.get_children(primitive[1])))
+                else:
+                    dtype.append((primitive.attrib['name'], 'loop',
+                        self.get_children(primitive)))
+            else:
+                dtype.append((primitive.attrib['name'],
+                    primitive.attrib['type']))
         return dtype
 
     def convert(self, xml_string):
@@ -51,23 +59,31 @@ class GetPosition():
         self.i = 0
         self.c_type = {"i1": b"b", "i2": b"h", "i4": b"i", "i8": b"q",}
         self.c_type_len = {"i1": 1, "i2": 2, "i4": 4, "i8": 8,}
+        self.values = {}
 
     def get_dtype(self, np_type):
         dtype = []
         for primitive in np_type:
-            if isinstance(primitive[1], str) and primitive[1].startswith('i'):
+            if primitive[1].startswith('i'):
                 self.i += int(primitive[1][1:2])
                 dtype.append((primitive[0], primitive[1]))
-            elif isinstance(primitive[1], str) and primitive[1] == '|S':
+            elif primitive[1] == '|S':
                 j = self.unicode_string(self.i)
                 i = self.i
                 self.i = j
                 dtype.append((primitive[0], primitive[1]+str(j-i)))
-            elif isinstance(primitive[1], list):
-                loop_value = self.get_loop_value(self.i, dtype[-1][1])
-                # import pdb; pdb.set_trace()
+            elif primitive[1] == 'value':
+                if primitive[2].startswith('i'):
+                    i = self.i
+                    self.i += int(primitive[2][1:2])
+                    dtype.append((primitive[0], primitive[2]))
+                    self.values[primitive[0]] = self.get_loop_value(self.i, primitive[2])
+                else:
+                    raise Exception("Error parsing np_type: invalid value type")
+            elif primitive[1] == 'loop':
+                loop_value = self.values[primitive[0]]
                 for i in range(1, loop_value+1):
-                    dtype.append((primitive[0][:-5]+str(i), self.get_dtype(primitive[1])))
+                    dtype.append((primitive[0]+str(i), self.get_dtype(primitive[2])))
             else:
                 raise Exception("Unknown np_type")
         return dtype

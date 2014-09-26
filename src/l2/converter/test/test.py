@@ -61,7 +61,7 @@ class TestCase(unittest.TestCase):
             for i in range(count)])(count)
 
     @staticmethod
-    def random_loop(np_type, list_loop):
+    def random_loop(np_type, list_loop, skip=[]):
         MIN_LOOP = 0
         MAX_LOOP = 5
         c_type = {b"i1": b"b", b"i2": b"h", b"i4": b"i", b"i8": b"q",}
@@ -70,7 +70,7 @@ class TestCase(unittest.TestCase):
         signed_value = {b"i1": 0xff, b"i2": 0xffff,
             b"i4": 0xffffffff, b"i8": 0xffffffffffffffff}
         return (lambda loop: list(chain(
-                  (loop,), list(chain.from_iterable(loop[1]*list_loop))
+                  (loop,), (skip), list(chain.from_iterable(loop[1]*list_loop)), 
                )))(\
             (lambda x: \
                 [struct.pack(c_type[np_type], x), x])( \
@@ -487,7 +487,7 @@ class c_SetPrivateStoreListSell():
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
-        dtype = pos.get_dtype([('pck_type', 'i1'), ('isPackage', 'i4'), ('count', 'i4'), ('count:loop', [('ObjectID', 'i4'), ('Count', 'i8'), ('Price', 'i8')])])
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('isPackage', 'i4'), ('count', 'value', 'i4'), ('count', 'loop', [('ObjectID', 'i4'), ('Count', 'i8'), ('Price', 'i8')])])
         return dtype
 
 pck_client[b'1'] = c_SetPrivateStoreListSell"""
@@ -573,7 +573,7 @@ class c_RequestSendPost():
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
-        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('receiver', '|S'), ('isCod', 'i4'), ('subj', '|S'), ('text', '|S'), ('attachCount', 'i4'), ('attachCount:loop', [('ObjID', 'i4'), ('count', 'i8')]), ('reqAdena', 'i8')])
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('receiver', '|S'), ('isCod', 'i4'), ('subj', '|S'), ('text', '|S'), ('attachCount', 'value', 'i4'), ('attachCount', 'loop', [('ObjID', 'i4'), ('count', 'i8')]), ('reqAdena', 'i8')])
         return dtype
 
 pck_client[b'\\xd0f'] = c_RequestSendPost"""
@@ -669,7 +669,7 @@ class s_ExShowAgitInfo():
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
-        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('ClanHallsSize', 'i4'), ('ClanHallsSize:loop', [('ClanHallID', 'i4'), ('HallName', '|S'), ('LeaderName', '|S'), ('Grade', 'i4')])])
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('ClanHallsSize', 'value', 'i4'), ('ClanHallsSize', 'loop', [('ClanHallID', 'i4'), ('HallName', '|S'), ('LeaderName', '|S'), ('Grade', 'i4')])])
         return dtype
 
 pck_server[b'\\xfe\\x16'] = s_ExShowAgitInfo"""
@@ -773,7 +773,7 @@ class c_RequestSaveKeyMapping():
     @classmethod
     def dtype(cls, data):
         pos = GetPosition(data)
-        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('U', 'i4'), ('U_', 'i4'), ('count', 'i4'), ('count:loop', [('cmd1sz', 'i1'), ('cmd1sz:loop', [('cmdID', 'i1')]), ('cmd2sz', 'i1'), ('cmd2sz:loop', [('cmdID', 'i1')]), ('cmdSz', 'i4'), ('cmdSz:loop', [('cmd', 'i4'), ('key', 'i4'), ('tgK1', 'i4'), ('tgK2', 'i4'), ('show', 'i4')])]), ('U__', 'i4'), ('U___', 'i4')])
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('U', 'i4'), ('U_', 'i4'), ('count', 'value', 'i4'), ('count', 'loop', [('cmd1sz', 'value', 'i1'), ('cmd1sz', 'loop', [('cmdID', 'i1')]), ('cmd2sz', 'value', 'i1'), ('cmd2sz', 'loop', [('cmdID', 'i1')]), ('cmdSz', 'value', 'i4'), ('cmdSz', 'loop', [('cmd', 'i4'), ('key', 'i4'), ('tgK1', 'i4'), ('tgK2', 'i4'), ('show', 'i4')])]), ('U__', 'i4'), ('U___', 'i4')])
         return dtype
 
 pck_client[b'\\xd0"'] = c_RequestSaveKeyMapping"""
@@ -788,8 +788,6 @@ pck_client[b'\\xd0"'] = c_RequestSaveKeyMapping"""
             py_string,
         )
         code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        print(code)
-        print(self.xml_to_py.convert(xml_string))
         code = compile(code, '<string>', 'exec')
         ns = {}
         exec(code, ns)
@@ -821,15 +819,10 @@ pck_client[b'\\xd0"'] = c_RequestSaveKeyMapping"""
                 self.random_i(b"i4", 2),
             )
         ]
-        print("pack: ", pack_value, unpack_value)
         py_execute = b"".join(pack_value)
-        print(py_execute)
         dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
-        print(dtype)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
-        print("COUNT=", pck_np_array['count'].item())
-        print("pck_np_array=", pck_np_array)
 
         self.assertEqual(pck_np_array['pck_type'].item(),
             unpack_value[0])
@@ -944,18 +937,187 @@ pck_client[b'\\xd0"'] = c_RequestSaveKeyMapping"""
                 <la2:primitive name="enchEff3" type="i2"/>
               </la2:loop>
               <la2:loop loop="1" name="blockedItems" skip="1" type="i2">
-                <la2:primitive name="blockItem" type="i4"/>
+                <la2:skip>
+                  <la2:primitive name="blockMode" type="i1"/>
+                </la2:skip>
+                <la2:loop>
+                    <la2:primitive name="blockItem" type="i4"/>
+                </la2:loop>
               </la2:loop>
-              <la2:primitive name="blockMode" type="i1"/>
             </la2:pck_struct>
           </root>
         """
         self.ini_to_xml.side = b"server"
+        py_string = """
+class s_ItemList():
+    @classmethod
+    def dtype(cls, data):
+        pos = GetPosition(data)
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('ShowWindow', 'i2'), ('count', 'value', 'i2'), ('count', 'loop', [('ObjectID', 'i4'), ('ItemID:Get.F0', 'i4'), ('LocationSlot', 'i4'), ('Count', 'i8'), ('ItemType2', 'i2'), ('CustomType1', 'i2'), ('isEquipped', 'i2'), ('BodyPart', 'i4'), ('EnchantLevel', 'i2'), ('CustType2', 'i2'), ('AugmentID:Get.F1', 'i4'), ('Mana', 'i4'), ('remainTime', 'i4'), ('AttackElem', 'i2'), ('AttackElemVal', 'i2'), ('DefAttrFire', 'i2'), ('DefAttrWater', 'i2'), ('DefAttrWind', 'i2'), ('DefAttrEarth', 'i2'), ('DefAttrHoly', 'i2'), ('DefAttrUnholy', 'i2'), ('EnchEff1', 'i2'), ('enchEff2', 'i2'), ('enchEff3', 'i2')]), ('blockedItems', 'value', 'i2'), ('blockMode', 'i1'), ('blockedItems', 'loop', [('blockItem', 'i4')])])
+        return dtype
+
+pck_server[b'\\x11'] = s_ItemList"""
+        print()
+        print(self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),)
+        print(self.xml_string_trim(xml_string),)
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
-            self.xml_string_trim(xml_string),
+                self.xml_string_trim(xml_string),
         )
+        self.maxDiff = None
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
+        )
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
+        print(code)
+        print(self.xml_to_py.convert(xml_string))
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\x11", 17),],
+                self.random_i(b"i2", 1),
+                self.random_loop(b"i2",
+                    (
+                        self.random_i(b"i4", 3),
+                        self.random_i(b"i8", 1),
+                        self.random_i(b"i2", 3),
+                        self.random_i(b"i4", 1),
+                        self.random_i(b"i2", 2),
+                        self.random_i(b"i4", 3),
+                        self.random_i(b"i2", 11),
+                    )
+                ),
+                self.random_loop(b"i2",
+                    (
+                        self.random_i(b"i4", 1),
+                    ),
+                    skip=self.random_i(b"i1", 1),
+                ),
+            )
+        ]
+        print("pack: ", pack_value, unpack_value)
+        py_execute = b"".join(pack_value)
+        print(py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        print(dtype)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        print("COUNT=", pck_np_array['count'].item())
+        print("pck_np_array=", pck_np_array)
+
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['ShowWindow'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['count'].item(),
+            unpack_value[2])
+        loop_count, unpack_value_count = 0, 2
+        while loop_count < pck_np_array['count'].item():
+            loop_count += 1
+
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['ObjectID'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['ItemID:Get.F0'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['LocationSlot'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['Count'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['ItemType2'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['CustomType1'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['isEquipped'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['BodyPart'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['EnchantLevel'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['CustType2'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['AugmentID:Get.F1'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['Mana'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['remainTime'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['AttackElem'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['AttackElemVal'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['DefAttrFire'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['DefAttrWater'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['DefAttrWind'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['DefAttrEarth'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['DefAttrHoly'].item(),
+                unpack_value[unpack_value_count])           
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['DefAttrUnholy'].item(),
+                unpack_value[unpack_value_count])            
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['EnchEff1'].item(),
+                unpack_value[unpack_value_count])            
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['enchEff2'].item(),
+                unpack_value[unpack_value_count])            
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['enchEff3'].item(),
+                unpack_value[unpack_value_count])            
+
+        unpack_value_count += 1
+        self.assertEqual(pck_np_array['blockedItems'].item(),
+            unpack_value[unpack_value_count])
+        unpack_value_count += 1
+        self.assertEqual(pck_np_array['blockMode'].item(),
+            unpack_value[unpack_value_count])
+        loop_count = 0
+        while loop_count < pck_np_array['blockedItems'].item():
+            loop_count += 1
+
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['blockedItems'+str(loop_count)]['blockItem'].item(),
+                unpack_value[unpack_value_count])   
+
+
+
+
+
+
+
+
+
+
+
 
     def testHard6(self):
         ini_string = b"""
