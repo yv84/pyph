@@ -135,8 +135,7 @@ class IniToXml():
                     cursor, [primitive[0], primitive_name], loop, skip)
 
 
-    def convert(self, line_in):
-        xml_out = b''
+    def convert_one_line(self, line_in, root):
         d = self.regex_header.match(line_in).groupdict() #
         opt_code, header, body = d['opt_code'], d['header'], d['body']
         primitives = self.regex_body.findall(body) # list(type, name)
@@ -144,17 +143,26 @@ class IniToXml():
             complexity = b"complex"
         else:
             complexity = b"simple"
-        root = etree.Element('root', nsmap={'la2': 'la2'})
-        tree = etree.ElementTree(root)
-        root = etree.SubElement(root, '{la2}pck_struct',
+        
+        line_root = etree.SubElement(root, '{la2}pck_struct',
             pck_name=b''.join([self.side[0:1], b'_', self.camel(header)]),
             side=self.side,
             opt_code=opt_code,
             complexity=complexity,
             name=b'pck_type',
             type=b'i1')
-        self.xml_body(primitives, root)
+        self.xml_body(primitives, line_root)
+        return
+
+
+    def convert(self, list_in):
+        xml_out = b''
+        root = etree.Element('root', nsmap={'la2': 'la2'})
+        tree = etree.ElementTree(root)
+
+        for line in list_in:
+            self.convert_one_line(line, root)
+
         xml_out = etree.tostring(tree, encoding='ASCII', xml_declaration=True,
             pretty_print=True)
-
         return xml_out

@@ -108,11 +108,11 @@ pck_client[b'\\x00'] = c_Logout"""
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
             self.xml_string_trim(xml_string),
         )
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -158,11 +158,11 @@ pck_client[b'\\x01'] = c_AttackRequest"""
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
             self.xml_string_trim(xml_string),
         )
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -218,11 +218,11 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
         self.ini_to_xml.side = b"client"
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
             self.xml_string_trim(xml_string),
         )
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -265,7 +265,7 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
         self.ini_to_xml.side = b"server"
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
             self.xml_string_trim(xml_string),
         )
         py_string = """
@@ -278,11 +278,11 @@ class s_ExDominionWarStart():
 pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
             self.xml_string_trim(xml_string),
         )
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -340,11 +340,11 @@ class c_RequestGiveNickName():
 pck_client[b'\\x0b'] = c_RequestGiveNickName"""
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
             self.xml_string_trim(xml_string),
         )
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -403,12 +403,12 @@ class s_ExBrBroadcastEventState():
 pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
             self.xml_string_trim(xml_string),
         )
         self.maxDiff = None
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -478,7 +478,7 @@ class c_RequestSaveBookMarkSlot():
 pck_client[b'\\xd0Q\\x01'] = c_RequestSaveBookMarkSlot"""
         self.maxDiff = None
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -541,12 +541,12 @@ class c_SetPrivateStoreListSell():
 pck_client[b'1'] = c_SetPrivateStoreListSell"""
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
             self.xml_string_trim(xml_string),
         )
         self.maxDiff = None
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -625,12 +625,12 @@ class c_RequestSendPost():
 pck_client[b'\\xd0f'] = c_RequestSendPost"""
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
             self.xml_string_trim(xml_string),
         )
         self.maxDiff = None
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -719,12 +719,12 @@ class s_ExShowAgitInfo():
 pck_server[b'\\xfe\\x16'] = s_ExShowAgitInfo"""
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
             self.xml_string_trim(xml_string),
         )
         self.maxDiff = None
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -821,12 +821,12 @@ class c_RequestSaveKeyMapping():
 pck_client[b'\\xd0"'] = c_RequestSaveKeyMapping"""
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
             self.xml_string_trim(xml_string),
         )
         self.maxDiff = None
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -995,12 +995,12 @@ class s_ItemList():
 pck_server[b'\\x11'] = s_ItemList"""
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
                 self.xml_string_trim(xml_string),
         )
         self.maxDiff = None
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -1181,12 +1181,12 @@ class s_ExUISetting():
 pck_server[b'\\xfep'] = s_ExUISetting"""
         self.assertEqual(
             self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
                 self.xml_string_trim(xml_string),
         )
         self.maxDiff = None
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)
@@ -1327,7 +1327,7 @@ class s_ExCubeGameTeamList():
 pck_server[b'\\xfe\\x97\\x00\\x00'] = s_ExCubeGameTeamList"""
         self.maxDiff = None
         self.assertEqual(
-            self.xml_to_py.convert(xml_string),
+            list(self.xml_to_py.convert(xml_string))[0],
             py_string,
         )
         pck = self.xml_to_py.execute(py_string)

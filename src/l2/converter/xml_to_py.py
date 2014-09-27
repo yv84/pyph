@@ -1,5 +1,4 @@
 import binascii
-import sys
 import types
 
 
@@ -39,15 +38,15 @@ pck_{{side}}[{{b_type}}] = {{pck_name}}""")
 
     def convert(self, xml_string):
         root = etree.XML(xml_string)
-        pck_struct = root.getchildren()[0]
-        dtype = [(pck_struct.attrib['name'], pck_struct.attrib['type']),]
-        dtype.extend(self.get_children(pck_struct))
+        for pck_struct in root.iterchildren():
+            dtype = [(pck_struct.attrib['name'], pck_struct.attrib['type']),]
+            dtype.extend(self.get_children(pck_struct))
 
-        py_string = self.py_string.render(
-            dtype=dtype,
-            b_type=binascii.unhexlify(pck_struct.attrib["opt_code"]),
-            **pck_struct.attrib)
-        return py_string
+            py_string = self.py_string.render(
+                dtype=dtype,
+                b_type=binascii.unhexlify(pck_struct.attrib["opt_code"]),
+                **pck_struct.attrib)
+            yield py_string
 
 
     @property
@@ -60,10 +59,10 @@ pck = Pck(pck_client, pck_server)
 """
 
     def execute(self, py_string):
-        if isinstance(py_string, str):
-            code = ''.join([self.py_header, py_string])
-        elif hasattr(py_string, '__iter__'):
+        if hasattr(py_string, '__iter__'):
             code = ''.join([self.py_header, ''.join(py_string)])
+        elif isinstance(py_string, str):
+            code = ''.join([self.py_header, py_string])
 
         code = compile(code, '<string>', 'exec')
         selfModule = types.ModuleType(__name__)
