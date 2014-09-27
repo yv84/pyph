@@ -43,12 +43,14 @@ class KeyInit():
             # print("{}: ".format(name), end='')
             side = 's' if name == 'server' else 'c'
             try:
+                xunpack = gameapi.xunpack(packet, side)
                 unpack = gameapi.unpack(packet, side)
+                print('+'*80)
+                if isinstance(xunpack, numpy.ndarray):
+                    print('xu/', side,'->', xunpack)
                 if isinstance(unpack, numpy.ndarray):
-                    print(name, "->{ ", end='')
-                    for i, j in zip(unpack.item(), unpack.dtype.fields):
-                        print(j, "=", i, end='; ')
-                    print("} ")
+                    print('yu/', side,'->', unpack)
+                print('!'*80)
                 pack = gameapi.pack(unpack, side)
                 yield pack
             except PacketError:

@@ -2,6 +2,8 @@ import numpy
 import binascii
 
 from .packets.PacketsGraciaFinal import Pck_invoke_dict
+from .converter.xml_to_py import XmlToPy
+
 
 
 class PacketError(Exception):
@@ -17,6 +19,20 @@ class gs_l2_packet():
         self.gameapi ={}
         self.gameapi['c'] = gameapi.get_Pck_invoke_c() # Pck_invoke_c
         self.gameapi['s'] = gameapi.get_Pck_invoke_s() # Pck_invoke_s
+        xml_to_py = XmlToPy()
+        import os
+        BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+        self.pck = xml_to_py.execute(xml_to_py.convert_file(BASE_DIR+'/l2/packets/PacketsGraciaFinal.xml'))
+
+
+    def xunpack(self, pck_data, side):
+        try:
+            dtype = self.pck.dtype(side, pck_data)
+            pck_np_array = numpy.zeros(1, dtype)
+            pck_np_array[:] = pck_data
+            return pck_np_array
+        except:
+            raise PacketError('unpack error: cant get dtype')
 
     def unpack(self, pck, side):
         """na vxode packet - na vixode numpy array

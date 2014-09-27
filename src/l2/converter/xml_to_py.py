@@ -37,7 +37,13 @@ pck_{{side}}[{{b_type}}] = {{pck_name}}""")
         return dtype
 
     def convert(self, xml_string):
-        root = etree.XML(xml_string)
+        if isinstance(xml_string, etree._Element):
+            root = xml_string
+        elif isinstance(xml_string, bytes):
+            root = etree.XML(xml_string)
+        else:
+            raise Exception("lxml root error")
+
         for pck_struct in root.iterchildren():
             dtype = [(pck_struct.attrib['name'], pck_struct.attrib['type']),]
             dtype.extend(self.get_children(pck_struct))
@@ -60,7 +66,10 @@ pck = Pck(pck_client, pck_server)
 
     def execute(self, py_string):
         if hasattr(py_string, '__iter__'):
-            code = ''.join([self.py_header, ''.join(py_string)])
+            # code1 = ''
+            # for s in py_string:
+            #     code1 = ''.join([code1, s])
+            code = ''.join([self.py_header, ''.join(py_string)]) # code1])#
         elif isinstance(py_string, str):
             code = ''.join([self.py_header, py_string])
 
@@ -69,3 +78,12 @@ pck = Pck(pck_client, pck_server)
         context = selfModule.__dict__
         exec(code, context)
         return context['pck']
+
+
+    def convert_file(self, file_in):
+        with open(file_in, 'r') as f_in:
+            tree = etree.parse(f_in)
+            root = tree.getroot()
+            yield from self.convert(root)
+            
+

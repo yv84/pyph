@@ -92,6 +92,9 @@ class TestCase(unittest.TestCase):
         ini_string = b"""
           00=Logout:
         """
+        ini_string1 = b"""
+          00=Logout
+        """
         xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
           <root xmlns:la2="la2">
             <la2:pck_struct complexity="simple" name="pck_type" opt_code="00" pck_name="c_Logout" side="client" type="i1"/>
@@ -109,6 +112,11 @@ pck_client[b'\\x00'] = c_Logout"""
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert([self.ini_string_trim(ini_string),])),
+            self.xml_string_trim(xml_string),
+        )
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert([self.ini_string_trim(ini_string1),])),
             self.xml_string_trim(xml_string),
         )
         self.assertEqual(

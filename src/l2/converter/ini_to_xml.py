@@ -1,4 +1,5 @@
 import re
+import argparse
 
 from lxml import etree
 
@@ -11,7 +12,7 @@ class IniToXml():
             (?P<opt_code>[0-9a-f]{2,8})
             =
             (?P<header>[a-z][a-z0-9]*)
-            :
+            :?
             (?P<body>.*)
         """)
         self.regex_body = re.compile(b"""(?xi)
@@ -136,7 +137,10 @@ class IniToXml():
 
 
     def convert_one_line(self, line_in, root):
-        d = self.regex_header.match(line_in).groupdict() #
+        try:
+            d = self.regex_header.match(line_in).groupdict() #
+        except:
+            return 
         opt_code, header, body = d['opt_code'], d['header'], d['body']
         primitives = self.regex_body.findall(body) # list(type, name)
         if self.regex_complexity.match(body):
@@ -161,8 +165,50 @@ class IniToXml():
         tree = etree.ElementTree(root)
 
         for line in list_in:
-            self.convert_one_line(line, root)
+            if isinstance(line, str):
+                line = line.encode('utf8')
+
+            if line.startswith(b'//'):
+                pass
+            elif line.lower().startswith(b'[server]'):
+                self.side = b'server'
+            elif line.lower().startswith(b'[client]'):
+                self.side = b'client'
+            elif line:
+                self.convert_one_line(line, root)
+            else:
+                pass
 
         xml_out = etree.tostring(tree, encoding='ASCII', xml_declaration=True,
             pretty_print=True)
         return xml_out
+
+
+    def convert_file(self, file_in, file_out):
+        with open(file_out, "wb") as f_out:
+            pass
+        with open(file_in, 'rU') as f_in:
+            with open(file_out, "ab") as f_out:
+                xml_out = self.convert(f_in)
+                f_out.write(xml_out)
+
+
+
+def agrparser():
+    parser = argparse.ArgumentParser(
+        description=' convert la2 packets.ini to xml ')
+    parser.add_argument("--fi", dest='f_in',
+        type=str, required=True, help='ini file')
+    parser.add_argument("--fo", dest='f_out',
+        type=str, help='xml file')
+    args = parser.parse_args()
+    return args
+
+
+if __name__ == '__main__':
+    args = agrparser()
+    initoxml = IniToXml()
+    if not args.f_out:
+        initoxml.convert_file(args.f_in, args.f_in[:args.f_in.find(".ini")]+".xml")
+    else:
+        initoxml.convert_file(args.f_in, args.f_out)
