@@ -88,6 +88,7 @@ class TestCase(unittest.TestCase):
 
 
     def testEasy1(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           00=Logout:
         """
@@ -135,6 +136,7 @@ pck_client[b'\\x00'] = c_Logout"""
 
 
     def testMiddle1(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           01=AttackRequest:d(ObjectID)d(OrigX)d(OrigY)d(OrigZ)c(AttackClick)
         """
@@ -199,6 +201,7 @@ pck_client[b'\\x01'] = c_AttackRequest"""
 
 
     def testMiddle2(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           03=ReqStartPledgeWar:s(PledgeName)
         """
@@ -325,6 +328,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
 
 
     def testMiddle5(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           0B=RequestGiveNickName:s(Target)s(Title)
         """
@@ -381,6 +385,7 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
 
 
     def testMiddle6(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           FECE=ExBrBroadcastEventState:
             h(subID)d(eventID)d(eventState)
@@ -464,7 +469,87 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
 
 
 
+
+    def testMiddle7(self):
+        # PacketsHighFive.ini
+        ini_string = b"""
+          D05101=RequestSaveBookMarkSlot:h(subID)s(name)d(icon)s(tag)
+        """
+        xml_string = b"""<?xml version=\'1.0\' encoding=\'ASCII\'?>
+          <root xmlns:la2="la2">
+            <la2:pck_struct complexity="complex" name="pck_type" opt_code="D05101" pck_name="c_RequestSaveBookMarkSlot" side="client" type="i1">
+              <la2:primitive name="subID" type="i2"/>
+              <la2:primitive name="name" type="|S"/>
+              <la2:primitive name="icon" type="i4"/>
+              <la2:primitive name="tag" type="|S"/>
+            </la2:pck_struct>
+          </root>
+        """
+        self.ini_to_xml.side = b"client"
+        py_string = """
+class c_RequestSaveBookMarkSlot():
+    @classmethod
+    def dtype(cls, data):
+        pos = GetPosition(data)
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('name', '|S'), ('icon', 'i4'), ('tag', '|S')])
+        return dtype
+
+pck_client[b'\\xd0Q\\x01'] = c_RequestSaveBookMarkSlot"""
+        print()
+        print(self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),)
+        print(self.xml_string_trim(xml_string),)
+        self.assertEqual(
+            self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
+                self.xml_string_trim(xml_string),
+        )
+        self.maxDiff = None
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
+        )
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
+        print(code)
+        print(self.xml_to_py.convert(xml_string))
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\xd0", -48),],
+                [(b"\x51\x01", 0x0151),],
+                self.random_string(1),
+                self.random_i(b"i4", 1),
+                self.random_string(1),
+            )
+        ]
+        print("pack: ", pack_value, unpack_value)
+        py_execute = b"".join(pack_value)
+        print(py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        print('dtype->', dtype)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        print("pck_np_array=", pck_np_array)
+
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['subID'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['name'].item(),
+            unpack_value[2])
+        self.assertEqual(pck_np_array['icon'].item(),
+            unpack_value[3])
+        self.assertEqual(pck_np_array['tag'].item(),
+            unpack_value[4])
+
+
+
+
     def testHard1(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           31=SetPrivateStoreListSell:d(isPackage)
             d(count:Loop.01.0003)d(ObjectID)q(Count)q(Price)
@@ -546,6 +631,7 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
 
 
     def testHard2(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           D066=RequestSendPost:h(subID)s(receiver)d(isCod)
             s(subj)s(text)d(attachCount:Loop.01.0002)
@@ -644,6 +730,7 @@ pck_client[b'\\xd0f'] = c_RequestSendPost"""
 
 
     def testHard3(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           FE16=ExShowAgitInfo:
             h(subID)
@@ -732,6 +819,7 @@ pck_server[b'\\xfe\\x16'] = s_ExShowAgitInfo"""
 
 
     def testHard4(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           D022=RequestSaveKeyMapping:
             h(subID)d(:)d(:)
@@ -888,11 +976,8 @@ pck_client[b'\\xd0"'] = c_RequestSaveKeyMapping"""
 
 
 
-
-
-
-
     def testHard5(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           11=ItemList:
             h(ShowWindow)h(count:Loop.01.0024)d(ObjectID)
@@ -957,10 +1042,6 @@ class s_ItemList():
         return dtype
 
 pck_server[b'\\x11'] = s_ItemList"""
-        print()
-        print(self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),)
-        print(self.xml_string_trim(xml_string),)
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
@@ -972,8 +1053,6 @@ pck_server[b'\\x11'] = s_ItemList"""
             py_string,
         )
         code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        print(code)
-        print(self.xml_to_py.convert(xml_string))
         code = compile(code, '<string>', 'exec')
         ns = {}
         exec(code, ns)
@@ -1001,15 +1080,10 @@ pck_server[b'\\x11'] = s_ItemList"""
                 ),
             )
         ]
-        print("pack: ", pack_value, unpack_value)
         py_execute = b"".join(pack_value)
-        print(py_execute)
         dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
-        print(dtype)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
-        print("COUNT=", pck_np_array['count'].item())
-        print("pck_np_array=", pck_np_array)
 
         self.assertEqual(pck_np_array['pck_type'].item(),
             unpack_value[0])
@@ -1110,16 +1184,8 @@ pck_server[b'\\x11'] = s_ItemList"""
 
 
 
-
-
-
-
-
-
-
-
-
     def testHard6(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           FE70=ExUISetting:h(subID)d(bufsize)d(categories)
             d(count:Loop.01.0010)
@@ -1156,13 +1222,130 @@ pck_server[b'\\x11'] = s_ItemList"""
           </root>
         """
         self.ini_to_xml.side = b"server"
+        py_string = """
+class s_ExUISetting():
+    @classmethod
+    def dtype(cls, data):
+        pos = GetPosition(data)
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('bufsize', 'i4'), ('categories', 'i4'), ('count', 'value', 'i4'), ('count', 'loop', [('catList1', 'value', 'i1'), ('catList1', 'loop', [('cmd', 'i1')]), ('catList2', 'value', 'i1'), ('catList2', 'loop', [('cmd', 'i1')]), ('keyList', 'value', 'i4'), ('keyList', 'loop', [('cmdID', 'i4'), ('keyID', 'i4'), ('toogleKey1', 'i4'), ('toogleKey2', 'i4'), ('showStatus', 'i4')])]), ('11', 'i4'), ('10', 'i4')])
+        return dtype
+
+pck_server[b'\\xfep'] = s_ExUISetting"""
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
-            self.xml_string_trim(xml_string),
+                self.xml_string_trim(xml_string),
         )
+        self.maxDiff = None
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
+        )
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\xfe", -2),],
+                [(b"\x70\x00", 0x0070),],
+                self.random_i(b"i4", 2),
+                self.random_loop(b"i4",
+                    (
+                        self.random_loop(b"i1",
+                            (
+                                self.random_i(b"i1", 1),
+                            )
+                        ),
+                        self.random_loop(b"i1",
+                            (
+                                self.random_i(b"i1", 1),
+                            )
+                        ),
+                        self.random_loop(b"i4",
+                            (
+                                self.random_i(b"i4", 5),
+                            )
+                        ),
+                    )
+                ),
+                self.random_i(b"i4", 2),
+            )
+        ]
+        py_execute = b"".join(pack_value)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['subID'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['bufsize'].item(),
+            unpack_value[2])
+        self.assertEqual(pck_np_array['categories'].item(),
+            unpack_value[3])
+        self.assertEqual(pck_np_array['count'].item(),
+            unpack_value[4])
+        loop_count, unpack_value_count = 0, 4
+        while loop_count < pck_np_array['count'].item():
+            loop_count += 1
+            unpack_value_count += 1
+
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['catList1'].item(),
+                unpack_value[unpack_value_count])
+            loop_count1, unpack_value_count = 0, unpack_value_count
+            while loop_count1 < pck_np_array['count'+str(loop_count)]['catList1'].item():
+                loop_count1 += 1
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['catList1'+str(loop_count1)]['cmd'].item(),
+                    unpack_value[unpack_value_count])
+
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['catList2'].item(),
+                unpack_value[unpack_value_count])
+            loop_count1, unpack_value_count = 0, unpack_value_count
+            while loop_count1 < pck_np_array['count'+str(loop_count)]['catList2'].item():
+                loop_count1 += 1
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['catList2'+str(loop_count1)]['cmd'].item(),
+                    unpack_value[unpack_value_count])
+
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['count'+str(loop_count)]['keyList'].item(),
+                unpack_value[unpack_value_count])
+            loop_count1, unpack_value_count = 0, unpack_value_count
+            while loop_count1 < pck_np_array['count'+str(loop_count)]['keyList'].item():
+                loop_count1 += 1
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['keyList'+str(loop_count1)]['cmdID'].item(),
+                    unpack_value[unpack_value_count])
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['keyList'+str(loop_count1)]['keyID'].item(),
+                    unpack_value[unpack_value_count])
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['keyList'+str(loop_count1)]['toogleKey1'].item(),
+                    unpack_value[unpack_value_count])
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['keyList'+str(loop_count1)]['toogleKey2'].item(),
+                    unpack_value[unpack_value_count])
+                unpack_value_count += 1
+                self.assertEqual(pck_np_array['count'+str(loop_count)]['keyList'+str(loop_count1)]['showStatus'].item(),
+                    unpack_value[unpack_value_count])
+        unpack_value_count += 1
+        self.assertEqual(pck_np_array['11'].item(),
+            unpack_value[unpack_value_count])
+        unpack_value_count += 1
+        self.assertEqual(pck_np_array['10'].item(),
+            unpack_value[unpack_value_count])   
+
+
+
+
 
     def testHard7(self):
+        # PacketsHighFive.ini
         ini_string = b"""
           FE970000=ExCubeGameTeamList:
             h(subID)d(sub2ID)d(roomNumber)d(-1)
@@ -1188,11 +1371,100 @@ pck_server[b'\\x11'] = s_ItemList"""
           </root>
         """
         self.ini_to_xml.side = b"server"
+        py_string = """
+class s_ExCubeGameTeamList():
+    @classmethod
+    def dtype(cls, data):
+        pos = GetPosition(data)
+        dtype = pos.get_dtype([('pck_type', 'i1'), ('subID', 'i2'), ('sub2ID', 'i4'), ('roomNumber', 'i4'), ('-1', 'i4'), ('bluePlayersCount', 'value', 'i4'), ('bluePlayersCount', 'loop', [('playerObjID', 'i4'), ('name', 'i4')]), ('redPlayersCount', 'value', 'i4'), ('redPlayersCount', 'loop', [('playerObjID', 'i4'), ('name', 'i4')])])
+        return dtype
+
+pck_server[b'\\xfe\\x97\\x00\\x00'] = s_ExCubeGameTeamList"""
+        print()
+        print(self.xml_string_trim(
+                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),)
+        print(self.xml_string_trim(xml_string),)
         self.assertEqual(
             self.xml_string_trim(
                 self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
-            self.xml_string_trim(xml_string),
+                self.xml_string_trim(xml_string),
         )
+        self.maxDiff = None
+        self.assertEqual(
+            self.xml_to_py.convert(xml_string),
+            py_string,
+        )
+        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
+        print(code)
+        print(self.xml_to_py.convert(xml_string))
+        code = compile(code, '<string>', 'exec')
+        ns = {}
+        exec(code, ns)
+        pack_value, unpack_value = [], []
+        [(pack_value.append(i[0]), unpack_value.append(i[1])) \
+            for i in chain(
+                [(b"\xfe", -2),],
+                [(b"\x97\x00", 0x0097),],
+                [(b"\x00\x00\x00\x00", 0x00000000),],
+                self.random_i(b"i4", 2),
+                self.random_loop(b"i4",
+                    (
+                        self.random_i(b"i4", 2),
+                    )
+                ),
+                self.random_loop(b"i4",
+                    (
+                        self.random_i(b"i4", 2),
+                    )
+                ),
+            )
+        ]
+        print("pack: ", pack_value, unpack_value)
+        py_execute = b"".join(pack_value)
+        print(py_execute)
+        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        print('dtype->', dtype)
+        pck_np_array = numpy.zeros(1,dtype)
+        pck_np_array[:] = py_execute
+        print("pck_np_array=", pck_np_array)
+
+        self.assertEqual(pck_np_array['pck_type'].item(),
+            unpack_value[0])
+        self.assertEqual(pck_np_array['subID'].item(),
+            unpack_value[1])
+        self.assertEqual(pck_np_array['sub2ID'].item(),
+            unpack_value[2])
+        self.assertEqual(pck_np_array['roomNumber'].item(),
+            unpack_value[3])
+        self.assertEqual(pck_np_array['-1'].item(),
+            unpack_value[4])
+        self.assertEqual(pck_np_array['bluePlayersCount'].item(),
+            unpack_value[5])
+        loop_count, unpack_value_count = 0, 5
+        while loop_count < pck_np_array['bluePlayersCount'].item():
+            loop_count += 1
+
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['bluePlayersCount'+str(loop_count)]['playerObjID'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['bluePlayersCount'+str(loop_count)]['name'].item(),
+                unpack_value[unpack_value_count])
+
+        unpack_value_count += 1
+        self.assertEqual(pck_np_array['redPlayersCount'].item(),
+            unpack_value[unpack_value_count])
+        loop_count = 0
+        while loop_count < pck_np_array['redPlayersCount'].item():
+            loop_count += 1
+
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['redPlayersCount'+str(loop_count)]['playerObjID'].item(),
+                unpack_value[unpack_value_count])
+            unpack_value_count += 1
+            self.assertEqual(pck_np_array['redPlayersCount'+str(loop_count)]['name'].item(),
+                unpack_value[unpack_value_count])
+
 
 
 if __name__ == '__main__':

@@ -124,12 +124,18 @@ class Pck():
             if data[0:1] != b'\\xd0':
                 return self.client[data[0:1]].dtype(data)
             else:
-                return self.client[data[0:2]].dtype(data)
+                if data[1:2] in (b'\\x51', b'\\x5A'):
+                    return self.client[data[0:3]].dtype(data)
+                else:
+                    return self.client[data[0:2]].dtype(data)
         elif side.lower() in ("s", "server", b"s", b"server"):
             if data[0:1] != b'\\xfe':
-                return self.server[data[0:1]].dtype(data)
+                    return self.server[data[0:1]].dtype(data)
             else:
-                return self.server[data[0:2]].dtype(data)
+                if data[1:3] in (b'\\xb7\\x00', b'\\x98\\x00', b'\\x97\\x00'):
+                    return self.server[data[0:2]+data[3:5]].dtype(data)
+                else:
+                    return self.server[data[0:2]].dtype(data)
         else:
            raise Exception("Invalid side")
 
