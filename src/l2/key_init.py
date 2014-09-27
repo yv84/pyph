@@ -40,27 +40,14 @@ class KeyInit():
 
     def packet_print_dtype(self, name, gameapi, gen, peername):
         for packet in gen:
-            # print("{}: ".format(name), end='')
-            side = 's' if name == 'server' else 'c'
             try:
-                xunpack = gameapi.xunpack(packet, side)
-                unpack = gameapi.unpack(packet, side)
-                print('+'*80)
-                if isinstance(xunpack, numpy.ndarray):
-                    print('xu/', side,'->', xunpack)
+                unpack = gameapi.unpack(packet, name)
                 if isinstance(unpack, numpy.ndarray):
-                    print('yu/', side,'->', unpack)
-                print('!'*80)
-                pack = gameapi.pack(unpack, side)
-                yield pack
-            except PacketError:
-                print('error parsing packet')
-                print("{}: ".format(name), end='')
-                print(packet)
+                    print('up/', name[0:1],'->', unpack)
                 yield packet
-
-
-
+            except PacketError:
+                print('error parsing packet {}: {}'.format(name, packet))
+                yield packet
 
 
 class Connect():
