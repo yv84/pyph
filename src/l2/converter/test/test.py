@@ -115,11 +115,7 @@ pck_client[b'\\x00'] = c_Logout"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([
-            self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -127,7 +123,7 @@ pck_client[b'\\x00'] = c_Logout"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -169,10 +165,7 @@ pck_client[b'\\x01'] = c_AttackRequest"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -182,7 +175,7 @@ pck_client[b'\\x01'] = c_AttackRequest"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -232,10 +225,7 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -244,7 +234,7 @@ pck_client[b'\\x03'] = c_ReqStartPledgeWar"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -295,10 +285,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -308,7 +295,7 @@ pck_server[b'\\xfe\\xa3'] = s_ExDominionWarStart"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -360,10 +347,7 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -372,7 +356,7 @@ pck_client[b'\\x0b'] = c_RequestGiveNickName"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -427,10 +411,7 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -441,7 +422,7 @@ pck_server[b'\\xfe\\xce'] = s_ExBrBroadcastEventState"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
         self.assertEqual(pck_np_array['pck_type'].item(),
@@ -495,26 +476,12 @@ class c_RequestSaveBookMarkSlot():
         return dtype
 
 pck_client[b'\\xd0Q\\x01'] = c_RequestSaveBookMarkSlot"""
-        print()
-        print(self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),)
-        print(self.xml_string_trim(xml_string),)
-        self.assertEqual(
-            self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
-                self.xml_string_trim(xml_string),
-        )
         self.maxDiff = None
         self.assertEqual(
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        print(code)
-        print(self.xml_to_py.convert(xml_string))
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -525,14 +492,10 @@ pck_client[b'\\xd0Q\\x01'] = c_RequestSaveBookMarkSlot"""
                 self.random_string(1),
             )
         ]
-        print("pack: ", pack_value, unpack_value)
         py_execute = b"".join(pack_value)
-        print(py_execute)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
-        print('dtype->', dtype)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
-        print("pck_np_array=", pck_np_array)
 
         self.assertEqual(pck_np_array['pck_type'].item(),
             unpack_value[0])
@@ -586,10 +549,7 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -604,7 +564,7 @@ pck_client[b'1'] = c_SetPrivateStoreListSell"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
 
@@ -673,10 +633,7 @@ pck_client[b'\\xd0f'] = c_RequestSendPost"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -695,7 +652,7 @@ pck_client[b'\\xd0f'] = c_RequestSendPost"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
 
@@ -770,10 +727,7 @@ pck_server[b'\\xfe\\x16'] = s_ExShowAgitInfo"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -789,7 +743,7 @@ pck_server[b'\\xfe\\x16'] = s_ExShowAgitInfo"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
 
@@ -875,10 +829,7 @@ pck_client[b'\\xd0"'] = c_RequestSaveKeyMapping"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -908,7 +859,7 @@ pck_client[b'\\xd0"'] = c_RequestSaveKeyMapping"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
 
@@ -1052,10 +1003,7 @@ pck_server[b'\\x11'] = s_ItemList"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -1081,7 +1029,7 @@ pck_server[b'\\x11'] = s_ItemList"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
 
@@ -1241,10 +1189,7 @@ pck_server[b'\\xfep'] = s_ExUISetting"""
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -1274,7 +1219,7 @@ pck_server[b'\\xfep'] = s_ExUISetting"""
             )
         ]
         py_execute = b"".join(pack_value)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
 
@@ -1380,26 +1325,12 @@ class s_ExCubeGameTeamList():
         return dtype
 
 pck_server[b'\\xfe\\x97\\x00\\x00'] = s_ExCubeGameTeamList"""
-        print()
-        print(self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),)
-        print(self.xml_string_trim(xml_string),)
-        self.assertEqual(
-            self.xml_string_trim(
-                self.ini_to_xml.convert(self.ini_string_trim(ini_string))),
-                self.xml_string_trim(xml_string),
-        )
         self.maxDiff = None
         self.assertEqual(
             self.xml_to_py.convert(xml_string),
             py_string,
         )
-        code = ''.join([self.xml_to_py.py_header, py_string, self.xml_to_py.py_footer])
-        print(code)
-        print(self.xml_to_py.convert(xml_string))
-        code = compile(code, '<string>', 'exec')
-        ns = {}
-        exec(code, ns)
+        pck = self.xml_to_py.execute(py_string)
         pack_value, unpack_value = [], []
         [(pack_value.append(i[0]), unpack_value.append(i[1])) \
             for i in chain(
@@ -1419,14 +1350,10 @@ pck_server[b'\\xfe\\x97\\x00\\x00'] = s_ExCubeGameTeamList"""
                 ),
             )
         ]
-        print("pack: ", pack_value, unpack_value)
         py_execute = b"".join(pack_value)
-        print(py_execute)
-        dtype = ns['pck'].dtype(self.ini_to_xml.side, py_execute)
-        print('dtype->', dtype)
+        dtype = pck.dtype(self.ini_to_xml.side, py_execute)
         pck_np_array = numpy.zeros(1,dtype)
         pck_np_array[:] = py_execute
-        print("pck_np_array=", pck_np_array)
 
         self.assertEqual(pck_np_array['pck_type'].item(),
             unpack_value[0])
