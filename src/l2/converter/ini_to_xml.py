@@ -142,7 +142,7 @@ class IniToXml():
                 cursor, loop, skip = self.element_append(
                     cursor, [t, primitive_name], loop, skip)
         if skip or loop:
-            raise Exception("wrong ini body")
+            raise PacketCompileException("wrong ini body")
 
 
     def convert_one_line(self, line_in, root):
@@ -172,8 +172,10 @@ class IniToXml():
         xml_out = b''
         root = etree.Element('root', nsmap={'la2': 'la2'})
         tree = etree.ElementTree(root)
+        line_n = 0
 
         for line in list_in:
+            line_n += 1
             if isinstance(line, str):
                 line = line.encode('utf8')
 
@@ -184,7 +186,14 @@ class IniToXml():
             elif line.lower().startswith(b'[client]'):
                 self.side = b'client'
             elif line:
-                self.convert_one_line(line, root)
+                try:
+                    self.convert_one_line(line, root)
+                except Exception as e:
+                    err = b"".join([b"compile error, line: ",
+                        line[:80], b", line number: ",
+                        str(line_n).encode('latin-1')]).decode('latin-1')
+                    err = "\n".join([e.value, err])
+                    raise PacketCompileException(err)
             else:
                 pass
 
@@ -201,6 +210,12 @@ class IniToXml():
                 xml_out = self.convert(f_in)
                 f_out.write(xml_out)
 
+
+class PacketCompileException(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
 
 
 def agrparser():

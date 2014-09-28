@@ -21,7 +21,7 @@ PACKAGE_PARENT = '../..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
-from converter.ini_to_xml import IniToXml
+from converter.ini_to_xml import IniToXml, PacketCompileException
 from converter.xml_to_py import XmlToPy
 
 
@@ -1634,7 +1634,8 @@ class s_CharSelectionInfo():
         return dtype
 
 pck_server[b'\\t'] = s_CharSelectionInfo"""
-        with self.assertRaisesRegex(Exception, "^wrong ini body$"):
+
+        with self.assertRaisesRegex(PacketCompileException, "wrong ini body.*"):
             self.ini_to_xml.convert([self.ini_string_trim(ini_string),])
 
 
