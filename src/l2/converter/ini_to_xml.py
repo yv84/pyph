@@ -16,14 +16,14 @@ class IniToXml():
             (?P<body>.*)
         """)
         self.regex_body = re.compile(b"""(?xi)
-            (?P<type>[a-z0-9])
+            (?P<type>[a-z0-9-])
             \(
-            (?P<name>[a-z0-9:.-]+)
+            (?P<name>[a-z0-9:.-_]+)
             \)
         """)
         self.regex_body_loop = re.compile(b"""(?xi) # :Loop.01.0001
             ^
-            (?P<name>[a-z0-9:.-]+?)
+            (?P<name>[a-z0-9:.-_]+?)
             :Loop.
             (?P<skip>\d{2}).
             (?P<loop>\d{4})
@@ -68,7 +68,7 @@ class IniToXml():
         loop = int(el['loop'])
         element = etree.SubElement(cursor, '{la2}loop',
             name=self.camel(el['name']),
-            type=self.ctypes_to_numpy[primitive[0]],
+            type=primitive[0],
             skip=str(skip).encode('utf-8'),
             loop=str(loop).encode('utf-8'),
         )
@@ -77,7 +77,7 @@ class IniToXml():
     def element_append_primitive(self, cursor, primitive):
         return etree.SubElement(cursor, '{la2}primitive',
             name=primitive[1],
-            type=self.ctypes_to_numpy[primitive[0]])
+            type=primitive[0])
 
 
     def element_append(self, cursor, primitive, loop, skip):
@@ -128,12 +128,21 @@ class IniToXml():
                     cursor = cursor.getparent()
                     skipped = False
             else:
+                t = primitive[0]
+                if primitive[0] == b'-':
+                    t = b''.join([self.ctypes_to_numpy[primitive[0]], primitive[1]])
+                else:
+                    t = self.ctypes_to_numpy[primitive[0]]
+
                 primitive_name = self.camel(primitive[1])
                 while primitive_name in primitive_names:
                     primitive_name = b"".join([primitive_name, b"_"])
+
                 primitive_names.append(primitive_name)
                 cursor, loop, skip = self.element_append(
-                    cursor, [primitive[0], primitive_name], loop, skip)
+                    cursor, [t, primitive_name], loop, skip)
+        if skip or loop:
+            raise Exception("wrong ini body")
 
 
     def convert_one_line(self, line_in, root):

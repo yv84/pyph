@@ -33,7 +33,14 @@ class GetPosition():
                 loop_value = self.values[primitive[0]]
                 for i in range(1, loop_value+1):
                     dtype.append((primitive[0]+str(i), self.get_dtype(primitive[2])))
+            elif primitive[1].startswith('f'):
+                self.i += int(primitive[1][1:2])
+                dtype.append((primitive[0], primitive[1]))
+            elif primitive[1].startswith('|S'):
+                self.i += int(primitive[1][2:3])
+                dtype.append((primitive[0], primitive[1]))
             else:
+                print((primitive[0], primitive[1]))
                 raise Exception("Unknown np_type")
         return dtype
 
