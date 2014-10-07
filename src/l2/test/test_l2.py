@@ -72,6 +72,19 @@ class TestCase(unittest.TestCase):
             list(rcv.pck_out(pck_unpacked)),
         )       	
  
+
+class TestCase2(unittest.TestCase):
+
+    def test_xor_set(self):
+        pck_server = b'\x19\x00.\x01\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\x01\x00\x00\x00\x19\x00\x00\x00\x00\x00\x00\x00\x00'
+        key_in =  b"\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\xc8'\x93\x01\xa1l1\x97"
+        self.assertEqual(
+            pck_server,
+            key_in,
+        )
+
+
+    @unittest.skip
     def test_xor_init(self):
         from l2.xor import Xor
         xor = Xor('decode')
