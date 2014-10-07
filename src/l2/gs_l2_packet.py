@@ -12,7 +12,7 @@ class PacketError(Exception):
         return repr(self.value)
 
 
-class gs_l2_packet():
+class GSL2Packet():
     def __init__(self):
         xml_to_py = XmlToPy()
         import os

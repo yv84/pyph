@@ -30,14 +30,12 @@ class Xor():
                 self.key = self.__set_new_key(packet, self.key,
                                 self.packet_buffer.client.xor)
 
-
-
     #get xor key
     @staticmethod
     def __set_new_key(pck, key, client_obj):
         #packet without length header / pck[0]
-        if key == b'' and len(pck) > 12 and pck[0] == 46:             # prishel packet inicializacii key
-            key = pck[2:10] + b'\xC8\x27\x93\x01\xA1\x6C\x31\x97'     # key v packete + const
+        if key == b'' and len(pck) > 12 and pck[0:1] == b'\x19':      # prishel packet inicializacii key
+            key = pck[4:12] + b'\xC8\x27\x93\x01\xA1\x6C\x31\x97'     # key v packete + const
             client_obj.xor_in.key = key
             client_obj.xor_out.key = key
         print('new key ->', key)
