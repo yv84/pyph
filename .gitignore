@@ -1,5 +1,7 @@
 pyphenv
 *.pyc
+*.swo
+*.swp
 venv
 __pycache__
 tmp

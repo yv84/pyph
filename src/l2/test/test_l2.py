@@ -29,20 +29,49 @@ class TestCase(unittest.TestCase):
     def testSimple(self):
         self.assertTrue(True)
 
-    def test_len_packet(self):
-        from l2.len_packet import LenL2PacketRcv, LenL2PacketSend
-        rcv = LenL2PacketRcv('test')
-        send = LenL2PacketSend('test')
-        self.assertTrue(rcv.name == 'test')
-        self.assertTrue(send.name == 'test')
+    def test_len_packet1(self):
+        from l2.len_packet import LenPackets
+        rcv = LenPackets()
+        pck_in = [b'\x06\x00test',]
+        pck_unpacked = [b'test',]
+        self.assertEqual(
+            list(rcv.pck_in(pck_in)),
+            pck_unpacked,
+        )
+        self.assertEqual(
+            pck_in,
+            list(rcv.pck_out(pck_unpacked)),
+        )
 
-        self.assertTrue(list(rcv.segmentation_packets(b'\x0b\x00123456789')) == [b'123456789'])
-        self.assertTrue(list(rcv.segmentation_packets(
-            b'\x0b\x00123456789\x05\x00123')) == [b'123456789', b'123'])
+    def test_len_packet2(self):
+        from l2.len_packet import LenPackets
+        rcv = LenPackets()
+        pck_in = [b'\x0b\x00123456789',]
+        pck_unpacked = [b'123456789',]
+        self.assertEqual(
+            list(rcv.pck_in(pck_in)),
+            pck_unpacked,
+        )
+        self.assertEqual(
+            pck_in,
+            list(rcv.pck_out(pck_unpacked)),
+        )
 
-        send.add_packets([b'123456789', b'123'])
-        self.assertTrue(send.pop_packet() == b'\x0b\x00123456789\x05\x00123')
-
+    def test_len_packet3(self):
+        from l2.len_packet import LenPackets
+        rcv = LenPackets()
+        pck_in = [b'\x0b\x00123456789\x05\x00123',]
+        pck_unpacked = [b'123456789', b'123',]
+        pck_out = [b'\x0b\x00123456789', b'\x05\x00123',]
+        self.assertEqual(
+            list(rcv.pck_in(pck_in)),
+            pck_unpacked,
+        )
+        self.assertEqual(
+            pck_out,
+            list(rcv.pck_out(pck_unpacked)),
+        )       	
+ 
     def test_xor_init(self):
         from l2.xor import Xor
         xor = Xor('decode')
