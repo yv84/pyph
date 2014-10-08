@@ -40,6 +40,7 @@ class KeyInit():
 
     def packet_print_dtype(self, name, gameapi, gen, peername):
         for packet in gen:
+            print(packet)
             try:
                 unpack = gameapi.unpack(packet, name)
                 if isinstance(unpack, numpy.ndarray):
@@ -50,6 +51,29 @@ class KeyInit():
                 yield packet
 
 
+
+
+
+
+class KeyInit1():
+    def __init__(self, packet):
+        self.packet = packet
+        self.packet.server.command_stack.append(lambda gen: \
+            self.key_packet_initialization(gen))
+        self.gameapi = packet.manager.gameapi
+        pipe = Pipe()
+        xor = XorInOut()
+        pipe \
+            .pck_len.pck_in(gen) \
+            .xor.xor_in(gen) \
+            .packet_print_dtype(name, gameapi, gen, peername) \
+            .xor.xor_out(gen) \
+            .pck_len.pck_out(gen)
+
+
+
+
+from asyncio.queues import Queue, QueueEmpty
 class Connect():
     def __init__(self, name, packet):
         self.name = name

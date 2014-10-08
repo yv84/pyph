@@ -5,14 +5,25 @@ import asyncio
 from asyncio.queues import Queue, QueueEmpty
 
 
+class Connect():
+    def __init__(self, name, packet):
+        from l2.len_packet import LenPackets
+        from l2.xor import XorInOut
+        self.name = name
+        self._data = b''
+        self.q = Queue()
+        self.command_stack = [] # func(gen: types.GeneratorType) -> types.GeneratorType
+        self.pck_len = LenPackets()
+        self.xor = XorInOut(packet)
+
+
+
 class Packet():
 
     def __init__(self, manager, peername):
         key_init = import_module(manager.cmd_line.game+'.key_init')
-        self.client = key_init.Connect('client', self)
-        self.client.q = Queue()
-        self.server = key_init.Connect('server', self)
-        self.server.q = Queue()
+        self.client = Connect('client', self)
+        self.server = Connect('server', self)
         self.manager = manager
         self.peername = peername
         self.key_init = key_init.KeyInit(self)
