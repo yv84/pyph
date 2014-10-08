@@ -277,26 +277,232 @@ class TestCase2(unittest.TestCase):
 
 
 
-    @unittest.skip
-    def test_xor_init(self):
-        from l2.xor import Xor
-        xor = Xor('decode')
-        pck = [b'.\x01\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\x01\x00\x00\x00\x19\x00\x00\x00\x00\x00\x00\x00\x00',]
-        key_xor = b"\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\xc8'\x93\x01\xa1l1\x97"
-        self.assertTrue(list(xor.xor(pck)) == pck)
-        self.assertTrue(xor.key == key_xor)
-        self.assertTrue(list(xor.xor([b'123456789101112'])) == \
-            [b'\x98\x93\x0e\x8c\x18\x81\xde\xaf\xc9/\x92\x00\xa1l2'])
-        self.assertFalse(xor.key == key_xor)
-        self.assertTrue(xor.key == b"\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\xd7'\x93\x01\xa1l1\x97")
+    def test_xor_set4(self):
+        from l2.xor import XorInOut
 
-        xor = Xor('code')
-        self.assertTrue(list(xor.xor(pck)) == pck)
-        self.assertTrue(xor.key == key_xor)
-        self.assertTrue(list(xor.xor([b'\x98\x93\x0e\x8c\x18\x81\xde\xaf\xc9/\x92\x00\xa1l2'])) == \
-            [b'123456789101112'])
-        self.assertFalse(xor.key == key_xor)
-        self.assertTrue(xor.key == b"\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\xd7'\x93\x01\xa1l1\x97")
+        class PacketBuffer():
+            class Side():
+                xor = XorInOut(None)
+            client = Side()
+            server = Side()
+        
+        packet_buffer = PacketBuffer()
+        xor_c = XorInOut(packet_buffer.client)
+        xor_s = XorInOut(packet_buffer.server)
+        xor_c.xor_in.packet_buffer = \
+            xor_c.xor_out.packet_buffer = \
+            xor_s.xor_in.packet_buffer = \
+            xor_s.xor_out.packet_buffer = packet_buffer
+
+        old_key = b"\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\xef'\x93\x01\xa1l1\x97" 
+        xor_c.xor_in.key = \
+            xor_c.xor_out.key = \
+            xor_s.xor_in.key = \
+            xor_s.xor_out.key = old_key
+
+        pck_packed = b'\xbb+$\xaf\xb64\xebK(\x02\x91\x901]l\xfbR\xc2\xcd' 
+        pck_unpacked =b'\x12\x00\x00\x00\x00\x00\x00\x00\x8c\r\x00\x00\x00\x00\x00\x00\x00\x00\x00' 
+        key_new = b'\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\x02(\x93\x01\xa1l1\x97'  
+
+        pck_out = list(xor_c.pck_in([pck_packed,]))
+
+        self.assertEqual(
+            xor_c.xor_in.key,
+            key_new,
+        )
+        self.assertEqual(
+            xor_s.xor_in.key,
+            old_key,
+        )
+        self.assertEqual(
+            xor_c.xor_out.key,
+            old_key,
+        )
+        self.assertEqual(
+            xor_s.xor_out.key,
+            old_key,
+        )
+        self.assertEqual(
+            pck_out,
+            [pck_unpacked,],
+        )
+
+        pck_out = list(xor_c.pck_out(pck_out))
+
+        self.assertEqual(
+            xor_c.xor_in.key,
+            key_new,
+        )
+        self.assertEqual(
+            xor_s.xor_in.key,
+            old_key,
+        )
+        self.assertEqual(
+            xor_c.xor_out.key,
+            key_new,
+        )
+        self.assertEqual(
+            xor_s.xor_out.key,
+            old_key,
+        )
+        self.assertEqual(
+            pck_out,
+            [pck_packed,],
+        )
+
+
+    def test_xor_set5(self):
+        from l2.xor import XorInOut
+
+        class PacketBuffer():
+            class Side():
+                xor = XorInOut(None)
+            client = Side()
+            server = Side()
+        
+        packet_buffer = PacketBuffer()
+        xor_c = XorInOut(packet_buffer.client)
+        xor_s = XorInOut(packet_buffer.server)
+        xor_c.xor_in.packet_buffer = \
+            xor_c.xor_out.packet_buffer = \
+            xor_s.xor_in.packet_buffer = \
+            xor_s.xor_out.packet_buffer = packet_buffer
+
+        old_key = b'\xa9\x90\x0f\x8b\x19\x82\xdf\xa0(+\x93\x01\xa1l1\x97'
+        xor_c.xor_in.key = \
+            xor_c.xor_out.key = \
+            xor_s.xor_in.key = \
+            xor_s.xor_out.key = old_key
+
+        pck_packed = b'W\xe5\xeahq\xf3,\x8d\xe5\xce];\x9a\x9a\xabI\xe0\x14\x1b\xf9\xe0\r\xd2r\x1a3\xa0\xa1\x00\x089\xc7n\x91\x9e{b\xe0?\x9c\xf4\xdfL*\x8b\x8e\xbfZ\xf3\x02\r\xe8\xf1s\xac\x08`K\xd8\xb6\x17\t8\xcac\x9d\x92\x19\x00\x87X\xf8\x90\xdaI,\x8d\x84\xb5L\xe5uz\xf7\xeel\xb3z\x12W\xc4\xab\n\x076\xc5l\x8e\x81cz\x94K\x8e\xe6\xcd^X\xf9\x95\xa4T\xfd\x02\r\xe2\xfb\x18\xc7\x15}2\xa1\xa0\x01eT\xc3j\x88\x87y`\x8cS\x96\xfe\xd5FN\xef\x83\xb2V\xff\x07\x08\xf6\xef\x19\xc6\x12z6\xa5\xc5dzK\xa8\x01\x91\x9e'  
+        pck_unpacked = b'\xfe"\x00\t\x00\x00\x00\x01@\x00\x00g\x00l\x00u\x00d\x00i\x00o\x00\x00@\x02\x00\x00\x00d\x00i\x00o\x00n\x00\x00\x00\x03@\x00\x00g\x00i\x00r\x00a\x00n\x00\x00\x00\x04@\x00\x00o\x00r\x00e\x00n\x00\x00\x00\x05\x00\x00@a\x00d\x00e\x00n\x00\x00\x00\x06\x00\x00\x00i@n\x00n\x00a\x00d\x00r\x00i\x00l\x00e@\x00\x00\x07\x00\x00\x00g\x00o\x00d\x00a\x00r@d\x00\x00\x00\x08\x00\x00\x00r\x00u\x00n\x00e@\x00\x00\t\x00\x00\x00s\x00h\x00u\x00t\x00t@g\x00a\x00r\x00t\x00\x00\x00'
+        key_new = b'\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\xcb+\x93\x01\xa1l1\x97'
+
+        pck_out = list(xor_s.pck_in([pck_packed,]))
+
+        self.assertEqual(
+            xor_c.xor_in.key,
+            old_key,
+        )
+        self.assertEqual(
+            xor_s.xor_in.key,
+            key_new,
+        )
+        self.assertEqual(
+            xor_c.xor_out.key,
+            old_key,
+        )
+        self.assertEqual(
+            xor_s.xor_out.key,
+            old_key,
+        )
+        self.assertEqual(
+            pck_out,
+            [pck_unpacked,],
+        )
+
+        pck_out = list(xor_s.pck_out(pck_out))
+
+        self.assertEqual(
+            xor_c.xor_in.key,
+            old_key,
+        )
+        self.assertEqual(
+            xor_s.xor_in.key,
+            key_new,
+        )
+        self.assertEqual(
+            xor_c.xor_out.key,
+            old_key,
+        )
+        self.assertEqual(
+            xor_s.xor_out.key,
+            key_new,
+        )
+        self.assertEqual(
+            pck_out,
+            [pck_packed,],
+        )
+
+
+
+    def test_xor_set6(self):
+        from l2.xor import XorInOut
+
+        class PacketBuffer():
+            class Side():
+                xor = XorInOut(None)
+            client = Side()
+            server = Side()
+        
+        packet_buffer = PacketBuffer()
+        xor_c = XorInOut(packet_buffer.client)
+        xor_s = XorInOut(packet_buffer.server)
+        xor_c.xor_in.packet_buffer = \
+            xor_c.xor_out.packet_buffer = \
+            xor_s.xor_in.packet_buffer = \
+            xor_s.xor_out.packet_buffer = packet_buffer
+
+        old_key = b'\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\x02(\x93\x01\xa1l1\x97'
+        xor_c.xor_in.key = \
+            xor_c.xor_out.key = \
+            xor_s.xor_in.key = \
+            xor_s.xor_out.key = old_key
+
+        pck_packed = b'y\xe8\xe7'
+        pck_unpacked = b'\xd0\x01\x00'
+        key_new = b'\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\x05(\x93\x01\xa1l1\x97'
+
+        pck_out = list(xor_c.pck_in([pck_packed,]))
+
+        self.assertEqual(
+            xor_c.xor_in.key,
+            key_new,
+        )
+        self.assertEqual(
+            xor_s.xor_in.key,
+            old_key,
+        )
+        self.assertEqual(
+            xor_c.xor_out.key,
+            old_key,
+        )
+        self.assertEqual(
+            xor_s.xor_out.key,
+            old_key,
+        )
+        self.assertEqual(
+            pck_out,
+            [pck_unpacked,],
+        )
+
+        pck_out = list(xor_c.pck_out(pck_out))
+
+        self.assertEqual(
+            xor_c.xor_in.key,
+            key_new,
+        )
+        self.assertEqual(
+            xor_s.xor_in.key,
+            old_key,
+        )
+        self.assertEqual(
+            xor_c.xor_out.key,
+            key_new,
+        )
+        self.assertEqual(
+            xor_s.xor_out.key,
+            old_key,
+        )
+        self.assertEqual(
+            pck_out,
+            [pck_packed,],
+        )
+
+
+
+
+
 
 
 class TestCase3(unittest.TestCase):
