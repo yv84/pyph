@@ -45,7 +45,10 @@ class TestCase(unittest.TestCase):
         from proxy.packet_buffer import Packet
 
         packet = Packet(manager, None)
-        # packet.key_init = import_module('l2.key_init')
+        from l2 import packet_pipe
+        packet.client = packet_pipe.Connect('client', packet)
+        packet.server = packet_pipe.Connect('server', packet)
+        # packet.packet_pipe = import_module('l2.packet_pipe')
 
         self.assertEqual(packet.client._data, b'')
         self.assertEqual(packet.server._data, b'')
@@ -54,12 +57,12 @@ class TestCase(unittest.TestCase):
     @patch('proxy.manager.Manager')  
     @patch('importlib.import_module')
     def test_packet_update1(self, imp, manager):
-        from proxy.packet_buffer import Packet, Connect
+        from proxy.packet_buffer import Packet
 
         packet = Packet(manager, None)
-        from l2 import key_init
-        packet.client = Connect('client', packet)
-        packet.server = Connect('server', packet)
+        from l2 import packet_pipe
+        packet.client = packet_pipe.Connect('client', packet)
+        packet.server = packet_pipe.Connect('server', packet)
 
         self.assertEqual(packet.client._data, b'')
         self.assertEqual(packet.server._data, b'')
@@ -84,12 +87,12 @@ class TestSocketConnection1(unittest.TestCase):
     @patch('importlib.import_module')
     def test_packet_packet_handlers(self, imp, manager):
         
-        from proxy.packet_buffer import Packet, Connect
+        from proxy.packet_buffer import Packet
 
         packet = Packet(manager, None)
-        from l2 import key_init
-        packet.client = Connect('client', packet)
-        packet.server = Connect('server', packet)
+        from l2 import packet_pipe
+        packet.client = packet_pipe.Connect('client', packet)
+        packet.server = packet_pipe.Connect('server', packet)
         
         self.loop = asyncio.get_event_loop()
         couroutine = packet.packet_handlers()
@@ -117,7 +120,8 @@ class TestSocketConnection1(unittest.TestCase):
         result = self.loop.run_until_complete(couroutine)
         self.assertEqual(packet.client.q.get_nowait(), b'123456')
         self.assertEqual(packet.server.q.get_nowait(), b'123456')
-
+        self.assertRaises(QueueEmpty, packet.client.q.get_nowait)
+        self.assertRaises(QueueEmpty, packet.server.q.get_nowait)
 
 
 
