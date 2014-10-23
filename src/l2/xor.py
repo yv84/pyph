@@ -2,8 +2,7 @@ import struct
 import types
 
 class Xor():
-    def __init__(self, xor_type, packet_buffer):
-        self.packet_buffer = packet_buffer
+    def __init__(self, xor_type):
         self.key = b''
         self.xor_type = xor_type
         if xor_type == 'code':
@@ -20,25 +19,23 @@ class Xor():
         return self.key
 
     def xor(self, generator):
-        print('self.key', self, self.xor_type, self.key)
+        # print("xor", 'self.key', self, self.xor_type, "key=", self.key, generator)
         for packet in generator:
+            # print('self.key', self, self.xor_type, "key=", self.key, packet)
             if self.key:
                 yield self.xor_func(packet, self.key)
                 self.key = self.__set_key(packet, self.key)
             elif self.key == b'':
                 yield packet
-                self.key = self.__set_new_key(packet, self.key,
-                                self.packet_buffer.client.xor)
+                self.key = self.__set_new_key(packet, self.key)
+                print('new key ->', self, self.key)
 
     #get xor key
     @staticmethod
-    def __set_new_key(pck, key, client_obj):
+    def __set_new_key(pck, key):
         #packet without length header / pck[0]
         if key == b'' and len(pck) > 12 and pck[0:1] == b'\x19':      # prishel packet inicializacii key
-            key = pck[4:12] + b'\xC8\x27\x93\x01\xA1\x6C\x31\x97'     # key v packete + const
-            client_obj.xor_in.key = key
-            client_obj.xor_out.key = key
-        print('new key ->', key)
+            key = pck[4:12] + b'\xC8\x27\x93\x01\xA1\x6C\x31\x97'     # key v packete + const (4 = len(2) + type(2))
         return key
 
     # get_new_key(old.key, len(packet))
@@ -80,8 +77,9 @@ class Xor():
 
 class XorInOut():
     def __init__(self, packet_buffer):
-        self.xor_in = Xor('decode', packet_buffer)
-        self.xor_out = Xor('code', packet_buffer)
+        self.packet_buffer = packet_buffer
+        self.xor_in = Xor('decode')
+        self.xor_out = Xor('code')
 
     def pck_in(self, gen: types.GeneratorType) -> types.GeneratorType:
         yield from self.xor_in.xor(gen)
@@ -89,8 +87,8 @@ class XorInOut():
     def pck_out(self, gen: types.GeneratorType) -> types.GeneratorType:
         yield from self.xor_out.xor(gen)
 
-    @classmethod
-    def init_xor(cls, obj_source, obj_dest):
-        print('init_xor ->', obj_source, obj_dest, obj_source.xor_in.get_key())
-        obj_dest.xor_in.init_key(obj_source.xor_in.get_key())
-        obj_dest.xor_out.init_key(obj_source.xor_in.get_key())
+    def init_xor(self, gen):
+        yield from self.packet_buffer.client.xor.xor_in.xor(gen)
+        yield from self.packet_buffer.client.xor.xor_out.xor(gen)
+        yield from self.packet_buffer.server.xor.xor_in.xor(gen)
+        yield from self.packet_buffer.server.xor.xor_out.xor(gen)

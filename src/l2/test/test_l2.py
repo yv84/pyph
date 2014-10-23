@@ -73,6 +73,22 @@ class TestCase(unittest.TestCase):
         )       	
  
 
+    def test_len_packet4(self):
+        from l2.len_packet import LenPackets
+        rcv = LenPackets()
+        pck_in = [b'\x19\x00.\x01\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\x01\x00\x00\x00\x19\x00\x00\x00\x00\x00\x00\x00\x00',]
+        pck_unpacked = [b'.\x01\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\x01\x00\x00\x00\x19\x00\x00\x00\x00\x00\x00\x00\x00',]
+        pck_out = [b'\x19\x00.\x01\xa9\x90\x0f\x8b\x19\x82\xdf\xa0\x01\x00\x00\x00\x19\x00\x00\x00\x00\x00\x00\x00\x00',]
+        self.assertEqual(
+            list(rcv.pck_in(pck_in)),
+            pck_unpacked,
+        )
+        self.assertEqual(
+            pck_out,
+            list(rcv.pck_out(pck_unpacked)),
+        )           
+ 
+
 
 class TestCase2(unittest.TestCase):
 

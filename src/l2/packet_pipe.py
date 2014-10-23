@@ -33,22 +33,25 @@ class PacketPipe():
 
 
     def run(self, pck_gen):
-        for f in self.pck_func:
+        func = self.pck_func[:]
+        for f in func:
             pck_gen = f(pck_gen)
         return pck_gen
 
     def key_packet_initialization(self, pck_gen):
-        for gen in pck_gen:
-            if gen:
-                self.packet.client.pck_func = self.packet.server.pck_func = [
+        for packet in pck_gen:
+            if packet.startswith(b'\x19\x00.'):
+                self.packet.client.pipe.pck_func = self.packet.server.pipe.pck_func = [
                     self.pck_len_in,
                     self.pck_xor_in,
-                    self.pck_get_data,
-                    self.pck_manager,
+                    # self.pck_get_data,
+                    # self.pck_manager,
                     self.pck_xor_out,
                     self.pck_len_out,
                 ]
-            yield gen
+                self.pck_xor_set_key(packet)
+                print("------init-------")
+            yield packet
 
     def pck_len_in(self, pck_gen):
         yield from self.connect.pck_len.pck_in(pck_gen)
@@ -58,6 +61,9 @@ class PacketPipe():
 
     def pck_xor_in(self, pck_gen):
         yield from self.connect.xor.pck_in(pck_gen)
+
+    def pck_xor_set_key(self, packet):
+        list(self.connect.xor.init_xor([packet,]))
 
     def pck_xor_out(self, pck_gen):
         yield from self.connect.xor.pck_out(pck_gen)
