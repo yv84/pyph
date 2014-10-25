@@ -41,13 +41,21 @@ class PacketPipe():
     def key_packet_initialization(self, pck_gen):
         for packet in pck_gen:
             if packet.startswith(b'\x19\x00.'):
-                self.packet.client.pipe.pck_func = self.packet.server.pipe.pck_func = [
-                    self.pck_len_in,
-                    self.pck_xor_in,
-                    # self.pck_get_data,
-                    # self.pck_manager,
-                    self.pck_xor_out,
-                    self.pck_len_out,
+                self.packet.server.pipe.pck_func = [
+                    self.packet.server.pipe.pck_len_in,
+                    self.packet.server.pipe.pck_xor_in,
+                    self.packet.server.pipe.pck_get_data,
+                    self.packet.server.pipe.pck_manager,
+                    self.packet.server.pipe.pck_xor_out,
+                    self.packet.server.pipe.pck_len_out,
+                ]
+                self.packet.client.pipe.pck_func = [
+                    self.packet.client.pipe.pck_len_in,
+                    self.packet.client.pipe.pck_xor_in,
+                    self.packet.client.pipe.pck_get_data,
+                    self.packet.client.pipe.pck_manager,
+                    self.packet.client.pipe.pck_xor_out,
+                    self.packet.client.pipe.pck_len_out,
                 ]
                 self.pck_xor_set_key(packet)
                 print("------init-------")
