@@ -26,9 +26,9 @@ class PacketPipe():
         self.packet = packet
         self.connect = connect
         # self.gameapi = packet.manager.gameapi
-        if self.connect.name == 'server': # c -> s
+        if self.connect.name == 'client': # s -> c
             self.pck_func = [self.key_packet_initialization, ]
-        else: # s -> c
+        else: # c -> s
             self.pck_func = []
 
 
@@ -40,7 +40,7 @@ class PacketPipe():
 
     def key_packet_initialization(self, pck_gen):
         for packet in pck_gen:
-            print(packet)
+            print(self.connect.name, packet)
             if packet.startswith(b'\x19\x00.'):
                 self.packet.server.pipe.pck_func = [
                     self.packet.server.pipe.pck_len_in,

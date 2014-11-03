@@ -17,9 +17,9 @@ class Packet():
 
     def update_data(self, side, data):
         """change in_data buffer"""
-        if side == 'client':
+        if side == 'f_c':
             self.client._data = b''.join([self.client._data, data])
-        elif side == 'server':
+        elif side == 'f_s':
             self.server._data = b''.join([self.server._data, data])
         else:
             raise Exception('invalid side')

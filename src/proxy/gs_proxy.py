@@ -15,7 +15,7 @@ class Client(asyncio.Protocol):
 
     def data_received(self, data):
         # forward data to the server
-        self.server.buffers[self.peername].update_data('server', data)
+        self.server.buffers[self.peername].update_data('f_s', data) # from server
 
     def connection_lost(self, *args):
         self.connected = False
@@ -63,7 +63,7 @@ class Server(asyncio.Protocol):
             self.buffers[peername] = Packet(self.manager, peername)
             asyncio.Task(self.send_data(peername))
             asyncio.Task(self.data_from_packet_buffer_to_queue(peername))
-        self.buffers[peername].update_data('client', data)
+        self.buffers[peername].update_data('f_c', data)  # from client
 
 
     @asyncio.coroutine
@@ -80,8 +80,8 @@ class Server(asyncio.Protocol):
         """take data from queue and send to transport socket"""
         while self.clients[peername].connected:
             # Return any available message
-            client_data = asyncio.Task(self.buffers[peername].client.q.get())
-            server_data = asyncio.Task(self.buffers[peername].server.q.get())
+            client_data = asyncio.Task(self.buffers[peername].client.q.get()) # to client
+            server_data = asyncio.Task(self.buffers[peername].server.q.get()) # to server
             done, pending = yield from asyncio.wait(
                 [client_data, server_data],
                 return_when=asyncio.FIRST_COMPLETED)
