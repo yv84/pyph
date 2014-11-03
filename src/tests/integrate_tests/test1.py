@@ -47,6 +47,7 @@ class TestCase(unittest.TestCase):
 
     def testProxyServer(self):
         game = 'l2'
+        game1 = '_l2'
         self.port1 = '9999'
         self.port2 = '8888'
         conn = {
@@ -60,12 +61,12 @@ class TestCase(unittest.TestCase):
         os.system('fuser -k '+'8765'+'/tcp') # websocket
         def start_server():
             os.system('python3 tests/integrate_tests/tcp_echo.py '
-            '--server --port '+self.port1+' --game '+game+' > /dev/null')
+            '--server --port '+self.port1+' --game '+game1+' > /dev/null')
         def start_proxy():
             os.system('python3 run.py --game '+game+'') # raw')#
         def start_client():
             os.system('python3 tests/integrate_tests/tcp_echo.py '
-             '--client --port '+self.port2+' --game '+game+' > /dev/null')
+             '--client --port '+self.port2+' --game '+game1+' > /dev/null')
         processes = [Process(target=start_server, args=()),]
         #processes.append(Process(target=start_proxy, args=()))
         #from src.l2.xor import Xor
@@ -78,7 +79,7 @@ class TestCase(unittest.TestCase):
             processes.append(Process(target=start_client, args=()))
         processes[0].start()
         processes[1].start()
-        time.sleep(4)
+        time.sleep(1)
         for p in processes[2:]:
             p.start()
             time.sleep(2)

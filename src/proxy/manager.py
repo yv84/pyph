@@ -19,8 +19,8 @@ class Manager():
         if self.cmd_line.game in ('aa', 'raw'):
             pass
         elif self.cmd_line.game == 'l2':
-            from l2.gs_l2_packet import gs_l2_packet
-            self.gameapi = gs_l2_packet()
+            from l2.gs_l2_packet import GSL2Packet
+            self.gameapi = GSL2Packet()
         else:
             raise Exception('invalid cmd_line.game')
 

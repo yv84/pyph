@@ -13,7 +13,7 @@ class Packet():
         self.server = key_init.Connect('server', self)
         self.manager = manager
         self.peername = peername
-        self.key_init = key_init.KeyInit(self)
+        # self.key_init = key_init.KeyInit(self)
 
     def update_data(self, side, data):
         """change in_data buffer"""
@@ -33,6 +33,7 @@ class Packet():
 
         # c_tx -> self.client._data -> s_rx
         # c_rx <- self.server._data <- s_tx
+        print(from_c_data, from_s_data)
         data = b''.join(self.server.pipe.run(gen(from_c_data)))
         if data:
             self.server.q.put_nowait(data)
