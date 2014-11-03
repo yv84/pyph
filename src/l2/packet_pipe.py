@@ -47,7 +47,7 @@ class PacketPipe():
                     self.packet.server.pipe.pck_len_in,
                     self.packet.server.pipe.pck_xor_in,
                     self.packet.server.pipe.pck_get_data,
-                    # self.packet.server.pipe.pck_manager,
+                    self.packet.server.pipe.pck_manager,
                     self.packet.server.pipe.pck_xor_out,
                     self.packet.server.pipe.pck_len_out,
                 ]
@@ -55,7 +55,7 @@ class PacketPipe():
                     self.packet.client.pipe.pck_len_in,
                     self.packet.client.pipe.pck_xor_in,
                     self.packet.client.pipe.pck_get_data,
-                    # self.packet.client.pipe.pck_manager,
+                    self.packet.client.pipe.pck_manager,
                     self.packet.client.pipe.pck_xor_out,
                     self.packet.client.pipe.pck_len_out,
                 ]
@@ -92,5 +92,5 @@ class PacketPipe():
                 yield packet
 
     def pck_manager(self, pck_gen):
-        yield from self.packet.manager(
+        yield from self.packet.manager.set_manager_data(
             self.connect.name, pck_gen, self.packet.peername)
