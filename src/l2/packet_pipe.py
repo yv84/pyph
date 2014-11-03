@@ -7,6 +7,8 @@ from .len_packet import LenPackets
 from .xor import XorInOut
 from .gs_l2_packet import PacketError
 
+from proxy.packet_buffer import Pipe
+
 
 class Connect():
     def __init__(self, name, packet):
@@ -22,7 +24,7 @@ class Connect():
         self.pipe = PacketPipe(self)
 
 
-class PacketPipe():
+class PacketPipe(Pipe):
     def __init__(self, connect):
         self.connect = connect
         self.packet = self.connect.packet

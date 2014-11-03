@@ -12,6 +12,8 @@ class Packet():
         self.manager = manager
         self.peername = peername
         # self.key_init = key_init.KeyInit(self)
+        self.client = None
+        self.server = None
         self.client = key_init.Connect('client', self)
         self.server = key_init.Connect('server', self)
 
@@ -40,3 +42,11 @@ class Packet():
         data = b''.join(self.server.pipe.run(gen(from_s_data))) # from server
         if data:
             self.client.q.put_nowait(data) # to client
+
+
+
+class Pipe(metaclass=ABCMeta):
+
+    @abstractmethod
+    def run(self, gen):
+        yield from gen

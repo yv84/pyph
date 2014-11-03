@@ -45,7 +45,56 @@ class TestCase(unittest.TestCase):
             p.terminate()
             p.join()
 
-    def testProxyServer(self):
+
+    # @unittest.skip('raw')
+    def testProxyServer_raw(self):
+        game = 'raw'
+        game1 = '_l2'
+        self.port1 = '9999'
+        self.port2 = '8888'
+        conn = {
+            'client': {'ip': '127.0.0.1', 'port': self.port1}, # client -> proxy
+            'server': {'ip': '127.0.0.1', 'port': self.port2}, # proxy -> server
+            }
+        N = 1
+        for d, k in zip([c for c in conn], [conn[c] for c in conn]):
+            os.system('fuser -k '+conn[d]['port']+'/tcp')
+        os.system('fuser -k '+'5000'+'/tcp') # web
+        os.system('fuser -k '+'8765'+'/tcp') # websocket
+        def start_server():
+            os.system('python3 tests/integrate_tests/tcp_echo.py '
+            '--server --port '+self.port1+' --game '+game1+' > /dev/null')
+        def start_proxy():
+            os.system('python3 run.py --game '+game+'') # raw')#
+        def start_client():
+            os.system('python3 tests/integrate_tests/tcp_echo.py '
+             '--client --port '+self.port2+' --game '+game1+' > /dev/null')
+        processes = [Process(target=start_server, args=()),]
+        #processes.append(Process(target=start_proxy, args=()))
+        #from src.l2.xor import Xor
+        #import __init__
+        #processes.append(Process(target=__init__.main, args=()),)
+        processes.append(Process(target=start_proxy, args=()))
+        from tests.integrate_tests import ws_client
+        processes.append(Process(target=ws_client.main, args=()),) # test_web_socket
+        for i in range(N):
+            processes.append(Process(target=start_client, args=()))
+        processes[0].start()
+        processes[1].start()
+        time.sleep(1)
+        for p in processes[2:]:
+            p.start()
+            time.sleep(2)
+        time.sleep(3)
+
+        processes.reverse()
+        for p in processes:
+            p.terminate()
+            p.join()
+
+
+    @unittest.skip('l2')
+    def testProxyServer_l2(self):
         game = 'l2'
         game1 = '_l2'
         self.port1 = '9999'
@@ -83,7 +132,7 @@ class TestCase(unittest.TestCase):
         for p in processes[2:]:
             p.start()
             time.sleep(2)
-        time.sleep(25)
+        time.sleep(3)
 
         processes.reverse()
         for p in processes:
