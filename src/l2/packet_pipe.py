@@ -13,20 +13,21 @@ class Connect():
         from l2.len_packet import LenPackets
         from l2.xor import XorInOut
         self.name = name
+        self.packet = packet
         self._data = b''
         self.q = Queue()
         self.command_stack = [] # func(gen: types.GeneratorType) -> types.GeneratorType
         self.pck_len = LenPackets()
         self.xor = XorInOut(packet)
-        self.pipe = PacketPipe(packet, self)
+        self.pipe = PacketPipe(self)
 
 
 class PacketPipe():
-    def __init__(self, packet, connect):
-        self.packet = packet
+    def __init__(self, connect):
         self.connect = connect
-        # self.gameapi = packet.manager.gameapi
-        if self.connect.name == 'client': # s -> c
+        self.packet = self.connect.packet
+        self.gameapi = self.packet.manager.gameapi
+        if self.connect.name == 'server': # s -> c
             self.pck_func = [self.key_packet_initialization, ]
         else: # c -> s
             self.pck_func = []
@@ -46,7 +47,7 @@ class PacketPipe():
                     self.packet.server.pipe.pck_len_in,
                     self.packet.server.pipe.pck_xor_in,
                     self.packet.server.pipe.pck_get_data,
-                    self.packet.server.pipe.pck_manager,
+                    # self.packet.server.pipe.pck_manager,
                     self.packet.server.pipe.pck_xor_out,
                     self.packet.server.pipe.pck_len_out,
                 ]
@@ -54,7 +55,7 @@ class PacketPipe():
                     self.packet.client.pipe.pck_len_in,
                     self.packet.client.pipe.pck_xor_in,
                     self.packet.client.pipe.pck_get_data,
-                    self.packet.client.pipe.pck_manager,
+                    # self.packet.client.pipe.pck_manager,
                     self.packet.client.pipe.pck_xor_out,
                     self.packet.client.pipe.pck_len_out,
                 ]
@@ -78,17 +79,16 @@ class PacketPipe():
         yield from self.connect.xor.pck_out(pck_gen)
 
     def pck_get_data(self, pck_gen):
-        name=self.connect.name
-        peername=self.packet.peername
+        # peername=self.packet.peername
         for packet in pck_gen:
-            print(packet)
+            print(self.connect.name[0:1],'->', packet)
             try:
-                unpack = self.gameapi.unpack(packet, name)
+                unpack = self.gameapi.unpack(packet, self.connect.name)
                 if isinstance(unpack, numpy.ndarray):
-                    print('up/', name[0:1],'->', unpack)
+                    print('up/', self.connect.name[0:1],'->', unpack)
                 yield packet
             except PacketError:
-                print('error parsing packet {}: {}'.format(name, packet))
+                print('error parsing packet {}: {}'.format(self.connect.name, packet))
                 yield packet
 
     def pck_manager(self, pck_gen):

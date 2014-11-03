@@ -9,11 +9,11 @@ class Packet():
 
     def __init__(self, manager, peername):
         key_init = import_module(manager.cmd_line.game+'.packet_pipe')
-        self.client = key_init.Connect('client', self)
-        self.server = key_init.Connect('server', self)
         self.manager = manager
         self.peername = peername
         # self.key_init = key_init.KeyInit(self)
+        self.client = key_init.Connect('client', self)
+        self.server = key_init.Connect('server', self)
 
     def update_data(self, side, data):
         """change in_data buffer"""
@@ -33,11 +33,10 @@ class Packet():
 
         # c_tx -> self.client._data -> s_rx
         # c_rx <- self.server._data <- s_tx
-        print(from_c_data, from_s_data)
-        data = b''.join(self.server.pipe.run(gen(from_c_data)))
+        data = b''.join(self.client.pipe.run(gen(from_c_data))) # from client
         if data:
-            self.server.q.put_nowait(data)
+            self.server.q.put_nowait(data) # to server
 
-        data = b''.join(self.client.pipe.run(gen(from_s_data)))
+        data = b''.join(self.server.pipe.run(gen(from_s_data))) # from server
         if data:
-            self.client.q.put_nowait(data)
+            self.client.q.put_nowait(data) # to client

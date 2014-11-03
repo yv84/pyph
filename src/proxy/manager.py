@@ -1,4 +1,7 @@
 
+from .packet_buffer import Packet
+
+
 class Side():
     def __init__(self):
         self.packets_to_ws = []
@@ -23,6 +26,10 @@ class Manager():
             self.gameapi = GSL2Packet()
         else:
             raise Exception('invalid cmd_line.game')
+
+    def create_connection(self, peername):
+        self.list_gs_conn_append(peername)
+        return Packet(self, peername)
 
     @property
     def list_gs_conn(self):

@@ -3,8 +3,6 @@
 import asyncio
 from asyncio.queues import Queue, QueueEmpty
 
-from .packet_buffer import Packet
-
 
 class Client(asyncio.Protocol):
 
@@ -59,8 +57,7 @@ class Server(asyncio.Protocol):
             client.peername = peername
             client.server_transport = self.transport
             self.clients[peername] = client
-            self.manager.list_gs_conn_append(peername)
-            self.buffers[peername] = Packet(self.manager, peername)
+            self.buffers[peername] = self.manager.create_connection(peername)
             asyncio.Task(self.send_data(peername))
             asyncio.Task(self.data_from_packet_buffer_to_queue(peername))
         self.buffers[peername].update_data('f_c', data)  # from client

@@ -137,14 +137,14 @@ class TestSocketConnection2(unittest.TestCase):
                 arg, value = tee(arg)
                 value = list(value)
                 if value:
-                    self.test.assertEqual(list(value), self.client_value)
+                    self.test.assertEqual(list(value), self.server_value) # from c to s
                 return arg
 
             def side_effect_server(self, arg):
                 arg, value = tee(arg)
                 value = list(value)
                 if value:
-                    self.test.assertEqual(list(value), self.server_value)
+                    self.test.assertEqual(list(value), self.client_value) # from s to c
                 return arg
 
             def side_effect(self, arg):
